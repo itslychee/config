@@ -4,6 +4,7 @@ My personal dotfiles reside here, and that's really all to it. Issues and PRs
 are welcome, as they increase pleasure and portability as I use my dotfiles across
 my devices.
 
+![Screenshot of my Arch setup utilizing my dotfiles](https://raw.githubusercontent.com/ItsLychee/dotfiles/main/screenshot.png)
 
 ## Packages
 
