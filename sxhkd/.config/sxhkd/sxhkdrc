@@ -1,0 +1,47 @@
+
+# WM Related
+super + Escape
+	pkill -USR1 -x sxhkd
+
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# Nodes 
+
+# Replace positions of two nodes
+super + shift + {w,a,s,d}
+	bspc node focused -s {north,west,south,east}
+# Focus on another node
+super + {w,a,s,d}
+	bspc node focused -f {north,west,south,east}
+# Close node
+super + c
+	bspc node focused -c
+# Toggle floating state of a node
+super + f
+	bspc node focused -t ~floating
+# Send node to another desktop
+super + shift + {1-5}
+	bspc node focused -d {1-5} --follow
+# Desktop switcher
+super + {z,x}
+	bspc desktop {prev,next} -f
+
+
+# Application-related
+super + l
+	rofi -show drun
+super + t
+	alacritty
+
+super + Tab 
+	rofi -show window
+
+Print
+	flameshot gui
+
+# Function key row
+# volume controlling brok on pipewire :c
+XF86Audio{Lower,Raise}Volume
+     pactl set-sink-volume @DEFAULT_SINK@ {-,+}5% 
+

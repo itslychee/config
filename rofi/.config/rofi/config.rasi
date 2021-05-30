@@ -1,0 +1,28 @@
+configuration {
+  modi: "drun,window";
+  font: "Iosevka 10";
+  show-icons: true;
+}
+
+prompt { enabled: false; }
+// Unnecessary clutter for my tastes :)
+
+element {
+    padding: 2.4px 12px;
+}
+
+element selected {
+   background-color: #343352;
+}
+
+* {
+   background-color: #282838;
+   text-color: white;
+}
+
+window {
+   border-radius: 2%;
+   border-color: #171726;
+   border: 1px;
+   padding: 5px;
+}

@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# It isn't necessary to fully restart the keybind daemon, as you can
+# just do so with Super + Esc
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+# Compositor
+pgrep -x picom > /dev/null || picom &
+
+# Wallpaper
+feh -q --bg-scale ~/.wallpaper-image &
+
+polybar main -r &
+
+
+bspc monitor -d 1 2 3 4 5
+
+bspc config border_width 1.25
+bspc config focused_border_color \#32a852
+bspc config window_gap 2

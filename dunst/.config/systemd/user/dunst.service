@@ -1,0 +1,11 @@
+[Unit]
+Description=Notification daemon
+
+[Service]
+ExecStart=/usr/bin/dunst
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+
