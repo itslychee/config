@@ -43,5 +43,7 @@ Print
 # Function key row
 # volume controlling brok on pipewire :c
 XF86Audio{Lower,Raise}Volume
-     pactl set-sink-volume @DEFAULT_SINK@ {-,+}5% 
+  pactl set-sink-volume @DEFAULT_SINK@ {-,+}5% 
 
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
