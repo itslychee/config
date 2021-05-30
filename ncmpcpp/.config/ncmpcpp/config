@@ -34,12 +34,11 @@ playlist_display_mode = classic
 visualizer_data_source = /tmp/mpdv.fifo
 visualizer_in_stereo = yes
 visualizer_type = spectrum
-visualizer_look = "ab"
+visualizer_look = "••"
 visualizer_output_name = "FIFO output"
-visualizer_color = red
+visualizer_color = magenta
 visualizer_autoscale = yes
-visualizer_spectrum_smooth_look = yes
+visualizer_spectrum_smooth_look = no
 visualizer_fps = 60
-
 
 
