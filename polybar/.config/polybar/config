@@ -5,18 +5,52 @@ wm-restack = bspwm
 override-redirect = false
 height = 18
 margin-bottom = 5
+line-size = 1
 
 background = #242430
 
 font-0 = "Misc Termsyn:pixelsize=8;2"
-font-1 = "Font Awesome 5 Free"
+
+; Fonts that don't need to be explicitly called
+font-1 = "Noto Sans:size=10;1"
 font-2 = "Twemoji:scale=10;1"
-font-3 = "Noto Sans:size=10;1"
+font-3 = "Font Awesome 5 Free:pixelsize=8;2"
+font-4 = "Font Awesome 5 Free Solid:pixelsize=8;2"
 
-modules-left = bspwm
+modules-left = bspwm mpd
 modules-center = title
-modules-right = time
+modules-right = volume battery time
 
+
+[module/volume]
+type = internal/pulseaudio
+format-volume = <ramp-volume> <label-volume>
+
+label-muted = muted
+label-muted-foreground = #666
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+interval = 1
+
+format-online = <label-song>  <label-time>
+format-paused =  <label-song>
+
+format-online-width = 10
+format-online-margin = 8
+format-online-underline = #ab1d43
+
+label-offline = [mpd is offline]
+label-song = %title% - %artist%
+
+toggle-on-foreground = #ff
+toggle-off-foreground = #55
 
 [module/time]
 type = internal/date
@@ -25,13 +59,57 @@ time = %I:%M%p %Z (%z)
 label = %date%  %time%
 format = <label>
 format-font = 1
+format-margin = 2
 
 [module/bspwm]
 type = internal/bspwm
-format-font = 2
+format-font = 1
 label-focused-foreground = #9191ba
 
 [module/title]
 type = internal/xwindow
 format = <label>
-format-font = 2
+format-font = 1
+format-underline = #d1dfeb
+format-padding = 2
+label-maxlen = 45
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP0
+poll-interval = 3
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging> 
+format-full = <ramp-capacity> 100%
+
+format-charging-margin = 1
+format-discharging-margin = 1
+format-full-format = 1
+
+label-charging = +%percentage%%
+label-discharging = -%percentage%%
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+; Framerate in milliseconds
+animation-discharging-framerate = 500
+
+
