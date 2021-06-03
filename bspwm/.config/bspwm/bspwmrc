@@ -10,6 +10,11 @@ pgrep -x picom > /dev/null || picom &
 # Wallpaper
 feh -q --bg-scale ~/.wallpaper-image &
 
+
+# fucking flameshot
+flameshot &
+
+
 polybar main -r &
 
 
