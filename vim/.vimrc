@@ -3,6 +3,7 @@
 syntax on
 set nocompatible
 set number
+set nowrap
 
 call plug#begin()
 	Plug 'sheerun/vim-polyglot'
