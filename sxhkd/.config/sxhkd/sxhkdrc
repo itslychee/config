@@ -31,8 +31,6 @@ super + {z,x}
 # Application-related
 super + l
 	rofi -show drun
-super + t
-	alacritty
 
 super + Tab 
 	rofi -show window
@@ -40,10 +38,14 @@ super + Tab
 Print
 	flameshot gui
 
-# Function key row
-# volume controlling brok on pipewire :c
+# Audio management
 XF86Audio{Lower,Raise}Volume
   pactl set-sink-volume @DEFAULT_SINK@ {-,+}5% 
 
 XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+
+XF86Audio{Play,Prev,Next}
+	playerctl --player=spotify,mpd,%any {play\-pause,previous,next}
+
