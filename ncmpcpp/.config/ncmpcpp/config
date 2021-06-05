@@ -5,9 +5,6 @@
 [ncmpcpp]
 ncmpcpp_directory = ~/.config/ncmpcpp
 
-[mpd]
-mpd_crossfade_time = 1
-
 [song]
 now_playing_prefix = "Now Playing: "
 display_bitrate = yes
