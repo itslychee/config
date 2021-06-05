@@ -1,6 +1,6 @@
 configuration {
   modi: "drun,window";
-  font: "Monospace 8";
+  font: "Iosevka 10";
   show-icons: true;
 }
 
