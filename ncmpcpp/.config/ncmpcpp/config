@@ -4,13 +4,14 @@
 
 [ncmpcpp]
 ncmpcpp_directory = ~/.config/ncmpcpp
+mpd_music_dir = "/mnt/music"
 
 [song]
-now_playing_prefix = "Now Playing: "
 display_bitrate = yes
 jump_to_now_playing_song_at_start = yes
 fetch_lyrics_for_current_song_in_background = no
 incremental_seeking = yes
+execute_on_song_change = notify-send -a ncmpcpp "Now Playing" "$(mpc --format '%title% \n%artist% - %album%' current)"
 
 [progressbar]
 progressbar_look  = =|╼
@@ -18,8 +19,8 @@ progressbar_color = green
 
 [ui]
 user_interface = alternative
-main_window_color = blue
-alternative_ui_separator_color = red
+main_window_color = red
+alternative_ui_separator_color = blue
 show_hidden_files_in_local_browser = no
 allow_for_physical_item_deletion = yes
 centered_cursor = yes
@@ -30,12 +31,12 @@ playlist_display_mode = classic
 [visualizer]
 visualizer_data_source = /tmp/mpdv.fifo
 visualizer_in_stereo = yes
-visualizer_type = spectrum
+visualizer_type = wave_filled
 visualizer_look = "••"
 visualizer_output_name = "FIFO output"
-visualizer_color = magenta
+visualizer_color = blue
 visualizer_autoscale = yes
-visualizer_spectrum_smooth_look = no
-visualizer_fps = 60
+visualizer_spectrum_smooth_look = yes
+visualizer_fps = 120
 
 
