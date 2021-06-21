@@ -31,7 +31,7 @@ my devices.
 - Font Awesome 5 Free
 - Twemoji
 - Noto Sans
-- Termsyn (bitmap font)
+- Spleen (bitmap font)
 - Iosevka
 - **the respective package(s) you intend to use**
 - xsetroot (for Xorg)
@@ -39,9 +39,3 @@ my devices.
 
 ## Notes
 - I use systemd's user manager for some processes, so you will have to enable lingering (`loginctl enable-linger $USER`) for processes to autostart on login.
-- You will have to refresh the font cache on root-level (`fc-cache -fr`) so Bitmap fonts won't sporadically mess up in rendering.
-
-
-## Bugs
-- Flameshot sometimes doesn't start up, check this out later
-- Bitmap onts sometimes mess up, for more in detail check above
