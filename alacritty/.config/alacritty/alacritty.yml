@@ -27,13 +27,15 @@ env:
 font:
   # Normal (roman) font face
   normal:
-    family: Misc Termsyn
+    style: Regular
+    family: Spleen
   bold:
-    family: Misc Termsyn
+    style: Regular
+    family: Spleen
   italic:
-    family: Misc Termsyn
-  
-  size: 8
+    style: Regular
+    family: Spleen
+  size: 7  
 
 cursor:
   style:

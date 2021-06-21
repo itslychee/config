@@ -9,7 +9,7 @@ line-size = 1
 
 background = #242430
 
-font-0 = "Misc Termsyn:pixelsize=8;2"
+font-0 = "Spleen;2"
 
 ; Fonts that don't need to be explicitly called
 font-1 = "Noto Sans:size=10;1"
@@ -44,12 +44,11 @@ interval = 1
 format-online = <label-song>  <label-time>
 format-paused =  <label-song>
 
-format-online-width = 10
 format-online-margin = 8
 format-online-underline = #ab1d43
 
-label-offline = [mpd is offline]
 label-song = %title% - %artist%
+label-song-maxlen = 50
 
 toggle-on-foreground = #ff
 toggle-off-foreground = #55

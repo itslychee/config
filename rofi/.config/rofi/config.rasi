@@ -1,8 +1,10 @@
 configuration {
   modi: "drun,window";
-  font: "Iosevka 10";
   show-icons: true;
+  font: "Iosevka 10";
 }
+
+
 
 prompt { enabled: false; }
 // Unnecessary clutter for my tastes :)
@@ -26,3 +28,4 @@ window {
    border: 1px;
    padding: 5px;
 }
+
