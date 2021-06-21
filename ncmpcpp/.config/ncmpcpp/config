@@ -14,12 +14,12 @@ incremental_seeking = yes
 execute_on_song_change = notify-send -a ncmpcpp "Now Playing" "$(mpc --format '%title% \n%artist% - %album%' current)"
 
 [progressbar]
-progressbar_look  = =|╼
+progressbar_look  = ╼|=
 progressbar_color = green
 
 [ui]
 user_interface = alternative
-main_window_color = red
+main_window_color = blue
 alternative_ui_separator_color = blue
 show_hidden_files_in_local_browser = no
 allow_for_physical_item_deletion = yes
