@@ -71,7 +71,7 @@
     separator_height = 2
 
     # Padding between text and separator.
-    padding = 8
+    padding = 10
 
     # Horizontal padding.
     horizontal_padding = 8
@@ -81,7 +81,7 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 1
+    frame_width = 0
 
     # Defines color of the frame around the notification window.
     frame_color = "#416875"
@@ -92,7 +92,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = frame
+    separator_color = auto
 
     # Sort messages by urgency.
     sort = yes
@@ -146,7 +146,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<u>%a</u>: %s\n%b"
+    format = "%a: %s\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -204,7 +204,7 @@
     sticky_history = yes
 
     # Maximum amount of notifications kept in history
-    history_length = 20
+    history_length = 5
 
     ### Misc/Advanced ###
 
@@ -334,7 +334,7 @@
     #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#324a52"    
+    background = "#313236"
     foreground = "#ffffff"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
