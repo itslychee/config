@@ -29,7 +29,7 @@ super + {z,x}
 
 
 # Application-related
-super + l
+super + space
 	rofi -show drun
 
 super + Tab 

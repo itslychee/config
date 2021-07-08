@@ -37,6 +37,10 @@ font:
     family: Spleen
   size: 7  
 
+scrolling:
+    history: 100000
+    multiplier: 4
+
 cursor:
   style:
       shape: Beam

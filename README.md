@@ -26,6 +26,7 @@ my devices.
 - Vim (Editor)
 - Xorg (X settings)
 
+
 ## Required Fonts & Packages
 
 - Font Awesome 5 Free
@@ -35,7 +36,9 @@ my devices.
 - Iosevka
 - **the respective package(s) you intend to use**
 - xsetroot (for Xorg)
+- MPRIS compatiblity layer (mpd-mpris)
 
+For a rich presence with MPD, I utilize [this program (mpris-rp)](https://github.com/nickofolas/mpris-rp)
 
 ## Notes
 - I use systemd's user manager for some processes, so you will have to enable lingering (`loginctl enable-linger $USER`) for processes to autostart on login.
