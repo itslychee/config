@@ -5,7 +5,7 @@
     terminal = "${pkgs.alacritty}/bin/alacritty";
     keybindings = let
       pamixer = "${pkgs.pamixer}/bin/pamixer";
-      player = "${pkgs.playerctl}/bin/playerctl --player=mpd,%any";
+      player = "${pkgs.playerctl}/bin/playerctl";
     in {
       "${modifier}+space"     = "exec ${terminal} --class=launcher -e launcher";
       "${modifier}+shift+t"   = "exec ${terminal}";

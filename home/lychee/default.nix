@@ -1,4 +1,4 @@
-{ pkgs, config, ...}:
+{ pkgs, packages, config, ...}:
 {
   imports = [
     ./alacritty.nix
@@ -39,6 +39,9 @@
       curl
       neofetch
       wl-clipboard
+
+      (callPackage ../../packages {}).ultimmc
+
       (symlinkJoin {
         name = "launcher-but-better";
         paths = [
@@ -77,6 +80,7 @@
         key = userEmail;
       };
     };
+    gpg.enable = true;
     ssh = {
       enable = true;
       compression = true;
@@ -91,8 +95,18 @@
           hostname = "192.168.0.2";
           user = "lychee";
         };
+      };
     };
-  };
+    mako = {
+      enable = true;
+      anchor = "top-right";
+      backgroundColor = "#764a5f";
+      borderColor = "#915b75";
+      borderRadius = 2;
+      defaultTimeout = 7000;
+      font = "Terminus 10";
+      format = "<b>%a [%g]</b>\n%s\n%b";
+    };
   };
 
   # Flameshot

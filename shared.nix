@@ -17,7 +17,7 @@ with pkgs.lib;
     permitRootLogin = mkDefault "no";
   };
 
-  documentation.nixos.enable = mkDefault false;
+  # documentation.nixos.enable = mkDefault false;
 
   services.dbus.enable = mkDefault true;
   # Disable DHCP

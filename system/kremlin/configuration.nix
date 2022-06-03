@@ -53,6 +53,10 @@
   programs = {
     dconf.enable = true;
     zsh.enable = true;
+    gnupg.agent = {
+      enable = true;
+      pinentryFlavor = "tty";
+    };
   };
 
   environment = {
