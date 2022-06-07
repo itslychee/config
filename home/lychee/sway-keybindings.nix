@@ -6,6 +6,7 @@
     keybindings = let
       pamixer = "${pkgs.pamixer}/bin/pamixer";
       player = "${pkgs.playerctl}/bin/playerctl";
+      light = "${pkgs.brightnessctl}/bin/brightnessctl";
     in {
       "${modifier}+space"     = "exec ${terminal} --class=launcher -e launcher";
       "${modifier}+shift+t"   = "exec ${terminal}";
@@ -21,6 +22,10 @@
       XF86AudioPrev = "exec ${player} previous";
       XF86AudioPlay = "exec ${player} play-pause";
       XF86AudioNext = "exec ${player} next";
+
+      # Brightness control
+      XF86MonBrightnessUp   = "exec ${light} s 5%+";
+      XF86MonBrightnessDown = "exec ${light} s 5%-";
 
       "${modifier}+q" = "exec ${pkgs.flameshot}/bin/flameshot gui -r | wl-copy -t image/png";
 

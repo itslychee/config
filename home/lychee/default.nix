@@ -39,7 +39,7 @@
       curl
       neofetch
       wl-clipboard
-
+      brightnessctl
       (callPackage ../../packages {}).ultimmc
 
       (symlinkJoin {

@@ -26,6 +26,13 @@
         # Firefox
         [app_id="firefox" title="^Picture-in-Picture$"] floating enable; sticky enable
       }
+      input "type:touchpad" {
+        tap enabled
+        scroll_method two_finger
+      }
+      input "type:keyboard" {
+        dwt enabled
+      }
     '';
     config = {
       window = {
@@ -56,7 +63,12 @@
         "HDMI-A-1" = {
           resolution = "1920x1080@144.001Hz";
         };
+      } else if (hostname == "laptop") then {
+        "eDP-1" = {
+          resolution = "1366x768@60.020Hz";
+        };
       } else builtins.abort "no output available";
+
     };
   };
 }
