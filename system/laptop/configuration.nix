@@ -14,9 +14,7 @@
   # Custom kernel parameters
   boot.kernelParams = [
     "noacpi"
-    "acpi=strict"
   ];
-
   boot.loader.systemd-boot.consoleMode = "max";
 
   networking = {
@@ -27,8 +25,6 @@
   };
   programs.fish.enable = true;
   programs.dconf.enable = true;
-
-  services.fwupd.enable = true;
 
   users.users = {
     lychee = {
