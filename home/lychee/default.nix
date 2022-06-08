@@ -25,7 +25,6 @@
       MOZ_DBUS_REMOTE = "1";
       _JAVA_ART_WM_NONREPARENTING = "1";
       XDG_SESSION_TYPE = "wayland";
-      QT_QPA_PLATFORM = "wayland-egl";
       GDK_BACKEND = "wayland";
       SDL_VIDEODRIVER= "wayland";
       XDG_CURRENT_DESKTOP = "sway";

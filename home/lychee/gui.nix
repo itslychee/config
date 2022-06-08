@@ -18,6 +18,7 @@
     };
     gtk3.bookmarks = [
       "file://${config.home.homeDirectory}/downloads"
+      "file://${config.home.homeDirectory}/git"
     ];
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme=1;

@@ -12,9 +12,11 @@
       octolinker
       old-reddit-redirect
       sponsorblock
+      return-youtube-dislikes
+      search-by-image
       (buildFirefoxXpiAddon {
         pname = "mal-sync";
-        addonId = "{1f3ebd01-f55f-44d0-a057-e3cd89169018}";
+        addonId = "{c84d89d9-a826-4015-957b-affebd9eb603}";
         version = "0.8.20";
         url = "https://addons.mozilla.org/firefox/downloads/file/3926335/mal_sync-0.8.20.xpi";
         sha256 = "3m9wgaVK9plQfkeFVmFEqJm4vuMeUhOWoGXWeLBan2I=";
