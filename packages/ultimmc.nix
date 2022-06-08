@@ -18,10 +18,11 @@ stdenv.mkDerivation rec {
     install -v -m555 -Dt$out/lib $src/bin/*.so
     install -v -m555 -Dt$out/bin/jars $src/bin/jars/*.jar
   '';
-  # libs = lib.makeLibraryPath [ (lib.getLib stdenv.cc.cc.lib) (lib.getLib qtbase) (lib.getLib pkgs.zlib) ];
+
+  # the -d option dictates the game runtime directory
   postFixup = ''
     wrapProgram $out/bin/UltimMC \
-      --add-flags "-d \$HOME/ultimmc" \
+      --add-flags "-d \$HOME/.ultimmc" \
       --set JAVA_HOME ${pkgs.jre} \
       --prefix PATH : ${pkgs.jdk8}/bin
   '';
