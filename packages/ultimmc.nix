@@ -1,4 +1,13 @@
-{ stdenv, lib, pkgs, wrapQtAppsHook, autoPatchelfHook, makeWrapper, ...}:
+{
+  stdenv,
+  lib,
+  pkgs, 
+  wrapQtAppsHook, 
+  autoPatchelfHook, 
+  makeWrapper,
+  makeDesktopItem,
+  ...
+}:
 
 stdenv.mkDerivation rec {
   name = "ultimmc";
@@ -13,10 +22,20 @@ stdenv.mkDerivation rec {
     (lib.getLib stdenv.cc.cc.lib)
     (lib.getLib zlib)
   ];
+  entry = makeDesktopItem rec {
+    name = "UltimMC";
+    exec = name;
+    comment = "Cracked MultiMC launcher. Not related to original developers";
+    desktopName = name;
+    genericName = name;
+    categories = [ "Game" ];
+  };
   installPhase = ''
     install -v -m555 -Dt$out/bin $src/bin/UltimMC
     install -v -m555 -Dt$out/lib $src/bin/*.so
     install -v -m555 -Dt$out/bin/jars $src/bin/jars/*.jar
+    mkdir -pv $out/share/applications
+    ln -s ${entry}/share/applications/* $out/share/applications/
   '';
 
   # the -d option dictates the game runtime directory
