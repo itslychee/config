@@ -5,6 +5,4 @@ with lib;
     enable = mkDefault true;
     pinentryFlavor = mkDefault "tty";
   };
-
-
 }

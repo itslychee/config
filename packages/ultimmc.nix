@@ -1,5 +1,0 @@
-{ stdenv, lib, ...}:
-
-stdenv.mkDerivation {
-  
-}

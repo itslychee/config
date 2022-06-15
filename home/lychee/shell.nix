@@ -57,5 +57,8 @@ in {
       fish_greeting.body = "fish_logo";
       ls.body = "command ls --color=auto $argv";
     };
+    shellInit = ''
+      set -gx GPG_TTY (tty)
+    '';
   };
 }

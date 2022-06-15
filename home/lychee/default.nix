@@ -79,7 +79,7 @@
       userEmail = "itslychee@protonmail.com";
       signing = {
         signByDefault = true;
-        key = userEmail;
+        key = "0xA79E1A393BAEDB8D";
       };
     };
     gpg.enable = true;
