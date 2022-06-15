@@ -40,14 +40,18 @@
     zsh.enable = true;
   };
 
-  environment = {
-    binsh = "${pkgs.dash}/bin/dash";
-    pathsToLink = [ "/share/zsh" ];
+  fileSystems."/mnt/storage" = {
+    device = "/dev/disk/by-label/Storage";
+    # I used Windows originally before making the full
+    # switch to Nix-based system management. I have tons of
+    # music on it and I should probably switch to something like
+    # ZFS which is better suited for high volumes of data.
+    fsType = "ntfs";
   };
 
   users.users = {
     lychee = {
-      shell = pkgs.zsh;
+      shell = pkgs.fish; 
       isNormalUser = true;
       extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     };

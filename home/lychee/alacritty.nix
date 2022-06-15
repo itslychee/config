@@ -9,7 +9,8 @@
         window.decorations = "none";
         draw_bold_text_with_bright_colors = true;
         font = {
-          normal.family = "Terminus";
+          normal.family = "JetBrains Mono";
+          normal.style = "Medium";
           size = 10;
         };
         cursor = {

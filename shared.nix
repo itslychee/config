@@ -11,6 +11,8 @@ with lib;
   time.timeZone = mkDefault "US/Central";
   i18n.defaultLocale = mkDefault "en_US.UTF-8";
 
+  # Enables Flakes for all systems, this is one
+  # exception to the file's preamble for obvious reasons.
   imports = [ ./modules/system/flakes.nix ];
 
   # OpenSSH security-focused defaults

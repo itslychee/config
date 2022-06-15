@@ -23,7 +23,6 @@
       wlp0s12f0.useDHCP = true;
     };
   };
-  programs.fish.enable = true;
   programs.dconf.enable = true;
 
   users.users = {

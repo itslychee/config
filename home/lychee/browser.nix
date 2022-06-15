@@ -68,6 +68,13 @@
           "browser.urlbar.quicksuggest.enabled" = false;
           "browser.urlbar.quicksuggest.remoteSettings.enabled" = false;
 
+          # Shortcuts in URL bar
+          "browser.urlbar.shortcuts.bookmarks" = false;
+          "browser.urlbar.shortcuts.tabs" = false;
+          "browser.urlbar.shortcuts.history" = false;
+
+          "browser.urlbar.suggest.engines" = false;
+
           # quick find
           "accessibility.typeaheadfind.manual" = false;
           "accessibility.typeaheadfind" = false;
@@ -75,6 +82,10 @@
 
           # Fontconfig
           "font.size.variable.x-western" = 14;
+
+          # Autofill
+          "extensions.formautofill.addresses.enabled" = false;
+          "extensions.formautofill.creditCards.enabled" = false;
 
           # Beacon async http transfers
           "beacon.enabled" = false;

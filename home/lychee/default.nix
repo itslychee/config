@@ -39,8 +39,11 @@
       neofetch
       wl-clipboard
       brightnessctl
-      (callPackage ../../packages {}).ultimmc
+      unzip
+      appimage-run
+      # (callPackage ../../packages {}).ultimmc
 
+      # TODO: be not lazy and use wrapProgram
       (symlinkJoin {
         name = "launcher-but-better";
         paths = [

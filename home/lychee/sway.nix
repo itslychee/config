@@ -62,10 +62,12 @@
       output = if (hostname == "kremlin") then {
         "HDMI-A-1" = {
           resolution = "1920x1080@144.001Hz";
+          bg = "~/.wallpaper-image fill";
         };
       } else if (hostname == "laptop") then {
         "eDP-1" = {
           resolution = "1366x768@60.020Hz";
+          bg = "~/.wallpaper-image fill";
         };
       } else builtins.abort "no output available";
 

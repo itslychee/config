@@ -3,8 +3,18 @@
   programs.neovim = {
     enable = true;
     coc = {
-      enable = false;
-      package = pkgs.vimPlugins.coc-nvim;
+      enable = true;
+      package = pkgs.vimUtils.buildVimPluginFrom2Nix {
+        pname = "coc.nvim";
+        version = "2022-05-21";
+        src = pkgs.fetchFromGitHub {
+          owner = "neoclide";
+          repo = "coc.nvim";
+          rev = "791c9f673b882768486450e73d8bda10e391401d";
+          sha256 = "sha256-MobgwhFQ1Ld7pFknsurSFAsN5v+vGbEFojTAYD/kI9c=";
+        };
+        meta.homepage = "https://github.com/neoclide/coc.nvim/";
+      };
       settings = {
         "suggest.noselect" = false;
         "suggest.enablePreselect" = true;
@@ -27,6 +37,7 @@
       vim-polyglot
       # Theme
       onedark-vim
+      gruvbox
 
     ];
     extraConfig = ''
@@ -35,6 +46,8 @@
     set nocompatible
     set termguicolors
     set nowrap
+    set tabstop=4
+
 
     let &t_SI = "\e[0 q"
     let &t_EI = "\e[0 q"
@@ -43,7 +56,7 @@
     filetype plugin indent on
     let g:airline_theme='ayu_mirage'
 
-    colorscheme onedark
+    colorscheme gruvbox 
     '';
     viAlias = true;
     vimAlias = true;
