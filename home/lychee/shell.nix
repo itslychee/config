@@ -45,7 +45,7 @@ in {
           set -a PROMPT (set_color f98cb4)(id -un)(set_color normal)']'
           set -a PROMPT (set_color -o red)(string replace ~ '~' (pwd))(set_color normal)
 
-          set BRANCH (git branch --show-current --format="%(refname)" 2>/dev/null)
+          set BRANCH (git rev-parse --abbrev-ref HEAD 2>/dev/null)
           if test "$BRANCH" != ""
             set -a PROMPT '[G:'(set_color yellow)$BRANCH(set_color normal)']'
           end
