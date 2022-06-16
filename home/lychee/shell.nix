@@ -47,10 +47,11 @@ in {
 
           set BRANCH (git branch --show-current --format="%(refname)" 2>/dev/null)
           if test "$BRANCH" != ""
-            set -a PROMPT (set_color yellow)$BRANCH(set_color normal)
+            set -a PROMPT '[G:'(set_color yellow)$BRANCH(set_color normal)']'
           end
 
           set -a PROMPT (set_color green)'µ'(set_color normal)'> '
+          echo
           echo $PROMPT
         '';
       };
