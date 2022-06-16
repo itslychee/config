@@ -43,7 +43,8 @@ in {
           set -l PROMPT
           set -a PROMPT '['(set_color cyan)$hostname(set_color normal)
           set -a PROMPT (set_color f98cb4)(id -un)(set_color normal)']'
-          set -a PROMPT (set_color red)(string replace ~ '~' (pwd))(set_color normal)(string trim (set_color -o green)(fish_git_prompt)(set_color normal))
+          set -a PROMPT (set_color red)(string replace ~ '~' (pwd))(set_color normal)
+          set -a PROMPT (set_color -o green)(string trim (fish_git_prompt))(set_color normal)
           set -a PROMPT (set_color green)'µ'(set_color normal)'> '
           echo
           echo $PROMPT
