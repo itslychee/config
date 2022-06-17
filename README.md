@@ -7,7 +7,7 @@ my devices.
 
 ## Screenshot
 
-![Screenshot of my Arch setup utilizing my dotfiles](https://raw.githubusercontent.com/ItsLychee/dotfiles/main/screenshot.png)
+![Screenshot of my Arch setup utilizing my dotfiles](./screenshot.png)
 
 ## Packages
 
