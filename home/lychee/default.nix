@@ -7,6 +7,7 @@
     ./browser.nix
     ./shell.nix
     ./gui.nix
+    ./mpd.nix
     ./overlays
   ];
 
