@@ -42,28 +42,22 @@
       brightnessctl
       unzip
       appimage-run
-      # (callPackage ../../packages {}).ultimmc
-
-      # TODO: be not lazy and use wrapProgram
+      playerctl
+      mpc-cli
       (symlinkJoin {
-        name = "launcher-but-better";
-        paths = [
-          sway-launcher-desktop
-          (writeShellScriptBin "launcher" ''
-            HIST_FILE="" sway-launcher-desktop
-          '')
-        ];
+        name = "sway-launcher-desktop";
+        paths = [ sway-launcher-desktop ];
+        buildInputs = [ makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/sway-launcher-desktop --set HIST_FILE ""
+        '';
       })
     ];
   };
 
   programs = {
-    bash = {
-      # Let HM manage my configuration
-      enable = true;
-      enableVteIntegration = true;
-    };
-    htop = {
+   gpg.enable = true;
+   htop = {
       enable = true;
       settings = {
         color_scheme = 5;
@@ -80,10 +74,9 @@
       userEmail = "itslychee@protonmail.com";
       signing = {
         signByDefault = true;
-        key = "0xA79E1A393BAEDB8D";
+        key = userEmail; 
       };
     };
-    gpg.enable = true;
     ssh = {
       enable = true;
       compression = true;
@@ -108,8 +101,15 @@
       borderRadius = 2;
       defaultTimeout = 7000;
       font = "Terminus 10";
-      format = "<b>%a [%g]</b>\n%s\n%b";
+      format = "<b>%a</b>\\n%s\\n%b";
     };
+  };
+
+  systemd.user.services.mako = pkgs.lib.mkIf config.programs.mako.enable {
+    Service.ExecStart = "${pkgs.mako}/bin/mako";
+    Service.Restart = "on-failure";
+    Unit.Requires = [ "sway-session.target" ];
+    Install.RequiredBy = [ "sway-session.target" ];
   };
 
   # Flameshot

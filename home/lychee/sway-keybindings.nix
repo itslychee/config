@@ -8,7 +8,7 @@
       player = "${pkgs.playerctl}/bin/playerctl";
       light = "${pkgs.brightnessctl}/bin/brightnessctl";
     in {
-      "${modifier}+space"     = "exec ${terminal} --class=launcher -e launcher";
+      "${modifier}+space"     = "exec ${terminal} --class=launcher -e sway-launcher-desktop";
       "${modifier}+shift+t"   = "exec ${terminal}";
       "${modifier}+shift+escape" = "exit";
 

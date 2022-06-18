@@ -8,10 +8,10 @@ let
 in {
   programs.fish = {
     enable = true;
-    plugins = [
+    plugins = with pkgs; [
       {
         name = "autopair";
-        src = pkgs.fetchFromGitHub {
+        src = fetchFromGitHub {
           owner = "jorgebucaran";
           repo = "autpair.fish";
           rev = "1222311994a0730e53d8e922a759eeda815fcb62";
@@ -20,7 +20,7 @@ in {
       }
       {
         name = "z";
-        src = pkgs.fetchFromGitHub {
+        src = fetchFromGitHub {
           owner = "jethrokuan";
           repo = "z";
           rev = "85f863f20f24faf675827fb00f3a4e15c7838d76";
@@ -29,7 +29,7 @@ in {
       }
       {
         name = "fish_logo";
-        src = pkgs.fetchFromGitHub {
+        src = fetchFromGitHub {
           owner = "laughedelic";
           repo = "fish_logo";
           rev = "dc6a40836de8c24c62ad7c4365aa9f21292c3e6e";
