@@ -13,7 +13,7 @@ in {
         name = "autopair";
         src = fetchFromGitHub {
           owner = "jorgebucaran";
-          repo = "autpair.fish";
+          repo = "autopair.fish";
           rev = "1222311994a0730e53d8e922a759eeda815fcb62";
           sha256 = "sha256-+FUBM7CodtZrYKqU542fQD+ZDGrd2438trKM0tIESs0=";
         };
