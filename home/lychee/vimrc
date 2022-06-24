@@ -1,0 +1,46 @@
+set number
+set guicursor=""
+set nocompatible
+set termguicolors
+set nowrap
+set tabstop=4
+
+syntax on
+filetype plugin on
+let g:airline_theme='ayu_mirage'
+
+colorscheme sonokai
+
+" Keybindings
+
+" HJKL Keybindings
+inoremap <M-h> h
+inoremap <M-j> j
+inoremap <M-k> k
+inoremap <M-l> l
+
+" Tab management
+noremap <M-t> tabnew
+noremap <M-w> tabclose
+noremap <M-n> tabn
+noremap <M-b> tabp
+
+" Lua stuff
+lua require 'nvim-tree'.setup({
+\ filters = {
+\   dotfiles = true,
+\   exclude = { ".", ".."},
+\ },
+\ renderer = {
+\   icons = {
+\     show = {
+\       file = false,
+\       folder = false,
+\       folder_arrow = false,
+\       git = false,
+\     },
+\   },
+\ },
+\})
+lua require 'colorizer'.setup()
+lua require "nvim-tree".toggle(false, true)

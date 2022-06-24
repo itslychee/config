@@ -12,6 +12,7 @@
         decorations = "none";
       };
       draw_bold_text_with_bright_colors = true;
+      alt_send_esc = false;
       font = {
         normal.family = "JetBrains Mono";
         normal.style = "Medium";
@@ -19,7 +20,7 @@
       };
       cursor = {
         style = {
-          shape = "Beam";
+          # shape = "Beam";
           blinking = "On";
         };
         blink_interval = 900;
