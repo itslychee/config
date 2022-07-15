@@ -8,8 +8,8 @@
       name = "Luna-Dark";
     };
     font = {
-      package = pkgs.fira;
-      name = "Fira Sans";
+      package = pkgs.noto-fonts;
+      name = "Noto Sans Serif";
       size = 10;
     };
     theme = {
@@ -27,14 +27,6 @@
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme=1;
       gtk-enable-primary-paste=false;
-    };
-  };
-  # Qt Theming
-  qt = {
-    enable = true;
-    style = {
-      package = pkgs.arc-kde-theme;
-      name = "Arc Dark";
     };
   };
 }

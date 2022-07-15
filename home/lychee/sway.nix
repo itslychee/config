@@ -35,22 +35,17 @@
       }
     '';
     config = {
-      window = {
-        border = 2;
-        titlebar = true;
-      };
       fonts = {
-        names = [ "Terminus" "Font Awesome 6 Free" ];
+        names = [ "Iosevka" "Font Awesome 6 Free" ];
         style = "Regular";
         size = 9.0;
       };
       gaps = {
-        outer = 6;
+        outer = 5;
         inner = 5;
         smartBorders = "on";
         smartGaps = true;
       };
-      defaultWorkspace = "workspace number 1";
       focus.followMouse = "no";
       colors.focused = rec {
           border = background;

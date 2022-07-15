@@ -21,6 +21,7 @@
     };
   };
 
+  hardware.bluetooth.enable = true;
   services = {
     openssh.enable = true;
     blueman.enable = true;

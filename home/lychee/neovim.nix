@@ -18,7 +18,7 @@ in {
       enable = true;
       package = cocPackage;
       settings = {
-        "suggest.noselect" = false;
+        "suggest.noselect" = true;
         "suggest.enablePreselect" = false;
        	"suggest.enablePreview" = true;
         languageserver = {
@@ -46,6 +46,15 @@ in {
          sha256 = "sha256-9ahNp9WMxzY5MYB/YxJJe7sgbQpGHiauuiOdBY+LHbg=";
        };
      }))
+     (pkgs.vimUtils.buildVimPlugin {
+       name = "yuck.vim";
+       src = pkgs.fetchFromGitHub {
+         owner = "elkowar";
+         repo = "yuck.vim";
+         rev = "6dc3da77c53820c32648cf67cbdbdfb6994f4e08";
+         sha256 = "sha256-lp7qJWkvelVfoLCyI0aAiajTC+0W1BzDhmtta7tnICE=";
+       };
+     })
     ];
     # Aliases
     viAlias = true;

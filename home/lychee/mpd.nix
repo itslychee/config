@@ -28,7 +28,7 @@
        name = "ncmpcpp";
        paths = with pkgs; [
          libnotify
-         ncmpcpp
+         (ncmpcpp.override (_: { visualizerSupport = true; }))
        ];
      });
      settings = {

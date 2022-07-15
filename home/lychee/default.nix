@@ -8,6 +8,7 @@
     ./shell.nix
     ./gui.nix
     ./mpd.nix
+    ./waybar.nix
     ./overlays
   ];
 
@@ -38,6 +39,7 @@
       gcolor3
       curl
       neofetch
+      upower
       wl-clipboard
       brightnessctl
       unzip
@@ -100,8 +102,12 @@
       borderColor = "#915b75";
       borderRadius = 2;
       defaultTimeout = 7000;
-      font = "Terminus 10";
+      font = "Source Code Pro 10";
       format = "<b>%a</b>\\n%s\\n%b";
+    };
+    exa = {
+      enable = true;
+      enableAliases = true;
     };
   };
 

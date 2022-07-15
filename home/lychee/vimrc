@@ -7,6 +7,11 @@ set nowrap
 set tabstop=4
 set smartindent
 set undofile
+set hidden
+
+" coc-nvim stuff
+set updatetime=300
+set cmdheight=2
 
 syntax on
 filetype plugin indent on
@@ -48,18 +53,19 @@ lua <<EOF
     require 'colorizer'.setup()
 EOF
 
-" TODO: find a fix for these broken keybindings
+let mapleader = ","
 
-" " HJKL Keybindings
-" inoremap <Leader-h> <Left>
-" inoremap <Leader-j> <Down>
-" inoremap <Leader-k> <Up>
-" inoremap <Leader-l> <Right> 
- 
+" HJKL Keybindings
+inoremap <M-h> <c-o>h
+inoremap <M-j> <c-o>j
+inoremap <M-k> <c-o>k
+inoremap <M-l> <c-o>l
+
 " Tab management
 nnoremap <M-t> :tabnew<CR>
 nnoremap <M-w> :tabclose<CR>
 nnoremap <M-f> :tabnext<CR>
 nnoremap <M-b> :tabprev<CR>
 
-
+" Symbol signature
+nnoremap <silent> <leader>h :call CocActionAsync('doHover')<cr>

@@ -42,7 +42,9 @@
       "${modifier}+c" = "workspace 3";
       "${modifier}+v" = "workspace 4";
       "${modifier}+b" = "workspace 5";
-
+      # Workspace Navigation (relative)
+      "${modifier}+o" = "workspace next";
+      "${modifier}+p" = "workspace prev";
       # Window Management
       "${modifier}+w" = "kill";
       "${modifier}+s" = "sticky toggle";

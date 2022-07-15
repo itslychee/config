@@ -17,11 +17,15 @@ with pkgs.lib;
       liberation_ttf
       font-awesome
       fira
+      source-code-pro
+      iosevka-bin
+      material-design-icons
     ]);
     enableDefaultFonts = mkDefault true;
     fontconfig.defaultFonts = {
       emoji = mkDefault [ "Noto Color Emoji" ];
       monospace = mkDefault [
+        "Iosevka"
         "Terminus"
         "Fira Mono"
       ];

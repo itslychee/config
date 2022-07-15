@@ -1,0 +1,47 @@
+/* Color definitions */
+@define-color primary-background-color #601A41;
+@define-color secondary-background-color #83345C;
+@define-color secondary-border-color #FF98BE;
+@define-color workspace-focused-color #B8517E;
+
+window { background-color: transparent; }
+
+* {
+  font-family: 'Iosevka', 'Font Awesome 6 Free'; 
+  font-size: 14px;
+}
+
+#pulseaudio, #clock, #custom-poweroff, #custom-reboot, #custom-suspend {
+  border-radius: 0px 0px 5px 5px;
+  background-color: @primary-background-color;
+  opacity: 0.85;
+  padding: 0px 4.5px;
+}
+
+#workspaces, #custom-poweroff, #custom-reboot, #custom-suspend {
+  margin: 0px 1px 2px 2px;
+}
+
+#pulseaudio.muted {
+  color: grey;
+  background-color: black;
+}
+
+#workspaces {
+  margin-right: 4px;
+}
+
+#workspaces button {
+  padding: 0 1px;
+  background-color: @secondary-background-color;
+}
+
+#workspaces button.focused {
+  background-color: @workspace-focused-color;
+}
+
+#workspaces button:hover {
+  box-shadow: unset;
+  text-shadow: unset;
+}
+
