@@ -2,6 +2,7 @@
 {
   imports = [
     ./sway-keybindings.nix
+    ./sway-outputs.nix
   ];
 
   wayland.windowManager.sway = {
@@ -40,11 +41,10 @@
         style = "Regular";
         size = 9.0;
       };
+      bars = [];
       gaps = {
-        outer = 5;
-        inner = 5;
-        smartBorders = "on";
-        smartGaps = true;
+        outer = 3;
+        inner = 3;
       };
       focus.followMouse = "no";
       colors.focused = rec {
@@ -54,7 +54,6 @@
           indicator = "#2e9ef4";
           childBorder = "#915b75";
       };
-      output = import ./sway-outputs.nix { inherit hostname; };
     };
   };
 }

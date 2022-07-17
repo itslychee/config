@@ -10,9 +10,9 @@
         "eDP-1"
         "HDMI-A-1"
       ];
-      modules-left   = [ "sway/workspaces" "custom/suspend" "custom/poweroff" "custom/reboot" ];
+      modules-left   = [ "sway/workspaces" ];
       modules-center = [ "clock" ];
-      modules-right  = [ "pulseaudio" ]; 
+      modules-right  = [ "pulseaudio" "custom/suspend" "custom/poweroff" "custom/reboot" ]; 
 
       "pulseaudio" = {
         format = "{volume}% ";

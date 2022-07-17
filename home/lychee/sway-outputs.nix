@@ -17,4 +17,8 @@ let
     }
     else builtins.abort "no output for hostname '${hostname}'"
   );
-in with builtins; mapAttrs (_: val: val // defaultOptions) outputs
+in {
+  wayland.windowManager.sway.config.output = (
+    builtins.mapAttrs (_: val: val // defaultOptions) outputs
+  );
+}

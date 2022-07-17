@@ -18,17 +18,13 @@ window { background-color: transparent; }
   padding: 0px 4.5px;
 }
 
-#workspaces, #custom-poweroff, #custom-reboot, #custom-suspend {
-  margin: 0px 1px 2px 2px;
+#custom-poweroff, #custom-reboot, #custom-suspend {
+  margin: 0px 1px 5px 2px;
 }
 
 #pulseaudio.muted {
   color: grey;
   background-color: black;
-}
-
-#workspaces {
-  margin-right: 4px;
 }
 
 #workspaces button {
