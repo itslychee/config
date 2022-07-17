@@ -1,4 +1,4 @@
-{ pkgs, packages, config, ...}:
+{ pkgs, packages, config, ...}@inputs:
 {
   imports = [
     ./alacritty.nix
@@ -46,6 +46,8 @@
       appimage-run
       playerctl
       mpc-cli
+      q4wine
+      polymc
       (symlinkJoin {
         name = "sway-launcher-desktop";
         paths = [ sway-launcher-desktop ];

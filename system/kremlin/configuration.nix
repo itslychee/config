@@ -57,6 +57,10 @@
       extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     };
   };
+  environment.systemPackages = with pkgs; [ 
+    wineWowPackages.waylandFull
+    winetricks
+  ];
 
   system.stateVersion = "22.05";
 }

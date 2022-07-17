@@ -7,13 +7,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR";
+    pollymc.url = "github:fn2006/PollyMC";
   };
   outputs = {self, nixpkgs, ... }@inputs: let
       mkConfig = hostname: {
         system = "x86_64-linux";
         specialArgs = inputs;
         modules = [
-          { nixpkgs.overlays = [ inputs.nur.overlay ]; }
+          { 
+            nixpkgs.overlays = [ 
+              inputs.nur.overlay
+              inputs.pollymc.overlay
+            ];
+          }
           ./shared.nix
           ./system/${hostname}/configuration.nix
           ./system/${hostname}/hardware-configuration.nix
