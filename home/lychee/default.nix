@@ -1,4 +1,4 @@
-{ pkgs, packages, config, ...}@inputs:
+{ pkgs, packages, config, hostname, ...}@inputs:
 {
   imports = [
     ./alacritty.nix
@@ -48,7 +48,6 @@
       playerctl
       mpc-cli
       q4wine
-      pollymc
       spotify
       (symlinkJoin {
         name = "sway-launcher-desktop";
@@ -58,7 +57,9 @@
           wrapProgram $out/bin/sway-launcher-desktop --set HIST_FILE ""
         '';
       })
-    ];
+    ] ++ (lib.optionals (hostname == "kremlin") (with pkgs; [
+      pollymc
+    ]));
   };
 
   programs = {
