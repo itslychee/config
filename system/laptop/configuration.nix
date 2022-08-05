@@ -17,6 +17,7 @@
   boot.kernelParams = [
     "noacpi"
   ];
+  hardware.bluetooth.enable = true;
   boot.loader.systemd-boot.consoleMode = "max";
 
   networking = {

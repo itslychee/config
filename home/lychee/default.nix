@@ -1,5 +1,5 @@
 { pkgs, packages, config, hostname, ...}@inputs:
-{
+rec {
   imports = [
     ./alacritty.nix
     ./sway.nix
@@ -86,6 +86,15 @@
       signing = {
         signByDefault = true;
         key = userEmail; 
+      };
+      delta = {
+        enable = true;
+        options = {
+          line-numbers = true;
+        };
+      };
+      extraConfig = {
+        core.editor = home.sessionVariables.EDITOR;
       };
     };
     ssh = {

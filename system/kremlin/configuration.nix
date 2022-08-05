@@ -59,11 +59,6 @@
       extraGroups = [ "wheel" "adbusers" ]; # Enable ‘sudo’ for the user.
     };
   };
-  environment.systemPackages = with pkgs; [ 
-    wineWowPackages.waylandFull
-    winetricks
-  ];
-
   programs.adb.enable = true;
 
   system.stateVersion = "22.05";
