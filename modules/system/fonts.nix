@@ -20,6 +20,7 @@ with pkgs.lib;
       source-code-pro
       iosevka-bin
       material-design-icons
+      corefonts
     ]);
     enableDefaultFonts = mkDefault true;
     fontconfig.defaultFonts = {
