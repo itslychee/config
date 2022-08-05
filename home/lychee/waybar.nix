@@ -40,7 +40,7 @@
       };
       # Date & time
       "clock" = {
-        format = "{:%A  %Y-%m-%d  %I:%M%p [%Z:%z]}";
+        format = "{:%A  %Y.%m.%d  %I:%M%p [%Z:%z]}";
       };
     };
     style = builtins.readFile ./waybar.css; 
