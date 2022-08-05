@@ -47,8 +47,8 @@
       appimage-run
       playerctl
       mpc-cli
-      q4wine
       spotify
+      swaylock
       (symlinkJoin {
         name = "sway-launcher-desktop";
         paths = [ sway-launcher-desktop ];
@@ -57,9 +57,13 @@
           wrapProgram $out/bin/sway-launcher-desktop --set HIST_FILE ""
         '';
       })
-    ] ++ (lib.optionals (hostname == "kremlin") (with pkgs; [
+    ] ++(lib.optionals (hostname == "kremlin") [
       pollymc
-    ]));
+    ]) ++ (lib.optionals (hostname == "laptop") [
+      # School stuff
+      libreoffice
+      teams
+    ]);
   };
 
   programs = {

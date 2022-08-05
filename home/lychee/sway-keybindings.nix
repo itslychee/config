@@ -61,7 +61,7 @@
       "${modifier}+shift+c" = "move window to workspace 3";
       "${modifier}+shift+v" = "move window to workspace 4";
       "${modifier}+shift+b" = "move window to workspace 5";
-
+      "${modifier}+shift+delete" = "exec ${pkgs.swaylock}/bin/swaylock --ring-color ffa9d2 -c 29101a --key-hl-color FFFFFF --inside-color 29101a";
 
     };
   };
