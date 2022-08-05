@@ -11,7 +11,7 @@ window { background-color: transparent; }
   font-size: 14px;
 }
 
-#pulseaudio, #clock, #custom-poweroff, #custom-reboot, #custom-suspend {
+#battery, #pulseaudio, #clock, #custom-poweroff, #custom-reboot, #custom-suspend {
   border-radius: 0px 0px 5px 5px;
   background-color: @primary-background-color;
   padding: 0px 4.5px;

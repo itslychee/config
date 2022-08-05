@@ -12,7 +12,7 @@
       ];
       modules-left   = [ "sway/workspaces" ];
       modules-center = [ "clock" ];
-      modules-right  = [ "pulseaudio" "custom/suspend" "custom/poweroff" "custom/reboot" ]; 
+      modules-right  = [ "battery" "pulseaudio" "custom/suspend" "custom/poweroff" "custom/reboot" ]; 
 
       "pulseaudio" = {
         format = "{volume}% ";
@@ -41,6 +41,10 @@
       # Date & time
       "clock" = {
         format = "{:%A  %Y.%m.%d  %I:%M%p [%Z:%z]}";
+      };
+      "battery" = {
+        interval = 30;
+        format-icons = [ "" "" "" "" ""];
       };
     };
     style = builtins.readFile ./waybar.css; 
