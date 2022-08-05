@@ -17,6 +17,14 @@ window { background-color: transparent; }
   padding: 0px 4.5px;
 }
 
+#battery {
+  margin: 0 5px;
+} 
+
+#battery.charging {
+  border-bottom: 2px solid #5fab56;
+}
+
 #custom-poweroff, #custom-reboot, #custom-suspend {
   margin: 0px 1px 5px 2px;
 }

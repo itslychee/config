@@ -45,6 +45,7 @@
       "battery" = {
         interval = 30;
         format-icons = [ "" "" "" "" ""];
+        format = "{capacity}% {icon}";
       };
     };
     style = builtins.readFile ./waybar.css; 
