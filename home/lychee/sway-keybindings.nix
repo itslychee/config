@@ -27,7 +27,7 @@
       XF86MonBrightnessUp   = "exec ${light} s 5%+";
       XF86MonBrightnessDown = "exec ${light} s 5%-";
 
-      "${modifier}+q" = "exec ${pkgs.flameshot}/bin/flameshot gui -r | wl-copy -t image/png";
+      "${modifier}+q" = "exec ${pkgs.flameshot}/bin/flameshot gui";
 
       # Window Navigation
       "${modifier}+h" = "focus left";

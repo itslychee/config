@@ -36,7 +36,7 @@ in {
      vim-airline-themes
      vim-airline
 	 vim-polyglot
-	 sonokai
+     sonokai
      nvim-colorizer-lua
      (nvim-tree-lua.overrideAttrs (_: {
        src = pkgs.fetchFromGitHub {

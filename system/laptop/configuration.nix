@@ -8,6 +8,7 @@
     ../../modules/system/xdg.nix
     ../../modules/system/networkmanager.nix
     ../../modules/system/gpg-agent.nix
+    ../../modules/system/gnome.nix
   ];
 
 

@@ -14,7 +14,6 @@ window { background-color: transparent; }
 #pulseaudio, #clock, #custom-poweroff, #custom-reboot, #custom-suspend {
   border-radius: 0px 0px 5px 5px;
   background-color: @primary-background-color;
-  opacity: 0.85;
   padding: 0px 4.5px;
 }
 

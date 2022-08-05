@@ -9,49 +9,49 @@
     nur.url = "github:nix-community/NUR";
     pollymc.url = "github:fn2006/PollyMC";
   };
-  outputs = {self, nixpkgs, ... }@inputs: let
-      mkConfig = hostname: {
-        system = "x86_64-linux";
-        specialArgs = inputs;
-        modules = [
-          { 
-            nixpkgs.overlays = [ 
-              inputs.nur.overlay
-              inputs.pollymc.overlay
-            ];
-          }
-          ./shared.nix
-          ./system/${hostname}/configuration.nix
-          ./system/${hostname}/hardware-configuration.nix
-        ];
-      };
-      mkSystem = hostname: system: nixpkgs.lib.nixosSystem ((mkConfig hostname) // (system (mkConfig hostname)));
-  in {
-    nixosConfigurations = {
-      kremlin = mkSystem "kremlin" (old: rec {
-        modules = old.modules ++ [
-          inputs.home-manager.nixosModules.home-manager {
-             home-manager.backupFileExtension = "backup";
-             home-manager.useGlobalPkgs = true;
-             home-manager.useUserPackages = true;
-             home-manager.verbose = true;
-             home-manager.users.lychee = import ./home/lychee;
-             home-manager.extraSpecialArgs = { hostname = "kremlin"; };
-         }
-        ];
-      });
-      laptop = mkSystem "laptop" (old: rec {
-        modules = old.modules ++ [
-          inputs.home-manager.nixosModules.home-manager {
-            home-manager.backupFileExtension = "backup";
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.verbose = true;
-            home-manager.users.lychee = import ./home/lychee;
-            home-manager.extraSpecialArgs = { hostname = "kremlin"; };
-          }
-        ];
-      });
+  outputs = {self, nixpkgs, home-manager, ... }@inputs: let
+    mkSystemConfig = hostname: {
+      system = "x86_64-linux";
+      specialArgs = inputs;
+      modules = [
+        { 
+          nixpkgs.overlays = [ 
+            inputs.nur.overlay
+            inputs.pollymc.overlay
+          ];
+          nixpkgs.config.allowUnfree = true;
+        }
+        ./shared.nix
+        ./system/${hostname}/configuration.nix
+        ./system/${hostname}/hardware-configuration.nix
+      ];
     };
+    mkSystem = hostname: system: nixpkgs.lib.nixosSystem ((mkSystemConfig hostname) // (system (mkSystemConfig hostname)));
+  in {
+     nixosConfigurations.kremlin = mkSystem "kremlin" (old: {
+       modules = old.modules ++ [
+         home-manager.nixosModules.home-manager {
+           home-manager.backupFileExtension = "backup";
+           home-manager.useGlobalPkgs = true;
+           home-manager.useUserPackages = true;
+	       home-manager.users.lychee = ./home/lychee;
+           home-manager.verbose = true;
+           home-manager.extraSpecialArgs = { inherit inputs; hostname = "kremlin"; };
+         }
+       ];
+     });
+     nixosConfigurations.laptop = mkSystem "laptop" (old: {
+       modules = old.modules ++ [
+         home-manager.nixosModules.home-manager {
+           home-manager.backupFileExtension = "backup";
+           home-manager.useGlobalPkgs = true;
+           home-manager.useUserPackages = true;
+           home-manager.users.lychee = ./home/lychee;
+           home-manager.verbose = true;
+           home-manager.extraSpecialArgs = { inherit inputs; hostname = "laptop"; };
+         }
+       ];
+     });
   };
 }
+

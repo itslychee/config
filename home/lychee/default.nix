@@ -35,6 +35,7 @@
     sessionPath = [ "~/go/bin" ];
     packages = with pkgs; [
       tree
+      nheko
       nix-tree
       gcolor3
       curl
@@ -47,7 +48,8 @@
       playerctl
       mpc-cli
       q4wine
-      polymc
+      pollymc
+      spotify
       (symlinkJoin {
         name = "sway-launcher-desktop";
         paths = [ sway-launcher-desktop ];

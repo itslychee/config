@@ -8,6 +8,7 @@
     ../../modules/system/networkmanager.nix
     ../../modules/system/xdg.nix
     ../../modules/system/gpg-agent.nix
+    ../../modules/system/gnome.nix
   ];
   networking = {
     hostName = "kremlin";
@@ -54,13 +55,15 @@
     lychee = {
       shell = pkgs.fish; 
       isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [ "wheel" "adbusers" ]; # Enable ‘sudo’ for the user.
     };
   };
   environment.systemPackages = with pkgs; [ 
     wineWowPackages.waylandFull
     winetricks
   ];
+
+  programs.adb.enable = true;
 
   system.stateVersion = "22.05";
 }
