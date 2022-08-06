@@ -19,10 +19,6 @@ with lib;
     ./modules/system/openssh.nix
   ];
 
-  # OpenSSH security-focused defaults
-  services.openssh = {
-  };
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = mkDefault true;

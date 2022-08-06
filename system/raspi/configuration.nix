@@ -20,12 +20,17 @@
        generic-extlinux-compatible.enable = true;
      };
   };
-  networking.hostName = "raspi"; # Define your hostname.
+
+  networking.hostName = "raspi";
   users.users.pi = {
     isNormalUser = true;
+    openssh.authorizedKeys.keys = (import ../../misc/keys.nix {}).ssh;
     extraGroups = [ "wheel" ];
   };
 
-  environment.systemPackages = with pkgs; [ vim ];
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+  ];
   system.stateVersion = "22.05"; # Did you read the comment?
 }

@@ -51,6 +51,7 @@
     lychee = {
       shell = pkgs.fish; 
       isNormalUser = true;
+      openssh.authorizedKeys.keys = (import ../../misc/keys.nix {}).ssh;
       extraGroups = [ "wheel" "adbusers" ]; # Enable ‘sudo’ for the user.
     };
   };
