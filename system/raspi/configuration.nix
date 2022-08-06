@@ -17,8 +17,6 @@
      ];
      loader = {
        grub.enable = false;
-       raspberryPi.enable = true;
-       raspberryPi.version = 4;
        generic-extlinux-compatible.enable = true;
      };
   };
