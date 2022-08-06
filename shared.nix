@@ -23,7 +23,7 @@ with lib;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  services.mtr.enable = mkDefault true;
+  programs.mtr.enable = mkDefault true;
   # Dbus!
   services.dbus.enable = mkDefault true;
   # Disable DHCP
