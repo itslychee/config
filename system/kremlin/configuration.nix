@@ -51,7 +51,11 @@
     lychee = {
       shell = pkgs.fish; 
       isNormalUser = true;
-      openssh.authorizedKeys.keys = (import ../../misc/keys.nix {}).ssh;
+      openssh.authorizedKeys.keys = [ 
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDQDDa177v9bubNE98TLIqYbCNf8Uc7kyrBGIxSqKksi"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAxsk7CXGzb74/VgcDdax+migLka0muKNC6NH8g/QaBw"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOE1QgmLF4nZtCRmYevk4DhmrVZE7ac4xuLYeECihZRkb"
+      ];
       extraGroups = [ "wheel" "adbusers" ]; # Enable ‘sudo’ for the user.
     };
   };

@@ -1,4 +1,3 @@
-{ ... }:
 {
   ssh = [
      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDQDDa177v9bubNE98TLIqYbCNf8Uc7kyrBGIxSqKksi"
