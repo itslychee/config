@@ -17,8 +17,8 @@
      ];
      loader = {
        grub.enable = false;
-       #raspberryPi.enable = true;
-       #raspberryPi.version = 4;
+       raspberryPi.enable = true;
+       raspberryPi.version = 4;
        generic-extlinux-compatible.enable = true;
      };
   };
@@ -28,6 +28,13 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pi = {
     isNormalUser = true;
+    openssh.authorizedKeys = {
+      keys = [
+       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDQDDa177v9bubNE98TLIqYbCNf8Uc7kyrBGIxSqKksi"
+       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAxsk7CXGzb74/VgcDdax+migLka0muKNC6NH8g/QaBw"
+       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOE1QgmLF4nZtCRmYevk4DhmrVZE7ac4xuLYeECihZRkb"
+      ];
+    };
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   };
 
