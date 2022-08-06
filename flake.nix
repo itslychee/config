@@ -52,6 +52,18 @@
          }
        ];
      });
+     nixosConfigurations.raspi = mkSystem "raspi" (old: {
+       modules = old.modules ++ [
+         home-manager.nixosModules.home-manager {
+           home-manager.backupFileExtension = "backup";
+           home-manager.useGlobalPkgs = true;
+           home-manager.useUserPackages = true;
+           home-manager.users.pi = ./home/pi;
+           home-manager.verbose = true;
+           home-manager.extraSpecialArgs = { inherit inputs; hostname = "raspi"; };
+         }
+       ];
+     });
   };
 }
 

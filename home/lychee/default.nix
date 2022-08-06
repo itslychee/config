@@ -1,4 +1,4 @@
-{ pkgs, packages, config, hostname, ...}@inputs:
+{ pkgs, config, hostname, ...}@inputs:
 rec {
   imports = [
     ./alacritty.nix
