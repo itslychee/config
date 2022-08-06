@@ -16,11 +16,6 @@
     interfaces = {
       enp10s0.useDHCP = true;
     };
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [ 443 80 ];
-      allowedUDPPorts = [ 443 80 ];
-    };
   };
 
   hardware.bluetooth.enable = true;

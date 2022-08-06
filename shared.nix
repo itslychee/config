@@ -13,12 +13,14 @@ with lib;
 
   # Enables Flakes for all systems, this is one
   # exception to the file's preamble for obvious reasons.
-  imports = [ ./modules/system/flakes.nix ];
+  imports = [
+    ./modules/system/flakes.nix
+    ./modules/system/firewall.nix
+    ./modules/system/openssh.nix
+  ];
 
   # OpenSSH security-focused defaults
   services.openssh = {
-    passwordAuthentication = mkDefault false;
-    permitRootLogin = mkDefault "no";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
