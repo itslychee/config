@@ -7,21 +7,21 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_rpi4;
-    tmpOnTmpfs = true;
-    initrd.availableKernelModules = [ "usbhid" "usb_storage" ];
-    kernelParams = [
-      "8250.nr_uarts=1"
-      "console=ttyAMA0,115200"
-      "console=tty1"
-    ];
-    loader = {
-      grub.enable = false;
-      raspberryPi.enable = true;
-      raspberryPi.version = 4;
-    };
+     kernelPackages = pkgs.linuxPackages_rpi4;
+     tmpOnTmpfs = true;
+     initrd.availableKernelModules = [ "usbhid" "usb_storage" ];
+     kernelParams = [
+       "8250.nr_uarts=1"
+       "console=ttyAMA0,115200"
+       "console=tty1"
+     ];
+     loader = {
+       grub.enable = false;
+       #raspberryPi.enable = true;
+       #raspberryPi.version = 4;
+       generic-extlinux-compatible.enable = true;
+     };
   };
-
   networking.hostName = "raspi"; # Define your hostname.
   time.timeZone = "US/Central";
 
