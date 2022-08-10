@@ -52,7 +52,7 @@
       shell = pkgs.fish; 
       isNormalUser = true;
       openssh.authorizedKeys.keys = (import ../../misc/keys.nix).ssh;
-      extraGroups = [ "wheel" "adbusers" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [ "wheel" "adbusers" "networkmanager" ]; # Enable ‘sudo’ for the user.
     };
   };
   programs.adb.enable = true;

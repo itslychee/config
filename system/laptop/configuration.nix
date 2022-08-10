@@ -32,7 +32,7 @@
     lychee = {
       shell = pkgs.fish;
       isNormalUser = true;
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "networkmanager" ];
     };
   };
   system.stateVersion = "21.11";
