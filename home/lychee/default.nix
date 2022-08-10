@@ -68,6 +68,7 @@ rec {
 
   programs = {
    gpg.enable = true;
+   bash.enable = true;
    htop = {
       enable = true;
       settings = {
