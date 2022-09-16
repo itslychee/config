@@ -22,6 +22,11 @@ in {
         "suggest.enablePreselect" = false;
        	"suggest.enablePreview" = true;
         languageserver = {
+          rust = {
+            "command" = "rust-analyzer";
+            "filetypes" = ["rust" "rs" ];
+            "rootPatterns" = ["Cargo.toml"];
+          };
           go = {
             command = "gopls";
             rootPatterns = [ "go.mod" ];

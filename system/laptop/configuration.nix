@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ../../modules/system/pipewire.nix
+    ../../modules/system/pulseaudio.nix
     ../../modules/system/opengl.nix
     ../../modules/system/fonts.nix
     ../../modules/system/systemd-boot.nix
@@ -32,7 +32,11 @@
     lychee = {
       shell = pkgs.fish;
       isNormalUser = true;
+<<<<<<< HEAD
       extraGroups = [ "wheel" "networkmanager" ];
+=======
+      extraGroups = [ "audio" "wheel" ];
+>>>>>>> cbeb8e0 (changes)
     };
   };
   system.stateVersion = "21.11";

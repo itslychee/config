@@ -6,8 +6,8 @@
       enable = true;
       extraConfig = ''
         audio_output {
-          type "pipewire"
-          name "PipeWire Output"
+          type "pulse"
+          name "PulseAudio"
           auto_resample "no"
           # samplerate_converter            "internal"
           use_mmap "yes"
@@ -28,7 +28,7 @@
        name = "ncmpcpp";
        paths = with pkgs; [
          libnotify
-         (ncmpcpp.override (_: { visualizerSupport = true; }))
+         (ncmpcpp.override (_: { visualizerSupport = true; clockSupport = true; }))
        ];
      });
      settings = {

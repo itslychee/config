@@ -49,6 +49,11 @@ rec {
       mpc-cli
       spotify
       swaylock
+      gimp
+      rust-analyzer
+      pamixer
+      wf-recorder
+      geeqie
       (symlinkJoin {
         name = "sway-launcher-desktop";
         paths = [ sway-launcher-desktop ];
@@ -59,9 +64,9 @@ rec {
       })
     ] ++(lib.optionals (hostname == "kremlin") [
       pollymc
+      libreoffice
     ]) ++ (lib.optionals (hostname == "laptop") [
       # School stuff
-      libreoffice
       teams
     ]);
   };

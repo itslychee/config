@@ -17,13 +17,6 @@
         # File Dialogs
         [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set width 1030 height 710
 
-        # Dolphin/Ark
-        [title="^(File|Folder)\s*Already Exists\s*—\s*" app_id="dolphin|org.kde.ark"] floating enable
-        [title="^(Copying|Moving)\s*—\s*Dolphin" app_id="dolphin"] inhibit_idle open; floating enable
-        [title="^Extracting\s" app_id="(dolphin|org.kde.ark)"] inhibit_idle open; floating enable
-        [title="^Information\s*—\s*Dolphin" app_id="dolphin"] floating enable
-        [title="^Loading archive" app_id="org.kde.ark"] floating enable
-
         # Firefox
         [app_id="firefox" title="^Picture-in-Picture$"] floating enable; sticky enable
       }

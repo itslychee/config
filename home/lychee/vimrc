@@ -53,7 +53,6 @@ lua <<EOF
     require 'colorizer'.setup()
 EOF
 
-let mapleader = ","
 
 " HJKL Keybindings
 inoremap <M-h> <c-o>h
@@ -69,3 +68,4 @@ nnoremap <M-b> :tabprev<CR>
 
 " Symbol signature
 nnoremap <silent> <leader>h :call CocActionAsync('doHover')<cr>
+

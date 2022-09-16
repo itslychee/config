@@ -1,7 +1,7 @@
 { config, options, pkgs, ... }:
 {
   imports = [
-    ../../modules/system/pipewire.nix
+    ../../modules/system/pulseaudio.nix
     ../../modules/system/opengl.nix
     ../../modules/system/fonts.nix
     ../../modules/system/systemd-boot.nix
@@ -52,7 +52,7 @@
       shell = pkgs.fish; 
       isNormalUser = true;
       openssh.authorizedKeys.keys = (import ../../misc/keys.nix).ssh;
-      extraGroups = [ "wheel" "adbusers" "networkmanager" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [ "audio" "wheel" "adbusers" "networkmanager" ]; # Enable ‘sudo’ for the user.
     };
   };
   programs.adb.enable = true;
