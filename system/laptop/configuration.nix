@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ../../modules/system/pulseaudio.nix
+    ../../modules/system/pipewire.nix
     ../../modules/system/opengl.nix
     ../../modules/system/fonts.nix
     ../../modules/system/systemd-boot.nix
