@@ -8,22 +8,20 @@ set tabstop=4
 set smartindent
 set undofile
 set hidden
+set backspace=indent,eol,start 
 
 " coc-nvim stuff
 set updatetime=300
 set cmdheight=2
+colorscheme zenburn
 
-syntax on
-filetype plugin indent on
-let g:airline_theme='ayu_mirage'
-
-colorscheme sonokai
+filetype plugin on
+syntax enable
 
 " Lua stuff
 
 lua <<EOF
-	require 'nvim-tree'.setup({
-	 disable_netrw = true,
+  require 'nvim-tree'.setup({
 	 open_on_tab = true,
 	 auto_reload_on_write = true,
 	 open_on_setup = true,
@@ -31,7 +29,7 @@ lua <<EOF
 	 update_cwd = true,
 	 filters = {
 	   dotfiles = true,
-	   exclude = { ".", ".."},
+	   exclude = { ".git", "."},
 	 },
      view = {
 		 adaptive_size = true,
@@ -41,12 +39,12 @@ lua <<EOF
 		 enable = true,
 	   },
 	   icons = {
-		 show = {
-		   file = false,
-		   folder = false,
-		   folder_arrow = false,
-		   git = false,
-		 },
+		-- show = {
+		--   file = false,
+		--   folder = false,
+		--   folder_arrow = false,
+		--   git = false,
+		-- },
 	   },
 	 },
 	})
@@ -63,9 +61,9 @@ inoremap <M-l> <c-o>l
 " Tab management
 nnoremap <M-t> :tabnew<CR>
 nnoremap <M-w> :tabclose<CR>
-nnoremap <M-f> :tabnext<CR>
-nnoremap <M-b> :tabprev<CR>
+nnoremap <M-p> :tabnext<CR>
+nnoremap <M-o> :tabprev<CR>
 
 " Symbol signature
-nnoremap <silent> <leader>h :call CocActionAsync('doHover')<cr>
+nnoremap <silent> <M-i> :call CocActionAsync('doHover')<CR>
 

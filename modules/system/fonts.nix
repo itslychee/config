@@ -21,6 +21,7 @@ with pkgs.lib;
       iosevka-bin
       material-design-icons
       corefonts
+	  nerdfonts
     ]);
     enableDefaultFonts = mkDefault true;
     fontconfig.defaultFonts = {

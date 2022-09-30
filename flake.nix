@@ -2,12 +2,15 @@
   description = "My NixOS configuration";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-22.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR";
     pollymc.url = "github:fn2006/PollyMC";
+    nix-alien.url = "github:thiagokokada/nix-alien";
+    nix-ld.url = "github:Mic92/nix-ld/main";
   };
   outputs = {self, nixpkgs, home-manager, ... }@inputs: let
     mkSystemConfig = hostname: {
@@ -18,6 +21,13 @@
           nixpkgs.overlays = [ 
             inputs.nur.overlay
             inputs.pollymc.overlay
+            inputs.nix-alien.overlay
+            (super: self: {
+              unstable = import inputs.nixpkgs-unstable {
+                system = self.system;
+                config.allowUnfree = true;
+              };
+            })
           ];
           nixpkgs.config.allowUnfree = true;
         }

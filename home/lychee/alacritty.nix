@@ -8,14 +8,14 @@
       dynamic_title = true;
       window = {
         dynamic_padding = true;
-        opacity = 0.99;
+        opacity = 0.98;
         decorations = "none";
       };
       draw_bold_text_with_bright_colors = true;
       # alt_send_esc = false;
       font = {
         normal.family = "Iosevka";
-        size = 12;
+        size = 11;
       };
       cursor = {
         style = {

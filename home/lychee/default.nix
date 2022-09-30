@@ -54,6 +54,9 @@ rec {
       pamixer
       wf-recorder
       geeqie
+      nix-alien
+      nix-index
+      nix-index-update
       (symlinkJoin {
         name = "sway-launcher-desktop";
         paths = [ sway-launcher-desktop ];
