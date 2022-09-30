@@ -16,6 +16,7 @@
 		nvim-web-devicons
 		vim-go
 		zenburn
+        molokai
 		nvim-colorizer-lua
 		vim-polyglot
     ];
