@@ -39,12 +39,10 @@ lua <<EOF
 		 enable = true,
 	   },
 	   icons = {
-		-- show = {
-		--   file = false,
-		--   folder = false,
-		--   folder_arrow = false,
-		--   git = false,
-		-- },
+		show = {
+		  file = false,
+		  folder = false,
+		},
 	   },
 	 },
 	})

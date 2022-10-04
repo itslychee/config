@@ -29,7 +29,6 @@
               };
             })
           ];
-          nixpkgs.config.pulseaudio = true;
           nixpkgs.config.allowUnfree = true;
         }
         ./shared.nix

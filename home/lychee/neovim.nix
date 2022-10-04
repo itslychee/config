@@ -3,6 +3,23 @@
   programs.neovim = {
     enable = true;
     extraConfig = builtins.readFile ./vimrc;
+    coc = {
+      enable = true;
+      package = pkgs.unstable.vimPlugins.coc-nvim;
+      settings = {
+        "suggest.noselect" = true;
+        "suggest.enablePreselect" = false;
+       	"suggest.enablePreview" = true;
+        languageserver = {
+          go = {
+            command = "gopls";
+            rootPatterns = [ "go.mod" ];
+            "trace.server" = "verbose";
+            filetypes = [ "go" "go.mod" "go.work" ];
+          };
+        };
+      };
+    };
     plugins = with pkgs.vimPlugins; [
 		(nvim-tree-lua.overrideAttrs (_: {
           src = pkgs.fetchFromGitHub {
@@ -14,7 +31,6 @@
         }))
 		vim-easy-align
 		nvim-web-devicons
-		vim-go
 		zenburn
         molokai
 		nvim-colorizer-lua
