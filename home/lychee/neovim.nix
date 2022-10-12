@@ -31,9 +31,9 @@
         }))
 		vim-easy-align
 		nvim-web-devicons
-		zenburn
-        molokai
 		nvim-colorizer-lua
+        vim-hexokinase
+        sonokai
 		vim-polyglot
     ];
     # Aliases
