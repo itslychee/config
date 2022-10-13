@@ -52,7 +52,6 @@ rec {
       gimp
       rust-analyzer
       pamixer
-      wf-recorder
       geeqie
       nix-alien
       nix-index

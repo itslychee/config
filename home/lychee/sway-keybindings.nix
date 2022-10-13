@@ -28,6 +28,8 @@
       XF86MonBrightnessDown = "exec ${light} s 5%-";
 
       "${modifier}+q" = "exec ${pkgs.flameshot}/bin/flameshot gui";
+      "${modifier}+shift+q" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g `$(${pkgs.slurp}/bin/slurp)`";
+      "${modifier}+shift+w" = "exec pkill -SIGINT -f '${pkgs.wf-recorder}/bin/wf-recorder -g'";
 
       # Window Navigation
       "${modifier}+h" = "focus left";

@@ -47,6 +47,7 @@ lua <<EOF
 	 },
 	})
 EOF
+
 let g:Hexokinase_highlighters = ['backgroundfull']
 
 " HJKL Keybindings
