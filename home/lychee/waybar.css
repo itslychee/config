@@ -1,50 +1,53 @@
-/* Color definitions */
-@define-color primary-background-color #601A41;
-@define-color secondary-background-color #83345C;
-@define-color secondary-border-color #FF98BE;
-@define-color workspace-focused-color #B8517E;
-
-window { background-color: transparent; }
+/*
+ * Colors
+ */
+@define-color bar-foreground white;
+@define-color bar-background #281b25;
+@define-color bar-bottom-border #261d24;
+@define-color module-background #161117;
+@define-color module-vert-transition #3c303f;
+@define-color module-underline #ffa9d2;
 
 * {
-  font-family: 'Iosevka', 'Font Awesome 6 Free'; 
-  font-size: 14px;
+  font-family: Terminus, 'Font Awesome 6 Free', 'Font Awesome 6 Brands';
 }
 
-#battery, #pulseaudio, #clock, #custom-poweroff, #custom-reboot, #custom-suspend {
-  border-radius: 0px 0px 5px 5px;
-  background-color: @primary-background-color;
-  padding: 0px 4.5px;
+window {
+  background-color: @bar-background;
+  border-bottom: 0.5px solid @bar-bottom-border;
 }
 
-#battery {
-  margin: 0 5px;
-} 
 
-#battery.charging {
-  border-bottom: 2px solid #5fab56;
+/* Apply base module styles */
+#battery, #memory, #disk, #pulseaudio, #network, #workspaces {
+  background-color: @module-background;
+  border-bottom: 1px solid @module-underline;
+  border-right: 1px solid @module-vert-transition;
+  border-left: 1px solid @module-vert-transition;
+  margin: 0px 5px;
+  padding: 1px 4px;
 }
 
-#custom-poweroff, #custom-reboot, #custom-suspend {
-  margin: 0px 1px 5px 2px;
-}
 
-#pulseaudio.muted {
-  color: grey;
-  background-color: black;
+/*
+ * Remove terrible defaults applied to workspaces
+ *
+*/
+#workspaces {
+  box-shadow: unset;
+  margin: 0;
 }
 
 #workspaces button {
-  padding: 0 1px;
-  background-color: @secondary-background-color;
+  background-color: @module-background;
+  padding: 1px 3px;
 }
-
 #workspaces button.focused {
-  background-color: @workspace-focused-color;
+  border-bottom: 2px solid @module-underline;
 }
-
 #workspaces button:hover {
+  background: unset;
   box-shadow: unset;
-  text-shadow: unset;
+  border-color: unset;
+  border: unset;
 }
-

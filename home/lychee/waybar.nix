@@ -4,43 +4,38 @@
     enable = true;
     settings.mainBar = {
       layer = "top";
-      position = "top";
       height = 20;
+      position = "top";
       output = [
         "eDP-1"
         "HDMI-A-1"
       ];
       modules-left   = [ "sway/workspaces" ];
       modules-center = [ "clock" ];
-      modules-right  = [ "battery" "pulseaudio" "custom/suspend" "custom/poweroff" "custom/reboot" ]; 
+      modules-right  = [ "battery" "pulseaudio" "network" "memory"]; 
 
       "pulseaudio" = {
         format = "{volume}% ";
         format-bluetooth = " {volume}%";
         format-muted = "{volume}% ";
-
+        on-right-click = "${pkgs.pamixer}/bin/pamixer -t";
       };
-
-      "sway/workspaces" = {
-        disable-scroll = true;
-        disable-click = true;
+      "network" = {
+        format-ethernet = "{ipaddr} {bandwidthUpBytes} {bandwidthDownBytes}";
+        format-wifi = " {essid} {bandwidthUpBytes} {bandwidthDownBytes}";
+        interval = 5;
       };
-      # Systemctl commands
-      "custom/poweroff" = {
-        on-click = "systemctl poweroff";
-        format = "";
+      "disk" = {
+        format = "{percentage}% ";
+        interval = 5;
       };
-      "custom/reboot" = {
-        on-click = "systemctl reboot";
-        format = "";
+      "memory" = {
+        interval = 15;
+        format = "{percentage}%  {swapPercentage}% ";
       };
-      "custom/suspend" = {
-        on-click = "systemctl suspend";
-        format = "";
-      };
-      # Date & time
+      "sway/workspaces" = {};
       "clock" = {
-        format = "{:%A  %Y.%m.%d  %I:%M%p [%Z:%z]}";
+        format = "{:%A  %I:%M%p  %Y.%m.%d}";
       };
       "battery" = {
         interval = 30;
