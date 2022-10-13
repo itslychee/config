@@ -37,12 +37,12 @@
       bars = [];
       gaps = {
         outer = 3;
-        inner = 3;
+        inner = 10;
       };
       focus.followMouse = "no";
       colors.focused = rec {
           border = background;
-          background = "#764a5f";
+          background = "#FFA9D2";
           text = "#e8e8e8";
           indicator = "#2e9ef4";
           childBorder = "#915b75";

@@ -15,7 +15,7 @@
       # alt_send_esc = false;
       font = {
         normal.family = "Iosevka";
-        size = 11;
+        size = 10;
       };
       cursor = {
         style = {

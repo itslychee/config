@@ -24,19 +24,12 @@
 
    programs.ncmpcpp = {
      enable = true;
-     package = (pkgs.symlinkJoin {
-       name = "ncmpcpp";
-       paths = with pkgs; [
-         libnotify
-         (ncmpcpp.override (_: { visualizerSupport = true; clockSupport = true; }))
-       ];
-     });
+     package = pkgs.ncmpcpp.override (_: { visualizerSupport = true; clockSupport = true; });
      settings = {
       display_bitrate = "yes";
       jump_to_now_playing_song_at_start = "yes";
       fetch_lyrics_for_current_song_in_background = "no";
       incremental_seeking = "yes";
-      execute_on_song_change = "notify-send -a ncmpcpp \"$(${pkgs.mpc_cli}/bin/mpc current)\"";
       progressbar_look  = "╼O=";
       progressbar_color = "magenta";
       user_interface = "alternative";
