@@ -25,8 +25,8 @@
           src = pkgs.fetchFromGitHub {
             repo = "nvim-tree.lua";
             owner = "kyazdani42";
-            rev = "104292c8f908300e44c0142722746c50fdfa9859";
-            sha256 = "sha256-9ahNp9WMxzY5MYB/YxJJe7sgbQpGHiauuiOdBY+LHbg=";
+            rev = "c446527056e92a57b51e2f79be47c28ba8ed43e4";
+            sha256 = "sha256-l/UXZ+zV8oxXijrLh2DevoFCyOclf69mvG9XWTN5ytA=";
           };
         }))
 		vim-easy-align

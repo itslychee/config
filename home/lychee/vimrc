@@ -31,10 +31,15 @@ lua <<EOF
 	   dotfiles = true,
 	   exclude = { ".git", "."},
 	 },
-     view = {
-		 adaptive_size = true,
+ 	 view = {
+		 width = 35;
+		 preserve_window_proportions = true,
+	 },
+ 	 trash = {
+		 require_confirm = false,
 	 },
 	 renderer = {
+	   symlink_destination = false,
 	   indent_markers = {
 		 enable = true,
 	   },
@@ -42,11 +47,19 @@ lua <<EOF
 		show = {
 		  file = false,
 		  folder = false,
+		  folder_arrow = false,
 		},
 	   },
 	 },
 	})
 EOF
+
+
+
+function! ToggleTree()
+	lua require "nvim-tree".toggle(false, true)
+endfunction
+
 
 let g:Hexokinase_highlighters = ['backgroundfull']
 
@@ -55,6 +68,10 @@ inoremap <M-h> <c-o>h
 inoremap <M-j> <c-o>j
 inoremap <M-k> <c-o>k
 inoremap <M-l> <c-o>l
+
+" Toggle Tree!
+inoremap <M-'> <c-o>:call ToggleTree()<CR>
+nnoremap <M-'> :call ToggleTree()<CR>
 
 " Tab management
 nnoremap <M-t> :tabnew<CR>

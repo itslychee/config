@@ -64,10 +64,7 @@ rec {
           wrapProgram $out/bin/sway-launcher-desktop --set HIST_FILE ""
         '';
       })
-    ] ++ (lib.optional (hostname == "kremlin") (with pkgs; [
-     inputs.pollymc
-  
-    ])); 
+    ]; 
   };
 
   programs = {
