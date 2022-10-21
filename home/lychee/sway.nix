@@ -27,6 +27,7 @@
       input "type:keyboard" {
         dwt enabled
       }
+      workspace 1
     '';
     config = {
       fonts = {

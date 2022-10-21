@@ -50,13 +50,12 @@ rec {
       spotify
       swaylock
       gimp
-      rust-analyzer
       pamixer
       geeqie
       nix-alien
       nix-index
       nix-index-update
-      
+      obsidian
       (symlinkJoin {
         name = "sway-launcher-desktop";
         paths = [ sway-launcher-desktop ];
