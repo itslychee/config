@@ -10,6 +10,7 @@
     ../../modules/system/gpg-agent.nix
     ../../modules/system/gnome.nix
     ../../modules/system/swaylock.nix
+    ../../modules/system/brightness.nix
   ];
   networking = {
     hostName = "kremlin";

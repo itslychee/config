@@ -10,6 +10,7 @@
     ../../modules/system/gpg-agent.nix
     ../../modules/system/gnome.nix
     ../../modules/system/swaylock.nix
+    ../../modules/system/brightness.nix
   ];
 
 
@@ -32,11 +33,7 @@
     lychee = {
       shell = pkgs.fish;
       isNormalUser = true;
-<<<<<<< HEAD
-      extraGroups = [ "wheel" "networkmanager" ];
-=======
-      extraGroups = [ "audio" "wheel" ];
->>>>>>> cbeb8e0 (changes)
+      extraGroups = [ "wheel" "networkmanager" "audio"];
     };
   };
   system.stateVersion = "21.11";

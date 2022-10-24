@@ -21,6 +21,9 @@ rec {
       gtk.enable = true;
       x11.enable = true;
     };
+    shellAliases = {
+      "view" = "${pkgs.xdg-utils}/bin/dg-open";
+    };
     sessionVariables = {
       EDITOR = "${pkgs.neovim}/bin/nvim";
       MOZ_ENABLE_WAYLAND = "1";
@@ -34,28 +37,31 @@ rec {
     };
     sessionPath = [ "~/go/bin" ];
     packages = with pkgs; [
+      # Media viewing
+      imv
+      mpv
+      
+      # Music controllers
+      playerctl
+      mpc-cli
+
+      # Compression tools
+      zstd
+      gzip
+      zip
+      unzip
+
       tree
-      nheko
-      nix-tree
       gcolor3
       curl
       neofetch
-      upower
       wl-clipboard
-      brightnessctl
-      unzip
-      appimage-run
-      playerctl
-      mpc-cli
+      gimp
       spotify
       swaylock
-      gimp
       pamixer
-      geeqie
-      nix-alien
-      nix-index
-      nix-index-update
       obsidian
+
       (symlinkJoin {
         name = "sway-launcher-desktop";
         paths = [ sway-launcher-desktop ];
@@ -175,5 +181,9 @@ rec {
       pictures  = "$HOME/media/images";
       videos    = "$HOME/media/videos";
     };
+    desktopEntries.gimp.mimeType = [];
+    desktopEntries.gimp.exec = "${pkgs.gimp}/bin/gimp %F";
+    desktopEntries.gimp.name = "GNU Image Manipulation Program";
+    
   };
 }
