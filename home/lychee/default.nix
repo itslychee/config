@@ -9,6 +9,7 @@ rec {
     ./gui.nix
     ./mpd.nix
     ./waybar.nix
+    ./vscode.nix
     ./overlays
   ];
 
@@ -125,13 +126,8 @@ rec {
       matchBlocks = {
         "Raspberry Pi" = {
           host = "pi";
-          hostname = "192.168.0.3";
-          user = "pi";
-        };
-        "Personal PC" = {
-          host = "desktop";
           hostname = "192.168.0.2";
-          user = "lychee";
+          user = "pi";
         };
       };
     };
