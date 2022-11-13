@@ -8,7 +8,6 @@
       dynamic_title = true;
       window = {
         dynamic_padding = true;
-        opacity = 0.98;
         decorations = "none";
       };
       draw_bold_text_with_bright_colors = true;

@@ -37,8 +37,8 @@
       };
       bars = [];
       gaps = {
-        outer = 3;
-        inner = 10;
+        outer = 1;
+        inner = 1;
       };
       focus.followMouse = "no";
       colors.focused = rec {

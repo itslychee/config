@@ -33,8 +33,8 @@
 		nvim-web-devicons
 		nvim-colorizer-lua
         vim-hexokinase
-        sonokai
 		vim-polyglot
+        srcery-vim
     ];
     # Aliases
     viAlias = true;

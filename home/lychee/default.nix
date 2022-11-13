@@ -9,7 +9,6 @@ rec {
     ./gui.nix
     ./mpd.nix
     ./waybar.nix
-    ./vscode.nix
     ./overlays
   ];
 
@@ -23,7 +22,7 @@ rec {
       x11.enable = true;
     };
     shellAliases = {
-      "view" = "${pkgs.xdg-utils}/bin/dg-open";
+      "view" = "${pkgs.xdg-utils}/bin/xdg-open";
     };
     sessionVariables = {
       EDITOR = "${pkgs.neovim}/bin/nvim";
