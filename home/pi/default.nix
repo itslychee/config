@@ -2,5 +2,6 @@
 {
   imports = [
     ../lychee/neovim.nix
+    ../lychee/utils.nix
   ];
 }

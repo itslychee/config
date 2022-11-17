@@ -11,7 +11,6 @@
     ../../modules/system/gnome.nix
     ../../modules/system/swaylock.nix
     ../../modules/system/brightness.nix
-    ../../modules/system/autofs.nix
   ];
   networking = {
     hostName = "kremlin";
