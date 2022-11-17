@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ config, pkgs, ...}:
 {
   programs = { 
    gpg.enable = true;
@@ -43,7 +43,7 @@
         };
       };
       extraConfig = {
-        core.editor = home.sessionVariables.EDITOR or "${pkgs.nvim}/bin/nvim";
+        core.editor = config.home.sessionVariables.EDITOR or "${pkgs.nvim}/bin/nvim";
       };
     };
     ssh = {
