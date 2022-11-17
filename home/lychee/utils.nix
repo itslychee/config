@@ -43,7 +43,7 @@
         };
       };
       extraConfig = {
-        core.editor = config.home.sessionVariables.EDITOR or "${pkgs.nvim}/bin/nvim";
+        core.editor = config.home.sessionVariables.EDITOR or "${pkgs.neovim}/bin/nvim";
       };
     };
     ssh = {
