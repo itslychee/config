@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/system/networkmanager.nix
+    ../../modules/system/gpg-agent.nix
   ];
 
   boot = {
