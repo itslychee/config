@@ -63,6 +63,10 @@ rec {
       pamixer
       obsidian
 
+      prismlauncher
+      # Unstable packages
+      unstable.bluetuith
+      unstable.swaynotificationcenter
       (symlinkJoin {
         name = "sway-launcher-desktop";
         paths = [ sway-launcher-desktop ];
@@ -74,9 +78,12 @@ rec {
     ]; 
   };
 
+
+
+
   programs = {
     mako = {
-      enable = true;
+      enable = false;
       anchor = "top-right";
       backgroundColor = "#764a5f";
       borderColor = "#915b75";
@@ -85,6 +92,7 @@ rec {
       font = "Source Code Pro 10";
       format = "<b>%a</b>\\n%s\\n%b";
     };
+    
     exa = {
       enable = true;
       enableAliases = true;

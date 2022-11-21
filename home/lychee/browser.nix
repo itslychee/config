@@ -7,6 +7,7 @@
       bitwarden
       privacy-badger
       ublock-origin
+      i-dont-care-about-cookies
       no-pdf-download
       octolinker
       old-reddit-redirect

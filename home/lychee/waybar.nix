@@ -10,7 +10,7 @@
         "eDP-1"
         "HDMI-A-1"
       ];
-      modules-left   = [ "sway/workspaces" ];
+      modules-left   = [ "sway/workspaces" "custom/music" ];
       modules-center = [ "clock" ];
       modules-right  = [ "battery" "pulseaudio" "network" "memory"]; 
 
@@ -41,6 +41,10 @@
         interval = 30;
         format-icons = [ "" "" "" "" ""];
         format = "{capacity}% {icon}";
+      };
+      "custom/music" = {
+        max-length = 50;
+        exec = "${pkgs.playerctl}/bin/playerctl metadata -Ff '{{playerName}}: [{{duration(position)}}|{{duration(mpris:length)}}] {{markup_escape(artist)}} | {{markup_escape(trunc(title, 35))}} '";
       };
     };
     style = builtins.readFile ./waybar.css; 
