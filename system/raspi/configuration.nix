@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/system/networkmanager.nix
+    ../../modules/system/gpg-agent.nix
   ];
 
   boot = {
@@ -30,6 +31,7 @@
 
   environment.systemPackages = with pkgs; [
     vim
+    nodejs
     wget
   ];
   system.stateVersion = "22.05"; # Did you read the comment?
