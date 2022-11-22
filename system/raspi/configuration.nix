@@ -10,8 +10,6 @@
 
   boot = {
      kernelPackages = pkgs.linuxPackages_rpi4;
-     tmpOnTmpfs = true;
-     tmpOnTmpfsSize = "100%";
      initrd.availableKernelModules = [ "usbhid" "usb_storage" ];
      kernelParams = [
        "8250.nr_uarts=1"
@@ -29,7 +27,6 @@
     isNormalUser = true;
     openssh.authorizedKeys.keys = (import ../../misc/keys.nix).ssh;
     extraGroups = [ "wheel" ];
-    shell = pkgs.fish;
   };
 
   environment.systemPackages = with pkgs; [

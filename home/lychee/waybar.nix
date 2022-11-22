@@ -44,7 +44,7 @@
       };
       "custom/music" = {
         max-length = 50;
-        exec = "${pkgs.playerctl}/bin/playerctl metadata -Ff '{{playerName}}: [{{duration(position)}}|{{duration(mpris:length)}}] {{markup_escape(artist)}} | {{markup_escape(trunc(title, 35))}} '";
+        exec = "${pkgs.playerctl}/bin/playerctl metadata -Ff '[{{duration(position)}}|{{default(duration(mpris:length), \"??:??\"}}] {{markup_escape(artist)}} | {{markup_escape(trunc(title, 35))}} '";
       };
     };
     style = builtins.readFile ./waybar.css; 

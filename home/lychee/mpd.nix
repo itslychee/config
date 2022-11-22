@@ -9,7 +9,6 @@
           type "pulse"
           name "PulseAudio"
           auto_resample "no"
-          # samplerate_converter            "internal"
           use_mmap "yes"
         }
        '';
