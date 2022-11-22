@@ -11,6 +11,7 @@
     ../../modules/system/gnome.nix
     ../../modules/system/swaylock.nix
     ../../modules/system/brightness.nix
+    ../../modules/system/system-updates.nix
   ];
   networking = {
     hostName = "kremlin";
@@ -56,8 +57,6 @@
       extraGroups = [ "audio" "wheel" "adbusers" "networkmanager" ]; # Enable ‘sudo’ for the user.
     };
   };
-  programs.adb.enable = true;
-
   system.stateVersion = "22.05";
 }
 

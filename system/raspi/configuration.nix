@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ../../modules/system/networkmanager.nix
     ../../modules/system/gpg-agent.nix
+    ../../modules/system/system-updates.nix
   ];
 
   boot = {
