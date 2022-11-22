@@ -77,33 +77,9 @@ rec {
       })
     ]; 
   };
-
-
-
-
-  programs = {
-    mako = {
-      enable = false;
-      anchor = "top-right";
-      backgroundColor = "#764a5f";
-      borderColor = "#915b75";
-      borderRadius = 2;
-      defaultTimeout = 7000;
-      font = "Source Code Pro 10";
-      format = "<b>%a</b>\\n%s\\n%b";
-    };
-    
-    exa = {
+  programs.exa = {
       enable = true;
       enableAliases = true;
-    };
-  };
-
-  systemd.user.services.mako = pkgs.lib.mkIf config.programs.mako.enable {
-    Service.ExecStart = "${pkgs.mako}/bin/mako";
-    Service.Restart = "on-failure";
-    Unit.Requires = [ "sway-session.target" ];
-    Install.RequiredBy = [ "sway-session.target" ];
   };
 
   # Flameshot
