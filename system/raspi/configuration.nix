@@ -28,7 +28,6 @@
     openssh.authorizedKeys.keys = (import ../../misc/keys.nix).ssh;
     extraGroups = [ "wheel" ];
   };
-
   environment.systemPackages = with pkgs; [
     vim
     nodejs
