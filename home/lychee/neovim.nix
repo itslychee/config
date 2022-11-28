@@ -17,6 +17,11 @@
             "trace.server" = "verbose";
             filetypes = [ "go" "go.mod" "go.work" ];
           };
+          rust = {
+            command = "rust-analyzer";
+            filetypes = [ "rust" "rs" ];
+            rootPatterns = [ "Cargo.toml" ];
+          };
         };
       };
     };
