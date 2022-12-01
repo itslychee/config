@@ -7,6 +7,9 @@
 { lib, ...}:
 with lib;
 {
+  # Version
+  system.stateVersion = "22.11";
+
   # Locale
   time.timeZone = mkDefault "US/Central";
   i18n.defaultLocale = mkDefault "en_US.UTF-8";

@@ -14,7 +14,7 @@ rec {
   ];
 
   home = {
-    stateVersion = "22.05";
+    stateVersion = "22.11";
     pointerCursor = {
       package = pkgs.nordzy-cursor-theme;
       name = "Nordzy-cursors";

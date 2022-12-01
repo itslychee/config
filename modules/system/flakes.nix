@@ -2,7 +2,7 @@
 with pkgs.lib;
 {
   config.nix = {
-    autoOptimiseStore = mkDefault true;
+    settings.auto-optimise-store = mkDefault true;
     gc = {
       persistent = mkDefault true;
       automatic = mkDefault true;

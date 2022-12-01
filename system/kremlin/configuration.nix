@@ -57,6 +57,5 @@
       extraGroups = [ "audio" "wheel" "adbusers" "networkmanager" ]; # Enable ‘sudo’ for the user.
     };
   };
-  system.stateVersion = "22.05";
 }
 

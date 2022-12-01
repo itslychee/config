@@ -19,13 +19,14 @@
           };
           rust = {
             command = "rust-analyzer";
-            filetypes = [ "rust" "rs" ];
+            filetypes = [ "rust" ];
             rootPatterns = [ "Cargo.toml" ];
           };
         };
       };
     };
     plugins = with pkgs.vimPlugins; [
+        nvim-lastplace
 		(nvim-tree-lua.overrideAttrs (_: {
           src = pkgs.fetchFromGitHub {
             repo = "nvim-tree.lua";
