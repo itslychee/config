@@ -10,6 +10,7 @@ rec {
     ./mpd.nix
     ./waybar.nix
     ./utils.nix
+    ./vscode.nix
     ./overlays
   ];
 
@@ -61,7 +62,7 @@ rec {
       spotify
       swaylock
       pamixer
-      obsidian
+      rust-analyzer
 
       prismlauncher
       # Unstable packages
@@ -77,6 +78,11 @@ rec {
       })
     ]; 
   };
+  xdg.configFile."swaync/config.json".text = ''
+    {
+      "notification-window-width": 420
+    }
+  '';
   programs.exa = {
       enable = true;
       enableAliases = true;
