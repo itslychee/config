@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 
-{
+rec {
   imports = [
     ./hardware-configuration.nix
     ../../modules/system/networkmanager.nix
@@ -25,9 +25,11 @@
   };
 
   networking.hostName = "raspi";
-  networking.firewall = {
-    allowedTCPPorts = config.networking.firewall.allowedTCPPorts ++ [ 53 ];
-    allowedUDPPorts = config.networking.firewall.allowedUDPPorts ++ [ 53 67 ];
+  networking.firewall = let
+    mod = (builtins.elemAt imports 4);
+  in {
+    allowedTCPPorts = mod.networking.firewall.allowedTCPPorts ++ [ 53 ];
+    allowedUDPPorts = mod.networking.firewall.allowedUDPPorts ++ [ 53 67 ];
   };
 
 
