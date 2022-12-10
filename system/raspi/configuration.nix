@@ -28,6 +28,11 @@ rec {
   networking.firewall.allowedUDPPorts = [ 53 ];
   networking.firewall.allowedTCPPorts = [ 53 67 ];
 
+  networking.networkmanager.insertNameservers = [
+    "::1"
+    "127.0.0.1"
+  ];
+
   users.users.pi = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = (import ../../misc/keys.nix).ssh;
