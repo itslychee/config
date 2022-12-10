@@ -25,8 +25,8 @@ rec {
   };
 
   networking.hostName = "raspi";
-  networking.firewall.allowedUDPPorts = pkgs.lib.mkDefault [ 53 ];
-  networking.firewall.allowedTCPPorts = pkgs.lib.mkDefault [ 53 67 ];
+  networking.firewall.allowedUDPPorts = [ 53 ];
+  networking.firewall.allowedTCPPorts = [ 53 67 ];
 
   users.users.pi = {
     isNormalUser = true;
