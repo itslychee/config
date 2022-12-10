@@ -25,13 +25,8 @@ rec {
   };
 
   networking.hostName = "raspi";
-  networking.firewall = let
-    mod = (builtins.elemAt imports 4);
-  in {
-    allowedTCPPorts = mod.networking.firewall.allowedTCPPorts ++ [ 53 ];
-    allowedUDPPorts = mod.networking.firewall.allowedUDPPorts ++ [ 53 67 ];
-  };
-
+  networking.firewall.allowedUDPPorts = [ 53 ];
+  networking.firewall.allowedTCPPorts = [ 53 67 ];
 
   users.users.pi = {
     isNormalUser = true;
