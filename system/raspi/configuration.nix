@@ -8,7 +8,7 @@
     ../../modules/system/system-updates.nix
   ];
 
-  virtualisation.docker.enable = true;
+  virualisation.docker.enable = true;
   boot = {
      kernelPackages = pkgs.linuxPackages_rpi4;
      initrd.availableKernelModules = [ "usbhid" "usb_storage" ];
@@ -30,6 +30,7 @@
     extraGroups = [ "wheel" ];
   };
   environment.systemPackages = with pkgs; [
+    docker-compose
     vim
     wget
   ];
