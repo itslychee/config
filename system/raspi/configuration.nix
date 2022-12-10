@@ -25,8 +25,10 @@
   };
 
   networking.hostName = "raspi";
-  networking.allowedTCPPorts = config.networking.allowedTCPPorts ++ [ 53 ];
-  networking.allowedUDPPorts = config.networking.allowedUDPPorts ++ [ 53 67 ];
+  networking.firewall = {
+    allowedTCPPorts = config.networking.firewall.allowedTCPPorts ++ [ 53 ];
+    allowedUDPPorts = config.networking.firewall.allowedUDPPorts ++ [ 53 67 ];
+  };
 
 
   users.users.pi = {
