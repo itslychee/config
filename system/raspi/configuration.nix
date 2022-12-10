@@ -6,6 +6,7 @@
     ../../modules/system/networkmanager.nix
     ../../modules/system/gpg-agent.nix
     ../../modules/system/system-updates.nix
+    ../../modules/system/firewall.nix
   ];
 
   virtualisation.docker.enable = true;
@@ -24,6 +25,10 @@
   };
 
   networking.hostName = "raspi";
+  networking.allowedTCPPorts = networking.allowedTCPPorts ++ [ 53 ];
+  networking.allowedUDPPorts = networking.allowedUDPPorts ++ [ 53 67 ];
+
+
   users.users.pi = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = (import ../../misc/keys.nix).ssh;
