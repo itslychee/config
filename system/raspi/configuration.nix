@@ -8,7 +8,7 @@
     ../../modules/system/system-updates.nix
   ];
 
-  virualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
   boot = {
      kernelPackages = pkgs.linuxPackages_rpi4;
      initrd.availableKernelModules = [ "usbhid" "usb_storage" ];
