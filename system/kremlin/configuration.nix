@@ -6,12 +6,11 @@
     ../../modules/system/fonts.nix
     ../../modules/system/systemd-boot.nix
     ../../modules/system/networkmanager.nix
-    ../../modules/system/xdg.nix
     ../../modules/system/gpg-agent.nix
     ../../modules/system/gnome.nix
-    ../../modules/system/swaylock.nix
     ../../modules/system/brightness.nix
     ../../modules/system/system-updates.nix
+    ../../modules/system/kde.nix
   ];
   networking = {
     hostName = "kremlin";

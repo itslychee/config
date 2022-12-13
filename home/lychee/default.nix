@@ -2,15 +2,12 @@
 rec {
   imports = [
     ./alacritty.nix
-    ./sway.nix
     ./neovim.nix
     ./browser.nix
     ./shell.nix
     ./gui.nix
     ./mpd.nix
-    ./waybar.nix
     ./utils.nix
-    ./vscode.nix
     ./overlays
   ];
 

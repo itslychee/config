@@ -1,6 +1,8 @@
+{ pkgs, ...}:
+with pkgs.lib;
 {
   nixpkgs.overlays = [
-    (_: prev: {
+    (final: prev: {
       arc-theme = prev.arc-theme.overrideAttrs (old: {
         mesonFlags = old.mesonFlags ++ [
           "-Dtransparency=false"

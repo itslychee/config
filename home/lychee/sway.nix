@@ -7,6 +7,15 @@
 
   wayland.windowManager.sway = {
     enable = true;
+    package = pkgs.sway-unwrapped.overrideAttrs (_: rec {
+      version = "1.8-rc3";
+      src = pkgs.fetchFromGitHub {
+        owner = "swaywm";
+        repo = "sway";
+        rev = version;
+        sha256 = "sha256-ltmlD8R/Dsv80+f3olHeRFOYlrHdcfMa19CfYADqSfI=";
+      };
+    });
     systemdIntegration = true;
     wrapperFeatures.gtk = true;
     extraConfig = ''

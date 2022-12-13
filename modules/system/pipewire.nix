@@ -8,6 +8,7 @@ with lib;
     services.pipewire.audio.enable = mkDefault true;
     services.pipewire.pulse.enable = mkDefault true; 
     services.pipewire.jack.enable = mkDefault true;
+    hardware.pulseaudio.enable = false;
   };
 }
 
