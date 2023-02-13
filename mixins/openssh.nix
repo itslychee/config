@@ -1,11 +1,9 @@
 { pkgs, ...}:
 with pkgs.lib;
 {
-  config = mkDefault {
-    services.openssh = {
-      enable = true;
-      permitRootLogin = "no";
-      passwordAuthentication = "no";
-    };
+  config.services.openssh = mkDefault {
+   enable = true;
+   permitRootLogin = "no";
+   passwordAuthentication = "no";
   };
 }
