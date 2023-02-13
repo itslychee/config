@@ -10,8 +10,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = {self, utils, nixpkgs, home-manager, ...}@inputs: let
-    mkSystem = {hostname, system ? "x86_64-linux", users, flags ? {} }@args: overrides: let
-      mkConfig = { hostname, system ? "x86_64-linux", users}: nixpkgs.lib.nixosSystem rec {
+    mkSystem = {hostname, system ? "x86_64-linux", users, flags ? {}}@args: overrides: let
+      mkConfig = { hostname, system ? "x86_64-linux", users, flags ? {}}: nixpkgs.lib.nixosSystem rec {
         inherit system;
         specialArgs = {
          inherit hostname inputs flags; 
