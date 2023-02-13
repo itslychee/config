@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
-    (../../mixins/networking.nix { hostName = "cutesy"; })
+    (import ../../mixins/networking.nix { hostName = "cutesy"; })
     ../../mixins/hardware.nix
     ../../mixins/openssh.nix
     ../../mixins/security.nix
