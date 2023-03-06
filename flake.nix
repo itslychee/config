@@ -6,8 +6,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
     # sops-nix.url = "github:Mic92/sops-nix";
-    home-manager.url = "github:nix-community/home-manager/release-22.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    mc.url = "github:nix-community/mineflake";
   };
   outputs = {self, utils, nixpkgs, home-manager, ...}@inputs: let
     mkSystem = {hostname, system ? "x86_64-linux", users, flags ? {}}@args: overrides: let
@@ -27,7 +27,8 @@
               (old: final: {
                 unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
               })
-            ];
+              inputs.mc.overlays.default
+            ] ;
             system.stateVersion = version;
             services.dbus.enable = true;
           }
@@ -46,7 +47,6 @@
       hostname = "embassy";
       users = { lychee = ./home; };
     } (_: {});
-
     nixosConfigurations.cutesy = mkSystem {
       hostname = "cutesy";
       users = { lychee = ./home; };

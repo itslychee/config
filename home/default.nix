@@ -1,4 +1,4 @@
-{ config, pkgs, flags, ...}:
+{ config, pkgs, flags, inputs, ...}:
 with pkgs.lib;
 {
   imports = [
@@ -15,7 +15,9 @@ with pkgs.lib;
   home.packages = with pkgs; [
     neofetch
   ] ++ optionals config.services.mpd.enable [ mpc-cli ]
-    ++ optionals (!flags.headless or false) [ spotify ];
+  ++ optionals (!flags.headless or false) [ spotify ]
+  ++ optionals (flags.headless or true) [
+  ];
     
 
 }

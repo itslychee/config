@@ -1,9 +1,12 @@
 { config, pkgs, ... }:
 {
   imports = [
-    (import ../../mixins/networking.nix { hostName = "cutesy"; })
+    (import ../../mixins/networking.nix {
+      hostName = "cutesy"; 
+      Fail2Ban = { enable = true; };
+    })
+    (import ../../mixins/openssh.nix { AllowUsers = ["lychee"]; })
     ../../mixins/hardware.nix
-    ../../mixins/openssh.nix
     ../../mixins/security.nix
   ];
 

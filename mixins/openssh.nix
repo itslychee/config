@@ -1,3 +1,4 @@
+{ allowedUsers ? []}:
 { pkgs, ...}:
 with pkgs.lib;
 {
@@ -5,5 +6,8 @@ with pkgs.lib;
    enable = true;
    permitRootLogin = "no";
    passwordAuthentication = false;
+   extraConfig = ''
+     AllowUsers ${builtins.concatStringsSep " " allowedUsers}
+   '';
   };
 }

@@ -13,16 +13,15 @@
   # be very unstable because, y'know, Windows.
   time.hardwareClockInLocalTime = true;
   time.timeZone = "US/Central";
-
   users.users = {
     lychee = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" ];
+      extraGroups = [ "wheel" "networkmanager" "adbusers" ];
     };
   };
-
   # System wide programs
   programs.dconf.enable = true;
+  programs.adb.enable = true;
 
   # 1TB storage for games and music
   fileSystems."/storage" = {
@@ -31,5 +30,4 @@
   };
   # System packages
   environment.systemPackages = with pkgs; [ neovim ];
-
 }

@@ -5,6 +5,7 @@
   };
   
   programs = {
+    bash.enable = true;
     neovim = {
       enable = true;
       coc = {
@@ -15,18 +16,38 @@
           "suggest.enablePreselect" = false;
           "suggest.disableKind" = true;
           languageserver = {
+            # Language servers
             nix = {
               command = "${pkgs.rnix-lsp}/bin/rnix-lsp";
               filetypes = [ "nix" ];
             };
+            rust = {
+              command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+              filetypes = [ "rust" ];
+              rootPatterns = [ "Cargo.toml" ];
+            };
           };
         };
       };
+      extraConfig = ''
+       set number
+       set nowrap
+       colorscheme everforest
+      '';
+      extraLuaConfig = ''
+        vim.api.nvim_set_keymap('n', '<c-P>', "<cmd>lua require 'fzf-lua'.files()<CR>",
+        { noremap = true, silent = true }
+        )
+      '';
       plugins = with pkgs.vimPlugins; [
         vim-startify
         yankring
         vim-nix
         vim-polyglot
+        coc-pairs
+        everforest
+        fzf-lua
+        fzfWrapper
       ];
     };
     btop.enable = true;
@@ -42,6 +63,10 @@
         draw_bold_text_with_bright_colors = true;
         cursor.style.blinking = "On";
       };
+    };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
     };
   };
 }

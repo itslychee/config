@@ -4,7 +4,7 @@ with pkgs.lib;
   services = {
     mpdris2.enable = config.services.mpd.enable;
     mpd = {
-      enable = !flags.headless or true;
+      enable = !flags.headless or false;
       extraConfig = ''
         audio_output {
           type "pipewire"
