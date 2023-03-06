@@ -14,9 +14,13 @@ with pkgs.lib;
   };
   home.packages = with pkgs; [
     neofetch
-  ] ++ optionals config.services.mpd.enable [ mpc-cli ]
+  ] 
+  # MPD applications
+  ++ optionals config.services.mpd.enable [ mpc-cli ]
+  # Non-headless specific packages (desktop)
   ++ optionals (!flags.headless or false) [ spotify ]
-  ++ optionals (flags.headless or true) [
+  # Headless specific packages (server) 
+  ++ optionals (flags.headless or false) [
   ];
     
 
