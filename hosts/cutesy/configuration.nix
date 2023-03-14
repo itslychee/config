@@ -5,7 +5,7 @@
       hostName = "cutesy"; 
       Fail2Ban = { enable = true; };
     })
-    (import ../../mixins/openssh.nix { AllowUsers = ["lychee"]; })
+    (import ../../mixins/openssh.nix { allowedUsers = ["lychee"]; })
     ../../mixins/hardware.nix
     ../../mixins/security.nix
   ];
