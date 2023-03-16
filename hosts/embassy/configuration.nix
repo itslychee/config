@@ -2,6 +2,7 @@
 {
   imports = [
     (import ../../mixins/networking.nix { hostName = "embassy"; })
+    (import ../../mixins/openssh.nix { allowedUsers = [ "lychee"]; })
     ../../mixins/hardware.nix
     ../../mixins/security.nix
     ../../mixins/systemd-boot.nix
@@ -17,11 +18,15 @@
     lychee = {
       isNormalUser = true;
       extraGroups = [ "wheel" "networkmanager" "adbusers" ];
+      openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
     };
   };
   # System wide programs
   programs.dconf.enable = true;
   programs.adb.enable = true;
+  # Enable SSH agent
+  programs.ssh.startAgent = true;
+  programs.ssh.agentTimeout = "20m";
 
   # 1TB storage for games and music
   fileSystems."/storage" = {

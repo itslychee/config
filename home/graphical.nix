@@ -60,7 +60,9 @@ lib.mkIf (!flags.headless or false) {
          # Launch Terminal
          "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
          "${modifier}+Space" = "exec ${pkgs.fuzzel}/bin/fuzzel";
-         # Generic key controls
+
+
+         "${modifier}+shift+escape" = "exit";
 
          # Volume keybinds
          XF86AudioRaiseVolume = "exec ${pamixer} -i 2";

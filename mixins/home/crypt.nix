@@ -8,7 +8,6 @@
   gpg ? true,
   ssh ? true,
   gpgAgent ? true,
-  sshAgent ? true,
 }:
 { config, lib, ...}:
 with lib;
@@ -33,12 +32,17 @@ with lib;
         enable = ssh;
         compression = true;
         # TODO: match blocks!
+        extraConfig = ''
+          AddKeysToAgent yes
+        '';
       };
     };
     services.gpg-agent = {
       enable = gpgAgent;
       pinentryFlavor = "tty";
-      enableSshSupport = sshAgent;
+      extraConfig = ''
+        no-allow-external-cache
+      '';
     };
   };
 }
