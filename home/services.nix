@@ -15,6 +15,9 @@ with pkgs.lib;
       '';
       musicDirectory = /storage/media/music;
     };
+    gpg-agent = {
+      
+    };
   };
   # Systemd configurations
   systemd.user = {

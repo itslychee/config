@@ -8,6 +8,7 @@
   gpg ? true,
   ssh ? true,
   gpgAgent ? true,
+  sshAgent ? true,
 }:
 { config, lib, ...}:
 with lib;
@@ -37,6 +38,7 @@ with lib;
     services.gpg-agent = {
       enable = gpgAgent;
       pinentryFlavor = "tty";
+      enableSshSupport = sshAgent;
     };
   };
 }

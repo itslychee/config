@@ -20,8 +20,5 @@ with pkgs.lib;
   # Non-headless specific packages (desktop)
   ++ optionals (!flags.headless or false) [ spotify ]
   # Headless specific packages (server) 
-  ++ optionals (flags.headless or false) [
-  ];
-    
-
+  ++ optionals (flags.headless or false) [];
 }
