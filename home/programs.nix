@@ -68,5 +68,15 @@
       enable = true;
       nix-direnv.enable = true;
     };
+    ssh = {
+      enable = true;
+      compression = true;
+      matchBlocks = {
+        "server" = {
+          hostname = "lefishe.club";
+          user = "lychee";
+        };
+      };
+    };
   };
 }

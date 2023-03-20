@@ -14,7 +14,7 @@ with pkgs.lib;
   };
   home.packages = with pkgs; [
     neofetch
-  ] 
+  ]
   # MPD applications
   ++ optionals config.services.mpd.enable [ mpc-cli ]
   # Non-headless specific packages (desktop)
