@@ -8,17 +8,17 @@
 { config, lib, ...}:
 with lib;
 {
-  config = mkDefault {
+  config = ({
     networking = {
       inherit hostName;
       networkmanager = {
-      	enable = true;
-      	enableFccUnlock = true;
+        enable = true;
+        enableFccUnlock = true;
       };
-      firewall = {
-        enable = !noFirewall;
-        allowedUDPPorts = [ 80 443 ] ++ extraUDPPorts;
-        allowedTCPPorts = [ 80 443 ] ++ extraTCPPorts;
+      firewall = mkIf (!noFirewall) {
+        enable = true;
+        allowedUDPPorts = extraUDPPorts;
+        allowedTCPPorts = extraTCPPorts;
       };
     };
     services.fail2ban = {
@@ -31,5 +31,5 @@ with lib;
         "::1/128"
       ] ++ Fail2Ban.extraRanges or [];
     };
-  };
+  });
 }
