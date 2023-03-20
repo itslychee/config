@@ -13,7 +13,10 @@ with pkgs.lib;
     EDITOR = "${pkgs.neovim}/bin/nvim";
   };
   home.packages = with pkgs; [
+    # System info tool
     neofetch
+    # Rust implementation of the age program for encryption
+    rage
   ]
   # MPD applications
   ++ optionals config.services.mpd.enable [ mpc-cli ]
