@@ -19,12 +19,19 @@
      device = "/dev/vda"; 
   };
 
-  # Gitea
   virtualisation.oci-containers.containers = {
     gitea = {
       image = "gitea/gitea:latest";
       ports = [ "127.0.0.1:3000:3000" "2222:22" ];
-      volumes = [ "gitea:/data" ];
+      volumes = [ "/containers/gitea/:/data" ];
+    };
+    vaultwarden = {
+      image = "vaultwarden/server";
+      ports = [
+        "127.0.0.1:3001:80"
+      ];
+      volumes = [ "/containers/vaultwarden/:/data/"];
+
     };
   };
 
@@ -34,9 +41,12 @@
       https://git.lefishe.club {
         reverse_proxy 127.0.0.1:3000
       }
+      https://vault.lefishe.club {
+        reverse_proxy 127.0.0.1:3001
+      }
     '';
   };
-  
+
   # UTC time preferred for server environment
   time.timeZone = "Etc/UTC";
 

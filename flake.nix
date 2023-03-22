@@ -4,7 +4,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
     home-manager.url = "github:nix-community/home-manager";
-    agenix.url = "github:ryantm/agenix";
   };
   outputs = {
     self,
@@ -31,7 +30,6 @@
          inherit hostname inputs flags; 
         };
         modules = [
-          agenix.nixosModules.default
           ./hosts/${hostname}/configuration.nix
           ./hosts/${hostname}/hardware-configuration.nix
           ./mixins/nix.nix
