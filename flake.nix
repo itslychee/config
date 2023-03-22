@@ -10,7 +10,6 @@
     utils,
     nixpkgs,
     home-manager,
-    agenix,
     ...
   }@inputs: let
     mkSystem = {

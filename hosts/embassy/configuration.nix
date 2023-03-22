@@ -17,7 +17,7 @@
   users.users = {
     lychee = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "adbusers" ];
+      extraGroups = [ "wheel" "storage" "networkmanager" "adbusers" ];
       openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
     };
   };
@@ -27,6 +27,8 @@
   # Enable SSH agent
   programs.ssh.startAgent = true;
   programs.ssh.agentTimeout = "20m";
+
+  services.udisks2.enable = true;
 
   # 1TB storage for games and music
   fileSystems."/storage" = {
