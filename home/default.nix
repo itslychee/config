@@ -9,6 +9,14 @@ with pkgs.lib;
     ./firefox.nix
     ./waybar.nix
   ];
+
+  # Git
+  programs.git.ignores = [
+    "*.swp"
+    ".envrc"
+    ".direnv"
+  ];
+
   home.sessionVariables = {
     EDITOR = "${pkgs.neovim}/bin/nvim";
   };
