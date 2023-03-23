@@ -19,19 +19,21 @@
      device = "/dev/vda"; 
   };
 
-  virtualisation.oci-containers.containers = {
-    gitea = {
-      image = "gitea/gitea:latest";
-      ports = [ "127.0.0.1:3000:3000" "2222:22" ];
-      volumes = [ "/containers/gitea/:/data" ];
-    };
-    vaultwarden = {
-      image = "vaultwarden/server";
-      ports = [
-        "127.0.0.1:3001:80"
-      ];
-      volumes = [ "/containers/vaultwarden/:/data/"];
-
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = {
+      gitea = {
+        image = "gitea/gitea:latest";
+        ports = [ "127.0.0.1:3000:3000" "2222:22" ];
+        volumes = [ "/containers/gitea/:/data" ];
+      };
+      vaultwarden = {
+        image = "vaultwarden/server";
+        ports = [
+          "127.0.0.1:3001:80"
+        ];
+        volumes = [ "/containers/vaultwarden/:/data/"];
+      };
     };
   };
 
