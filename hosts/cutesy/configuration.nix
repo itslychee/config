@@ -4,8 +4,8 @@
     (import ../../mixins/openssh.nix { allowedUsers = ["lychee"]; })
     (import ../../mixins/networking.nix {
       hostName = "cutesy"; 
-      extraTCPPorts = [ 80 443 2222 ];
-      extraUDPPorts = [ 80 443 2222 ];
+      extraTCPPorts = [ 80 443 ];
+      extraUDPPorts = [ 80 443 ];
       Fail2Ban = { enable = true; };
     })
     ../../mixins/hardware.nix
@@ -17,24 +17,6 @@
      enable = true;
      version = 2;
      device = "/dev/vda"; 
-  };
-
-  virtualisation.oci-containers = {
-    backend = "docker";
-    containers = {
-      gitea = {
-        image = "gitea/gitea:latest";
-        ports = [ "127.0.0.1:3000:3000" "2222:22" ];
-        volumes = [ "/containers/gitea/:/data" ];
-      };
-      vaultwarden = {
-        image = "vaultwarden/server";
-        ports = [
-          "127.0.0.1:3001:80"
-        ];
-        volumes = [ "/containers/vaultwarden/:/data/"];
-      };
-    };
   };
 
   services.caddy = {

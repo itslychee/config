@@ -29,15 +29,38 @@
           };
         };
       };
-      extraConfig = ''
-       set number
-       set nowrap
-       colorscheme everforest
-      '';
       extraLuaConfig = ''
-        vim.api.nvim_set_keymap('n', '<c-P>', "<cmd>lua require 'fzf-lua'.files()<CR>",
-        { noremap = true, silent = true }
-        )
+        vim.api.nvim_create_autocmd({"QuitPre"}, {
+          callback = function() vim.cmd("NvimTreeClose") end,
+        })
+
+        vim.g.loaded_netrw = 1
+        vim.g.loaded_netrwPlugin = 1
+
+        vim.opt.termguicolors = true
+        vim.opt.number = true
+        vim.wo.wrap = false 
+
+        vim.cmd [[ colorscheme everforest ]]
+
+        require "nvim-tree".setup({
+          open_on_setup = true,
+          ignore_buffer_on_setup = true,
+          renderer = {
+            group_empty = true,
+          },
+          filters = {
+            dotfiles = true,
+          },
+          update_focused_file = {
+            enable = true,
+          },
+        })
+        
+        vim.api.nvim_set_keymap('i', '<m-x>', "<cmd>lua require 'nvim-tree.api'.tree.toggle(false, true)<CR>",
+        { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('n', '<m-x>', "<cmd>lua require 'nvim-tree.api'.tree.toggle(false, true)<CR>",
+        { noremap = true, silent = true })
       '';
       plugins = with pkgs.vimPlugins; [
         vim-startify
@@ -46,8 +69,7 @@
         vim-polyglot
         coc-pairs
         everforest
-        fzf-lua
-        fzfWrapper
+        nvim-tree-lua
       ];
     };
     btop.enable = true;
@@ -59,7 +81,7 @@
       enable = !flags.headless or false;
       settings = {
         scrolling.multiplier = 3;
-        font.size = 11;
+        font.size = 12;
         draw_bold_text_with_bright_colors = true;
         cursor.style.blinking = "On";
       };
