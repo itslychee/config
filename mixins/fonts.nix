@@ -4,7 +4,6 @@ with pkgs.lib;
   config.fonts = {
     fontDir.enable =  true;
     fonts = with pkgs; [
-      jetbrains-mono
       ubuntu_font_family
       spleen
       dejavu_fonts
@@ -13,14 +12,17 @@ with pkgs.lib;
       noto-fonts-cjk
       noto-fonts-emoji
       tamsyn
-      terminus_font
       liberation_ttf
       font-awesome
-      fira
-      source-code-pro
-      iosevka-bin
       material-design-icons
+      terminus_font
       corefonts
+      (nerdfonts.override { fonts = [
+        "FiraCode"
+        "Iosevka"
+        "SourceCodePro"
+        "JetBrainsMono"
+      ]; })
     ];
     enableDefaultFonts =  true;
     fontconfig.defaultFonts = {

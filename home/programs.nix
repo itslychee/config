@@ -43,6 +43,7 @@
 
         vim.cmd [[ colorscheme everforest ]]
 
+        require "nvim-web-devicons".setup()
         require "nvim-tree".setup({
           open_on_setup = true,
           ignore_buffer_on_setup = true,
@@ -70,6 +71,7 @@
         coc-pairs
         everforest
         nvim-tree-lua
+        nvim-web-devicons
       ];
     };
     btop.enable = true;
