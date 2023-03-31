@@ -4,26 +4,29 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
     home-manager.url = "github:nix-community/home-manager";
+    code.url = "github:msteen/nixos-vscode-server";
   };
   outputs = {
     self,
     utils,
     nixpkgs,
     home-manager,
+    code,
     ...
   }@inputs: let
     mkSystem = {
       hostname,
       system ? "x86_64-linux",
       users,
-      flags ? {}
+      flags ? {},
+      overrides ? {},
     }@args: overrides: let
       mkConfig = {
         hostname,
         system ? "x86_64-linux",
         users,
         flags ? {}
-      }: nixpkgs.lib.nixosSystem rec {
+      }: rec {
         inherit system;
         specialArgs = {
          inherit hostname inputs flags; 
@@ -52,20 +55,27 @@
             home-manager.users = users;
           }
         ];
-      }; in (mkConfig args) // (overrides (mkConfig args)); 
+      }; in nixpkgs.lib.nixosSystem ((mkConfig args) // overrides (mkConfig args));
   in {
     nixosConfigurations.embassy = mkSystem {
       hostname = "embassy";
       users = { lychee = ./home; };
     } (_: {});
-    nixosConfigurations.cutesy = mkSystem {
+    nixosConfigurations.cutesy = (mkSystem {
       hostname = "cutesy";
       users = { lychee = ./home; };
       flags = {
         harden = true;
         headless = true;
       };
-    } (_: {});
+    }) (old: {
+      modules = old.modules ++ [
+        code.nixosModule
+       ({ pkgs, config, ...}: {
+         services.vscode-server.enable = true;
+       })
+      ];
+    });
   };
 }
 
