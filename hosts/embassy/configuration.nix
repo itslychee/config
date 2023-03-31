@@ -1,7 +1,6 @@
 { config, lib, pkgs, ...}:
 {
   imports = [
-    (import ../../mixins/networking.nix { hostName = "embassy"; })
     (import ../../mixins/openssh.nix { allowedUsers = [ "lychee"]; })
     ../../mixins/hardware.nix
     ../../mixins/security.nix
@@ -9,11 +8,17 @@
     ../../mixins/pipewire.nix
     ../../mixins/fonts.nix
   ];
-  
-  # To preserve Windows time, as a registry edit on that side would probably
-  # be very unstable because, y'know, Windows.
+  networking = {
+    hostName = "embassy";
+    firewall.enable = true;
+    networkmanager.enable = true;
+    networkmanager.enableFccUnlock = true;
+  };
+
   time.hardwareClockInLocalTime = true;
   time.timeZone = "US/Central";
+
+  # Users
   users.users = {
     lychee = {
       isNormalUser = true;

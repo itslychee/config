@@ -2,20 +2,32 @@
 {
   imports = [
     (import ../../mixins/openssh.nix { allowedUsers = ["lychee"]; })
-    (import ../../mixins/networking.nix {
-      hostName = "cutesy"; 
-      extraTCPPorts = [ 80 443 222 ];
-      extraUDPPorts = [ 80 443 ];
-      Fail2Ban = { enable = true; };
-    })
     ../../mixins/hardware.nix
     ../../mixins/security.nix
   ];
+  networking = {
+    hostName = "cutesy";
+    nameservers = ["1.1.1.1" "1.0.0.1"];
+    firewall.enable = true;
+    firewall.allowedTCPPorts = [ 222 ];
+
+    networkmanager.enable = true;
+    networkmanager.enableFccUnlock = true;
+  };
+
   virtualisation.docker.enable = true;
-  networking.nameservers = [
-    "1.1.1.1"
-    "1.0.0.1"
-  ];
+
+  services.fail2ban = {
+    enable = true;
+    maxretry = 4;
+    ignoreIP = [
+      # LAN ranges both in IPv6 and IPv4
+      "127.0.0.0/8"
+      "10.0.0.0/8"
+      "::1/128"
+    ];
+  };
+
   boot.loader.grub = {
      enable = true;
      version = 2;
