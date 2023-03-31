@@ -9,5 +9,3 @@ to interchangeably use throughout itself.
 - harden my configuration as humanely possible while retaining convenience
 - become better acquainted with the Nix ecosystem
 - create the ultimate configuration for myself
-
-

@@ -11,8 +11,7 @@
     utils,
     nixpkgs,
     home-manager,
-    code,
-    ...
+    code
   }@inputs: let
     mkSystem = {
       hostname,
