@@ -24,7 +24,7 @@ services:
       - shared
       - public
     ports:
-      - 3000:3000
+      - 127.0.0.1:3000:3000
       - 222:22
     depends_on:
       - db

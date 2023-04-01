@@ -9,7 +9,7 @@
     hostName = "cutesy";
     nameservers = ["1.1.1.1" "1.0.0.1"];
     firewall.enable = true;
-    firewall.allowedTCPPorts = [ 222 ];
+    firewall.allowedTCPPorts = [ 222 80 443 ];
 
     networkmanager.enable = true;
     networkmanager.enableFccUnlock = true;
