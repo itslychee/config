@@ -17,6 +17,23 @@ with pkgs.lib;
     ".direnv"
   ];
 
+
+
+  xdg = {
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      desktop   = "${config.home.homeDirectory}/desktop";
+      documents = "${config.home.homeDirectory}/documents";
+      download  = "${config.home.homeDirectory}/downloads";
+      music     = "${config.home.homeDirectory}/media/music";
+      videos    = "${config.home.homeDirectory}/media/videos";
+      pictures  = "${config.home.homeDirectory}/media/images";
+      templates = "${config.home.homeDirectory}/media/templates";
+      publicShare = "${config.home.homeDirectory}/pub";
+    };
+  };
+
   home.sessionVariables = {
     EDITOR = "${pkgs.neovim}/bin/nvim";
   };
