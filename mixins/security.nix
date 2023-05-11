@@ -6,6 +6,7 @@ with lib;
       protectKernelImage = true;
       sudo.execWheelOnly = true;
       rtkit.enable = true;
+      polkit.enable = true;
     };
   };
 }

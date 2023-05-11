@@ -25,11 +25,8 @@ lib.mkIf (!flags.headless or false) {
     };
   };
 
-  services.kanshi.enable = true;
-
   wayland.windowManager.sway = {
     enable = true;
-    package = pkgs.unstable.sway;
     systemdIntegration = true;
     extraConfig = ''
       input "type:touchpad" {

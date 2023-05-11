@@ -41,5 +41,5 @@
     fsType = "ntfs";
   };
   # System packages
-  environment.systemPackages = with pkgs; [ neovim ];
+  environment.systemPackages = with pkgs; [ neovim scrcpy ];
 }

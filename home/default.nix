@@ -17,8 +17,6 @@ with pkgs.lib;
     ".direnv"
   ];
 
-
-
   xdg = {
     userDirs = {
       enable = true;
@@ -47,6 +45,7 @@ with pkgs.lib;
   # Non-headless specific packages (desktop)
   ++ optionals (!flags.headless or false) [
     libreoffice
+    vscode
   ]
 
   # Headless specific packages (server) 
