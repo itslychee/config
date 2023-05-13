@@ -14,12 +14,12 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-label/NixO";
+    { device = "/dev/disk/by-label/NixOS";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-label/Boo";
+    { device = "/dev/disk/by-label/Boot";
       fsType = "vfat";
     };
 
