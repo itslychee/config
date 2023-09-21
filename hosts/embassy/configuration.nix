@@ -18,6 +18,8 @@
   time.hardwareClockInLocalTime = true;
   time.timeZone = "US/Central";
 
+  services.tor.enable = true;
+
   # Users
   users.users = {
     lychee = {
@@ -41,5 +43,5 @@
     fsType = "ntfs";
   };
   # System packages
-  environment.systemPackages = with pkgs; [ neovim scrcpy ];
+  environment.systemPackages = with pkgs; [ neovim scrcpy tor-browser-bundle-bin ];
 }

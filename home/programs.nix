@@ -5,6 +5,7 @@
   };
   
   programs = {
+    mpv.enable = !flags.headless or false;
     bash.enable = true;
     neovim = {
       enable = true;
