@@ -36,6 +36,7 @@
   programs.ssh.agentTimeout = "20m";
 
   services.udisks2.enable = true;
+  xdg.portals.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # 1TB storage for games and music
   fileSystems."/storage" = {

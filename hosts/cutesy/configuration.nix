@@ -47,7 +47,6 @@
   };
 
   # UTC time preferred for server environment
-  xdg.portals.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   time.timeZone = "Etc/UTC";
 
   # Administrator user
