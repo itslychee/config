@@ -40,10 +40,14 @@
       https://git.lefishe.club {
         reverse_proxy 127.0.0.1:3000
       }
+      https://lefishe.club {
+        file_server /srv/lefishe.jpg
+      }
     '';
   };
 
   # UTC time preferred for server environment
+  xdg.portals.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   time.timeZone = "Etc/UTC";
 
   # Administrator user

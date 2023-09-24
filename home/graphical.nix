@@ -72,6 +72,8 @@ lib.mkIf (!flags.headless or false) {
          XF86AudioPlay = "exec ${player} play-pause";
          XF86AudioNext = "exec ${player} next";
 
+         Print = "exec flameshot gui -c";
+
          # Brightness control
          XF86MonBrightnessUp   = "exec light -A 5";
          XF86MonBrightnessDown = "exec light -U 5";
