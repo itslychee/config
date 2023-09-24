@@ -42,7 +42,9 @@
       }
       https://lefishe.club {
         root * /srv/things/
-        rewrite * lefishe.jpg
+        file_server {
+          index lefishe.jpg
+        }
       }
     '';
   };
