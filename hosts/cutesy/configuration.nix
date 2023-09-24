@@ -41,7 +41,7 @@
         reverse_proxy 127.0.0.1:3000
       }
       https://lefishe.club {
-        root /srv/things/
+        root * /srv/things/
         rewrite * lefishe.jpg
       }
     '';
