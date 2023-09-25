@@ -15,15 +15,6 @@ with pkgs.lib;
       '';
       musicDirectory = /storage/media/music;
     };
-    flameshot = {
-      enable = !flags.headless or false;
-      settings = {
-          General = {
-            disabledTrayIcon = true;
-            showStartupLaunchMessage = false;
-          };
-      };
-    };
   };
   # Systemd configurations
   systemd.user = {

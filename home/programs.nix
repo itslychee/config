@@ -2,6 +2,7 @@
 {
   home.shellAliases = {
     "tree" = "${pkgs.exa}/bin/exa --tree";
+    "htop" = "${pkgs.btop}/bin/btop";
   };
   
   programs = {

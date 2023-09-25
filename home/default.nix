@@ -46,6 +46,12 @@ with pkgs.lib;
   ++ optionals (!flags.headless or false) [
     libreoffice
     vscode
+    discord
+    wayshot
+    slurp
+    grim
+    wl-clipboard
+    gimp-with-plugins
   ]
 
   # Headless specific packages (server) 

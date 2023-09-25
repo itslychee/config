@@ -72,7 +72,7 @@ lib.mkIf (!flags.headless or false) {
          XF86AudioPlay = "exec ${player} play-pause";
          XF86AudioNext = "exec ${player} next";
 
-         Print = "exec flameshot gui -c";
+         Print = "exec wayshot -c -s \"`slurp -f '%x %y %w %h'`\" --stdout | wl-copy -t image/png";
 
          # Brightness control
          XF86MonBrightnessUp   = "exec light -A 5";
