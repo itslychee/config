@@ -1,10 +1,5 @@
 { 
-  git ? {
-    enable = true;
-    userName = "Lychee";
-    userEmail = "itslychee@protonmail.com";
-    withDelta = true;
-  },
+  git,
   gpg ? true,
   ssh ? true,
   gpgAgent ? true,

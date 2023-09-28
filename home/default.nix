@@ -2,7 +2,14 @@
 with pkgs.lib;
 {
   imports = [
-    (import ../mixins/home/crypt.nix {})
+    (import ../mixins/home/crypt.nix {
+      git = {
+        enable = true;
+        userName = "Lychee";
+        userEmail = "itslychee@protonmail.com";
+        withDelta = true;
+      };
+    })
     ./programs.nix
     ./services.nix
     ./graphical.nix
@@ -52,6 +59,8 @@ with pkgs.lib;
     grim
     wl-clipboard
     gimp-with-plugins
+    xdg-utils
+    mpdrp
   ]
 
   # Headless specific packages (server) 

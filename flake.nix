@@ -5,6 +5,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     code.url = "github:msteen/nixos-vscode-server";
+    mpdrp.url = "github:itslychee/mpdrp";
   };
   outputs = {
     self,
@@ -12,6 +13,7 @@
     nixpkgs,
     home-manager,
     code,
+    mpdrp,
     ...
   }@inputs: let
     mkSystem = {
@@ -40,6 +42,7 @@
               (old: final: {
                 unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
               })
+              mpdrp.overlays.${system}.default
             ];
             system.stateVersion = "22.11";
             services.dbus.enable = true;
