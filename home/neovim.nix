@@ -19,7 +19,7 @@
          #   filetypes = [ "nix" ];
          # };
          rust = {
-           command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+           command = "rust-analyzer";
            filetypes = [ "rust" "rs" ];
            rootPatterns = [ "Cargo.toml" ];
          };
