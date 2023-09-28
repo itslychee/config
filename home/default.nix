@@ -15,6 +15,7 @@ with pkgs.lib;
     ./graphical.nix
     ./firefox.nix
     ./waybar.nix
+    ./neovim.nix
   ];
 
   # Git
