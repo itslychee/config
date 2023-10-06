@@ -40,9 +40,23 @@ lib.mkIf (!flags.headless or false) {
     '';
     config = rec {
       bars = [];
-      gaps = {};
+      gaps = {
+        smartGaps = true;
+        inner = 6;
+      };
       focus.followMouse = "no";
-      modifier = "Mod4";
+      colors = rec {
+          # focusedInactive = {};
+          # placeholder = {};
+          # unfocused = {};
+          focused = {
+            border = "#ec6c6e"; 
+            childBorder = "#ffa9d2"; 
+            background = "#9d4849";
+            text = "#efefef"; 
+            indicator = "#ffd7e8";
+          };
+        };
       output = {
         HDMI-A-1 = {
           bg = "~/.wallpaper-image fill";
@@ -50,6 +64,7 @@ lib.mkIf (!flags.headless or false) {
           adaptive_sync = "on";
         }; 
       };
+      modifier = "Mod4";
       keybindings = let
         pamixer = "${pkgs.pamixer}/bin/pamixer";
         player = "${pkgs.playerctl}/bin/playerctl";
@@ -110,6 +125,11 @@ lib.mkIf (!flags.headless or false) {
          "${modifier}+shift+c" = "move window to workspace 3";
          "${modifier}+shift+v" = "move window to workspace 4";
          "${modifier}+shift+b" = "move window to workspace 5";
+
+         "${modifier}+left" = "resize shrink width 5";
+         "${modifier}+right" = "resize grow width 5";
+         "${modifier}+up" = "resize grow height 5";
+         "${modifier}+down" = "resize shrink height 5";
       };
     };
   };

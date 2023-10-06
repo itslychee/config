@@ -4,8 +4,10 @@ with pkgs.lib;
 {
   config.services.openssh = mkDefault {
    enable = true;
-   permitRootLogin = "no";
-   passwordAuthentication = false;
+   settings = {
+    PermitRootLogin = "no";
+    PasswordAuthentication = false;
+   };
    extraConfig = ''
      AllowUsers ${builtins.concatStringsSep " " allowedUsers}
    '';

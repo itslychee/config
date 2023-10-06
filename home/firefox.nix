@@ -2,12 +2,12 @@
 lib.mkIf (!flags.headless or false) {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox;
+    package = pkgs.unstable.firefox;
     profiles = {
       lychee = {
         isDefault = true;
         bookmarks = {
-           "HM Options".url = "https://rycee.gitlab.io/home-manager/options.html";
+          "HM Options".url = "https://rycee.gitlab.io/home-manager/options.html";
         };
         settings = {
           "devtools.theme" = "white";

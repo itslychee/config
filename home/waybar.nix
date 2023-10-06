@@ -29,11 +29,6 @@ lib.mkIf (!flags.headless or false) {
         format = "{percentage}% ";
         interval = 5;
       };
-      "memory" = {
-        interval = 15;
-        format = "{percentage}%  {swapPercentage}% ";
-      };
-      "sway/workspaces" = {};
       "clock" = {
         format = "{:%A  %I:%M%p  %Y.%m.%d}";
       };

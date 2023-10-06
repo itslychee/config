@@ -1,9 +1,9 @@
 {
   inputs = {
     utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
-    home-manager.url = "github:nix-community/home-manager/release-22.11";
+    home-manager.url = "github:nix-community/home-manager/release-23.05";
     code.url = "github:msteen/nixos-vscode-server";
     mpdrp.url = "github:itslychee/mpdrp";
   };
@@ -36,6 +36,7 @@
         modules = [
           ./hosts/${hostname}/configuration.nix
           ./hosts/${hostname}/hardware-configuration.nix
+          ./hosts/shared.nix
           ./mixins/nix.nix
           {
             nixpkgs.overlays = [
@@ -71,13 +72,6 @@
         harden = true;
         headless = true;
       };
-    }) (old: {
-      modules = old.modules ++ [
-        code.nixosModule
-       ({ pkgs, config, ...}: {
-         services.vscode-server.enable = true;
-       })
-      ];
     });
   };
 }
