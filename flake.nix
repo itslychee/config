@@ -72,7 +72,7 @@
         harden = true;
         headless = true;
       };
-    });
+    }) (_: {});
   };
 }
 
