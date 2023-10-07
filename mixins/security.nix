@@ -1,7 +1,7 @@
 { config, lib, ...}:
 with lib;
 {
-  config = mkDefault {
+  config = mkOverride 100 {
     security = {
       protectKernelImage = true;
       sudo.execWheelOnly = true;

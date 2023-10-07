@@ -7,7 +7,7 @@
 { config, lib, ...}:
 with lib;
 {
-  config = mkDefault {
+  config = mkOverride 500 {
     programs = {
       git = rec {
         inherit (git) userName userEmail enable;

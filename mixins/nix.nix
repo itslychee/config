@@ -1,7 +1,7 @@
 { config, lib, ...}:
 with lib;
 {
-  config = mkDefault {
+  config = mkOverride 100 {
     nixpkgs.config.allowUnfree = true;
     nix = {
       settings.auto-optimise-store = true;

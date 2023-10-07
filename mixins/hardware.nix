@@ -1,7 +1,7 @@
 { config, lib, ...}:
 with lib;
 {
-  config = mkDefault {
+  config = mkOverride 100 {
     hardware = {
       enableAllFirmware = true;
       bluetooth.enable = true;

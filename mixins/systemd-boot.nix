@@ -1,7 +1,7 @@
 { config, lib, ...}:
 with lib;
 {
-  config = mkDefault {
+  config = mkOverride 100 {
     boot.loader = {
       timeout = 25;
       systemd-boot = {

@@ -2,7 +2,7 @@
 { pkgs, ...}:
 with pkgs.lib;
 {
-  config.services.openssh = mkDefault {
+  config.services.openssh = mkOverride 100 {
    enable = true;
    settings = {
     PermitRootLogin = "no";

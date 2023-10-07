@@ -1,7 +1,7 @@
 { config, lib, ...}:
 with lib;
 {
-  config = mkDefault {
+  config = mkOverride 100 {
     services.pipewire = {
       enable = true;
       alsa.enable = true;
