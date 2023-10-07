@@ -47,6 +47,13 @@
       }
     '';
   };
+  services.terraria = {
+    maxPlayers = 8;
+    autoCreatedWorldSize = "large";
+    openFirewall = true;
+    secure = true;
+    worldPath = /srv/terraria.wld;
+  };
 
   # UTC time preferred for server environment
   time.timeZone = "Etc/UTC";
