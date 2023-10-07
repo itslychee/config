@@ -40,15 +40,6 @@ with pkgs.lib;
           timeout = 10s 
       '';
     };
-    swayidle = mkIf (!flags.headless or false) {
-      enable = true;
-      events = [
-        { event = "before-sleep"; command = "swaylock"; } 
-      ];
-      timeouts = [
-        { timeout = 60; command = "swaylock"; }
-      ];
-    };
   };
   # Systemd configurations
   systemd.user = {
