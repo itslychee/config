@@ -7,9 +7,6 @@
     "up" = "sudo nix flake update && sudo nixos-rebuild switch --flake .";
   };
   
-  home.sessionVariables = pkgs.lib.mkIf (!args.flags.headless or false) {
-    NIX_BUILD_SHELL = "zsh";
-  };
 
   programs.zsh = pkgs.lib.mkIf (!args.flags.headless or false) {
     enable = true;
