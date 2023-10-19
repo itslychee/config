@@ -21,17 +21,19 @@ with pkgs.lib;
   # Git
   programs.git.ignores = [ "*.swp" ".envrc" ".direnv" ];
   xdg = {
-    userDirs = {
+    userDirs = let
+      dir = config.home.homeDirectory;
+    in {
       enable = true;
       createDirectories = true;
-      desktop = "${config.home.homeDirectory}/desktop";
-      documents = "${config.home.homeDirectory}/documents";
-      download = "${config.home.homeDirectory}/downloads";
-      music = "${config.home.homeDirectory}/media/music";
-      videos = "${config.home.homeDirectory}/media/videos";
-      pictures = "${config.home.homeDirectory}/media/images";
-      templates = "${config.home.homeDirectory}/media/templates";
-      publicShare = "${config.home.homeDirectory}/pub";
+      desktop     = "${dir}/desktop";
+      documents   = "${dir}/documents";
+      download    = "${dir}/downloads";
+      music       = "${dir}/media/music";
+      videos      = "${dir}/media/videos";
+      pictures    = "${dir}/media/images";
+      templates   = "${dir}/media/templates";
+      publicShare = "${dir}/pub";
     };
   };
   home.packages = with pkgs; [ ]
@@ -44,8 +46,8 @@ with pkgs.lib;
     libreoffice
     vscode
     wayshot
-    discord
     slurp
+    discord
     grim
     wl-clipboard
     gimp-with-plugins
@@ -53,6 +55,7 @@ with pkgs.lib;
     nixpkgs-fmt
     python3Full
     python3.pkgs.pip
+    xdg-utils
   ]
     # Headless specific packages (server) 
     ++ optionals (flags.headless or false) [ ];
