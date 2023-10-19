@@ -2,7 +2,6 @@
 lib.mkIf (!flags.headless or false) {
   programs.firefox = {
     enable = true;
-    package = pkgs.unstable.firefox;
     profiles = {
       lychee = {
         isDefault = true;

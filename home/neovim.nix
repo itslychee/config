@@ -13,6 +13,8 @@
        "suggest.enablePreview" = true;
        "suggest.enablePreselect" = false;
        "suggest.disableKind" = true;
+       "python.venvPath" = "./.venv";
+       "python.formatting.provider" = "black";
        languageserver = {
          go = {
            command = "${pkgs.gopls}/bin/gopls";
@@ -41,6 +43,7 @@
      everforest
      nvim-tree-lua
      nvim-web-devicons
+     coc-pyright
    ];
  };
 }

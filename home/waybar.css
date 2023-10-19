@@ -20,7 +20,7 @@ window {
 
 
 /* Apply base module styles */
-#custom-music, #battery, #memory, #disk, #pulseaudio, #network, #workspaces {
+#custom-music, #battery, #memory, #disk, #pulseaudio, #network, #workspaces, #clock {
   background-color: @module-background;
   border-bottom: 1px solid @module-underline;
   border-right: 1px solid @module-vert-transition;

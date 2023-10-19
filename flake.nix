@@ -4,7 +4,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
     home-manager.url = "github:nix-community/home-manager/release-23.05";
-    code.url = "github:msteen/nixos-vscode-server";
     mpdrp.url = "github:itslychee/mpdrp";
   };
   outputs = {
@@ -12,7 +11,6 @@
     utils,
     nixpkgs,
     home-manager,
-    code,
     mpdrp,
     ...
   }@inputs: let

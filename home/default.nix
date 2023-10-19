@@ -36,21 +36,23 @@ with pkgs.lib;
   };
   home.packages = with pkgs; [ ]
     # Headless & Non-headless appliations
-    ++ [ neofetch nmap ]
+    ++ [ neofetch nmap zip unzip gnutar]
     # MPD applications
     ++ optionals config.services.mpd.enable [ mpc-cli mpdrp ]
     # Non-headless specific packages (desktop)
     ++ optionals (!flags.headless or false) [
     libreoffice
     vscode
-    discord
     wayshot
+    discord
     slurp
     grim
     wl-clipboard
     gimp-with-plugins
     kcolorchooser
     nixpkgs-fmt
+    python3Full
+    python3.pkgs.pip
   ]
     # Headless specific packages (server) 
     ++ optionals (flags.headless or false) [ ];

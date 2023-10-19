@@ -11,8 +11,8 @@ lib.mkIf (!flags.headless or false) {
         "HDMI-A-1"
       ];
       modules-left   = [ "sway/workspaces" "custom/music" ];
-      modules-center = [ "clock" ];
-      modules-right  = [ "battery" "pulseaudio" "network" "memory"]; 
+      modules-center = [ "sway/window" ];
+      modules-right  = [ "battery" "pulseaudio" "clock"]; 
 
       "pulseaudio" = {
         format = "{volume}% ";
@@ -20,17 +20,15 @@ lib.mkIf (!flags.headless or false) {
         format-muted = "{volume}% ";
         on-right-click = "${pkgs.pamixer}/bin/pamixer -t";
       };
-      "network" = {
-        format-ethernet = "{ipaddr} {bandwidthUpBytes} {bandwidthDownBytes}";
-        format-wifi = " {essid} {bandwidthUpBytes} {bandwidthDownBytes}";
-        interval = 5;
-      };
       "disk" = {
         format = "{percentage}% ";
         interval = 5;
       };
       "clock" = {
         format = "{:%A  %I:%M%p  %Y.%m.%d}";
+      };
+      "sway/window" = {
+        max-length = 60;
       };
       "battery" = {
         interval = 30;
