@@ -64,5 +64,8 @@
     extraGroups = [ "wheel" ]; 
     openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
   };
+  users.users.prod = {
+    isNormalUser = true;
+  };
 }
 
