@@ -9,7 +9,7 @@
     hostName = "cutesy";
     nameservers = ["1.1.1.1" "1.0.0.1"];
     firewall.enable = true;
-    firewall.allowedTCPPorts = [ 222 80 443 ];
+    firewall.allowedTCPPorts = [ 222 80 443 7777];
 
     networkmanager.enable = true;
     networkmanager.enableFccUnlock = true;
@@ -47,13 +47,6 @@
       }
     '';
   };
-  services.terraria = {
-    maxPlayers = 8;
-    autoCreatedWorldSize = "large";
-    openFirewall = true;
-    secure = true;
-    worldPath = /srv/terraria.wld;
-  };
 
   # UTC time preferred for server environment
   time.timeZone = "Etc/UTC";
@@ -67,5 +60,6 @@
   users.users.prod = {
     isNormalUser = true;
   };
+  environment.systemPackages = with pkgs; [screen terraria-server ];
 }
 
