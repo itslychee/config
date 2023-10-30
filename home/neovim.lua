@@ -1,3 +1,24 @@
+require "nvim-web-devicons".setup()
+require "nvim-tree".setup({
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+    custom = { "^\\.venv/", "^\\.git/" },
+    git_ignored = false,
+  },
+  update_focused_file = {
+    enable = true,
+  },
+  tab = {
+    sync = {
+      open = true;
+    },
+  },
+})
+
+
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function() vim.cmd("NvimTreeToggle") end,
 })
@@ -8,15 +29,21 @@ vim.api.nvim_create_autocmd({"QuitPre"}, {
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
 vim.opt.termguicolors = true
 vim.opt.number = true
-vim.opt.omnifunc = "syntaxcomplete#Complete"
 vim.opt.signcolumn = "yes"
+vim.opt.omnifunc = "syntaxcomplete#Complete"
+vim.opt.background = "dark"
 vim.wo.wrap = false 
 
+vim.api.nvim_set_keymap('n', '<Leader>;', "<cmd>lua require 'nvim-tree.api'.tree.toggle(false, true)<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<m-x>',  ":tabnew<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<m-z>', ":tabc<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-x>',  ":tabp<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-c>',  ":tabn<CR>", { noremap = true, silent = true })
 vim.cmd [[
-   colorscheme everforest 
+   colorscheme seoul256 
+   set virtualedit+=onemore
 
    function! ShowDocumentation()
       if CocAction('hasProvider', 'hover')
@@ -55,31 +82,8 @@ vim.cmd [[
    nmap <leader>rn <Plug>(coc-rename)
 
    " Formatting selected code
-   xmap <leader>f  <Plug>(coc-format-selected)
-   nmap <leader>f  <Plug>(coc-format-selected)
-
+   xmap <silent><leader>f  :call CocActionAsync('format')<CR>
+   nmap <silent><leader>f  :call CocActionAsync('format')<CR>
 ]]
 
-require "nvim-web-devicons".setup()
-require "nvim-tree".setup({
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-  update_focused_file = {
-    enable = true,
-  },
-  tab = {
-    sync = {
-      open = true;
-    },
-  },
-})
 
-
-vim.api.nvim_set_keymap('i', '<m-x>', "<cmd>lua require 'nvim-tree.api'.tree.toggle(false, true)<CR>",
-{ noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<m-x>', "<cmd>lua require 'nvim-tree.api'.tree.toggle(false, true)<CR>",
-{ noremap = true, silent = true })

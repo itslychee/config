@@ -12,6 +12,8 @@
   time.hardwareClockInLocalTime = true;
   time.timeZone = "US/Central";
 
+  boot.kernelParams = [ "irqpoll" ];
+
   networking = {
     hostName = "embassy";
     firewall.enable = true;

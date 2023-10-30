@@ -36,26 +36,25 @@ with pkgs.lib;
       publicShare = "${dir}/pub";
     };
   };
+
   home.packages = with pkgs; [ ]
     # Headless & Non-headless appliations
     ++ [ neofetch nmap zip unzip gnutar]
     # MPD applications
-    ++ optionals config.services.mpd.enable [ mpc-cli mpdrp ]
+    ++ optionals config.services.mpd.enable [ mpc-cli ]
     # Non-headless specific packages (desktop)
     ++ optionals (!flags.headless or false) [
-    libreoffice
-    vscode
     wayshot
+    spotify
     slurp
     discord
     grim
     wl-clipboard
     gimp-with-plugins
     kcolorchooser
-    nixpkgs-fmt
-    python3Full
-    python3.pkgs.pip
     xdg-utils
+    ruff
+    (python310.withPackages(p: with p; [ ipython pip ]))
   ]
     # Headless specific packages (server) 
     ++ optionals (flags.headless or false) [ ];

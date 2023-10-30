@@ -10,6 +10,8 @@ in
    exa.enableAliases = true;
    direnv.enable = true;
    direnv.nix-direnv.enable = true;
+   # broken atm
+   # mpdrp.enable = guiOnly;
    ssh = {
       enable = true;
       compression = true;
@@ -36,7 +38,7 @@ in
     enable = guiOnly;
     settings = {
       scrolling.multiplier = 3;
-      font.size = 11;
+      font.size = 12;
       draw_bold_text_with_bright_colors = true;
       cursor.style.blinking = "On";
       window.opacity = 0.95;

@@ -5,9 +5,6 @@ lib.mkIf (!flags.headless or false) {
     profiles = {
       lychee = {
         isDefault = true;
-        bookmarks = {
-          "HM Options".url = "https://rycee.gitlab.io/home-manager/options.html";
-        };
         settings = {
           "devtools.theme" = "white";
           "services.sync.prefs.sync.browser.uiCustomization.state" = true;
@@ -30,6 +27,9 @@ lib.mkIf (!flags.headless or false) {
           "general.smoothScroll" = false;
           "browser.fullscreen.autohide" = false;
           "browser.aboutConfig.showWarning" = false;
+
+          # open link in new tab instead of window
+          "browser.link.open_newwindow" = 3;
 
           # remove the bullshit firefox inserts
           "browser.newtabpage.activity-stream.feeds.section.topstories" = false;

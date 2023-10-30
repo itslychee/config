@@ -8,7 +8,13 @@ lib.mkIf (!flags.headless or false) {
     x11.enable = true;
   };
 
-  gtk = {
+  gtk = with builtins; let
+    common = {
+      gtk-enable-primary-paste = "false";
+    };
+    commonTransformed =
+      lib.concatStrings (lib.mapAttrsToList (k: v: "{k} = {v}\n") common);
+  in {
     enable = true;
     iconTheme = {
       package = pkgs.luna-icons;
@@ -23,7 +29,11 @@ lib.mkIf (!flags.headless or false) {
         sha256 = "sha256-sEATCqjMBn6LwgMQcL8pvEW4k6WAMjOpSbSO3ksQPEU=";
       };
     };
+    gtk2.extraConfig = commonTransformed;
+    gtk3.extraConfig = common;
+    gtk4.extraConfig = common;
   };
+
 
   wayland.windowManager.sway = {
     enable = true;
@@ -67,13 +77,11 @@ lib.mkIf (!flags.headless or false) {
       modifier = "Mod4";
       keybindings = let
         pamixer = "${pkgs.pamixer}/bin/pamixer";
-        player = "${pkgs.playerctl}/bin/playerctl";
+        player = "${pkgs.playerctl}/bin/playerctl --player='spotify,mpd,%any'";
       in {
          # Launch Terminal
          "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
          "${modifier}+Space" = "exec ${pkgs.fuzzel}/bin/fuzzel";
-
-
          "${modifier}+shift+escape" = "exit";
 
          # Volume keybinds
@@ -126,6 +134,9 @@ lib.mkIf (!flags.headless or false) {
          "${modifier}+shift+v" = "move window to workspace 4";
          "${modifier}+shift+b" = "move window to workspace 5";
 
+         # This is used similar to the axis lines on a coordinate plane,
+         # up arrow, right arrow = positive = increases size
+         # down arrow, left arrow = negative = decreases size
          "${modifier}+left" = "resize shrink width 5";
          "${modifier}+right" = "resize grow width 5";
          "${modifier}+up" = "resize grow height 5";

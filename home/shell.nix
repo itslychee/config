@@ -22,6 +22,9 @@
       PROMPT='%F{#FFA9D2}%n%f %F{green}%~%f %# '
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
+      bindkey -v '^?' backward-delete-char
+
+
     '';
   };
 }

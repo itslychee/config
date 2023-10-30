@@ -13,8 +13,11 @@
        "suggest.enablePreview" = true;
        "suggest.enablePreselect" = false;
        "suggest.disableKind" = true;
-       "python.venvPath" = "./.venv";
-       "python.formatting.provider" = "black";
+       "python.formatting.provider" = "${pkgs.ruff}/bin/ruff-format";
+       "python.linting.ruffEnabled" = "true";
+       "python.analysis.diagnosticMode" = "workspace";
+       "pyright.inlayHints.variableTypes" = false;
+
        languageserver = {
          go = {
            command = "${pkgs.gopls}/bin/gopls";
@@ -35,7 +38,7 @@
      };
    };
    extraLuaConfig = builtins.readFile ./neovim.lua;
-   plugins = with pkgs.vimPlugins; [
+   plugins = with pkgs.unstable.vimPlugins; [
      vim-startify
      yankring
      vim-polyglot
@@ -44,6 +47,7 @@
      nvim-tree-lua
      nvim-web-devicons
      coc-pyright
+     seoul256-vim
    ];
  };
 }

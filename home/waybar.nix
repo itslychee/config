@@ -10,9 +10,9 @@ lib.mkIf (!flags.headless or false) {
         "eDP-1"
         "HDMI-A-1"
       ];
-      modules-left   = [ "sway/workspaces" "custom/music" ];
-      modules-center = [ "sway/window" ];
-      modules-right  = [ "battery" "pulseaudio" "clock"]; 
+      modules-left   = [ "sway/workspaces" "mpris" ];
+      modules-center = [ "clock" ];
+      modules-right  = [ "battery" "pulseaudio"]; 
 
       "pulseaudio" = {
         format = "{volume}% ";
@@ -20,24 +20,20 @@ lib.mkIf (!flags.headless or false) {
         format-muted = "{volume}% ";
         on-right-click = "${pkgs.pamixer}/bin/pamixer -t";
       };
-      "disk" = {
-        format = "{percentage}% ";
-        interval = 5;
-      };
       "clock" = {
-        format = "{:%A  %I:%M%p  %Y.%m.%d}";
-      };
-      "sway/window" = {
-        max-length = 60;
+        format = "{:%A  %I:%M <b>%p</b>  %Y<b>.</b>%m<b>.</b>%d}";
       };
       "battery" = {
         interval = 30;
         format-icons = [ "" "" "" "" ""];
         format = "{capacity}% {icon}";
       };
-      "custom/music" = {
-        max-length = 50;
-        exec = "${pkgs.playerctl}/bin/playerctl metadata -Ff '[{{duration(position)}}|{{default(duration(mpris:length), \"??:??\")}}] {{markup_escape(artist)}} | {{markup_escape(trunc(title, 35))}} '";
+      "mpris" = {
+        format = "[{player}] {title} <b><i>by</i></b> {artist}";
+        format-paused = "{player}: <b>paused!</b>";
+        format-stopped = "{player}: <b>stopped!</b>";
+        interval = 5;
+        ignored-players = ["firefox"];
       };
     };
     style = builtins.readFile ./waybar.css; 

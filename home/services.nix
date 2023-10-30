@@ -3,6 +3,7 @@ with pkgs.lib;
 {
   services = {
     mpdris2.enable = config.services.mpd.enable;
+    playerctld.enable = !flags.headless or false;
     mpd = {
       enable = !flags.headless or false;
       extraConfig = ''

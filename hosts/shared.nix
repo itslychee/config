@@ -7,5 +7,6 @@
       cleanOnBoot = true;
       tmpfsSize = "30%";
     };
+
   };
 }
