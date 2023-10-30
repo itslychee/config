@@ -48,6 +48,7 @@
      nvim-web-devicons
      coc-pyright
      seoul256-vim
+     git-conflict-nvim
    ];
  };
 }

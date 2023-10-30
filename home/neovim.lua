@@ -1,3 +1,13 @@
+require 'git-conflict'.setup {
+  default_mappings = {
+    ours = 'o',
+    theirs = 't',
+    none = '0',
+    both = 'b',
+    next = 'n',
+    prev = 'p',
+  },
+}
 require "nvim-web-devicons".setup()
 require "nvim-tree".setup({
   renderer = {

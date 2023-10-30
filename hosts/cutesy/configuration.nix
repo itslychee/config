@@ -26,6 +26,7 @@
       "10.0.0.0/8"
       "::1/128"
     ];
+    # TODO: Configure jails 
   };
 
   boot.loader.grub = {
@@ -66,6 +67,7 @@
   };
   users.users.prod = {
     isNormalUser = true;
+    openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
   };
 }
 
