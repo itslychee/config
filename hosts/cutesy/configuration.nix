@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
-    (import ../../mixins/openssh.nix { allowedUsers = ["lychee"]; })
+    (import ../../mixins/openssh.nix { allowedUsers = ["lychee" "prod"]; })
     ../../mixins/hardware.nix
     ../../mixins/security.nix
   ];
@@ -53,14 +53,16 @@
   time.timeZone = "Etc/UTC";
 
   # Administrator user
-  users.users.lychee = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; 
-    openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
-  };
-  users.users.prod = {
-    isNormalUser = true;
-    openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
+  users.users = {
+    lychee = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ]; 
+      openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
+    };
+    prod = {
+      isNormalUser = true;
+      openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
+    };
   };
   environment.systemPackages = with pkgs; [screen terraria-server ];
 }
