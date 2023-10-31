@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
-    (import ../../mixins/openssh.nix { allowedUsers = ["lychee"]; })
+    (import ../../mixins/openssh.nix { allowedUsers = ["lychee" "prod"]; })
     ../../mixins/hardware.nix
     ../../mixins/security.nix
   ];
@@ -10,7 +10,6 @@
     nameservers = ["1.1.1.1" "1.0.0.1"];
     firewall.enable = true;
     firewall.allowedTCPPorts = [ 222 80 443 ];
-
     networkmanager.enable = true;
     networkmanager.enableFccUnlock = true;
   };
@@ -60,14 +59,16 @@
   time.timeZone = "Etc/UTC";
 
   # Administrator user
-  users.users.lychee = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; 
-    openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
-  };
-  users.users.prod = {
-    isNormalUser = true;
-    openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
+  users.users = {
+    lychee = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ]; 
+      openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
+    };
+    prod = {
+      isNormalUser = true;
+      openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
+    };
   };
 }
 
