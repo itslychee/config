@@ -39,7 +39,15 @@ with pkgs.lib;
 
   home.packages = with pkgs; [ ]
     # Headless & Non-headless appliations
-    ++ [ neofetch nmap zip unzip gnutar (python310.withPackages(p: with p; [ ipython pip ]))]
+    ++ [
+      neofetch
+      nmap
+      zip unzip gnutar
+      (python310.withPackages(p: with p; [
+        ipython pip
+      ]))
+      ruff
+    ]
     # MPD applications
     ++ optionals config.services.mpd.enable [ mpc-cli ]
     # Non-headless specific packages (desktop)
@@ -53,8 +61,6 @@ with pkgs.lib;
     gimp-with-plugins
     kcolorchooser
     xdg-utils
-    ruff
-    (python310.withPackages(p: with p; [ ipython pip ]))
   ]
     # Headless specific packages (server) 
     ++ optionals (flags.headless or false) [ ];
