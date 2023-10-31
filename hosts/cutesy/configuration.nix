@@ -19,13 +19,14 @@
 
   services.fail2ban = {
     enable = true;
-    maxretry = 4;
+    maxretry = 20;
     ignoreIP = [
       # LAN ranges both in IPv6 and IPv4
       "127.0.0.0/8"
       "10.0.0.0/8"
       "::1/128"
     ];
+    # TODO: Configure jails 
   };
 
   boot.loader.grub = {
@@ -59,6 +60,7 @@
   };
   users.users.prod = {
     isNormalUser = true;
+    openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
   };
   environment.systemPackages = with pkgs; [screen terraria-server ];
 }
