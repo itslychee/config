@@ -11,9 +11,14 @@ with lib;
     programs = {
       git = rec {
         inherit (git) userName userEmail enable;
-        signing = {
-          signByDefault = true;
-          key = userEmail;
+
+        extraConfig = {
+          user = {
+            email = "itslychee@protonmail.com";
+            name = "Lychee";
+            signingkey = "~/.ssh/id_ed25519.pub";
+          };
+          gpg.format = "ssh";
         };
         delta = {
           enable = git.withDelta;
