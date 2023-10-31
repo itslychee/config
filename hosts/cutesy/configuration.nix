@@ -19,7 +19,7 @@
 
   services.fail2ban = {
     enable = true;
-    maxretry = 4;
+    maxretry = 20;
     ignoreIP = [
       # LAN ranges both in IPv6 and IPv4
       "127.0.0.0/8"
