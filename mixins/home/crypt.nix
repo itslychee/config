@@ -19,6 +19,7 @@ with lib;
             signingkey = "~/.ssh/id_ed25519.pub";
           };
           gpg.format = "ssh";
+          commit.gpgsign = true;
         };
         delta = {
           enable = git.withDelta;
