@@ -37,7 +37,7 @@
        };
      };
    };
-   extraLuaConfig = builtins.readFile ./neovim.lua;
+   extraConfig = builtins.readFile ./nvim/vimrc;
    plugins = with pkgs.unstable.vimPlugins; [
      vim-startify
      yankring
@@ -49,6 +49,8 @@
      coc-pyright
      seoul256-vim
      git-conflict-nvim
+     vim-airline
+     vim-airline-themes
    ];
  };
 }

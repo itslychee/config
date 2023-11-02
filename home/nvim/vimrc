@@ -1,0 +1,103 @@
+colorscheme seoul256
+
+" Whitespace indicators :)))
+set list
+set lcs=space:.
+
+set number
+set paste
+set syntax=on
+set smartindent
+set cindent
+set backup
+set backupdir=~/.vim/backups
+set background=dark
+set cmdheight=1
+set cursorline
+set history=100
+set nowrap
+set omnifunc="syntaxcomplete#Complete"
+set termguicolors
+set ve+=onemore
+
+" Airlines
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline_theme="ayu_mirage"
+
+
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
+function! ShowDocumentation()
+   if CocAction('hasProvider', 'hover')
+     call CocActionAsync('doHover')
+   else
+     call feedkeys('K', 'in')
+   endif
+endf
+
+augroup membrane
+   autocmd!
+   autocmd VimEnter * :NvimTreeOpen
+   autocmd QuitPre  * :NvimTreeClose
+augroup END
+
+nnoremap <silent> K :call ShowDocumentation()<CR>
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+xmap <silent><leader>f  :call CocActionAsync('format')<CR>
+nmap <silent><leader>f  :call CocActionAsync('format')<CR>
+nmap <silent><leader>;  :NvimTreeToggle<CR>
+
+
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" othunctioner plugin before putting this into your config
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+lua << EOF
+require 'git-conflict'.setup {
+  default_mappings = {
+    ours = 'o',
+    theirs = 't',
+    none = '0',
+    both = 'b',
+    next = 'n',
+    prev = 'p',
+  },
+}
+require "nvim-web-devicons".setup()
+require "nvim-tree".setup({
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = false,
+    custom = { "^\\.venv/", "^\\.git/" },
+    git_ignored = false,
+  },
+  update_focused_file = {
+    enable = true,
+  },
+  tab = {
+    sync = {
+      open = true;
+    },
+  },
+})
+EOF
+
+

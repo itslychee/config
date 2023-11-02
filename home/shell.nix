@@ -19,7 +19,10 @@
       ignoreDups = true;
     };
     initExtra = ''
-      PROMPT='%F{#FFA9D2}%n%f %F{green}%~%f %# '
+      setopt PROMPT_SUBST
+
+
+      PROMPT='%F{#FFA9D2}%n%f %F{green}%~%f \n%# '
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
       bindkey -v '^?' backward-delete-char

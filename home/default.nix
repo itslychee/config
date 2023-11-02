@@ -43,9 +43,7 @@ with pkgs.lib;
       neofetch
       nmap
       zip unzip gnutar
-      (python310.withPackages(p: with p; [
-        ipython pip
-      ]))
+      (python310.withPackages(p: with p; [ ipython pip ]))
       ruff
     ]
     # MPD applications

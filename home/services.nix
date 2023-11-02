@@ -31,8 +31,8 @@ with pkgs.lib;
           show_indicators = false
           browser = ${pkgs.xdg-utils}/bin/xdg-open
           corner_radius = 5
-          width = 400
-          height = 400
+          width = 500
+          height = 800
           stack_duplicates = false
           history_length = 10
 
