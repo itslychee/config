@@ -2,7 +2,7 @@
 {
   imports = [
     ../../mixins/security.nix
-    (../../mixins/openssh.nix { allowedUsers = ["pi"]; })
+    (import ../../mixins/openssh.nix { allowedUsers = ["pi"]; })
   ];
   boot = {
     initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
