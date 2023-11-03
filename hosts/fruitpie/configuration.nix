@@ -6,11 +6,6 @@
   ];
 
 
-
-  hardware.raspberry-pi."4" = {
-    fkms-3d.enable = true;
-  };
-
   boot = {
     initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
     kernelPackages = pkgs.linuxKernel.kernels.linux_rpi4;
