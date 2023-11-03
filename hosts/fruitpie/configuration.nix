@@ -8,7 +8,6 @@
 
   boot = {
     initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
-    kernelPackages = pkgs.linuxKernel.kernels.linux_rpi4;
     kernelParams = [ "console=ttyS1,115200n8" ];
     loader.grub.enable = false;
     loader.generic-extlinux-compatible = {
