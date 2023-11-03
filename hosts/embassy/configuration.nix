@@ -11,16 +11,14 @@
   ];
   time.hardwareClockInLocalTime = true;
   time.timeZone = "US/Central";
-
   boot.kernelParams = [ "irqpoll" ];
-
   networking = {
     hostName = "embassy";
     firewall.enable = true;
     networkmanager.enable = true;
     networkmanager.enableFccUnlock = true;
   };
-  # User(s)
+
   users.users.lychee = {
     isNormalUser = true;
     shell = pkgs.zsh;

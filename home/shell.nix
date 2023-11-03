@@ -1,5 +1,8 @@
 { pkgs, ...}@args:
 {
+  imports = [
+    ./starship.nix
+  ];
   home.shellAliases = {
     "tree" = "${pkgs.exa}/bin/exa --tree";
     "htop" = "${pkgs.btop}/bin/btop";
@@ -20,14 +23,9 @@
     };
     initExtra = ''
       setopt PROMPT_SUBST
-
-
-      PROMPT='%F{#FFA9D2}%n%f %F{green}%~%f \n%# '
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
       bindkey -v '^?' backward-delete-char
-
-
     '';
   };
 }

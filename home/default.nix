@@ -20,7 +20,7 @@ with pkgs.lib;
   ];
   # Git
   programs.git.ignores = [ "*.swp" ".envrc" ".direnv" ];
-  xdg = {
+  xdg = mkIf (flags.headless or false) {
     userDirs = let
       dir = config.home.homeDirectory;
     in {
@@ -53,7 +53,7 @@ with pkgs.lib;
     wayshot
     spotify
     slurp
-    discord
+    discord-canary
     grim
     wl-clipboard
     gimp-with-plugins

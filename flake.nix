@@ -37,7 +37,6 @@
           ./hosts/${hostname}/configuration.nix
           ./hosts/${hostname}/hardware-configuration.nix
           ./hosts/shared.nix
-          ./mixins/nix.nix
           {
             nixpkgs.overlays = [
               (old: final: {
@@ -75,6 +74,14 @@
         lychee = ./home;
         prod = ./home;
       };
+      flags = {
+        harden = true;
+        headless = true;
+      };
+    }) (_: {});
+    nixosConfigurations.fruitpie = (mkSystem {
+      hostname = "fruitpie";
+      users.pi = /home;
       flags = {
         harden = true;
         headless = true;
