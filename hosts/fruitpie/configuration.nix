@@ -1,7 +1,6 @@
 { config, pkgs, ...}:
 {
   imports = [
-    ../../mixins/nix.nix
     ../../mixins/security.nix
     (../../mixins/openssh.nix { allowedUsers = ["pi"]; })
   ];
