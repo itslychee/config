@@ -81,7 +81,7 @@
     }) (_: {});
     nixosConfigurations.fruitpie = (mkSystem {
       hostname = "fruitpie";
-      users.pi = /home;
+      users.pi = ./home;
       flags = {
         harden = true;
         headless = true;
