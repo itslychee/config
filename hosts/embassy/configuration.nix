@@ -19,6 +19,7 @@
     networkmanager.enableFccUnlock = true;
   };
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   users.users.lychee = {
     isNormalUser = true;
     shell = pkgs.zsh;
