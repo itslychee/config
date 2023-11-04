@@ -22,6 +22,12 @@
     openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
     shell = pkgs.zsh;
   };
+  networking = {
+    hostName = "fruitpie";
+    firewall.enable = true;
+    networkmanager.enable = true;
+    networkmanager.enableFccUnlock = true;
+  };
 
   nix.buildMachines = [
     {
