@@ -21,6 +21,7 @@
     isNormalUser = true;
     openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
     shell = pkgs.zsh;
+    extraGroups = [ "wheel"];
   };
   networking = {
     hostName = "fruitpie";

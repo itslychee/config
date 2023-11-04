@@ -2,7 +2,7 @@
 {
   # Mixins
   imports = [
-    (import ../../mixins/openssh.nix { allowedUsers = [ "lychee"]; })
+    (import ../../mixins/openssh.nix { allowedUsers = [ "remote-builder" "lychee"]; })
     ../../mixins/hardware.nix
     ../../mixins/security.nix
     ../../mixins/systemd-boot.nix
