@@ -9,7 +9,15 @@
     };
     nixpkgs.config.allowUnfree = true;
     nix = {
-      settings.auto-optimise-store = true;
+      channel.enable = false;
+      settings = {
+        auto-optimise-store = true;
+        trusted-users = [
+          "@wheel"
+          "root"
+          "remote-builder"
+        ];
+      };
       extraOptions = ''
         experimental-features = nix-command flakes
       '';
@@ -23,6 +31,7 @@
         automatic = true;
         dates = [ "1:00" ];
       };
+      distributedBuilds = true;
     };
   };
 }

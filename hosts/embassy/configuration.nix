@@ -26,6 +26,19 @@
     openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
   };
 
+  users.users.remote-builder = {
+    homeMode = "500";
+    description = "Nix remote builder";
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9I9jEia435ZUBT85/l3zg4HgSgKOty/29foPmIkV/O pi@nixos"
+    ];
+    createHome = true;
+    extraGroups = [ "nologin" ];
+    isNormalUser = true;
+    openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
+  };
+
+
   # System wide programs
   programs.dconf.enable = true;
   programs.adb.enable = true;

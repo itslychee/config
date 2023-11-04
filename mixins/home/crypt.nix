@@ -36,6 +36,12 @@ with lib;
         extraConfig = ''
           AddKeysToAgent yes
         '';
+        matchBlocks = {
+          "pi" = {
+            hostname = "192.168.0.2";
+            user = "pi";
+          };
+        };
       };
     };
     services.gpg-agent = {

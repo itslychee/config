@@ -22,4 +22,18 @@
     openssh.authorizedKeys.keyFiles = [ ../../keys.pub ];
     shell = pkgs.zsh;
   };
+
+  nix.buildMachines = [
+    {
+      hostName = "embassy";
+      system = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      maxJobs = 4;
+      speedFactor = 10;
+    }
+  ];
+
+
 }
