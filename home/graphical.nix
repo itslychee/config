@@ -35,6 +35,18 @@ lib.mkIf (!flags.headless or false) {
   };
 
 
+  services.swayidle = {
+    enable = true;
+    timeouts = [
+      { 
+        timeout = 60;
+        command = "${pkgs.sway}/bin/swaymsg \"output * dpms off\"";
+        resumeCommand = "${pkgs.sway}/bin/swaymsg \"output * dpms on\"";
+      }
+    ];
+  };
+
+
   wayland.windowManager.sway = {
     enable = true;
     systemdIntegration = true;
@@ -46,6 +58,7 @@ lib.mkIf (!flags.headless or false) {
       input "type:keyboard" {
         dwt enabled
       }
+      for_window [app_id="firefox"] inhibit_idle fullscreen
       workspace 1
     '';
     config = rec {
