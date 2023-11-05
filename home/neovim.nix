@@ -5,7 +5,6 @@
    vimAlias = true;
    viAlias = true;
    defaultEditor = true;
-
    coc = {
      enable = true;
      settings = {
@@ -15,18 +14,18 @@
        "suggest.disableKind" = true;
        "python.formatting.provider" = "${pkgs.ruff}/bin/ruff-format";
        "python.linting.ruffEnabled" = "true";
+       "python.linting.flake8Enabled" = "true";
        "python.analysis.diagnosticMode" = "workspace";
        "pyright.inlayHints.variableTypes" = false;
-
        languageserver = {
          go = {
            command = "${pkgs.gopls}/bin/gopls";
            rootPatterns = ["go.mod"];
-           "trace.server" = "verbose";
            filetypes = ["go"];
+           "trace.server" = "verbose";
          };
          nix = {
-           command = "${pkgs.rnix-lsp}/bin/rnix-lsp";
+           command = "${pkgs.alejandra}/bin/alejandra";
            filetypes = [ "nix" ];
          };
          rust = {

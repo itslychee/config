@@ -85,5 +85,4 @@ lib.mkIf (!flags.headless or false) {
       };
     };
   };
-
 }

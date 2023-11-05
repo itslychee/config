@@ -39,7 +39,7 @@ lib.mkIf (!flags.headless or false) {
     enable = true;
     timeouts = [
       { 
-        timeout = 60;
+        timeout = 60*5;
         command = "${pkgs.sway}/bin/swaymsg \"output * dpms off\"";
         resumeCommand = "${pkgs.sway}/bin/swaymsg \"output * dpms on\"";
       }
@@ -59,7 +59,7 @@ lib.mkIf (!flags.headless or false) {
         dwt enabled
       }
       for_window [app_id="firefox"] inhibit_idle fullscreen
-      for_window [app_id="firefox"] inhibit_idle fullscreen
+      for_window [app_id="Firefox"] inhibit_idle fullscreen
       workspace 1
     '';
     config = rec {

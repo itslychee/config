@@ -44,7 +44,7 @@
               })
               mpdrp.overlays.${system}.default
             ];
-            system.stateVersion = "22.11";
+            system.stateVersion = "23.05";
             services.dbus.enable = true;
           }
           home-manager.nixosModules.home-manager { 

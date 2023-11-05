@@ -41,6 +41,10 @@ with pkgs.lib;
           timeout = 10s 
       '';
     };
+    clipman = {
+      enable = !flags.headless or false;
+      systemdTarget = "sway-session.target";
+    };
   };
   # Systemd configurations
   systemd.user = {

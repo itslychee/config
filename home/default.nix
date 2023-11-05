@@ -20,31 +20,24 @@ with pkgs.lib;
   ];
   # Git
   programs.git.ignores = [ "*.swp" ".envrc" ".direnv" ];
-  xdg = mkIf (flags.headless or false) {
-    userDirs = let
-      dir = config.home.homeDirectory;
-    in {
-      enable = true;
-      createDirectories = true;
-      desktop     = "${dir}/desktop";
-      documents   = "${dir}/documents";
-      download    = "${dir}/downloads";
-      music       = "${dir}/media/music";
-      videos      = "${dir}/media/videos";
-      pictures    = "${dir}/media/images";
-      templates   = "${dir}/media/templates";
-      publicShare = "${dir}/pub";
-    };
+  xdg.enable = true;
+  xdg.userDirs = {
+    enable = true;
+    desktop     = "${config.home.homeDirectory}/desktop";
+    documents   = "${config.home.homeDirectory}/documents";
+    download    = "${config.home.homeDirectory}/downloads";
+    music       = "${config.home.homeDirectory}/media/music";
+    videos      = "${config.home.homeDirectory}/media/videos";
+    pictures    = "${config.home.homeDirectory}/media/images";
+    templates   = "${config.home.homeDirectory}/media/templates";
+    publicShare = "${config.home.homeDirectory}/pub";
   };
 
   home.packages = with pkgs; [ ]
     # Headless & Non-headless appliations
     ++ [
-      neofetch
-      nmap
-      zip unzip gnutar
-      ruff
-      (python311.withPackages(p: with p; [ ipython pip ]))
+      neofetch nmap zip unzip gnutar ruff
+      (python311.withPackages(p: with p; [ ipython pip flake8 ]))
       screen
     ]
     # MPD applications

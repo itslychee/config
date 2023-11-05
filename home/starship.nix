@@ -8,7 +8,7 @@
       };
       format = ''
       [$directory$git_branch$git_state$git_commit$git_status](bold green)
-      [❤️](bold #ff9ad2)$character
+      [❤️ $hostname](bold #ff9ad2)$character
       '';
       right_format = ''$golang$python$nix_shell'';
       character = {

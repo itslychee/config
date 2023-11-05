@@ -11,7 +11,6 @@ with lib;
     programs = {
       git = rec {
         inherit (git) userName userEmail enable;
-
         extraConfig = {
           user = {
             email = "itslychee@protonmail.com";
@@ -25,23 +24,19 @@ with lib;
           enable = git.withDelta;
           options.line-numbers = true;
         };
-        extraConfig.core.editor = config.home.sessionVariables.EDITOR; 
+        extraConfig.core.editor = config.home.sessionVariables.EDITOR + " --clean"; 
       };
-      # NOTE: Support GPG and SSH private keys!
       gpg.enable = gpg;
       ssh = {
         enable = ssh;
         compression = true;
-        # TODO: match blocks!
+        matchBlocks ."pi" = {
+          hostname = "192.168.0.2";
+          user = "pi";
+        };
         extraConfig = ''
           AddKeysToAgent yes
         '';
-        matchBlocks = {
-          "pi" = {
-            hostname = "192.168.0.2";
-            user = "pi";
-          };
-        };
       };
     };
     services.gpg-agent = {

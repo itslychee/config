@@ -9,9 +9,7 @@
     "rebuild" = "sudo nixos-rebuild switch --flake .";
     "up" = "sudo nix flake update && sudo nixos-rebuild switch --flake .";
   };
-  
   programs.bash.enable = true;
-
   programs.zsh = pkgs.lib.mkIf (!args.flags.headless or false) {
     enable = true;
     enableAutosuggestions = true;

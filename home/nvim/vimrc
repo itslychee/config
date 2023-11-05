@@ -1,11 +1,11 @@
 colorscheme seoul256
+filetype plugin on
 
 " Whitespace indicators :)))
 set list
 set lcs=space:.
 
 set number
-set paste
 set syntax=on
 set smartindent
 set cindent
@@ -16,10 +16,11 @@ set cmdheight=1
 set cursorline
 set history=100
 set nowrap
-set omnifunc="syntaxcomplete#Complete"
+set omnifunc=syntaxcomplete#Complete
 set termguicolors
 set ve+=onemore
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+set signcolumn=yes
 
 " Airlines
 let g:airline#extensions#tabline#enabled = 1
@@ -36,6 +37,7 @@ function! ShowDocumentation()
      call feedkeys('K', 'in')
    endif
 endf
+
 
 augroup membrane
    autocmd!
@@ -55,11 +57,18 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <silent><leader>f  :call CocActionAsync('format')<CR>
 nmap <silent><leader>f  :call CocActionAsync('format')<CR>
 nmap <silent><leader>;  :NvimTreeToggle<CR>
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 
 lua << EOF
 require 'git-conflict'.setup {
