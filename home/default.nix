@@ -45,6 +45,7 @@ with pkgs.lib;
       zip unzip gnutar
       ruff
       (python311.withPackages(p: with p; [ ipython pip ]))
+      screen
     ]
     # MPD applications
     ++ optionals config.services.mpd.enable [ mpc-cli ]
