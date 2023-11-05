@@ -59,6 +59,7 @@ lib.mkIf (!flags.headless or false) {
         dwt enabled
       }
       for_window [app_id="firefox"] inhibit_idle fullscreen
+      for_window [app_id="firefox"] inhibit_idle fullscreen
       workspace 1
     '';
     config = rec {

@@ -42,12 +42,4 @@
       supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
     }
   ];
-
-  programs.ssh.extraConfig = ''
-  Host builder
-    HostName 192.168.0.8
-    User remote-builder
-    IdentitiesOnly yes
-    IdentifyFile /root/.ssh/id_ed25519
-  '';
 }

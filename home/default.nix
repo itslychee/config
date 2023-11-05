@@ -43,8 +43,8 @@ with pkgs.lib;
       neofetch
       nmap
       zip unzip gnutar
-      (python310.withPackages(p: with p; [ ipython pip ]))
       ruff
+      (python311.withPackages(p: with p; [ ipython pip ]))
     ]
     # MPD applications
     ++ optionals config.services.mpd.enable [ mpc-cli ]
