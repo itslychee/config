@@ -50,6 +50,7 @@
      git-conflict-nvim
      vim-airline
      vim-airline-themes
+     coc-sqlfluff
    ];
  };
 }

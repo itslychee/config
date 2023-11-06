@@ -36,9 +36,10 @@ with pkgs.lib;
   home.packages = with pkgs; [ ]
     # Headless & Non-headless appliations
     ++ [
-      neofetch nmap zip unzip gnutar ruff
-      (python311.withPackages(p: with p; [ ipython pip flake8 ]))
+      neofetch nmap zip unzip gnutar 
+      ruff
       screen
+      (python311.withPackages(ps: with ps; [ pip ]))
     ]
     # MPD applications
     ++ optionals config.services.mpd.enable [ mpc-cli ]
