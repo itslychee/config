@@ -1,6 +1,8 @@
 {...}:
 {
   # TODO!
-  python = ./python;
-
+  python = {
+    path = ./python;
+    description = "python project";
+  };
 }
