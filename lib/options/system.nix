@@ -11,6 +11,7 @@ with lib; {
       enable = mkEnableOption "manage fonts";
       defaults = mkEnableOption "install default fonts";
     };
+    graphical.enable = mkEnableOption "OpenGL";
   };
 
   # Config
@@ -31,6 +32,10 @@ with lib; {
         support32Bit = true;
       };
     };
+
+    # OpenGL
+    hardware.opengl.enable = config.graphical.enable;
+
     # Fonts
     fonts = mkIf config.graphical.fonts.enable {
       fontDir.enable = true;

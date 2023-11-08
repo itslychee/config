@@ -52,7 +52,7 @@ with pkgs.lib;
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
   # Alacritty
-  programs.alacritty = mkIf headless {
+  programs.alacritty = mkIf (!headless) {
     enable = true;
     settings = {
       scrolling.multiplier = 3;

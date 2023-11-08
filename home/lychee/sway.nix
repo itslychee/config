@@ -1,5 +1,4 @@
 { pkgs, ...}:
-with pkgs.lib;
 {
   # Idling manager
   services.swayidle.enable = true;
@@ -13,7 +12,7 @@ with pkgs.lib;
     }
   ];
   wayland.windowManager.sway.enable = true;
-  wayland.windowManager.sway.swayIntegration = true;
+  wayland.windowManager.sway.systemdIntegration = true;
   wayland.windowManager.sway.extraConfig = ''
     input "type:touchpad" {
       tap enabled

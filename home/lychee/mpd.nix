@@ -1,6 +1,5 @@
-{ config, headless, pkgs, ...}:
-with pkgs.lib;
-mkIf (!headless) {
+{ config, headless, pkgs, lib, ...}:
+lib.mkIf (!headless) {
   # MPD
   services.mpd.enable = true;
   services.mpd.musicDirectory = /storage/media/music;
@@ -28,5 +27,5 @@ mkIf (!headless) {
   ];
 
   # Playerctl daemon
-  services.playerctl.enable = true;
+  services.playerctld.enable = true;
 }

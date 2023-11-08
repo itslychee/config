@@ -4,7 +4,6 @@
 # as I prefer to keep my packages in my user environment.
 #
 {
-
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot.kernelModules = [ "kvm-amd" ];
@@ -21,7 +20,7 @@
   fileSystems = {
     # Necessary filesystems
     "/"     = { device = "/dev/disk/by-label/NixOS"; fsType = "ext4"; };
-    "/boot" = { device = "/dev/disk/by-label/Boo"; fsType = "vfat"; };
+    "/boot" = { device = "/dev/disk/by-label/Boot"; fsType = "vfat"; };
     # 1TB HDD storage
     "/storage" = { device = "/dev/disk/by-label/Storage"; fsType = "ntfs"; };
   };
@@ -32,15 +31,16 @@
   # Fonts
   graphical.fonts.enable = true;
   graphical.fonts.defaults = true;
+  graphical.enable = true;
 
   programs.dconf.enable = true;
+  networking.networkmanager.enable = true;
 
   servers.ssh.enable = true;
   servers.ssh.allowedUsers = [ "lychee" ];
   users.users.lychee = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    password = "Lychee";
     extraGroups = [ "wheel" "storage" "networkmanager" "adbusers" ];
   };
   environment.systemPackages = with pkgs; [ scrcpy ];

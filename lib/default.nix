@@ -5,19 +5,21 @@ rec {
   # builds without me passing what config to use.
   systems = hosts: master.lib.attrsets.mergeAttrsList (nixpkgs.lib.forEach hosts 
   (host: {
-    "${host.hostname}" = nixpkgs.lib.nixosSystem ((removeAttrs host [ "hostname" "headless"]) // {
-        modules =[
+    "${host.hostname}" = nixpkgs.lib.nixosSystem ((removeAttrs host [ "hostname" "headless" "overlays"]) // {
+        modules = (host.modules or []) ++ [
         ./options
         ../hosts/shared.nix
         hm.nixosModules.home-manager
         {
-          networking.hostName = host.hostname;
-          nixpkgs.hostPlatform = host.system; 
-          system.stateVersion = "23.05";
           home-manager.verbose = true;
           home-manager.extraSpecialArgs = { headless = host.headless; };
           home-manager.useGlobalPkgs = true;
           home-manager.sharedModules = [ { home.stateVersion = "23.05"; } ];
+          system.stateVersion = "23.05";
+
+          networking.hostName = host.hostname;
+          nixpkgs.hostPlatform = host.system; 
+          nixpkgs.overlays = host.overlays;
         }
       ];
       specialArgs = (host.specialArgs or {}) // { self = host; };

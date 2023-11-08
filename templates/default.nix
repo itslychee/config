@@ -1,4 +1,6 @@
 {...}:
 {
   # TODO!
+  python = ./python;
+
 }

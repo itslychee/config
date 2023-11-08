@@ -1,25 +1,31 @@
-{ config, pkgs, headless, ...}:
+{ config, pkgs, lib, headless, ...}:
 {
   imports = [
-    ./shell.nix 
-    ./nvim.nix  
+    ./shell.nix
+    ./nvim.nix
+  ] 
+  ++ lib.optionals (!headless) [
     ./graphical.nix
     ./sway.nix
     ./mpd.nix
     ./waybar.nix
-  ];
+    ./firefox.nix
+  ] 
+  ++ lib.optionals headless [];
   # Git
+  programs.git.enable = true;
   programs.git.package = pkgs.gitAndTools.gitFull;
   programs.git.delta = { enable = true; options.line-numbers = true; };
+  programs.git.ignores = [ "*.swp" ".direnv/"];
   programs.git.extraConfig = {
-    core.editor = "${pkgs.nvim}/bin/nvim --clean";
+    core.editor = "${pkgs.neovim}/bin/nvim --clean";
     gpg.format = "ssh";
     user.signingkey = "~/.ssh/id_ed25519.pub";
     push.gpgSign = "if-asked";
     commit.gpgsign = true;
-    user = { email = "itslychee@protonmail.com"; name = "lychee"; };
     merge.ff = false;
     pull.rebase = "merges";
+    user = { email = "itslychee@protonmail.com"; name = "lychee"; };
   };
   # GPG
   programs.gpg.enable = true;
@@ -43,4 +49,9 @@
     templates   = "${config.home.homeDirectory}/media/templates";
     publicShare = "${config.home.homeDirectory}/pub";
   };
+
+  home.packages = with pkgs;
+  lib.optionals (!headless) [
+    discord-canary
+  ];
 }
