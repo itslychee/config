@@ -1,0 +1,23 @@
+@define-color bar-foreground #FFFFFF;
+@define-color bar-background #281b25;
+@define-color bar-bottom-border #261d24;
+@define-color module-background #161117;
+@define-color module-vert-transition #3c303f;
+@define-color module-underline #ffa9d2;
+
+window { background-color: @bar-background; border-bottom: 0.5px solid @bar-bottom-border; }
+
+* { font-family: Terminus, 'Font Awesome 6 Free', 'Font Awesome 6 Brands'; color: @bar-foreground; } 
+
+#mpris, #battery, #memory, #disk, #pulseaudio, #network, #workspaces, #clock {
+  background-color: @module-background;
+  border-bottom: 1px solid @module-underline;
+  border-right: 1px solid @module-vert-transition;
+  border-left: 1px solid @module-vert-transition;
+  margin: 0px 5px;
+  padding: 1px 4px;
+}
+#workspaces { box-shadow: unset; margin: 0; }
+#workspaces button { background-color: @module-background; padding: 1px 3px; }
+#workspaces button.focused { border-bottom: 2px solid @module-underline; }
+#workspaces button:hover { background: unset; box-shadow: unset; border-color: unset; border: unset; }
