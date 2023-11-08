@@ -1,5 +1,4 @@
 { config, pkgs, headless, ...}:
-with pkgs.lib;
 {
   imports = [
     ./shell.nix 

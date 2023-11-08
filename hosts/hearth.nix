@@ -3,7 +3,6 @@
 # Main desktop setup, I intend to keep this simple as possible
 # as I prefer to keep my packages in my user environment.
 #
-with pkgs.lib;
 {
 
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
@@ -44,4 +43,5 @@ with pkgs.lib;
     password = "Lychee";
     extraGroups = [ "wheel" "storage" "networkmanager" "adbusers" ];
   };
+  environment.systemPackages = with pkgs; [ scrcpy ];
 }

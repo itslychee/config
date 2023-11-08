@@ -1,5 +1,4 @@
 # Shared nixos module among ALL hosts
-{ pkgs, config, ... }:
 {
   boot.tmp.useTmpfs = true;
   boot.tmp.cleanOnBoot = true;

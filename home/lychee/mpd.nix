@@ -1,6 +1,6 @@
 { config, headless, pkgs, ...}:
-pkgs.lib.mkIf headless
-{
+with pkgs.lib;
+mkIf (!headless) {
   # MPD
   services.mpd.enable = true;
   services.mpd.musicDirectory = /storage/media/music;

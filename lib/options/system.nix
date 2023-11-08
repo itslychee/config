@@ -1,6 +1,5 @@
 { config, lib, options, pkgs, ...}:
 let
-  cfg = config;
   bl = config.bootloader;
 in 
 with lib; {
@@ -18,12 +17,12 @@ with lib; {
   config = {
     programs.bash.enableCompletion = true;
     # Zsh
-    programs.zsh.enable = cfg.shell.zsh;
-    environment.pathsToLink = mkIf cfg.shell.zsh [
+    programs.zsh.enable = config.shell.zsh;
+    environment.pathsToLink = mkIf config.shell.zsh [
       "/share/zsh"
     ];
     # Sound (PipeWire)
-    services.pipewire = mkIf cfg.system.sound {
+    services.pipewire = mkIf config.system.sound {
       enable = true;
       audio.enable = true;
       pulse.enable = true;
@@ -33,7 +32,7 @@ with lib; {
       };
     };
     # Fonts
-    fonts = mkIf cfg.graphical.fonts.enable {
+    fonts = mkIf config.graphical.fonts.enable {
       fontDir.enable = true;
       fonts = with pkgs; [
           ubuntu_font_family

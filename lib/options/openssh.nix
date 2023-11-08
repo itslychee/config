@@ -3,7 +3,6 @@ let
   cfg = config.servers.ssh;
 in 
 with pkgs.lib;
-with builtins;
 {
   options.servers.ssh = {
     enable = mkEnableOption "OpenSSH Server";
@@ -16,7 +15,7 @@ with builtins;
       PasswordAuthentication = false;
     };
     extraConfig = ''
-      AllowUsers ${concatStringsSep " " cfg.allowedUsers}
+      AllowUsers ${builtins.concatStringsSep " " cfg.allowedUsers}
     '';
   };
 }
