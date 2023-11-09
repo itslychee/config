@@ -36,6 +36,12 @@
   programs.ssh.enable = true;
   programs.ssh.compression = true;
   programs.ssh.extraConfig = "AddKeysToAgent yes";
+  # services.ssh-agent.enable = true;
+  # systemd.user.services.ssh-agent = {
+  #   # I want a timeout
+  #   Service.ExecStart = lib.mkForce "${pkgs.openssh}/bin/ssh-agent -D -t 1h -a %t/ssh-agent";
+  # };
+
   # XDG
   xdg.enable = true;
   xdg.userDirs = {
@@ -52,6 +58,11 @@
 
   home.packages = with pkgs;
   lib.optionals (!headless) [
-    discord-canary
+    # Discord
+    discord-canary xdg-utils
+    # Screenshot
+    grim slurp wayshot
+    # Clipboard
+    wl-clipboard
   ];
 }

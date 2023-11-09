@@ -6,7 +6,6 @@
     mpdrp.url = github:itslychee/mpdrp;
 
     hm.inputs.nixpkgs.follows = "nixpkgs";
-    mpdrp.inputs.unstable-nixpkgs.follows = "master";
   };
   outputs = {self, nixpkgs, master, hm, mpdrp }@attrs: let
     overlays = (final: prev: {
@@ -29,6 +28,6 @@
     # Formatter!
     formatter = lib.eachSystem (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt );
     # Templates
-    templates = import ./templates attrs;
+    templates = (import ./templates attrs);
   };
 }

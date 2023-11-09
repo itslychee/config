@@ -1,9 +1,9 @@
-{ nixpkgs, hm, master, ...}@attrs:
+{ nixpkgs, hm, ...}@attrs:
 rec {
   # My hostnames are always going to be the same as <name> in
   # nixosConfigurations.<name> as it facilitates implicit nixos-rebuild
   # builds without me passing what config to use.
-  systems = hosts: master.lib.attrsets.mergeAttrsList (nixpkgs.lib.forEach hosts 
+  systems = hosts: nixpkgs.lib.attrsets.mergeAttrsList (nixpkgs.lib.forEach hosts 
   (host: {
     "${host.hostname}" = nixpkgs.lib.nixosSystem ((removeAttrs host [ "hostname" "headless" "overlays"]) // {
         modules = (host.modules or []) ++ [

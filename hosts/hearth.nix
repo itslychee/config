@@ -15,6 +15,8 @@
     consoleMode = "max";
   };
   boot.loader.timeout = 20;
+  time.timeZone = "US/Central";
+  time.hardwareClockInLocalTime = true;
 
   swapDevices = [ { device = "/dev/disk/by-label/Swap"; } ];
   fileSystems = {
