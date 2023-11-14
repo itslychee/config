@@ -20,23 +20,20 @@
 
   swapDevices = [ { device = "/dev/disk/by-label/Swap"; } ];
   fileSystems = {
-    # Necessary filesystems
     "/"     = { device = "/dev/disk/by-label/NixOS"; fsType = "ext4"; };
     "/boot" = { device = "/dev/disk/by-label/Boot"; fsType = "vfat"; };
-    # 1TB HDD storage
     "/storage" = { device = "/dev/disk/by-label/Storage"; fsType = "ntfs"; };
   };
   hardware.cpu.amd.updateMicrocode = true;
 
   shell.zsh = true;
   system.sound = true;
-  # Fonts
   graphical.fonts.enable = true;
   graphical.fonts.defaults = true;
   graphical.enable = true;
-
   programs.dconf.enable = true;
   networking.networkmanager.enable = true;
+  networking.firewall.enable = true;
 
   servers.ssh.enable = true;
   servers.ssh.allowedUsers = [ "lychee" ];

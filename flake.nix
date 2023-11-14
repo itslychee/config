@@ -3,7 +3,7 @@
     nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
     master.url = github:NixOS/nixpkgs/master;
     hm.url = github:nix-community/home-manager/release-23.05;
-    mpdrp.url = github:itslychee/mpdrp;
+    mpdrp.url = path:/home/lychee/g/mpdrp;
 
     hm.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -17,7 +17,10 @@
       {
         hostname = "hearth";
         system = "x86_64-linux";
-        overlays = [ overlays ];
+        overlays = [
+          mpdrp.overlays."x86_64-linux".default
+          overlays
+        ];
         headless = false;
         modules = [
           ./hosts/hearth.nix

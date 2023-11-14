@@ -41,4 +41,9 @@
      timeout = 10s 
   '';
 
+  xdg.configFile."swappy/config".text = ''
+    [Default]
+    show_panel = true
+  '';
+
 }

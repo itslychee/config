@@ -16,39 +16,39 @@
      "python.linting.flake8Enabled" = "true";
      "python.analysis.diagnosticMode" = "workspace";
      "pyright.inlayHints.variableTypes" = false;
+     "suggest.triggerCompletionWait"= 35;
+     "go.goplsPath" = "${pkgs.unstable.gopls}/bin/gopls";
+     "go.goplsUseDaemon" = true;
      languageserver = {
-       go = {
-         command = "${pkgs.gopls}/bin/gopls";
-         rootPatterns = ["go.mod"];
-         filetypes = ["go"];
-         "trace.server" = "verbose";
+       go.command = "${pkgs.unstable.gopls}/bin/gopls";
+       go.rootPatterns = ["go.mod"];
+       go.filetypes = ["go"];
+       go."trace.server" = "verbose";
+       go."go.goplsOptions" = {
+         completeUnimported = true;
+         local = "${pkgs.unstable.gotools}/bin/goimports -local";
        };
-       nix = {
-         command = "${pkgs.alejandra}/bin/alejandra";
-         filetypes = [ "nix" ];
-       };
-       rust = {
-         command = "rust-analyzer";
-         filetypes = [ "rust" "rs" ];
-         rootPatterns = [ "Cargo.toml" ];
-       };
+       # Nix 
+       nix.command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+       nix.filetypes = [ "nix" ];
+       # Rust
+       rust.command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+       rust.filetypes = [ "rs" ];
+       rust.rootPatterns = [ "Cargo.toml" ];
      };
     };
-    extraConfig = builtins.readFile ./vimrc;
+    extraConfig = builtins.readFile ./nvimrc;
     plugins = with pkgs.unstable.vimPlugins; [
-      vim-startify
-      yankring
-      vim-polyglot
-      coc-pairs
-      everforest
-      nvim-tree-lua
-      nvim-web-devicons
-      coc-pyright
-      seoul256-vim
+      # Nvim tree
+      nvim-tree-lua nvim-web-devicons
+      # Language plugins
+      vim-polyglot coc-go coc-pyright
+      # Neat little git conflict plugin
       git-conflict-nvim
-      vim-airline
-      vim-airline-themes
-      coc-sqlfluff
+      # Theme(s)
+      kanagawa-nvim
+      bufferline-nvim
+      alpha-nvim
     ];
   };
 }

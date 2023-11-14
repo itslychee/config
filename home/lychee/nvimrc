@@ -1,4 +1,4 @@
-colorscheme seoul256
+colorscheme kanagawa
 filetype plugin indent on
 
 " Whitespace indicators :)))
@@ -8,7 +8,7 @@ set smartindent
 set cindent
 set backup
 set backupdir=~/.vim/backups
-set background=dark
+set background=light
 set cmdheight=1
 set cursorline
 set history=100
@@ -18,20 +18,19 @@ set termguicolors
 set ve+=onemore
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 set signcolumn=yes
+set hidden
+set updatetime=300
 
-" Airlines
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'default'
-let g:airline_theme="ayu_mirage"
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
+let mapleader=','
 
 
 function! ShowDocumentation()
    if CocAction('hasProvider', 'hover')
      call CocActionAsync('doHover')
    else
-     call feedkeys('K', 'in')
+     call feedkeys(';', 'in')
    endif
 endf
 
@@ -39,11 +38,26 @@ endf
 augroup membrane
    autocmd!
    autocmd VimEnter * :NvimTreeOpen
-   autocmd QuitPre  * :NvimTreeClose
+   autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+   autocmd QuitPre  * :NvimTreeClose | :silent call CocAction('runCommand', 'editor.action.organizeImport')
    autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup END
 
-nnoremap <silent> K :call ShowDocumentation()<CR>
+
+noremap gn :bnext<CR>
+noremap gp :bprev<CR>
+noremap gc :bw<CR>
+noremap gl :buffers<CR>
+noremap fn :tabnext<CR>
+noremap fp :tabprev<CR>
+noremap fc :tabclose<CR>
+noremap fo :tabnew<CR>
+noremap fl :tabs<CR>
+noremap H 3h
+noremap J 2j
+noremap K 2k
+noremap L 3l
+nnoremap <silent> ; :call ShowDocumentation()<CR>
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
@@ -53,13 +67,19 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 xmap <silent><leader>f  :call CocActionAsync('format')<CR>
 nmap <silent><leader>f  :call CocActionAsync('format')<CR>
-nmap <silent><leader>;  :NvimTreeToggle<CR>
+nmap <silent><leader>m  :NvimTreeToggle<CR>
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                       \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+" Add `:Format` command to format current buffe
+command! -nargs=0 Format :call CocActionAsync('format')
+" Add `:Fold` command to fold current buffe
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+" Add `:OR` command for organize imports of the current buffer
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 lua << EOF
 require 'git-conflict'.setup {
@@ -91,7 +111,11 @@ require "nvim-tree".setup({
     },
   },
 })
+require "bufferline".setup{
+   options = {
+      mode = "tabs",
+      tab_size = 10,
+   }
+}
+
 EOF
-
-
-

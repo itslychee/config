@@ -4,6 +4,7 @@ with pkgs.lib;
   # Aliases
   home.shellAliases.tree = "exa --tree";
   home.shellAliases.htop = "btop";
+  home.sessionVariables.DIRENV_LOG_FORMAT = "";
   # Zsh!
   programs.zsh.enable = true;
   programs.zsh.enableAutosuggestions = true;

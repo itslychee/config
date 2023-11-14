@@ -61,8 +61,10 @@
     # Discord
     discord-canary xdg-utils
     # Screenshot
-    grim slurp wayshot
+    slurp wayshot swappy
     # Clipboard
     wl-clipboard
+    # spotify
+    unstable.spotify
   ];
 }
