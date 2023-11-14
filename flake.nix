@@ -3,7 +3,7 @@
     nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
     master.url = github:NixOS/nixpkgs/master;
     hm.url = github:nix-community/home-manager/release-23.05;
-    mpdrp.url = path:/home/lychee/g/mpdrp;
+    mpdrp.url = github:itslychee/mpdrp;
 
     hm.inputs.nixpkgs.follows = "nixpkgs";
   };
