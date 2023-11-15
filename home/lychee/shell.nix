@@ -48,8 +48,13 @@ with pkgs.lib;
   };
   # CLI utilities
   programs.btop.enable = true;
-  programs.exa.enable = true;
-  programs.exa.enableAliases = true;
+  programs.eza.enable = true;
+  programs.eza.enableAliases = true;
+  programs.ripgrep.enable = true;
+  programs.ripgrep.arguments = [
+    "--max-columns=150"
+    "--max-columns-preview"
+  ];
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
   # Alacritty

@@ -16,7 +16,7 @@
   programs.git.enable = true;
   programs.git.package = pkgs.gitAndTools.gitFull;
   programs.git.delta = { enable = true; options.line-numbers = true; };
-  programs.git.ignores = [ "*.swp" ".direnv/"];
+  programs.git.ignores = [ ".envrc" "*.swp" ".direnv/"];
   programs.git.extraConfig = {
     core.editor = "${pkgs.neovim}/bin/nvim --clean";
     gpg.format = "ssh";
@@ -36,11 +36,11 @@
   programs.ssh.enable = true;
   programs.ssh.compression = true;
   programs.ssh.extraConfig = "AddKeysToAgent yes";
-  # services.ssh-agent.enable = true;
-  # systemd.user.services.ssh-agent = {
-  #   # I want a timeout
-  #   Service.ExecStart = lib.mkForce "${pkgs.openssh}/bin/ssh-agent -D -t 1h -a %t/ssh-agent";
-  # };
+  services.ssh-agent.enable = true;
+  systemd.user.services.ssh-agent = {
+    # I want a timeout
+    Service.ExecStart = lib.mkForce "${pkgs.openssh}/bin/ssh-agent -D -t 1h -a %t/ssh-agent";
+  };
 
   # XDG
   xdg.enable = true;

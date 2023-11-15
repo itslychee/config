@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
+    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
     master.url = github:NixOS/nixpkgs/master;
-    hm.url = github:nix-community/home-manager/release-23.05;
-    mpdrp.url = github:itslychee/mpdrp;
+    hm.url = github:nix-community/home-manager/master;
+    mpdrp.url = path:/home/lychee/g/mpdrp;
 
     hm.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -24,7 +24,10 @@
         headless = false;
         modules = [
           ./hosts/hearth.nix
-          { home-manager.users.lychee = ./home/lychee; }
+          { 
+            home-manager.users.lychee = ./home/lychee; 
+            home-manager.sharedModules = [ mpdrp.nixosModules.default ];
+          }
         ];
       }
     ]);

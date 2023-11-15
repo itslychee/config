@@ -39,7 +39,7 @@ with lib; {
     # Fonts
     fonts = mkIf config.graphical.fonts.enable {
       fontDir.enable = true;
-      fonts = with pkgs; [
+      packages = with pkgs; [
           ubuntu_font_family
           spleen
           dejavu_fonts
@@ -62,7 +62,7 @@ with lib; {
             ]; 
         })
       ];
-      enableDefaultFonts = true;
+      enableDefaultPackages = true;
       fontconfig.defaultFonts = {
         emoji =  [ "Noto Color Emoji" ];
         monospace =  [

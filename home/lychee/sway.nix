@@ -12,7 +12,7 @@
     }
   ];
   wayland.windowManager.sway.enable = true;
-  wayland.windowManager.sway.systemdIntegration = true;
+  wayland.windowManager.sway.systemd.enable = true;
   wayland.windowManager.sway.extraConfig = ''
     input "type:touchpad" {
       tap enabled
@@ -49,7 +49,8 @@
     player = "${pkgs.playerctl}/bin/playerctl --player='spotify,mpd,%any'";
     modifier = "Mod4";
   in {
-   Print = "exec wayshot -c -s \"`slurp -f '%x %y %w %h'`\" --stdout | swappy -f - -o - | wl-copy -t image/png";
+   Print = "exec wayshot -c -s \"`slurp -f '%x %y %w %h'`\" --stdout | wl-copy -t image/png";
+   "Shift+Print" = "exec wayshot -c -s \"`slurp -f '%x %y %w %h'`\" --stdout | swappy -f - -o - | wl-copy -t image/png";
    XF86AudioRaiseVolume = "exec ${pamixer} -i 2";
    XF86AudioLowerVolume = "exec ${pamixer} -d 2";
    XF86AudioMute = "exec ${pamixer} -t";

@@ -1,4 +1,5 @@
 # Shared nixos module among ALL hosts
+{ pkgs, ...}:
 {
   boot.tmp.useTmpfs = true;
   boot.tmp.cleanOnBoot = true;
@@ -18,5 +19,17 @@
     optimise.dates = [ "weekly" ];
     channel.enable = false;
   };
-  
+  security.rtkit.enable = true;
+  security.polkit.enable = true;
+
+
+  boot.binfmt.registrations.appimage = {
+    wrapInterpreterInShell = false;
+    interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+    recognitionType = "magic";
+    offset = 0;
+    mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+    magicOrExtension = ''\x7fELF....AI\x02'';
+  };
+
 }

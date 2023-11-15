@@ -34,7 +34,7 @@
   programs.dconf.enable = true;
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
-
+  services.gnome.at-spi2-core.enable = true;
   servers.ssh.enable = true;
   servers.ssh.allowedUsers = [ "lychee" ];
   users.users.lychee = {
