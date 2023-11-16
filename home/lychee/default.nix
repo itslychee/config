@@ -56,7 +56,13 @@
     publicShare = "${config.home.homeDirectory}/pub";
   };
 
+  programs.go.goPath = ".local/go";
+  programs.go.goBin = ".local/go-bin";
+
   home.packages = with pkgs;
+  [
+    zip unzip gnutar gzip
+  ] ++
   lib.optionals (!headless) [
     # Discord
     discord-canary xdg-utils

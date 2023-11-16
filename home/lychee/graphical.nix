@@ -14,9 +14,6 @@
   gtk.gtk2.extraConfig = "gtk-enable-primary-paste = \"false\"";
   gtk.gtk3.extraConfig = { gtk-enable-primary-paste = false; };
   gtk.gtk4.extraConfig = { gtk-enable-primary-paste = false; };
-
-  programs.mpdrp.enable = true;
-  programs.mpdrp.settings.withMpc = true;
   # Dunst
   services.dunst.enable = true;
   services.dunst.configFile = pkgs.writeText "config" 

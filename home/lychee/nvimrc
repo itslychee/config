@@ -1,7 +1,6 @@
 colorscheme kanagawa
 filetype plugin indent on
 
-" Whitespace indicators :)))
 set number
 set syntax=on
 set smartindent

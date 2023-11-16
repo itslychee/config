@@ -16,7 +16,6 @@ lib.mkIf (!headless) {
   # MPD <-> MPRIS protocol bridge
   services.mpd-mpris.enable = config.services.mpd.enable;
   services.mpd-mpris.mpd.network = "tcp";
-
   # ncmpcpp MPD client
   programs.ncmpcpp.enable = true;
   programs.ncmpcpp.bindings = [
@@ -25,7 +24,9 @@ lib.mkIf (!headless) {
     { key = "J"; command = ["select_item" "scroll_down"]; }
     { key = "K"; command = ["select_item" "scroll_up"]; }
   ];
-
   # Playerctl daemon
   services.playerctld.enable = true;
+  # Rich presence
+  programs.mpdrp.enable = true;
+  programs.mpdrp.settings.withMpc = true;
 }

@@ -3,7 +3,7 @@
     nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
     master.url = github:NixOS/nixpkgs/master;
     hm.url = github:nix-community/home-manager/master;
-    mpdrp.url = path:/home/lychee/g/mpdrp;
+    mpdrp.url = github:itslychee/mpdrp/rewrite;
 
     hm.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -18,7 +18,7 @@
         hostname = "hearth";
         system = "x86_64-linux";
         overlays = [
-          mpdrp.overlays."x86_64-linux".default
+          (super: prev: mpdrp.packages."x86_64-linux")
           overlays
         ];
         headless = false;
