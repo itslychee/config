@@ -1,17 +1,14 @@
-{ config, lib, options, pkgs, ...}:
+{ config, lib, pkgs, ...}:
 let
-  bl = config.bootloader;
-in 
-with lib; {
+  inherit (lib) mkIf mkEnableOption;
+in  {
   options = {
     # Options
     shell.zsh = mkEnableOption "Zsh shell";
     system.sound = mkEnableOption "sound via PipeWire";
-    graphical.fonts = {
-      enable = mkEnableOption "manage fonts";
-      defaults = mkEnableOption "install default fonts";
-    };
     graphical.enable = mkEnableOption "OpenGL";
+    graphical.fonts.enable = mkEnableOption "manage fonts";
+    graphical.fonts.defaults = mkEnableOption "install default fonts";
   };
 
   # Config

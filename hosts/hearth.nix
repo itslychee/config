@@ -28,9 +28,11 @@
 
   shell.zsh = true;
   system.sound = true;
-  graphical.fonts.enable = true;
-  graphical.fonts.defaults = true;
-  graphical.enable = true;
+  graphical = {
+    fonts.enable = true;
+    fonts.defaults = true;
+    enable = true;
+  };
   programs.dconf.enable = true;
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;

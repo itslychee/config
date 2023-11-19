@@ -2,9 +2,15 @@
 with pkgs.lib;
 {
   # Aliases
-  home.shellAliases.tree = "exa --tree";
-  home.shellAliases.htop = "btop";
-  home.sessionVariables.DIRENV_LOG_FORMAT = "";
+  home.shellAliases = {
+    tree = "exa --tree";
+    htop = "btop";
+  };
+  home.sessionVariables = {
+    DIRENV_LOG_FORMAT = "";
+    NIX_BUILD_SHELL = "${pkgs.zsh}/bin/zsh";
+    GOPATH = "~/.local/go";
+  };
   # Zsh!
   programs.zsh.enable = true;
   programs.zsh.enableAutosuggestions = true;
@@ -66,4 +72,5 @@ with pkgs.lib;
       window.opacity = 0.95;
     };
   };
+  programs.nix-index.enable = true;
 }

@@ -79,6 +79,7 @@
    "${modifier}+s" = "sticky toggle";
    "${modifier}+d" = "floating toggle";
    "${modifier}+f" = "fullscreen toggle";
+   "${modifier}+shift+h" = "move left";
    "${modifier}+shift+j" = "move down";
    "${modifier}+shift+k" = "move up";
    "${modifier}+shift+l" = "move right";

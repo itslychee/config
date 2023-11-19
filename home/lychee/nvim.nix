@@ -49,6 +49,7 @@
       kanagawa-nvim
       bufferline-nvim
       alpha-nvim
+      statix
     ];
   };
 }

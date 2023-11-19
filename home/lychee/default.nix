@@ -36,6 +36,8 @@
   programs.ssh.enable = true;
   programs.ssh.compression = true;
   programs.ssh.extraConfig = "AddKeysToAgent yes";
+
+  # SSH-Agent
   services.ssh-agent.enable = true;
   systemd.user.services.ssh-agent = {
     # I want a timeout
@@ -56,16 +58,18 @@
     publicShare = "${config.home.homeDirectory}/pub";
   };
 
-  programs.go.goPath = ".local/go";
-  programs.go.goBin = ".local/go-bin";
-
   home.packages = with pkgs;
   [
     zip unzip gnutar gzip
   ] ++
   lib.optionals (!headless) [
     # Discord
-    discord-canary xdg-utils
+    (discord-canary.override {
+      withOpenASAR = true;
+      withVencord = true;
+      withTTS = true;
+    }) 
+    xdg-utils
     # Screenshot
     slurp wayshot swappy
     # Clipboard

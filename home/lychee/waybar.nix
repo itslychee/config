@@ -1,6 +1,6 @@
 { pkgs, config, ...}:
 let
-  swaySystemd = config.wayland.windowManager.sway.systemdIntegration;
+  swaySystemd = config.wayland.windowManager.sway.systemd.enable;
 in {
   programs.waybar.enable = true;
   programs.waybar.settings.mainBar = {

@@ -1,31 +1,41 @@
-{ nixpkgs, hm, ...}@attrs:
-rec {
+{
+  inputs,
+  overlays ? [],
+  defaultmodules ? [],
+}:
+let
+  inherit (inputs.nixpkgs.lib)
+    forEach
+    attrsets
+    nixosSystem
+    genAttrs;
+in 
+{
   # My hostnames are always going to be the same as <name> in
   # nixosConfigurations.<name> as it facilitates implicit nixos-rebuild
   # builds without me passing what config to use.
-  systems = hosts: nixpkgs.lib.attrsets.mergeAttrsList (nixpkgs.lib.forEach hosts 
+  systems = hosts: 
+  attrsets.mergeAttrsList
+  (forEach hosts 
   (host: {
-    "${host.hostname}" = nixpkgs.lib.nixosSystem ((removeAttrs host [ "hostname" "headless" "overlays"]) // {
-        modules = (host.modules or []) ++ [
-        ./options
-        ../hosts/shared.nix
-        hm.nixosModules.home-manager
-        {
-          home-manager.verbose = true;
-          home-manager.extraSpecialArgs = { headless = host.headless; };
-          home-manager.useGlobalPkgs = true;
-          home-manager.sharedModules = [ { home.stateVersion = "23.05"; } ];
-          system.stateVersion = "23.05";
-
-          networking.hostName = host.hostname;
-          nixpkgs.hostPlatform = host.system; 
-          nixpkgs.overlays = host.overlays;
-        }
-      ];
-      specialArgs = (host.specialArgs or {}) // { self = host; };
+    ${host.hostname} = nixosSystem (
+    (removeAttrs host [ "hostname" "headless" "overlays" "modules" ]
+    ) // {
+        modules = [
+          ./options
+          ../hosts/shared.nix
+          {
+            networking.hostName = host.hostname;
+            home-manager.extraSpecialArgs.headless = host.headless;
+            nixpkgs.hostPlatform = host.system; 
+            nixpkgs.overlays = (host.overlays or []) ++ overlays;
+          }
+          inputs.hm.nixosModules.home-manager
+      ] ++ defaultmodules ++ host.modules;
+      specialArgs = { self = host; inherit inputs; };
     });
   }));
   # Who knew flake-utils made a simple function look so complicated!?!!?
-  eachSystem = nixpkgs.lib.genAttrs ["x86_64-linux" "aarch64-linux"];
+  eachSystem = genAttrs ["x86_64-linux" "aarch64-linux"];
 
 }
