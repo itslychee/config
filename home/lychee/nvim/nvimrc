@@ -1,13 +1,15 @@
 colorscheme kanagawa
 filetype plugin indent on
+syntax on
 
+set nocompatible
 set number
-set syntax=on
+set relativenumber
 set smartindent
 set cindent
 set backup
-set backupdir=~/.vim/backups
-set background=light
+set backupdir=~/.cache/vim/backups
+set background=dark
 set cmdheight=1
 set cursorline
 set history=100
@@ -19,6 +21,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 set signcolumn=yes
 set hidden
 set updatetime=300
+
 
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
@@ -33,25 +36,19 @@ function! ShowDocumentation()
    endif
 endf
 
-
 augroup membrane
    autocmd!
-   autocmd VimEnter * :NvimTreeOpen
+   autocmd VimEnter * :lua require "nvim-tree.api".tree.toggle({ focus = false })
    autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
    autocmd QuitPre  * :NvimTreeClose | :silent call CocAction('runCommand', 'editor.action.organizeImport')
    autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup END
 
 
-noremap gn :bnext<CR>
-noremap gp :bprev<CR>
+noremap gn :bn<CR>
+noremap gp :bp<CR>
 noremap gc :bw<CR>
 noremap gl :buffers<CR>
-noremap fn :tabnext<CR>
-noremap fp :tabprev<CR>
-noremap fc :tabclose<CR>
-noremap fo :tabnew<CR>
-noremap fl :tabs<CR>
 noremap H 3h
 noremap J 2j
 noremap K 2k
@@ -67,6 +64,10 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <silent><leader>f  :call CocActionAsync('format')<CR>
 nmap <silent><leader>f  :call CocActionAsync('format')<CR>
 nmap <silent><leader>m  :NvimTreeToggle<CR>
+
+nnoremap <leader>g <cmd>Telescope find_files<cr>
+nnoremap <leader>d <cmd>Telescope git_files<cr>
+nnoremap <leader>n <cmd>Telescope live_grep<CR>
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
@@ -106,7 +107,7 @@ require "nvim-tree".setup({
   },
   tab = {
     sync = {
-      open = true;
+      open = true,
     },
   },
 })

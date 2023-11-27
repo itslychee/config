@@ -50,6 +50,9 @@
       bufferline-nvim
       alpha-nvim
       statix
+      # Multi cursors!
+      vim-visual-multi
+      telescope-nvim
     ];
   };
 }

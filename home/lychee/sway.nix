@@ -38,9 +38,11 @@
       text = "#efefef"; 
       indicator = "#ffd7e8";
     };
-    output.HDMI-A-1.bg = "~/.wallpaper-image fill";
-    output.HDMI-A-1.mode = "1920x1080@144.001Hz";
-    output.HDMI-A-1.adaptive_sync = "on";
+    output.HDMI-A-1 = {
+      bg = "~/.wallpaper-image fill";
+      mode = "1920x1080@144.001Hz";
+      adaptive_sync = "on";
+    };
   };
 
   # Keybindings

@@ -26,6 +26,7 @@ lib.mkIf (!headless) {
   ];
   # Playerctl daemon
   services.playerctld.enable = true;
+
   # Rich presence
   programs.mpdrp.enable = true;
   programs.mpdrp.settings.withMpc = true;

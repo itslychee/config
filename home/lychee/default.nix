@@ -1,8 +1,9 @@
 { config, pkgs, lib, headless, ...}:
 {
   imports = [
-    ./shell.nix
-    ./nvim.nix
+    ./nvim
+    ./shell
+    ./dev.nix
   ] 
   ++ lib.optionals (!headless) [
     ./graphical.nix
@@ -12,37 +13,6 @@
     ./firefox.nix
   ] 
   ++ lib.optionals headless [];
-  # Git
-  programs.git.enable = true;
-  programs.git.package = pkgs.gitAndTools.gitFull;
-  programs.git.delta = { enable = true; options.line-numbers = true; };
-  programs.git.ignores = [ ".envrc" "*.swp" ".direnv/"];
-  programs.git.extraConfig = {
-    core.editor = "${pkgs.neovim}/bin/nvim --clean";
-    gpg.format = "ssh";
-    user.signingkey = "~/.ssh/id_ed25519.pub";
-    push.gpgSign = "if-asked";
-    commit.gpgsign = true;
-    merge.ff = false;
-    pull.rebase = "merges";
-    user = { email = "itslychee@protonmail.com"; name = "lychee"; };
-  };
-  # GPG
-  programs.gpg.enable = true;
-  services.gpg-agent.enable = true;
-  services.gpg-agent.pinentryFlavor = "tty";
-  services.gpg-agent.extraConfig = "no-allow-external-cache";
-  # SSH
-  programs.ssh.enable = true;
-  programs.ssh.compression = true;
-  programs.ssh.extraConfig = "AddKeysToAgent yes";
-
-  # SSH-Agent
-  services.ssh-agent.enable = true;
-  systemd.user.services.ssh-agent = {
-    # I want a timeout
-    Service.ExecStart = lib.mkForce "${pkgs.openssh}/bin/ssh-agent -D -t 1h -a %t/ssh-agent";
-  };
 
   # XDG
   xdg.enable = true;

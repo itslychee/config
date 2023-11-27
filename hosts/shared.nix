@@ -28,14 +28,8 @@
     enable = true;
     libraries = with pkgs; [
       stdenv.cc.cc
-      zlib
-      fuse3
-      icu
-      zlib
-      nss
-      openssl
-      curl
-      expat
+      zlib fuse3 icu zlib
+      nss openssl curl expat
     ];
   };
   nixpkgs.config.allowUnfree = true;
@@ -43,8 +37,7 @@
   # State version
   system.stateVersion = "23.05";
   home-manager.sharedModules = [ { home.stateVersion = "23.05"; } ];
-
-
+  hardware.enableAllFirmware = true;
   boot.binfmt.registrations.appimage = {
     wrapInterpreterInShell = false;
     interpreter = "${pkgs.appimage-run}/bin/appimage-run";

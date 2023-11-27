@@ -8,6 +8,7 @@ with pkgs.lib;
     enable = mkEnableOption "OpenSSH Server";
     allowedUsers = mkOption { type = types.listOf types.str; default = [];};
   };
+
   config.services.openssh = mkIf cfg.enable {
     enable = true;
     settings = {

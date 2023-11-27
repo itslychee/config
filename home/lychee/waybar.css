@@ -7,7 +7,7 @@
 
 window { background-color: @bar-background; border-bottom: 0.5px solid @bar-bottom-border; }
 
-* { font-family: Terminus, 'Font Awesome 6 Free', 'Font Awesome 6 Brands'; color: @bar-foreground; } 
+* { font-family: Terminus, 'Font Awesome 6 Free', 'Font Awesome 6 Brands', sans-serif; color: @bar-foreground; } 
 
 #mpris, #battery, #memory, #disk, #pulseaudio, #network, #workspaces, #clock {
   background-color: @module-background;

@@ -9,7 +9,14 @@
     hm.inputs.nixpkgs.follows = "nixpkgs";
     mpdrp.inputs.nixpkgs.follows = "nixpkgs";
   };
-  outputs = {self, nixpkgs, master, hm, mpdrp}@attrs: let
+  outputs = {
+    self,
+    nixpkgs,
+    master,
+    hm,
+    mpdrp
+  }@attrs: {
+    # Personal library
     lib = import ./lib {
       overlays = [
         (final: prev: {
@@ -20,13 +27,12 @@
         })
       ];
       # NixOS modules for all hosts
-      defaultmodules = [
+      modules = [
         { home-manager.sharedModules = [ mpdrp.nixosModules.default ]; }
       ];
       inputs = attrs;
     };
-  in {
-    nixosConfigurations = (lib.systems [
+    nixosConfigurations = (self.lib.systems.hosts [
       {
         hostname = "hearth";
         system = "x86_64-linux";
@@ -35,13 +41,9 @@
           { home-manager.users.lychee = ./home/lychee; }
           ./hosts/hearth.nix
         ];
-        overlays = [
-          (_: _: mpdrp.packages."x86_64-linux")
-        ];
+        overlays = [ (_: _: mpdrp.packages."x86_64-linux") ];
       }
     ]);
-    # Formatter!
-    formatter = lib.eachSystem (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt );
     # Templates
     templates = import ./templates attrs;
   };

@@ -16,9 +16,7 @@ in  {
     programs.bash.enableCompletion = true;
     # Zsh
     programs.zsh.enable = config.shell.zsh;
-    environment.pathsToLink = mkIf config.shell.zsh [
-      "/share/zsh"
-    ];
+    environment.pathsToLink = mkIf config.shell.zsh [ "/share/zsh" ];
     # Sound (PipeWire)
     services.pipewire = mkIf config.system.sound {
       enable = true;
@@ -37,38 +35,41 @@ in  {
     fonts = mkIf config.graphical.fonts.enable {
       fontDir.enable = true;
       packages = with pkgs; [
-          ubuntu_font_family
-          spleen
           dejavu_fonts
+          ubuntu_font_family
           noto-fonts
-          noto-fonts-extra
+          noto-fonts-emoji-blob-bin
           noto-fonts-cjk
-          noto-fonts-emoji
-          tamsyn
-          liberation_ttf
+          twemoji-color-font
           font-awesome
           material-design-icons
-          terminus_font
           corefonts
+          liberation_ttf
+          terminus_font
           (nerdfonts.override {
             fonts = [
-              "FiraCode"
-              "Iosevka"
-              "SourceCodePro"
               "JetBrainsMono"
+              "SourceCodePro"
+              "Iosevka"
+              "NerdFontsSymbolsOnly"
             ]; 
         })
       ];
       enableDefaultPackages = true;
       fontconfig.defaultFonts = {
-        emoji =  [ "Noto Color Emoji" ];
-        monospace =  [
-          "Iosevka"
-          "Terminus"
-          "Fira Mono"
+        emoji =  [ 
+          "Blobmoji"
+          "Noto Color Emojis"
+          "Material Design Icons"
+          "Font Awesome 6 Free"
         ];
-        serif =  [ "DejaVu Serif" ];
-        sansSerif =  [ "Fira Sans" ];
+        monospace =  [
+          "Terminus"
+          "JetBrains Nerd Font Mono"
+          "Ubuntu Mono"
+        ];
+        serif =  [ "DejaVu Serif" "Ubuntu"];
+        sansSerif =  [ "DejaVu Sans" "Ubuntu" ];
       };
     };
 
