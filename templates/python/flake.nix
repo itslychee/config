@@ -1,15 +1,30 @@
 {
   description = "My python project";
   inputs = {
-    poetry.url = github:nix-community/poetry2nix;
-    lib.url = github:itslychee/config;
+    lib_.url = github:itslychee/config;
   };
   outputs = {
+    self,
     nixpkgs,
-    poetry,
-    lib,
+    lib_,
   }:
+  let
+    inherit (lib_) lib;
+  in 
   {
-    devShells = 
+    devShells = lib.eachSystem (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      default = pkgs.mkShell {
+        packages = with pkgs; [
+          python311
+          poetry
+        ];
+        shellHook = ''
+          poetry env use python
+        '';
+      };
+    });
+
   };
 }
