@@ -1,0 +1,115 @@
+colorscheme kanagawa
+filetype plugin indent on
+syntax on
+
+set nocompatible
+set number
+set relativenumber
+set smartindent
+set cindent
+set backup
+set backupdir=~/.cache/vim/backups
+set background=dark
+set cmdheight=1
+set cursorline
+set history=100
+set nowrap
+set omnifunc=syntaxcomplete#Complete
+set termguicolors
+set ve+=onemore
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+set signcolumn=yes
+set hidden
+set updatetime=300
+
+
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+let mapleader=','
+
+
+function! ShowDocumentation()
+   if CocAction('hasProvider', 'hover')
+     call CocActionAsync('doHover')
+   else
+     call feedkeys(';', 'in')
+   endif
+endf
+
+augroup membrane
+   autocmd!
+   autocmd VimEnter * :lua require "nvim-tree.api".tree.toggle({ focus = false })
+   autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+   autocmd QuitPre  * :NvimTreeClose | :silent call CocAction('runCommand', 'editor.action.organizeImport')
+   autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
+
+
+noremap gn :bn<CR>
+noremap gp :bp<CR>
+noremap gc :bw<CR>
+noremap gl :buffers<CR>
+nnoremap <silent> ; :call ShowDocumentation()<CR>
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+xmap <silent><leader>f  :call CocActionAsync('format')<CR>
+nmap <silent><leader>f  :call CocActionAsync('format')<CR>
+nmap <silent><leader>m  :NvimTreeToggle<CR>
+
+nnoremap <leader>g <cmd>Telescope find_files<cr>
+nnoremap <leader>d <cmd>Telescope git_files<cr>
+nnoremap <leader>n <cmd>Telescope live_grep<CR>
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Add `:Format` command to format current buffe
+command! -nargs=0 Format :call CocActionAsync('format')
+" Add `:Fold` command to fold current buffe
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+" Add `:OR` command for organize imports of the current buffer
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+
+lua << EOF
+require 'git-conflict'.setup {
+  default_mappings = {
+    ours = 'o',
+    theirs = 't',
+    none = '0',
+    both = 'b',
+    next = 'n',
+    prev = 'p',
+  },
+}
+require "nvim-web-devicons".setup()
+require "nvim-tree".setup({
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = false,
+    custom = { "^\\.venv/", "^\\.git/" },
+    git_ignored = false,
+  },
+  update_focused_file = {
+    enable = true,
+  },
+  tab = {
+    sync = {
+      open = true,
+    },
+  },
+})
+require "bufferline".setup{
+   options = {
+      tab_size = 10,
+   }
+}
+EOF
