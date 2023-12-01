@@ -1,7 +1,8 @@
 {
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
-    master.url = github:NixOS/nixpkgs/master;
+    master.url = path:/home/lychee/g/nixpkgs;
+    # master.url = github:NixOS/nixpkgs/master;
     hm.url = github:nix-community/home-manager/master;
     mpdrp.url = github:itslychee/mpdrp/rewrite;
     # mpdrp.url = path:/home/lychee/g/mpdrp;
@@ -21,7 +22,7 @@
       overlays = [
         (final: prev: {
           unstable = import master {
-            system = prev.system;
+            inherit (prev) system;
             config.allowUnfree = true;
           };
         })
@@ -32,7 +33,7 @@
       ];
       inputs = attrs;
     };
-    nixosConfigurations = (self.lib.systems.hosts [
+    nixosConfigurations = self.lib.systems.hosts [
       {
         hostname = "hearth";
         system = "x86_64-linux";
@@ -43,7 +44,7 @@
         ];
         overlays = [ (_: _: mpdrp.packages."x86_64-linux") ];
       }
-    ]);
+    ];
     # Templates
     templates = import ./templates attrs;
   };

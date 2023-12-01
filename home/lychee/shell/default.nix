@@ -9,6 +9,7 @@ in {
   home.shellAliases = {
     tree = "exa --tree";
     htop = "btop";
+    rb = "sudo nixos-rebuild switch --flake path:/home/lychee/g/config";
   };
   home.sessionVariables = {
     DIRENV_LOG_FORMAT = "";

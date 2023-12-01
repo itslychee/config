@@ -49,10 +49,6 @@ noremap gn :bn<CR>
 noremap gp :bp<CR>
 noremap gc :bw<CR>
 noremap gl :buffers<CR>
-noremap H 3h
-noremap J 2j
-noremap K 2k
-noremap L 3l
 nnoremap <silent> ; :call ShowDocumentation()<CR>
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -113,9 +109,7 @@ require "nvim-tree".setup({
 })
 require "bufferline".setup{
    options = {
-      mode = "tabs",
       tab_size = 10,
    }
 }
-
 EOF

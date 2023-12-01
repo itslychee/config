@@ -12,7 +12,10 @@
       trusted-users = ["@wheel" "root" ];
       experimental-features = [ "nix-command" "flakes" ];
     };
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" "nixos-config=${../flake.nix}" ];
+    nixPath = [ 
+      "nixpkgs=${inputs.nixpkgs}" 
+      "localpkgs=/home/lychee/g/nixpkgs"
+    ];
     gc.persistent = true;
     gc.automatic = true;
     gc.options = "-d --delete-older-than 10d";

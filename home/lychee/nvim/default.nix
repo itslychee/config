@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, fetchFromGitHub, ...}:
 {
  programs.neovim = {
    enable = true;
@@ -11,34 +11,48 @@
      "suggest.enablePreview" = true;
      "suggest.enablePreselect" = false;
      "suggest.disableKind" = true;
-     "python.formatting.provider" = "${pkgs.ruff}/bin/ruff-format";
-     "python.linting.ruffEnabled" = "true";
-     "python.linting.flake8Enabled" = "true";
-     "python.analysis.diagnosticMode" = "workspace";
-     "pyright.inlayHints.variableTypes" = false;
-     "suggest.triggerCompletionWait"= 35;
-     "go.goplsPath" = "${pkgs.unstable.gopls}/bin/gopls";
-     "go.goplsUseDaemon" = true;
+     "suggest.triggerCompletionWait"= 25;
+     # Ruff
+     # "ruff.useDetectRuffCommand" = false;
+     # "ruff.path" = "${pkgs.unstable.ruff}/bin/ruff";
+     # "ruff.serverPath" = "${pkgs.unstable.ruff-lsp}/bin/ruff-lsp";
+     "ruff.trace.server" = "verbose";
+
      languageserver = {
-       go.command = "${pkgs.unstable.gopls}/bin/gopls";
-       go.rootPatterns = ["go.mod"];
-       go.filetypes = ["go"];
-       go."trace.server" = "verbose";
-       go."go.goplsOptions" = {
-         completeUnimported = true;
-         local = "${pkgs.unstable.gotools}/bin/goimports -local";
+       golang = {
+         command = "${pkgs.unstable.gopls}/bin/gopls";
+         rootPatterns = ["go.mod"];
+         filetypes = ["go"];
+         "trace.server" = "verbose";
+         "go.goplsOptions" = {
+           completeUnimported = true;
+           local = "${pkgs.unstable.gotools}/bin/goimports -local";
+         };
+       };
+       python = {
+         command = "${pkgs.unstable.ruff-lsp}/bin/ruff-lsp";
+         rootPatterns = [ "pyproject.toml" "setup.py" ];
+         filetypes = [ "py" ];
        };
        # Nix 
-       nix.command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
-       nix.filetypes = [ "nix" ];
+       nixd = {
+         command = "${pkgs.unstable.nixd}/bin/nixd";
+         rootPatterns = [ ".nixd.json" "statix.toml" ];
+         filetypes = ["nix"];
+       };
        # Rust
-       rust.command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-       rust.filetypes = [ "rs" ];
-       rust.rootPatterns = [ "Cargo.toml" ];
+       rust = {
+         command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+         filetypes = [ "rs" ];
+         rootPatterns = [ "Cargo.toml" ];
+      };
      };
     };
     extraConfig = builtins.readFile ./nvimrc;
     plugins = with pkgs.unstable.vimPlugins; [
+      coc-ruff
+      # syntax highlighting
+        
       # Nvim tree
       nvim-tree-lua nvim-web-devicons
       # Language plugins
@@ -47,12 +61,15 @@
       git-conflict-nvim
       # Theme(s)
       kanagawa-nvim
+      # tab-like ui
       bufferline-nvim
       alpha-nvim
       statix
       # Multi cursors!
       vim-visual-multi
       telescope-nvim
+
+      editorconfig-nvim
     ];
   };
 }
