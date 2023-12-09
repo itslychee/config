@@ -11,6 +11,7 @@
     hasSuffix
     nixosSystem
     optional
+    flatten
     ;
   inherit
     (builtins)
@@ -32,23 +33,22 @@ in rec {
     map (name: {
       inherit name;
       value = nixosSystem {
-        modules = [
+        modules = flatten [
           {
             networking.hostName = name;
 
             # Nixpkgs
             nixpkgs.config.allowUnfree = true;
             nixpkgs.hostPlatform = arch;
-            nixpkgs.overlays = [(mkImport "${self}/overlays")];
+            # nixpkgs.overlays = [(mkImport "${self}/overlays")];
           }
           # Host
           (mkImport "${self}/hosts/${name}")
           # Module system
           (mkImport "${self}/modules")
           # Secrets
-          (mkImport "${self}/secrets")
           # Flake modules
-          inputs.agenix.nixosModules.agenix
+          # inputs.agenix.nixosModules.agenix
           inputs.disko.nixosModules.disko
 
           # Add disko configuration
