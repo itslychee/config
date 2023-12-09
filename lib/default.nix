@@ -1,62 +1,67 @@
-{ self, nixos-unstable, ...}@inputs:
-let
-  inherit (nixos-unstable.lib)
+{
+  self,
+  nixos-unstable,
+  ...
+} @ inputs: let
+  inherit
+    (nixos-unstable.lib)
     genAttrs
     listToAttrs
     removeAttrs
     hasSuffix
-    nixosSystem;
-  inherit (builtins)
-    pathExists;
-in
-rec {
-
-  # Supported systems that I use, not just inside 
-  # my configuration.
-  per = genAttrs [
-    "x86_64-linux"
-    "aarch64-linux"
-  ];
+    nixosSystem
+    optional
+    ;
+  inherit
+    (builtins)
+    pathExists
+    ;
+in rec {
+  # Supported systems that I use throughout my daily life
+  per = genAttrs ["x86_64-linux" "aarch64-linux"];
 
   mkImport = x: let
-    qualifiedPath = 
+    qualifiedPath =
       if (!pathExists x) && (!hasSuffix x ".nix")
-      then
-        "${x}.nix"
-      else
-        x;
-    in import qualifiedPath inputs;
+      then "${x}.nix"
+      else x;
+  in
+    import qualifiedPath inputs;
 
-  mkSystems = hosts:
-    listToAttrs (map 
-      (v: {
-        inherit (v) name;
-        value = nixosSystem { 
-          modules = [
+  mkSystems = arch: hosts: (listToAttrs (
+    map (name: {
+      inherit name;
+      value = nixosSystem {
+        modules = [
+          {
+            networking.hostName = name;
+
             # Nixpkgs
-            { 
-              nixpkgs.hostPlatform = v.system;
-              nixpkgs.overlays = [ (mkImport "${self}/overlays") ];
-            }
-            # Host
-            (mkImport "${self}/hosts/${v.name}")
-            # Module system
-            (mkImport "${self}/modules")
-            # Secrets
-            (mkImport "${self}/secrets")
-            # Flake modules
-            inputs.agenix.nixosModules.agenix
-            inputs.disko.nixosModules.disko
+            nixpkgs.config.allowUnfree = true;
+            nixpkgs.hostPlatform = arch;
+            nixpkgs.overlays = [(mkImport "${self}/overlays")];
+          }
+          # Host
+          (mkImport "${self}/hosts/${name}")
+          # Module system
+          (mkImport "${self}/modules")
+          # Secrets
+          (mkImport "${self}/secrets")
+          # Flake modules
+          inputs.agenix.nixosModules.agenix
+          inputs.disko.nixosModules.disko
 
-            (self.diskoConfigurations.${v.name} or {})
-          ];
-        };
-      })
-      hosts
-    );
+          # Add disko configuration
+          (optional (self.diskoConfigurations ? name) self.diskoConfigurations.${name})
+        ];
+      };
+    })
+    hosts
+  ));
 
   mkDisko = hosts:
-    listToAttrs (map 
+    listToAttrs (
+      map
       (name: {
         inherit name;
         value.disko.devices = mkImport ./hosts/${name}/disks;

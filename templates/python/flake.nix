@@ -7,11 +7,9 @@
     self,
     nixpkgs,
     lib_,
-  }:
-  let
+  }: let
     inherit (lib_) lib;
-  in 
-  {
+  in {
     devShells = lib.eachSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
     in {
@@ -25,6 +23,5 @@
         '';
       };
     });
-
   };
 }
