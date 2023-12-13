@@ -1,4 +1,4 @@
-{ pkgs, fetchFromGitHub, ...}:
+{ pkgs, lib, ...}:
 {
  programs.neovim = {
    enable = true;
@@ -35,10 +35,13 @@
          filetypes = [ "py" ];
        };
        # Nix 
-       nixd = {
-         command = "${pkgs.unstable.nixd}/bin/nixd";
-         rootPatterns = [ ".nixd.json" "statix.toml" ];
+       nix = {
+         command = "${lib.getExe pkgs.nil}";
+         rootPatterns = [ "flake.nix" ];
          filetypes = ["nix"];
+         settings.nil = {
+           formatting.command = [ "nix" "fmt" ];
+         };
        };
        # Rust
        rust = {

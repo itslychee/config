@@ -60,6 +60,7 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <silent><leader>f  :call CocActionAsync('format')<CR>
 nmap <silent><leader>f  :call CocActionAsync('format')<CR>
 nmap <silent><leader>m  :NvimTreeToggle<CR>
+tnoremap <ESC> <C-\><C-N>
 
 nnoremap <leader>g <cmd>Telescope find_files<cr>
 nnoremap <leader>d <cmd>Telescope git_files<cr>
