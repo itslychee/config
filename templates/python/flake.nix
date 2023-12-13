@@ -1,16 +1,13 @@
 {
   description = "My python project";
   inputs = {
-    lib_.url = github:itslychee/config;
+    lib.url = "github:itslychee/config";
   };
   outputs = {
     self,
     nixpkgs,
-    lib_,
+    lib,
   }:
-  let
-    inherit (lib_) lib;
-  in 
   {
     devShells = lib.eachSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
