@@ -35,7 +35,6 @@ _: {
       };
     };
   };
-  # this should not be evaluated until
   homeConf =
     mapAttrsToList (name: value: let
       home = evalModules {
@@ -55,7 +54,7 @@ _: {
       # User-specific files
       systemd.user.tmpfiles.users.${name}.rules = map (
           v: "L+ %h/${v.target} - - - - ${v.source}"
-        ) optional (conf.home ? files) conf.home.files;
+        ) optional (home.home ? files) home.home.files;
     })
     config.hey.users;
 in {
