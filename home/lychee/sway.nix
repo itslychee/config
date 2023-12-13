@@ -12,6 +12,7 @@
     }
   ];
   wayland.windowManager.sway.enable = true;
+  wayland.windowManager.sway.package = pkgs.swayfx;
   wayland.windowManager.sway.systemd.enable = true;
   wayland.windowManager.sway.extraConfig = ''
     input "type:touchpad" {
@@ -23,6 +24,10 @@
     }
     for_window [app_id="firefox"] inhibit_idle fullscreen
     for_window [app_id="Firefox"] inhibit_idle fullscreen
+
+    corner_radius 10
+    shadows enable
+
     workspace 1
   '';
 
