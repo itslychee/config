@@ -46,5 +46,15 @@
     wl-clipboard
     # spotify
     unstable.spotify
+
+    (pkgs.prismlauncher.overrideAttrs{
+      src = pkgs.fetchFromGitHub {
+        owner = "Diegiwg";
+        repo = "PrismLauncher-Cracked";
+        rev = "01144ae9a1c8dc0036b7d218e948cce1ab79dac5";
+        hash = "sha256-oE1dze+koAOOXWVYzJ5OAeUl9GwgAdx/vlAzJEBY5s4=";
+      };
+    })
+
   ];
 }
