@@ -36,11 +36,9 @@ in rec {
         modules = flatten [
           {
             networking.hostName = name;
-
             # Nixpkgs
             nixpkgs.config.allowUnfree = true;
             nixpkgs.hostPlatform = arch;
-            # nixpkgs.overlays = [(mkImport "${self}/overlays")];
           }
           # Host
           (mkImport "${self}/hosts/${name}")
