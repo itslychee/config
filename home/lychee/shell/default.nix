@@ -1,4 +1,4 @@
-{ config, pkgs, headless, lib, ...}:
+{ config, headless, lib, ...}:
 let
   inherit (lib) mkIf;
 in {
@@ -9,7 +9,7 @@ in {
   home.shellAliases = {
     tree = "exa --tree";
     htop = "btop";
-    rb = "sudo nixos-rebuild switch --flake path:/home/lychee/g/config";
+    rb = "sudo nixos-rebuild switch --flake path:${config.home.homeDirectory}/config";
   };
   home.sessionVariables = {
     DIRENV_LOG_FORMAT = "";

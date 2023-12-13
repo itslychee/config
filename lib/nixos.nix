@@ -27,7 +27,10 @@ in {
             home-manager
             {
               networking.hostName = host.hostname;
-              home-manager.extraSpecialArgs.headless = host.headless;
+              home-manager.extraSpecialArgs = {
+                inherit (host) headless;
+                inherit inputs;
+              };
               nixpkgs.hostPlatform = host.system; 
               nixpkgs.overlays = (host.overlays or []) ++ overlays;
             }
