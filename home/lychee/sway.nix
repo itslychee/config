@@ -36,6 +36,7 @@
     gaps.smartGaps = true;
     gaps.inner = 5;
     focus.followMouse = "no";
+    window.titlebar = false;
     colors.focused = {
       border = "#ec6c6e"; 
       childBorder = "#ffa9d2"; 
