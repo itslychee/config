@@ -29,15 +29,10 @@
     };
   };
   services = {
-    ssh-agent.enable = true;
     gpg-agent = {
       enable = true;
       pinentryFlavor = "tty";
       extraConfig = "no-allow-external-cache";
     };
-  };
-  systemd.user.services.ssh-agent = {
-    # I want a timeout
-    Service.ExecStart = lib.mkForce "${pkgs.openssh}/bin/ssh-agent -D -t 1h -a %t/ssh-agent";
   };
 }

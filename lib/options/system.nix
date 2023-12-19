@@ -5,6 +5,7 @@ in  {
   options = {
     # Options
     shell.zsh = mkEnableOption "Zsh shell";
+    shell.fish = mkEnableOption "Fish shell";
     system.sound = mkEnableOption "sound via PipeWire";
     graphical.enable = mkEnableOption "OpenGL";
     graphical.fonts.enable = mkEnableOption "manage fonts";
@@ -16,6 +17,7 @@ in  {
     programs.bash.enableCompletion = true;
     # Zsh
     programs.zsh.enable = config.shell.zsh;
+    programs.fish.enable = config.shell.fish;
     environment.pathsToLink = mkIf config.shell.zsh [ "/share/zsh" ];
     # Sound (PipeWire)
     services.pipewire = mkIf config.system.sound {

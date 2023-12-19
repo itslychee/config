@@ -32,7 +32,7 @@ in {
       };
     };
     zsh = {
-      enable = true;
+      enable = false;
       enableAutosuggestions = true;
       enableCompletion = true;
       enableVteIntegration = true;
@@ -45,6 +45,13 @@ in {
         bindkey -v '^?' backward-delete-char
       '';
     };
+
+
+    fish = {
+      enable = true;
+    };
+
+
     # CLI utilities
     btop.enable = true;
     eza.enable = true;

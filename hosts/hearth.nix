@@ -30,7 +30,7 @@
     };
   };
 
-  shell.zsh = true;
+  shell.fish = true;
   system.sound = true;
   graphical = {
     fonts.enable = true;
@@ -40,6 +40,13 @@
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
 
+  # SSH Agent
+  programs.ssh = {
+    startAgent = true;
+    agentTimeout = "1h";
+  };
+
+
   services.gnome.at-spi2-core.enable = true;
   # SSH 
   servers.ssh.enable = true;
@@ -47,7 +54,7 @@
   # Users
   users.users.lychee = {
     isNormalUser = true;
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     extraGroups = [ "wheel" "storage" "networkmanager" "adbusers" ];
   };
 }
