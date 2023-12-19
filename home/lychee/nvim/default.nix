@@ -13,9 +13,9 @@
      "suggest.disableKind" = true;
      "suggest.triggerCompletionWait"= 25;
      # Ruff
-     # "ruff.useDetectRuffCommand" = false;
-     # "ruff.path" = "${pkgs.unstable.ruff}/bin/ruff";
-     # "ruff.serverPath" = "${pkgs.unstable.ruff-lsp}/bin/ruff-lsp";
+     "ruff.useDetectRuffCommand" = false;
+     "ruff.path" = "${pkgs.unstable.ruff}/bin/ruff";
+     "ruff.serverPath" = "${pkgs.unstable.ruff-lsp}/bin/ruff-lsp";
      "ruff.trace.server" = "verbose";
 
      languageserver = {
@@ -30,7 +30,7 @@
          };
        };
        python = {
-         command = "${pkgs.unstable.ruff-lsp}/bin/ruff-lsp";
+         command = "${pkgs.ruff}/bin/ruff";
          rootPatterns = [ "pyproject.toml" "setup.py" ];
          filetypes = [ "py" ];
        };

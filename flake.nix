@@ -1,10 +1,10 @@
 {
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
-    master.url = path:/home/lychee/g/nixpkgs;
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    master.url = "path:/home/lychee/g/nixpkgs";
     # master.url = github:NixOS/nixpkgs/master;
-    hm.url = github:nix-community/home-manager/master;
-    mpdrp.url = github:itslychee/mpdrp/rewrite;
+    hm.url = "github:nix-community/home-manager/master";
+    mpdrp.url = "github:itslychee/mpdrp/rewrite";
     # mpdrp.url = path:/home/lychee/g/mpdrp;
 
     hm.inputs.nixpkgs.follows = "nixpkgs";
@@ -42,7 +42,9 @@
           { home-manager.users.lychee = ./home/lychee; }
           ./hosts/hearth.nix
         ];
-        overlays = [ (_: _: mpdrp.packages."x86_64-linux") ];
+        overlays = [
+          (_: _: mpdrp.packages."x86_64-linux") 
+        ];
       }
     ];
     # Templates

@@ -1,4 +1,4 @@
-{ pkgs, lib, flags, ... }:
+{ config, ... }:
 {
   programs.firefox.enable = true;
   programs.firefox.profiles.lychee.isDefault = true;
@@ -72,7 +72,7 @@
     "experiments.enabled" = false;
     "experiments.manifest.uri" = "";
     # Download directory
-    "browser.download.dir" = "~/downloads";
+    "browser.download.dir" = "${config.home.homeDirectory}/downloads";
 
     # Health reports
     "datareporting.healthreport.uploadEnabled" = false;
