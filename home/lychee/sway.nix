@@ -1,8 +1,7 @@
-{ pkgs, ...}:
-{
+{pkgs, ...}: {
   # Idling manager
   services.swayidle.enable = true;
-  services.swayidle.timeouts = let 
+  services.swayidle.timeouts = let
     swaymsg = "${pkgs.sway}/bin/swaymsg";
   in [
     {
@@ -35,13 +34,12 @@
     bars = [];
     gaps.smartGaps = true;
     gaps.inner = 5;
-    focus.followMouse = "no";
     window.titlebar = false;
     colors.focused = {
-      border = "#ec6c6e"; 
-      childBorder = "#ffa9d2"; 
+      border = "#ec6c6e";
+      childBorder = "#ffa9d2";
       background = "#9d4849";
-      text = "#efefef"; 
+      text = "#efefef";
       indicator = "#ffd7e8";
     };
     output.HDMI-A-1 = {
@@ -57,48 +55,50 @@
     player = "${pkgs.playerctl}/bin/playerctl --player='spotify,mpd,%any'";
     modifier = "Mod4";
   in {
-   Print = "exec wayshot -c -s \"`slurp -f '%x %y %w %h'`\" --stdout | wl-copy -t image/png";
-   "Shift+Print" = "exec wayshot -c -s \"`slurp -f '%x %y %w %h'`\" --stdout | swappy -f - -o - | wl-copy -t image/png";
-   XF86AudioRaiseVolume = "exec ${pamixer} -i 2";
-   XF86AudioLowerVolume = "exec ${pamixer} -d 2";
-   XF86AudioMute = "exec ${pamixer} -t";
-   XF86AudioStop = "exec ${player} stop";
-   XF86AudioPrev = "exec ${player} previous";
-   XF86AudioPlay = "exec ${player} play-pause";
-   XF86AudioNext = "exec ${player} next";
-   XF86MonBrightnessUp   = "exec light -A 5";
-   XF86MonBrightnessDown = "exec light -U 5";
-   "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
-   "${modifier}+Space" = "exec ${pkgs.fuzzel}/bin/fuzzel";
-   "${modifier}+shift+escape" = "exit";
-   "${modifier}+h" = "focus left";
-   "${modifier}+j" = "focus down";
-   "${modifier}+k" = "focus up";
-   "${modifier}+l" = "focus right";
-   "${modifier}+u" = "focus mode_toggle";
-   "${modifier}+z" = "workspace 1";
-   "${modifier}+x" = "workspace 2";
-   "${modifier}+c" = "workspace 3";
-   "${modifier}+v" = "workspace 4";
-   "${modifier}+b" = "workspace 5";
-   "${modifier}+bracketright" = "workspace next";
-   "${modifier}+bracketleft" = "workspace prev";
-   "${modifier}+w" = "kill";
-   "${modifier}+s" = "sticky toggle";
-   "${modifier}+d" = "floating toggle";
-   "${modifier}+f" = "fullscreen toggle";
-   "${modifier}+shift+h" = "move left";
-   "${modifier}+shift+j" = "move down";
-   "${modifier}+shift+k" = "move up";
-   "${modifier}+shift+l" = "move right";
-   "${modifier}+shift+z" = "move window to workspace 1";
-   "${modifier}+shift+x" = "move window to workspace 2";
-   "${modifier}+shift+c" = "move window to workspace 3";
-   "${modifier}+shift+v" = "move window to workspace 4";
-   "${modifier}+shift+b" = "move window to workspace 5";
-   "${modifier}+left" = "resize shrink width 5";
-   "${modifier}+right" = "resize grow width 5";
-   "${modifier}+up" = "resize grow height 5";
-   "${modifier}+down" = "resize shrink height 5";
+    Print = ''
+      exec wayshot -c -s "`slurp -f '%x %y %w %h'`" --stdout | wl-copy -t image/png'';
+    "Shift+Print" = ''
+      exec wayshot -c -s "`slurp -f '%x %y %w %h'`" --stdout | swappy -f - -o - | wl-copy -t image/png'';
+    XF86AudioRaiseVolume = "exec ${pamixer} -i 2";
+    XF86AudioLowerVolume = "exec ${pamixer} -d 2";
+    XF86AudioMute = "exec ${pamixer} -t";
+    XF86AudioStop = "exec ${player} stop";
+    XF86AudioPrev = "exec ${player} previous";
+    XF86AudioPlay = "exec ${player} play-pause";
+    XF86AudioNext = "exec ${player} next";
+    XF86MonBrightnessUp = "exec light -A 5";
+    XF86MonBrightnessDown = "exec light -U 5";
+    "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+    "${modifier}+Space" = "exec ${pkgs.fuzzel}/bin/fuzzel";
+    "${modifier}+shift+escape" = "exit";
+    "${modifier}+h" = "focus left";
+    "${modifier}+j" = "focus down";
+    "${modifier}+k" = "focus up";
+    "${modifier}+l" = "focus right";
+    "${modifier}+u" = "focus mode_toggle";
+    "${modifier}+z" = "workspace 1";
+    "${modifier}+x" = "workspace 2";
+    "${modifier}+c" = "workspace 3";
+    "${modifier}+v" = "workspace 4";
+    "${modifier}+b" = "workspace 5";
+    "${modifier}+bracketright" = "workspace next";
+    "${modifier}+bracketleft" = "workspace prev";
+    "${modifier}+w" = "kill";
+    "${modifier}+s" = "sticky toggle";
+    "${modifier}+d" = "floating toggle";
+    "${modifier}+f" = "fullscreen toggle";
+    "${modifier}+shift+h" = "move left";
+    "${modifier}+shift+j" = "move down";
+    "${modifier}+shift+k" = "move up";
+    "${modifier}+shift+l" = "move right";
+    "${modifier}+shift+z" = "move window to workspace 1";
+    "${modifier}+shift+x" = "move window to workspace 2";
+    "${modifier}+shift+c" = "move window to workspace 3";
+    "${modifier}+shift+v" = "move window to workspace 4";
+    "${modifier}+shift+b" = "move window to workspace 5";
+    "${modifier}+left" = "resize shrink width 5";
+    "${modifier}+right" = "resize grow width 5";
+    "${modifier}+up" = "resize grow height 5";
+    "${modifier}+down" = "resize shrink height 5";
   };
 }

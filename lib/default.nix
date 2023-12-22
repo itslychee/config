@@ -2,11 +2,9 @@
   inputs,
   overlays ? [],
   modules ? [],
-}@attrs:
-let
+} @ attrs: let
   inherit (inputs.nixpkgs.lib) genAttrs;
-in 
-{
+in {
   eachSystem = genAttrs ["x86_64-linux" "aarch64-linux"];
-  systems = import ./nixos.nix { inherit (attrs) inputs overlays modules; };
+  systems = import ./nixos.nix {inherit (attrs) inputs overlays modules;};
 }

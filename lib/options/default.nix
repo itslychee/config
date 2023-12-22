@@ -1,6 +1,1 @@
-{
-  imports = [
-    ./openssh.nix
-    ./system.nix
-  ];
-}
+{imports = [./openssh.nix ./system.nix];}

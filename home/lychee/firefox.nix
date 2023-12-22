@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{config, ...}: {
   programs.firefox.enable = true;
   programs.firefox.profiles.lychee.isDefault = true;
   programs.firefox.profiles.lychee.settings = {

@@ -1,10 +1,12 @@
-{ config, headless, lib, ...}:
-let
+{
+  config,
+  headless,
+  lib,
+  ...
+}: let
   inherit (lib) mkIf;
 in {
-  imports = [
-    ./starship.nix
-  ];
+  imports = [./starship.nix];
 
   home.shellAliases = {
     tree = "exa --tree";
@@ -46,22 +48,14 @@ in {
       '';
     };
 
-
-    fish = {
-      enable = true;
-    };
-
+    fish = {enable = true;};
 
     # CLI utilities
     btop.enable = true;
     eza.enable = true;
     eza.enableAliases = true;
     ripgrep.enable = true;
-    ripgrep.arguments = [
-      "--no-ignore"
-      "--max-columns=150"
-      "--max-columns-preview"
-    ];
+    ripgrep.arguments = ["--no-ignore" "--max-columns=150" "--max-columns-preview"];
     direnv = {
       enable = true;
       nix-direnv.enable = true;

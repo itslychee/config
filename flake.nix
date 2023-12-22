@@ -7,15 +7,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mpdrp.url = "github:itslychee/mpdrp/rewrite";
-
   };
   outputs = {
     self,
     nixpkgs,
     master,
     hm,
-    mpdrp
-  }@attrs: {
+    mpdrp,
+  } @ attrs: {
     # Personal library
     lib = import ./lib {
       overlays = [
@@ -27,9 +26,7 @@
         })
       ];
       # NixOS modules for all hosts
-      modules = [
-        { home-manager.sharedModules = [ mpdrp.nixosModules.default ]; }
-      ];
+      modules = [{home-manager.sharedModules = [ mpdrp.homeManagerModules.default ];}];
       inputs = attrs;
     };
     nixosConfigurations = self.lib.systems.hosts [
@@ -37,13 +34,7 @@
         hostname = "hearth";
         system = "x86_64-linux";
         headless = false;
-        modules = [
-          { home-manager.users.lychee = ./home/lychee; }
-          ./hosts/hearth.nix
-        ];
-        overlays = [
-          (_: _: mpdrp.packages."x86_64-linux") 
-        ];
+        modules = [{home-manager.users.lychee = ./home/lychee;} ./hosts/hearth.nix];
       }
     ];
     # Templates

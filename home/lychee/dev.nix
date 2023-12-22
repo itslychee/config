@@ -1,14 +1,17 @@
-{ pkgs, lib, ...}:
 {
+  pkgs,
+  lib,
+  ...
+}: {
   programs = {
-    git = {  
+    git = {
       enable = true;
       package = pkgs.gitAndTools.gitFull;
       delta = {
         enable = true;
         options.line-numbers = true;
       };
-      ignores = [ ".envrc" "*.swp" ".direnv/" ];
+      ignores = [".envrc" "*.swp" ".direnv/"];
       extraConfig = {
         core.editor = "${pkgs.neovim}/bin/nvim --clean";
         gpg.format = "ssh";
@@ -17,7 +20,10 @@
         commit.gpgsign = true;
         merge.ff = false;
         pull.rebase = "merges";
-        user = { email = "itslychee@protonmail.com"; name = "lychee"; };
+        user = {
+          email = "itslychee@protonmail.com";
+          name = "lychee";
+        };
       };
     };
     # GPG
@@ -25,7 +31,7 @@
     ssh = {
       enable = true;
       compression = true;
-      extraConfig = "AddKeysToAgent yes";
+      addKeysToAgent = "yes";
     };
   };
   services = {

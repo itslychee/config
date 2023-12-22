@@ -1,4 +1,4 @@
-{ 
+{
   programs.starship.enable = true;
   programs.starship.settings = {
     hostname.format = "in [$ssh_symbol$hostname]($style)";
@@ -7,7 +7,7 @@
       format = "[$user]($style)";
     };
     nix_shell.format = "$symbol[nixshell]($style)";
-    python.format = "[\${symbol}\${pyenv_prefix}(\${version} )(\($virtualenv\) )]($style)";
+    python.format = "[\${symbol}\${pyenv_prefix}(\${version} )(($virtualenv) )]($style)";
     rust.format = "[$symbol($version )]($style)";
     git_branch = {
       symbol = "  ";
@@ -15,10 +15,10 @@
     };
     golang.format = "go($version)";
     format = ''
-    [\[$directory$git_branch$git_state$git_commit\]](bold green)
-    [❤️ $username$hostname](bold #ff9ad2)$character
+      [\[$directory$git_branch$git_state$git_commit\]](bold green)
+      [❤️ $username$hostname](bold #ff9ad2)$character
     '';
-    right_format = ''$rust$golang$python$nix_shell'';
+    right_format = "$rust$golang$python$nix_shell";
     character = {
       success_symbol = "➜";
       error_symbol = "➜";
