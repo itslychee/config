@@ -10,7 +10,7 @@
     ++ lib.optionals (!headless) [
       ./graphical.nix
       ./sway.nix
-      ./mpd.nix
+      ./music.nix
       ./waybar.nix
       ./firefox.nix
     ]
@@ -46,9 +46,10 @@
       swappy
       # Clipboard
       wl-clipboard
-      # spotify
-      unstable.spotify
 
+      vscode
+
+      # Cracked minecraft
       (pkgs.prismlauncher.overrideAttrs {
         src = pkgs.fetchFromGitHub {
           owner = "Diegiwg";

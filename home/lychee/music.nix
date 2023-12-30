@@ -3,9 +3,12 @@
   headless,
   pkgs,
   lib,
+  inputs,
   ...
 }:
-lib.mkIf (!headless) {
+lib.mkIf (!headless) ( let
+  spicePkgs = inputs.spice.legacyPackages.${pkgs.system};
+in {
   # MPD
   services.mpd.enable = true;
   services.mpd.musicDirectory = /storage/media/music;
@@ -47,4 +50,16 @@ lib.mkIf (!headless) {
   # Rich presence
   programs.mpdrp.enable = true;
   programs.mpdrp.withMpc = true;
-}
+
+
+  programs.spicetify = {
+    enable = true;
+    enabledExtensions = with spicePkgs.extensions; [
+      fullAppDisplay
+      hidePodcasts
+      adblock
+    ];
+  };
+
+
+})

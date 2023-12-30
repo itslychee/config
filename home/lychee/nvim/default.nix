@@ -15,63 +15,62 @@
       "suggest.enablePreselect" = false;
       "suggest.disableKind" = true;
       "suggest.triggerCompletionWait" = 25;
-      # Ruff
-      "ruff.useDetectRuffCommand" = false;
-      "ruff.path" = "${pkgs.unstable.ruff}/bin/ruff";
-      "ruff.serverPath" = "${pkgs.unstable.ruff-lsp}/bin/ruff-lsp";
-      "ruff.trace.server" = "verbose";
 
       languageserver = {
         golang = {
-          command = "${pkgs.unstable.gopls}/bin/gopls";
+          command = lib.getExe pkgs.gopls;
           rootPatterns = ["go.mod"];
           filetypes = ["go"];
           "trace.server" = "verbose";
           "go.goplsOptions" = {
             completeUnimported = true;
-            local = "${pkgs.unstable.gotools}/bin/goimports -local";
+            local = "${pkgs.gotools}/bin/goimports -local";
           };
         };
         python = {
-          command = "${pkgs.ruff}/bin/ruff";
-          rootPatterns = ["pyproject.toml" "setup.py"];
-          filetypes = ["py"];
+          command = lib.getExe' pkgs.ruff-lsp "ruff-lsp";
+          rootPatterns = [
+            "pyproject.toml"
+            "setup.py"
+            "requirements.txt"
+          ];
+          filetypes = [ "python" ];
         };
-        # Nix
+
+        sh = {
+          command = lib.getExe pkgs.shellcheck;
+          filetypes = [ "sh" ];
+        };
+
         nix = {
-          command = "${lib.getExe pkgs.nil}";
+          command = lib.getExe pkgs.nil;
           rootPatterns = ["flake.nix"];
           filetypes = ["nix"];
-          settings.nil = {formatting.command = ["nix" "fmt"];};
+          settings.nil = {formatting.command = ["nix fmt"];};
         };
         # Rust
         rust = {
-          command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-          filetypes = ["rs"];
+          command = lib.getExe pkgs.rust-analyzer;
+          filetypes = ["rs" "rust"];
           rootPatterns = ["Cargo.toml"];
         };
       };
     };
     extraConfig = builtins.readFile ./nvimrc;
-    plugins = with pkgs.unstable.vimPlugins; [
-      coc-ruff
-      # syntax highlighting
-
+    plugins = with pkgs.vimPlugins; [
       # Nvim tree
       nvim-tree-lua
       nvim-web-devicons
       # Language plugins
       vim-polyglot
       coc-go
-      coc-pyright
+      coc-diagnostic
       # Neat little git conflict plugin
       git-conflict-nvim
       # Theme(s)
       kanagawa-nvim
       # tab-like ui
       bufferline-nvim
-      alpha-nvim
-      statix
       # Multi cursors!
       vim-visual-multi
       telescope-nvim
