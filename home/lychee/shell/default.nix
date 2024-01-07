@@ -2,11 +2,16 @@
   config,
   headless,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
 in {
   imports = [./starship.nix];
+  home.packages = [
+    (pkgs.writeScriptBin "fetch" (builtins.readFile ./fetch))
+  
+  ];
 
   home.shellAliases = {
     tree = "exa --tree";
@@ -21,7 +26,7 @@ in {
   programs = {
     # Terminal
     alacritty = mkIf (!headless) {
-      enable = true;
+      enable = false;
       settings = {
         scrolling.multiplier = 3;
         font.size = 12;
@@ -33,6 +38,12 @@ in {
         window.opacity = 0.95;
       };
     };
+    wezterm = mkIf (!headless) {
+      enable = true;
+      extraConfig = builtins.readFile ./wezterm.lua;
+    };
+      
+
     zsh = {
       enable = false;
       enableAutosuggestions = true;

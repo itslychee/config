@@ -40,15 +40,16 @@
         withTTS = true;
       })
       xdg-utils
+      mpv
+      qbittorrent
       # Screenshot
       slurp
       wayshot
       swappy
+      # on the fly qmk_firmware configurer (bad english!??)
+      via
       # Clipboard
       wl-clipboard
-
-      vscode
-
       # Cracked minecraft
       (pkgs.prismlauncher.overrideAttrs {
         src = pkgs.fetchFromGitHub {

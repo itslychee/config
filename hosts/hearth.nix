@@ -21,6 +21,20 @@
   time.timeZone = "US/Central";
   time.hardwareClockInLocalTime = true;
 
+  services.minidlna = {
+    enable = true;
+    openFirewall = true;
+    settings = {
+      friendly_name = "The Desktop";
+      media_dir = [
+        "/storage/media/"
+        "/home/lychee/torrents/"
+      ];
+      inotify = "yes";
+      enable_tivo = "yes";
+    };
+  };
+
   swapDevices = [{device = "/dev/disk/by-label/Swap";}];
   fileSystems = {
     "/" = {
@@ -51,6 +65,8 @@
   };
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
+
+  hardware.keyboard.qmk.enable = true;
 
   # SSH
   servers.ssh.enable = true;
