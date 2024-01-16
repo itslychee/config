@@ -5,11 +5,6 @@ _: {pkgs, ...}: {
     users = {
       lychee = {
         privileged = true;
-        config = {pkgs, ...}: {
-          home.packages = [
-            pkgs.hello
-          ];
-        };
       };
     };
   };

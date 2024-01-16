@@ -4,18 +4,10 @@
     unstable.url = "github:NixOS/nixpkgs/master";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "unstable";
-    };
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "unstable";
-    };
-    wrapper-manager = {
-      url = "github:viperML/wrapper-manager";
-      inputs.nixpkgs.follows = "unstable";
-    };
+    sops.url = "github:Mic92/sops-nix";
+    disko.url = "github:nix-community/disko";
+    wrapper-manager.url = "github:viperML/wrapper-manager";
+    home-manager.url = "github:nix-community/home-manager";
   };
   outputs = {
     self,
@@ -25,6 +17,7 @@
     agenix,
     disko,
     wrapper-manager,
+    home-manager,
   } @ inputs: {
     lib = import ./lib inputs;
     nixosConfigurations = self.lib.mkSystems "x86_64-linux" ["hearth"];

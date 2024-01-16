@@ -19,12 +19,8 @@ in {
     (self.lib.mkImport ./hardware.nix)
     (self.lib.mkImport ./graphical.nix)
     (self.lib.mkImport ./boot.nix)
-    (self.lib.mkImport ./users)
   ];
 
-  # I want to be able to declare the majority of my config under
-  # the hey attrset for aesthetics, plus the time suboptions are an
-  # eyefull.
   options.hey.time = {
     localtime = mkEnableOption "Use localtime";
     zone = mkOption {
