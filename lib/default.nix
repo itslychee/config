@@ -1,16 +1,15 @@
 {
   self,
-  nixos-unstable,
+  nixpkgs,
   ...
 } @ inputs: let
   inherit
-    (nixos-unstable.lib)
+    (nixpkgs.lib)
     genAttrs
     listToAttrs
-    removeAttrs
     hasSuffix
     nixosSystem
-    optional
+    optionals
     flatten
     ;
   inherit
@@ -21,18 +20,14 @@ in rec {
   # Supported systems that I use throughout my daily life
   per = genAttrs ["x86_64-linux" "aarch64-linux"];
 
-  mkImport = x: let
-    qualifiedPath =
-      if (!pathExists x) && (!hasSuffix x ".nix")
-      then "${x}.nix"
-      else x;
-  in
-    import qualifiedPath inputs;
-
   mkSystems = arch: hosts: (listToAttrs (
     map (name: {
       inherit name;
       value = nixosSystem {
+        specialArgs = {
+          mylib = self.lib;
+          inherit inputs;
+        };
         modules = flatten [
           {
             networking.hostName = name;
@@ -41,16 +36,15 @@ in rec {
             nixpkgs.hostPlatform = arch;
           }
           # Host
-          (mkImport "${self}/hosts/${name}")
+          (import ../hosts/${name})
           # Module system
-          (mkImport "${self}/modules")
-          # Secrets
-          # Flake modules
-          # inputs.agenix.nixosModules.agenix
-          inputs.disko.nixosModules.disko
+          (import ../modules/services)
 
           # Add disko configuration
-          (optional (self.diskoConfigurations ? name) self.diskoConfigurations.${name})
+          (optionals (self.diskoConfigurations ? name) [
+            inputs.disko.nixosModules.disko
+            self.diskoConfigurations.${name}
+          ])
         ];
       };
     })
@@ -62,7 +56,7 @@ in rec {
       map
       (name: {
         inherit name;
-        value.disko.devices = mkImport ./hosts/${name}/disks;
+        value = import ../hosts/${name}/disko.nix;
       })
       hosts
     );
