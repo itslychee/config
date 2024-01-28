@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   # Idling manager
   services.swayidle.enable = true;
   services.swayidle.timeouts = let
@@ -68,7 +68,7 @@
     XF86AudioNext = "exec ${player} next";
     XF86MonBrightnessUp = "exec light -A 5";
     XF86MonBrightnessDown = "exec light -U 5";
-    "${modifier}+Return" = "exec ${pkgs.wezterm}/bin/wezterm";
+    "${modifier}+Return" = "exec ${lib.getExe pkgs.alacritty}";
     "${modifier}+Space" = "exec ${pkgs.fuzzel}/bin/fuzzel";
     "${modifier}+shift+escape" = "exit";
     "${modifier}+h" = "focus left";
