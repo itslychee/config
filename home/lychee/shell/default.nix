@@ -26,7 +26,7 @@ in {
   programs = {
     # Terminal
     alacritty = mkIf (!headless) {
-      enable = false;
+      enable = true;
       settings = {
         scrolling.multiplier = 3;
         font.size = 12;
@@ -38,11 +38,6 @@ in {
         window.opacity = 0.95;
       };
     };
-    wezterm = mkIf (!headless) {
-      enable = true;
-      extraConfig = builtins.readFile ./wezterm.lua;
-    };
-      
 
     zsh = {
       enable = false;

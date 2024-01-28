@@ -4,6 +4,8 @@
   modulesPath,
   ...
 }: {
+  
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.cpu.amd.updateMicrocode = true;
   boot = {
     kernelModules = ["kvm-amd"];
@@ -35,7 +37,6 @@
     };
   };
 
-  swapDevices = [{device = "/dev/disk/by-label/Swap";}];
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NixOS";
