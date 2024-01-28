@@ -5,11 +5,12 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     disko.url = "github:nix-community/disko";
-    home-manager.url = "github:nix-community/home-manager";
+    agenix.url = "github:ryantm/agenix";
   };
   outputs = {
     self,
     unstable,
+    agenix,
     nixpkgs,
     nixos-hardware,
     disko,
@@ -22,10 +23,7 @@
       # Raspberry Pi
       self.lib.mkSystems "aarch64-linux" ["hellfire"];
     diskoConfigurations = self.lib.mkDisko [ "hearth" ];
-    publicSSHKeys = [ 
-        # Desktop
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG"
-    ];
+    publicSSHKeys = import ./keys.nix;
     formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
   };
 }
