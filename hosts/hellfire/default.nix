@@ -18,21 +18,18 @@
   };
 
 
-
   virtualisation = { 
-    docker = {
-      enable = true;
-    };
     oci-containers.backend = "docker";
     oci-containers.containers.pihole = {
       image = "pihole/pihole";
-      # ports = [
-      #   "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
+      # ports = [S
+      #   "67:67/udp"
       #   "80:80/tcp"
       #   "53:53/tcp"
       #   "53:53/udp"
       #   "443:443/tcp"
       # ];
+      
       hostname = "pi.hole";
       environment = {
         TZ = config.time.timeZone;
@@ -71,7 +68,7 @@
   users.users.pi = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    initialPassword = "pi";
+    hashedPasswordFile = config.age.secrets.pi-hellfire.path;
     openssh.authorizedKeys.keys = inputs.self.publicSSHKeys;
   };
   # do not touch #
