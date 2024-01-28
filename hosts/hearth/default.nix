@@ -6,4 +6,6 @@
     extraGroups = [ "wheel" ];
     hashedPasswordFile = config.age.secrets.lychee-hearth.path;
   };
+
+  system.stateVersion = "24.05";
 }
