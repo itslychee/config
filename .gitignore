@@ -1,0 +1,9 @@
+# nix build output
+result/
+
+# zstd
+*.zstd
+
+# ISO images
+*.iso
+*.img
