@@ -17,9 +17,6 @@
     };
   };
 
-
-  disko.enableConfig = false;
-
   # do not change
   system.stateVersion = "23.05";
 }
