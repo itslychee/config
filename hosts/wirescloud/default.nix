@@ -1,6 +1,6 @@
 { inputs, ...}: {
 
-
+  boot.loader.systemd-boot.enable = true;
   hey.sshServer.enable = true;
   users.users = {
     hadock = {
