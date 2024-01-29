@@ -3,19 +3,19 @@
   inputs,
   lib,
   ...
-}: {
+}: 
+let 
+  ageBin = lib.getExe pkgs.rage;
+in {
   imports = [ inputs.agenix.nixosModules.default ];
 
-  age.ageBin = lib.getExe pkgs.rage;
-  age.secrets = {
-    lychee-hearth.file = ../../secrets/lychee-hearth.age;
-    pi-hellfire.file = ../../secrets/pi-hellfire.age;
-  };
+  # I want my system to reflect my configuration more
+  users.mutableUsers = false;
 
-  # Add agenix tool
   environment.systemPackages = [
     (inputs.agenix.packages.${pkgs.system}.default.override {
-      ageBin = (lib.getExe pkgs.rage);
+      inherit ageBin;
     })
   ];
+  age.ageBin = ageBin;
 }

@@ -4,6 +4,10 @@
     "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
   ];
 
+  # Secrets
+  age.secrets.pi-hellfire.file = ../../secrets/pi-hellfire.age;
+
+  # SSH Server
   hey.sshServer.enable = true;
 
   # I don't wanna compile filesystem drivers or whatever the fuck
@@ -60,13 +64,12 @@
  #   };
  # };
 
-
-
   # I do not care about inode dates and I want my RPI's I/O as fast
   # as possible
   fileSystems."/".options = [ "noatime" ];
 
   time.timeZone = "US/Central";
+  users.users.root.openssh.authorizedKeys.keys = inputs.self.publicSSHKeys;
   users.users.pi = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
