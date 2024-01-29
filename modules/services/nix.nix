@@ -7,7 +7,7 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf;
 in {
   options.hey.nix = {
     enable = mylib.mkDefaultOption;
