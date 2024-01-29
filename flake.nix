@@ -29,7 +29,7 @@
         value = self.lib.mkSystem k "iso"; 
       }) self.lib.systems));
 
-    diskoConfigurations = self.lib.mkDisko ["hearth" "wirescloud" ];
+    diskoConfigurations = self.lib.mkDisko ["wirescloud" ];
     publicSSHKeys = import ./keys.nix;
     formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
 
