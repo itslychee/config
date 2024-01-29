@@ -3,11 +3,10 @@
   inputs,
   lib,
   ...
-}: 
-let 
+}: let
   ageBin = lib.getExe pkgs.rage;
 in {
-  imports = [ inputs.agenix.nixosModules.default ];
+  imports = [inputs.agenix.nixosModules.default];
 
   # I want my system to reflect my configuration more
   users.mutableUsers = false;

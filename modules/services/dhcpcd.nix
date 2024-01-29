@@ -1,9 +1,11 @@
-{ config, lib, mylib, ...}:
-let
-  cfg = config.hey.network;
-in
 {
-
+  config,
+  lib,
+  mylib,
+  ...
+}: let
+  cfg = config.hey.network;
+in {
   options.hey.network = {
     useNetworkd = mylib.mkDefaultOption;
   };
@@ -15,5 +17,4 @@ in
       dhcpcd.enable = false;
     };
   };
-
 }

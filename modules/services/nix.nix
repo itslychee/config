@@ -5,8 +5,7 @@
   inputs,
   mylib,
   ...
-}:
-let
+}: let
   inherit (lib) mkIf;
 in {
   options.hey.nix = {
@@ -23,7 +22,7 @@ in {
       buildMachines = [
         {
           hostName = "hearth";
-          systems = [ "x86_64-linux" "aarch64-linux" ];
+          systems = ["x86_64-linux" "aarch64-linux"];
           protocol = "ssh-ng";
           speedFactor = 10;
           maxJobs = 10;
@@ -31,7 +30,7 @@ in {
         }
       ];
       settings = {
-        trusted-users = [ "@wheel" "root" ];
+        trusted-users = ["@wheel" "root"];
         builders-use-substitutes = true;
         use-xdg-base-directories = true;
         max-jobs = "auto";
@@ -50,6 +49,5 @@ in {
       isNormalUser = true;
       description = "remote builder";
     };
-
   };
 }

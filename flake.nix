@@ -17,13 +17,27 @@
     home-manager,
   } @ inputs: {
     lib = (import ./lib inputs) // (import ./lib/types.nix inputs);
-    nixosConfigurations = 
+    nixosConfigurations =
       # Desktop
-      self.lib.mkSystems "x86_64-linux" ["hearth"] //
+      self.lib.mkSystems "x86_64-linux" ["hearth"]
+      //
       # Raspberry Pi
-      self.lib.mkSystems "aarch64-linux" ["hellfire"];
-    diskoConfigurations = self.lib.mkDisko [ "hearth" ];
+      self.lib.mkSystems "aarch64-linux" ["hellfire"]
+      //
+      (nixpkgs.lib.listToAttrs (map (k: {
+        name = "iso-${k}";
+        value = self.lib.mkSystem k "iso"; 
+      }) self.lib.systems));
+
+    diskoConfigurations = self.lib.mkDisko ["hearth"];
     publicSSHKeys = import ./keys.nix;
     formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+    # Doing it like this as I will never rebuild on an ISO and
+    # this gives convenience when `nix build` is called
+    packages = self.lib.per (system: rec {
+      default = iso;
+      iso = self.nixosConfigurations."iso-${system}".config;
+    });
   };
 }

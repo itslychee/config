@@ -3,14 +3,11 @@
   mylib,
   lib,
   ...
-}:
-let
+}: let
   cfg = config.hey.sshServer;
-in
-{
+in {
   options.hey.sshServer = {
     enable = lib.mkEnableOption "OpenSSH Server";
-
   };
   config = lib.mkIf cfg.enable {
     # OpenSSH server
@@ -23,5 +20,4 @@ in
     };
     boot.initrd.network.ssh.enable = true;
   };
-
 }

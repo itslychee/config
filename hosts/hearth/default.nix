@@ -1,10 +1,15 @@
-{ inputs, pkgs, config, lib, ...}:
 {
-  imports = [ ./secrets.nix ];
+  inputs,
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
+  imports = [./secrets.nix];
   hey.sshServer.enable = true;
   users.users.lychee = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     hashedPasswordFile = config.age.secrets.lychee-hearth.path;
   };
   networking.networkmanager = {
@@ -17,7 +22,7 @@
     in {
       connection = {
         type = "wifi";
-        id = ssid; 
+        id = ssid;
       };
       wifi = {
         inherit ssid;

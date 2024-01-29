@@ -1,4 +1,3 @@
-
 # USELESS TYPES AAA
 # USELESS TYPES AAA
 # USELESS TYPES AAA
@@ -6,8 +5,7 @@
 # USELESS TYPES AAA
 # USELESS TYPES AAA
 # USELESS TYPES AAA
-{ nixpkgs, ...}: 
-let
+{nixpkgs, ...}: let
   inherit (nixpkgs.lib) mkOption types;
 in {
   mkDefaultOption = mkOption {

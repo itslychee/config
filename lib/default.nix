@@ -18,38 +18,40 @@
     ;
 in rec {
   # Supported systems that I use throughout my daily life
-  per = genAttrs ["x86_64-linux" "aarch64-linux"];
+  systems = ["x86_64-linux" "aarch64-linux"];
+  per = genAttrs systems;
 
   mkSystems = arch: hosts: (listToAttrs (
     map (name: {
       inherit name;
-      value = nixosSystem {
-        specialArgs = {
-          mylib = self.lib;
-          inherit inputs;
-        };
-        modules = flatten [
-          {
-            networking.hostName = name;
-            # Nixpkgs
-            nixpkgs.config.allowUnfree = true;
-            nixpkgs.hostPlatform = arch;
-          }
-          # Host
-          (import ../hosts/${name})
-          # Module system
-          (import ../modules/services)
-
-          # Add disko configuration
-          (optionals (self.diskoConfigurations ? name) [
-            inputs.disko.nixosModules.disko
-            self.diskoConfigurations.${name}
-          ])
-        ];
-      };
+      value = mkSystem arch name;
     })
     hosts
   ));
+  mkSystem = arch: hostname: nixosSystem {
+    specialArgs = {
+      mylib = self.lib;
+      inherit inputs;
+    };
+    modules = flatten [
+      {
+        networking.hostName = hostname;
+        # Nixpkgs
+        nixpkgs.config.allowUnfree = true;
+        nixpkgs.hostPlatform = arch;
+      }
+      # Host
+      (import ../hosts/${hostname})
+      # Module system
+      (import ../modules/services)
+
+      # Add disko configuration
+      (optionals (self.diskoConfigurations ? hostname) [
+        inputs.disko.nixosModules.disko
+        self.diskoConfigurations.${hostname}
+      ])
+    ];
+  };
 
   mkDisko = hosts:
     listToAttrs (
