@@ -33,11 +33,10 @@
     publicSSHKeys = import ./keys.nix;
     formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-    # Doing it like this as I will never rebuild on an ISO and
-    # this gives convenience when `nix build` is called
     packages = self.lib.per (system: rec {
       default = iso;
-      iso = self.nixosConfigurations."iso-${system}".config;
+      iso = self.nixosConfigurations."iso-${system}".config.system.build.isoImage;
+      hellfire = self.nixosConfigurations.hellfire.config.system.build.sdImage;
     });
   };
 }
