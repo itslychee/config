@@ -10,7 +10,7 @@
             end = "500M";
             type = "EF00";
             content = {
-              filesystem = "filesystem";
+              type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
             };
