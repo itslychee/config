@@ -1,6 +1,6 @@
 _: {
   imports = [
-    ./nix-daemon.nix
+    ./nix.nix
     ./openssh.nix
     ./agenix.nix
   ];
