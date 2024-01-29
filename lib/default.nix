@@ -48,7 +48,7 @@ in rec {
       # Add disko configuration
       (optionals (self.diskoConfigurations ? hostname) [
         inputs.disko.nixosModules.disko
-        self.diskoConfigurations.${hostname}
+        (inputs.disko.lib.config self.diskoConfigurations.${hostname})
       ])
     ];
   };
