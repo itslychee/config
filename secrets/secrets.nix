@@ -9,4 +9,6 @@ let
 in {
   "pi-hellfire.age".publicKeys = hellfireKeys;
   "lychee-hearth.age".publicKeys = hearthKeys;
+  "wifi-ssid.age".publicKeys = hearthKeys;
+  "wifi-password.age".publicKeys = hearthKeys;
 }
