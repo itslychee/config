@@ -1,5 +1,5 @@
 {
-  disk = {
+  disko.devices.disk = {
     vda = {
       device = "/dev/disk/by-id/ata-QEMU_DVD-ROM_QM00001";
       type = "disk";

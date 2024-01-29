@@ -60,7 +60,7 @@ in rec {
       map
       (name: {
         inherit name;
-        value.disko.devices = import ../hosts/${name}/disko.nix;
+        value = import ../hosts/${name}/disko.nix;
       })
       hosts
     );
