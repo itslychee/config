@@ -19,7 +19,7 @@
     lib = (import ./lib inputs) // (import ./lib/types.nix inputs);
     nixosConfigurations =
       # Desktop
-      self.lib.mkSystems "x86_64-linux" ["hearth"]
+      self.lib.mkSystems "x86_64-linux" ["wirescloud" "hearth"]
       //
       # Raspberry Pi
       self.lib.mkSystems "aarch64-linux" ["hellfire"]
@@ -29,7 +29,7 @@
         value = self.lib.mkSystem k "iso"; 
       }) self.lib.systems));
 
-    diskoConfigurations = self.lib.mkDisko ["hearth"];
+    diskoConfigurations = self.lib.mkDisko ["hearth" "wirescloud" ];
     publicSSHKeys = import ./keys.nix;
     formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
 
