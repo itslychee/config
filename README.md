@@ -10,7 +10,7 @@
 Simply run `nix build` to build `iso`, otherwise pass `.#hellfire` to build
 hellfire's ISO.
 
-#### acknowledgements
+### acknowledgements
 
 my config was inspired from
 
@@ -18,5 +18,4 @@ my config was inspired from
 - https://github.com/Gerg-L/nixos
 - https://github.com/NobbZ/nixos-config
 
-much love to those users �
-
+much love to those users <3
