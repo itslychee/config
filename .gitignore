@@ -1,5 +1,5 @@
 # nix build output
-result/
+result
 
 # zstd
 *.zstd
