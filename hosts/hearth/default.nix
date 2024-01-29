@@ -30,5 +30,6 @@
     };
   };
 
+  # do not touch ever! #
   system.stateVersion = "24.05";
 }
