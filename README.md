@@ -10,7 +10,7 @@
 Simply run `nix build` to build `iso`, otherwise pass `.#hellfire` to build
 hellfire's ISO.
 
-### acknowledgements
+## acknowledgements
 
 my config was inspired from
 
