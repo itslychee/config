@@ -47,8 +47,8 @@ in rec {
 
       # Add disko configuration
       (optionals (self.diskoConfigurations ? hostname) [
-        inputs.disko.nixosModules.disko
-        (inputs.disko.lib.config self.diskoConfigurations.${hostname})
+        inputs.disko.nixosModules.default
+        self.diskoConfigurations.${hostname}
       ])
     ];
   };
@@ -58,7 +58,7 @@ in rec {
       map
       (name: {
         inherit name;
-        value = import ../hosts/${name}/disko.nix;
+        value.disko.devices = import ../hosts/${name}/disko.nix;
       })
       hosts
     );
