@@ -1,33 +1,41 @@
 {
-  disko.devices.disk = {
-    vda = {
-      device = "/dev/disk/by-id/ata-QEMU_DVD-ROM_QM00001";
-      type = "disk";
-      content = {
-        type = "gpt";
-        partitions = {
-          ESP = {
-            end = "500M";
-            type = "EF00";
-            content = {
-              type = "filesystem";
-              format = "vfat";
-              mountpoint = "/boot";
+  disko.devices = {
+    disk = {
+      vdb = {
+        device = "/dev/sda";
+        type = "disk";
+        content = {
+          type = "gpt";
+          partitions = {
+            Boot = {
+              size = "500M";
+              type = "EF00";
+              content = {
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
+              };
             };
-          };
-          root = {
-            name = "root";
-            size = "100%";
-            content = {
-              type = "filesystem";
-              format = "bcachefs";
-              mountpoint = "/";
+            NixOS = {
+              end = "-4G";
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
+              };
             };
-
+            Swap = {
+              size = "100%";
+              content = {
+                type = "swap";
+                randomEncryption = true;
+                resumeDevice = true; # resume from hiberation from this device
+              };
+            };
           };
         };
       };
     };
   };
-
 }
+
