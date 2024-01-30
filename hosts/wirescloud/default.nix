@@ -7,6 +7,7 @@
 
   boot.loader.systemd-boot.enable = true;
   hey.sshServer.enable = true;
+  users.mutableUsers = lib.mkForce true;
   users.users = {
     hadock = {
       isNormalUser = true;
