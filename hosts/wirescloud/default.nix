@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  pkgs,
   lib,
   modulesPath,
   ...
@@ -13,10 +14,13 @@
   boot.loader.systemd-boot.enable = true;
   networking.firewall.allowedTCPPorts = [80 443];
 
+  programs.zsh.enable = true;
+
   hey.sshServer.enable = true;
   users.users = {
     hadock = {
       isNormalUser = true;
+      shell = pkgs.zsh;
       openssh.authorizedKeys.keys = config.hey.keys.users.hadock;
     };
     lychee = {
