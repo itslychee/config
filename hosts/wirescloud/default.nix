@@ -1,11 +1,14 @@
 { config, inputs, lib, modulesPath, ...}: {
 
 
-  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix")
+    ./secrets.nix
+  ];
+
   boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
-
-
   boot.loader.systemd-boot.enable = true;
+
   hey.sshServer.enable = true;
   users.mutableUsers = lib.mkForce true;
   users.users = {
