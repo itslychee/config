@@ -17,7 +17,7 @@ in {
     nix = {
       sshServe = {
         protocol = "ssh-ng";
-        keys = inputs.self.publicSSHKeys;
+        keys = config.hey.keys.users.lychee;
         enable = true;
       };
       distributedBuilds = true;
