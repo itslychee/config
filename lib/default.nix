@@ -29,31 +29,30 @@ in rec {
     })
     hosts
   ));
-  mkSystem = arch: hostname: nixosSystem {
-    specialArgs = {
-      mylib = self.lib;
-      inherit inputs;
+  mkSystem = arch: hostname:
+    nixosSystem {
+      specialArgs = {
+        mylib = self.lib;
+        inherit inputs;
+      };
+      modules = flatten [
+        # Add disko configuration
+        (optionals (self.diskoConfigurations ? "${hostname}") [
+          self.diskoConfigurations.${hostname}
+          disko.nixosModules.default
+        ])
+        {
+          networking.hostName = hostname;
+          # Nixpkgs
+          nixpkgs.config.allowUnfree = true;
+          nixpkgs.hostPlatform = arch;
+        }
+        # Host
+        (import ../hosts/${hostname})
+        # Module system
+        (import ../modules)
+      ];
     };
-    modules = flatten [
-      # Add disko configuration
-      (optionals (self.diskoConfigurations ? "${hostname}" ) [
-        self.diskoConfigurations.${hostname}
-        disko.nixosModules.default
-      ])
-      {
-        networking.hostName = hostname;
-        # Nixpkgs
-        nixpkgs.config.allowUnfree = true;
-        nixpkgs.hostPlatform = arch;
-      }
-      # Host
-      (import ../hosts/${hostname})
-      # Module system
-      (import ../modules)
-
-
-    ];
-  };
 
   mkDisko = hosts:
     listToAttrs (

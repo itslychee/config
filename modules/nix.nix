@@ -54,7 +54,6 @@ in {
       };
     };
 
-
     boot.binfmt.emulatedSystems = mkIf nix.emulation [
       "aarch64-linux"
       "x86_64-linux"

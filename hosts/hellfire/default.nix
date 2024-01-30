@@ -11,8 +11,6 @@
     ./secrets.nix
   ];
 
-
-
   hey = {
     # SSH Server
     sshServer.enable = true;

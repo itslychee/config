@@ -1,12 +1,16 @@
-{ config, inputs, lib, modulesPath, ...}: {
-
-
+{
+  config,
+  inputs,
+  lib,
+  modulesPath,
+  ...
+}: {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
     ./secrets.nix
   ];
 
-  boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod"];
   boot.loader.systemd-boot.enable = true;
 
   hey.sshServer.enable = true;
@@ -21,15 +25,12 @@
     lychee = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = inputs.self.publicSSHKeys;
-      extraGroups = [ "wheel" ];
+      extraGroups = ["wheel"];
       hashedPasswordFile = config.age.secrets.lychee-password.path;
     };
   };
 
-
-
-
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [80 443];
   services.caddy = {
     enable = true;
     enableReload = true;
