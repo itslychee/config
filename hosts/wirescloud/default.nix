@@ -23,7 +23,7 @@
       isNormalUser = true;
       openssh.authorizedKeys.keys = config.hey.keys.users.lychee;
       extraGroups = ["wheel"];
-      # hashedPasswordFile = config.age.secrets.lychee-password.path;
+      hashedPasswordFile = config.age.secrets.lychee-password.path;
     };
   };
 

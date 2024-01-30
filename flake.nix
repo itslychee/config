@@ -4,7 +4,6 @@
     unstable.url = "github:NixOS/nixpkgs/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    disko.url = "github:nix-community/disko";
     agenix.url = "github:ryantm/agenix";
   };
   outputs = {
@@ -13,7 +12,6 @@
     agenix,
     nixpkgs,
     nixos-hardware,
-    disko,
     home-manager,
   } @ inputs: {
     lib = (import ./lib inputs) // (import ./lib/types.nix inputs);
@@ -33,7 +31,6 @@
         })
         self.lib.systems));
 
-    diskoConfigurations = self.lib.mkDisko []; #["wirescloud"];
     formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     packages = self.lib.per (system: rec {
