@@ -4,6 +4,7 @@
 - `hosts/hearth` -  main computer
 - `hosts/hellfire` - raspberry pi
 - `hosts/iso` - multi-arch ISO image
+- `hosts/wirescloud` - hetzner server instance
 
 ## building ISO
 
