@@ -19,10 +19,14 @@
     lib = (import ./lib inputs) // (import ./lib/types.nix inputs);
     nixosConfigurations =
       # Desktop
-      self.lib.mkSystems "x86_64-linux" ["wirescloud" "hearth"]
+      self.lib.mkSystems "x86_64-linux" [
+        "wirescloud"
+        "hearth"
+      ]
       //
-      # Raspberry Pi
-      self.lib.mkSystems "aarch64-linux" ["hellfire"]
+      self.lib.mkSystems "aarch64-linux" [
+        "hellfire"
+      ]
       // (nixpkgs.lib.listToAttrs (map (k: {
           name = "iso-${k}";
           value = self.lib.mkSystem k "iso";
