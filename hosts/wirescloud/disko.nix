@@ -29,7 +29,6 @@
               content = {
                 type = "swap";
                 randomEncryption = true;
-                resumeDevice = true; # resume from hiberation from this device
               };
             };
           };
@@ -38,4 +37,3 @@
     };
   };
 }
-
