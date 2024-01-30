@@ -49,7 +49,7 @@ in rec {
       # Host
       (import ../hosts/${hostname})
       # Module system
-      (import ../modules/services)
+      (import ../modules)
 
 
     ];

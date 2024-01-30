@@ -13,8 +13,11 @@
 
 
 
-  # SSH Server
-  hey.sshServer.enable = true;
+  hey = {
+    # SSH Server
+    sshServer.enable = true;
+    nix.emulation = false;
+  };
 
   # I don't wanna compile filesystem drivers or whatever the fuck
   # they're called.
