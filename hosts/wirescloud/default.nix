@@ -12,6 +12,7 @@
 
   boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod"];
   boot.loader.systemd-boot.enable = true;
+  hardware.enableAllFirmware = true;
 
   hey.sshServer.enable = true;
   users.mutableUsers = lib.mkForce true;
@@ -24,25 +25,14 @@
     };
     lychee = {
       isNormalUser = true;
-      openssh.authorizedKeys.keys = inputs.self.publicSSHKeys;
+      openssh.authorizedKeys.keys = config.hey.keys.users.lychee;
       extraGroups = ["wheel"];
-      hashedPasswordFile = config.age.secrets.lychee-password.path;
+      # hashedPasswordFile = config.age.secrets.lychee-password.path;
     };
   };
 
   networking.firewall.allowedTCPPorts = [80 443];
-  services.caddy = {
-    enable = true;
-    enableReload = true;
-    extraConfig = ''
-      https://lefishe.club {
-        root * ${../../assets}/
-        file_server {
-          index LeFishe.jpg
-        }
-      }
-    '';
-  };
+
 
   # do not change
   system.stateVersion = "23.05";

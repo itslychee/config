@@ -1,3 +1,3 @@
 {
-  age.secrets.lychee-password.file = ../../secrets/lychee-password.age;
+  # age.secrets.lychee-password.file = ../../secrets/lychee-password.age;
 }

@@ -26,10 +26,8 @@
             };
             Swap = {
               size = "100%";
-              content = {
-                type = "swap";
-                randomEncryption = true;
-              };
+              type = "8200";
+              content = { type = "swap"; };
             };
           };
         };
