@@ -1,4 +1,4 @@
-{ inputs, lib, modulesPath, ...}: {
+{ config, inputs, lib, modulesPath, ...}: {
 
 
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
@@ -18,6 +18,7 @@
       isNormalUser = true;
       openssh.authorizedKeys.keys = inputs.self.publicSSHKeys;
       extraGroups = [ "wheel" ];
+      hashedPasswordFile = config.age.secrets.lychee-password.path;
     };
   };
 
