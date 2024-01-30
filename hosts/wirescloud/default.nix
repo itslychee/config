@@ -26,6 +26,20 @@
     };
   };
 
+
+  services.caddy = {
+    enable = true;
+    enableReload = true;
+    extraConfig = ''
+      https://lefishe.club {
+        root ${../../assets}
+        file_server {
+          index LeFishe.jpg;
+        }
+      }
+    '';
+  };
+
   # do not change
   system.stateVersion = "23.05";
 }
