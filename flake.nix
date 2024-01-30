@@ -23,14 +23,13 @@
       //
       # Raspberry Pi
       self.lib.mkSystems "aarch64-linux" ["hellfire"]
-      //
-      (nixpkgs.lib.listToAttrs (map (k: {
-        name = "iso-${k}";
-        value = self.lib.mkSystem k "iso"; 
-      }) self.lib.systems));
+      // (nixpkgs.lib.listToAttrs (map (k: {
+          name = "iso-${k}";
+          value = self.lib.mkSystem k "iso";
+        })
+        self.lib.systems));
 
-    diskoConfigurations = self.lib.mkDisko ["wirescloud" ];
-    publicSSHKeys = import ./keys.nix;
+    diskoConfigurations = self.lib.mkDisko ["wirescloud"];
     formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     packages = self.lib.per (system: rec {
