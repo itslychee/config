@@ -1,7 +1,6 @@
 {
   self,
   nixpkgs,
-  disko,
   ...
 } @ inputs: let
   inherit
@@ -36,11 +35,6 @@ in rec {
         inherit inputs;
       };
       modules = flatten [
-        # Add disko configuration
-        (optionals (self.diskoConfigurations ? "${hostname}") [
-          self.diskoConfigurations.${hostname}
-          disko.nixosModules.default
-        ])
         {
           networking.hostName = hostname;
           # Nixpkgs
@@ -54,13 +48,4 @@ in rec {
       ];
     };
 
-  mkDisko = hosts:
-    listToAttrs (
-      map
-      (name: {
-        inherit name;
-        value = import ../hosts/${name}/disko.nix;
-      })
-      hosts
-    );
 }
