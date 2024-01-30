@@ -27,14 +27,17 @@
   };
 
 
+
+
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
   services.caddy = {
     enable = true;
     enableReload = true;
     extraConfig = ''
       https://lefishe.club {
-        root ${../../assets}
+        root * ${../../assets}/
         file_server {
-          index LeFishe.jpg;
+          index LeFishe.jpg
         }
       }
     '';
