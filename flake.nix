@@ -33,7 +33,7 @@
         })
         self.lib.systems));
 
-    diskoConfigurations = self.lib.mkDisko ["wirescloud"];
+    diskoConfigurations = self.lib.mkDisko []; #["wirescloud"];
     formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     packages = self.lib.per (system: rec {
