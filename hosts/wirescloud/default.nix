@@ -18,11 +18,6 @@
 
   hey.sshServer.enable = true;
   users.users = {
-    hadock = {
-      isNormalUser = true;
-      shell = pkgs.zsh;
-      openssh.authorizedKeys.keys = config.hey.keys.users.hadock;
-    };
     lychee = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = config.hey.keys.users.lychee;
