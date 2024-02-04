@@ -7,6 +7,12 @@
   
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.cpu.amd.updateMicrocode = true;
+  
+  virtualisation.libvirtd.enable = true;
+  
+
+
+  environment.systemPackages = with pkgs; [ virt-manager ];
   boot = {
     kernelModules = ["kvm-amd"];
     extraModulePackages = with pkgs; [rtw88-firmware];
@@ -67,6 +73,6 @@
   users.users.lychee = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = ["wheel" "storage" "networkmanager" "adbusers"];
+    extraGroups = ["libvirtd" "wheel" "storage" "networkmanager" "adbusers"];
   };
 }

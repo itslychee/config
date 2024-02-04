@@ -33,7 +33,7 @@ in {
         font.bold.style = "Regular";
         font.italic.style = "Regular";
         font.bold_italic.style = "Regular";
-        draw_bold_text_with_bright_colors = true;
+        colors.draw_bold_text_with_bright_colors = true;
         cursor.style.blinking = "On";
         window.opacity = 0.95;
       };
