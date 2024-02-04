@@ -23,18 +23,9 @@
   time.timeZone = "US/Central";
   time.hardwareClockInLocalTime = true;
 
-  services.minidlna = {
+  services.jellyfin = {
     enable = true;
     openFirewall = true;
-    settings = {
-      friendly_name = "The Desktop";
-      media_dir = [
-        "/storage/media/"
-        "/home/lychee/torrents/"
-      ];
-      inotify = "yes";
-      enable_tivo = "yes";
-    };
   };
 
   fileSystems = {
