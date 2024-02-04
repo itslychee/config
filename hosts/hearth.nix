@@ -4,18 +4,16 @@
   modulesPath,
   ...
 }: {
-  
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.cpu.amd.updateMicrocode = true;
   
   virtualisation.libvirtd.enable = true;
-  
-
-
-  environment.systemPackages = with pkgs; [ virt-manager ];
+  environment.systemPackages = with pkgs; [ 
+    virt-manager
+    zathura
+  ];
   boot = {
     kernelModules = ["kvm-amd"];
-    extraModulePackages = with pkgs; [rtw88-firmware];
     kernelParams = ["irqpoll"];
     initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "sd_mod" "sr_mod"];
     loader.efi.canTouchEfiVariables = true;
