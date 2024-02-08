@@ -1,0 +1,48 @@
+colorscheme kanagawa
+filetype plugin indent on
+syntax on
+
+set nocompatible
+set number
+set relativenumber
+set smartindent
+set cindent
+set backup
+set backupdir=~/.cache/vim/backups
+set background=light
+set cmdheight=1
+set cursorline
+set history=100
+set nowrap
+set omnifunc=syntaxcomplete#Complete
+set termguicolors
+set ve+=onemore
+set signcolumn=yes
+set hidden
+set updatetime=300
+
+
+let mapleader=','
+
+noremap gn :bn<CR>
+noremap gp :bp<CR>
+noremap gc :bw<CR>
+noremap gl :buffers<CR>
+tnoremap <ESC> <C-\><C-N>
+
+nnoremap <leader>g <cmd>Telescope find_files<cr>
+nnoremap <leader>d <cmd>Telescope git_files<cr>
+nnoremap <leader>n <cmd>Telescope live_grep<CR>
+
+lua << EOF
+require 'git-conflict'.setup {
+  default_mappings = {
+    ours = 'o',
+    theirs = 't',
+    none = '0',
+    both = 'b',
+    next = 'n',
+    prev = 'p',
+  },
+}
+EOF
