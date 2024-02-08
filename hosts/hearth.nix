@@ -27,9 +27,17 @@
   time.timeZone = "US/Central";
   time.hardwareClockInLocalTime = true;
 
-  services.jellyfin = {
-    enable = true;
-    openFirewall = true;
+
+
+  services = { 
+    jellyfin = {
+      enable = true;
+      openFirewall = true;
+    };
+    sonarr = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 
   fileSystems = {
