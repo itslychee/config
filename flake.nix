@@ -1,8 +1,8 @@
 {
   description = "the most powerful config ever to exist";
   inputs = {
-    unstable.url = "github:NixOS/nixpkgs/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    unstable.url = "github:NixOS/nixpkgs/master";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     agenix.url = "github:ryantm/agenix";
     wrapper-manager.url = "github:viperML/wrapper-manager";
@@ -22,8 +22,7 @@
         "wirescloud"
         "hearth"
       ]
-      //
-      self.lib.mkSystems "aarch64-linux" [
+      // self.lib.mkSystems "aarch64-linux" [
         "hellfire"
       ]
       // (nixpkgs.lib.listToAttrs (map (k: {
