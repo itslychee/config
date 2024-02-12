@@ -17,7 +17,6 @@ set nowrap
 set omnifunc=syntaxcomplete#Complete
 set termguicolors
 set ve+=onemore
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 set signcolumn=yes
 set hidden
 set updatetime=300
@@ -36,15 +35,6 @@ function! ShowDocumentation()
    endif
 endf
 
-augroup membrane
-   autocmd!
-   autocmd VimEnter * :lua require "nvim-tree.api".tree.toggle({ focus = false })
-   autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
-   autocmd QuitPre  * :NvimTreeClose | :silent call CocAction('runCommand', 'editor.action.organizeImport')
-   autocmd CursorHold * silent call CocActionAsync('highlight')
-augroup END
-
-
 noremap gn :bn<CR>
 noremap gp :bp<CR>
 noremap gc :bw<CR>
@@ -59,7 +49,6 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 xmap <silent><leader>f  :call CocActionAsync('format')<CR>
 nmap <silent><leader>f  :call CocActionAsync('format')<CR>
-nmap <silent><leader>m  :NvimTreeToggle<CR>
 tnoremap <ESC> <C-\><C-N>
 
 nnoremap <leader>g <cmd>Telescope find_files<cr>
@@ -89,25 +78,6 @@ require 'git-conflict'.setup {
     prev = 'p',
   },
 }
-require "nvim-web-devicons".setup()
-require "nvim-tree".setup({
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = false,
-    custom = { "^\\.venv/", "^\\.git/" },
-    git_ignored = false,
-  },
-  update_focused_file = {
-    enable = true,
-  },
-  tab = {
-    sync = {
-      open = true,
-    },
-  },
-})
 require "bufferline".setup{
    options = {
       tab_size = 10,

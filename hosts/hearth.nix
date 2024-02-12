@@ -10,7 +10,6 @@
   virtualisation.libvirtd.enable = true;
   environment.systemPackages = with pkgs; [ 
     virt-manager
-    zathura
   ];
   boot = {
     kernelModules = ["kvm-amd"];

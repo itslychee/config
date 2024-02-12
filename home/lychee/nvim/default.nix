@@ -58,11 +58,7 @@
     };
     extraConfig = builtins.readFile ./nvimrc;
     plugins = with pkgs.vimPlugins; [
-      # Nvim tree
-      nvim-tree-lua
-      nvim-web-devicons
       # Language plugins
-      vim-polyglot
       coc-go
       coc-diagnostic
       # Neat little git conflict plugin
@@ -72,7 +68,6 @@
       # tab-like ui
       bufferline-nvim
       # Multi cursors!
-      vim-visual-multi
       telescope-nvim
 
       editorconfig-nvim
