@@ -54,7 +54,6 @@ in {
       };
     };
 
-
     users.users.nix-builder = {
       shell = pkgs.bash;
       isNormalUser = true;
