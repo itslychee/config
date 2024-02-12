@@ -1,59 +1,104 @@
-{ config, pkgs, lib, ...}:
-let
-  inherit (lib)
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}: let
+  inherit
+    (lib)
     mkOption
     mapAttrs'
     mapAttrsToList
     nameValuePair
-  ;
-  inherit (lib.types)
+    ;
+  inherit
+    (lib.types)
     attrsOf
+    listOf
+    nullOr
+    package
     submodule
     path
     str
     bool
-  ;
+    ;
 
-  fileType = submodule ({ name, config, ...}: {
+  fileType = submodule ({
+    name,
+    config,
+    ...
+  }: {
     options = {
-      source = mkOption { type = path; };
-      text = mkOption { type = str; };
-      executable = mkOption { type = bool; default = false; };
-    };
-  });
-
-  userType = submodule ({ name, config, ...}: {
-    options = {
-      root = mkOption {
-        type = attrsOf fileType;
+      source = mkOption {
+        type = nullOr path;
+        default = null;
+      };
+      text = mkOption {
+        type = nullOr str;
+        default = null;
+      };
+      executable = mkOption {
+        type = bool;
+        default = false;
       };
     };
   });
 
+  userType = submodule ({config, ...}: {
+    imports = [
+      {_module.args = {inherit pkgs inputs;};}
+      ./home
+    ];
+    options = {
+      root = mkOption { type = attrsOf fileType; default = {}; };
+      packages = mkOption { type = listOf package; default = []; };
+    };
+  });
+in {
+  options = {
+    hey.users = mkOption {
+      type = attrsOf userType;
+      description = "User-specific options";
+      default = {};
+    };
+  };
+  config = {
+    assertions = [
+      {
+        assertion = lib.all (b: b) (lib.flatten (
+          lib.forEach
+          (builtins.attrValues config.hey.users)
+          (user: map (x: (x.source == null && x.text != null) || (x.source != null && x.text == null)) (builtins.attrValues user.root))
+        ));
+        message = "file(s) cannot have both .text and .source set";
+      }
+    ];
 
-in 
-{
-
-  options.hey.users = mkOption { type = attrsOf userType; };
-
-  # File management
-  config.systemd.user.tmpfiles.users = mapAttrs' (k: v: nameValuePair
-    k
-    {
-      rules = mapAttrsToList (name: value: 
-      let
-        file =
-        if value.text != null then 
-          pkgs.writeTextFile {
-            name = "${k}-${name}-tmpfile";
-            inherit (value) text executable;
-          }  
-        else
-          value.source;
-      in 
-        "L+ %h/${name} - - - - ${file}"
-      ) v.root;
-    }
-  ) config.hey.users;
-
+    # Packages
+    users.users = mapAttrs' (name: value: {inherit name value;}) config.hey.users;
+    # File management
+    systemd.user.tmpfiles.users =
+      mapAttrs' (
+        k: v:
+          nameValuePair k
+          {
+            rules =
+              mapAttrsToList (
+                name: value: let
+                  file =
+                    if value.text != null
+                    then
+                      pkgs.writeTextFile {
+                        name = "${k}-${name}-tmpfile";
+                        inherit (value) text executable;
+                      }
+                    else value.source;
+                in "L+ %h/${name} - - - - ${file}"
+              )
+              v.root;
+          }
+      )
+      config.hey.users;
+  };
 }

@@ -9,7 +9,7 @@ set smartindent
 set cindent
 set backup
 set backupdir=~/.cache/vim/backups
-set background=light
+set background=dark
 set cmdheight=1
 set cursorline
 set history=100
