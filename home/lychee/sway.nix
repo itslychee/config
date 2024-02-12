@@ -28,6 +28,7 @@
     shadows enable
 
     workspace 1
+    exec ${lib.getExe pkgs.autotiling-rs}
   '';
 
   wayland.windowManager.sway.config = {
