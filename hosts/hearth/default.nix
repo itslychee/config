@@ -7,11 +7,7 @@
 }: {
   imports = [./secrets.nix];
   hey.sshServer.enable = true;
-  users.users.lychee = {
-    isNormalUser = true;
-    extraGroups = ["wheel"];
-    hashedPasswordFile = config.age.secrets.lychee-hearth.path;
-  };
+
   networking.networkmanager = {
     ensureProfiles.profiles.wifi = let
       # you're probably wondering why I'm doing this, and the short answer
@@ -33,6 +29,18 @@
         inherit psk;
       };
     };
+  };
+
+  users.users.lychee = {
+    isNormalUser = true;
+    extraGroups = ["wheel"];
+    hashedPasswordFile = config.age.secrets.lychee-password.path;
+  };
+
+  # Lychee (me!!)
+  hey.users.lychee = {
+    wrappers = true;
+    wms.sway.enable = true;
   };
 
   # do not touch ever! #
