@@ -17,7 +17,14 @@
   programs.zsh.enable = true;
 
   hey.sshServer.enable = true;
+  hey.matrix = {
+    enable = true;
+    serverName = "lefishe.club";
+    matrixHostname = "matrix.lefishe.club";
+  };
+  hey.lefishe.enable = true;
   users.users = {
+    root.openssh.authorizedKeys.keys = config.hey.keys.users.lychee;
     lychee = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = config.hey.keys.users.lychee;
@@ -25,6 +32,8 @@
       hashedPasswordFile = config.age.secrets.lychee-password.path;
     };
   };
+
+
 
 
   # do not change
