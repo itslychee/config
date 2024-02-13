@@ -15,7 +15,10 @@ in {
   config = lib.mkIf cfg.enable {
     services.matrix-conduit = {
       enable = true;
-      settings.global.server_name = cfg.serverName;
+      settings.global = {
+        server_name = cfg.serverName;
+	enable_lightning_bolt = false;
+      };
     };
     services.caddy = {
       enable = true;
@@ -43,6 +46,9 @@ in {
             '';
           };
           ${cfg.matrixHostname} = {
+	    serverAliases = [
+	    	"${cfg.matrixHostname}:8448"
+	    ];
             extraConfig = ''
               reverse_proxy /_matrix* http://[::1]:${toString config.services.matrix-conduit.settings.global.port}
             '';
@@ -50,6 +56,7 @@ in {
           
       };
     };
+    networking.firewall.allowedTCPPorts = [ 8448 ];
 
   };
 }
