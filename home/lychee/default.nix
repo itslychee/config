@@ -40,7 +40,6 @@
         withTTS = true;
       })
       xdg-utils
-      mpv
       qbittorrent
       # Screenshot
       slurp

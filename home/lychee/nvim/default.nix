@@ -61,6 +61,8 @@
       # Language plugins
       coc-go
       coc-diagnostic
+      vim-polyglot
+      nvim-web-devicons
       # Neat little git conflict plugin
       git-conflict-nvim
       # Theme(s)
