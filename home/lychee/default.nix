@@ -31,7 +31,7 @@
   };
 
   home.packages = with pkgs;
-    [zip unzip gnutar gzip]
+    [zip unzip gnutar gzip nixpkgs-review]
     ++ lib.optionals (!headless) [
       # Discord
       (discord-canary.override {
