@@ -25,6 +25,4 @@ in {
   "pi-hellfire.age".publicKeys = withPrivileged "hellfire";
   "wifi-password.age".publicKeys = withPrivileged "hearth";
   "lychee-password.age".publicKeys = withPrivileged ["hellfire" "hearth" "wirescloud"];
-  "matrix-serverkey.age".publicKeys = withPrivileged [ "wirescloud" ];
-  "matrix-registration.age".publicKeys = withPrivileged [ "wirescloud" ];
 }

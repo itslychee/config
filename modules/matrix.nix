@@ -16,33 +16,25 @@ in {
     services = {
       postgresql = {
         enable = true;
+        # ehe this is probably not a good idea :3 but i don't care :333
+        initdbArgs = [ "--no-locale" ];
         ensureUsers = [{
-          name = "dendrite";
+          name = "matrix-synapse";
           ensureDBOwnership = true;
           ensureClauses.login = true;
         }];
-        ensureDatabases = [ "dendrite" ];
+        ensureDatabases = [ "matrix-synapse" ];
       };
 
-       dendrite = {
+       matrix-synapse = {
          enable = true;
-         environmentFile = config.age.secrets.matrix-registration.path;
-          settings = {
-            global = {
-              server_name = cfg.serverName;
-              private_key = "/$CREDENTIALS_DIRECTORY/skey";
-              database = {
-                connection_string = "postgresql:///dendrite?host=/run/postgresql";
-              };
-            };
-            client_api = {
-              registration_disabled = true;
-              registration_shared_secret = ''''${REGISTRATION_SHARED_SECRET}'';
-            };
-          };
-          loadCredential = [
-            "skey:${config.age.secrets.matrix-serverkey.path}"
-          ];
+         settings = {
+           registration_shared_secret_path = "/var/lib/matrix-synapse/secret-safe-with-me";
+           server_name = cfg.serverName;
+           url_preview_enabled = true;
+           max_upload_size = "200M";
+           registration_requires_token = true;
+         };
        }; 
       
       caddy = {
@@ -56,12 +48,11 @@ in {
           '';
 
           ${cfg.matrixHostname}.extraConfig = ''
-            reverse_proxy /_matrix/* http://[::1]:${toString config.services.dendrite.httpPort}
-            reverse_proxy /_synapse/client/* http://[::1]:${toString config.services.dendrite.httpPort}
+            reverse_proxy /_matrix/* http://127.0.0.1:8008
+            reverse_proxy /_synapse/* http://127.0.0.0.1:8008
           '';
         };
       };
     };
-    systemd.services.dendrite.after = lib.mkIf config.services.dendrite.enable [ "postgresql.service" ];
   };
 }
