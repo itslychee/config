@@ -4,22 +4,22 @@
   ...
 }:
 let
-  cfg = config.hey.lefishe;
+  cfg = config.hey.website;
+  inherit (lib) mkEnableOption mkOption mkIf types ;
 in {
-  options = {
-    hey.lefishe.enable = lib.mkEnableOption "lefishe.club website";
+  options.hey.website = {
+    enable = mkEnableOption "Server";
+    domain = mkOption { type = types.str; };
   };
-  config = lib.mkIf cfg.enable {
-    services.caddy.enable = true;
-    services.caddy.virtualHosts = {
-      "lefishe.club" = {
-        extraConfig = ''
-          root * ${../assets}/
-          file_server {
-            index LeFishe.jpg
-          }
-        '';
-      };
+  config = mkIf cfg.enable {
+    services.caddy = {
+      enable = true;
+      virtualHosts.${cfg.domain}.extraConfig = ''
+        root * ${../assets}/
+        file_server {
+          index LeFishe.jpg
+        }
+      '';
     };
   };
 

@@ -8,7 +8,7 @@
   options.wrappers = lib.mkEnableOption "wrappers";
   config = {
     packages = [
-      (import "${inputs.self}/modules/wrappers" {
+      (import "${inputs.self}/wrappers" {
         inherit pkgs lib inputs;
       })
     ];

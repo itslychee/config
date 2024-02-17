@@ -4,13 +4,13 @@
   pkgs,
   ...
 }: let
-  cfg = config.hey.matrix;
-  mkStr = lib.mkOption { type = lib.types.str; };
+  cfg = config.hey.services.matrix;
+  inherit (lib) mkOption mkEnableOption types;
 in {
-  options.hey.matrix = {
-    enable = lib.mkEnableOption "matrix";
-    serverName = mkStr;
-    matrixHostname = mkStr;
+  options.hey.services.matrix = {
+    enable = mkEnableOption "matrix";
+    serverName = mkOption { type = types.str; };
+    matrixHostname = mkOption { type = types.str; };
   };
   config = lib.mkIf cfg.enable {
     services = {

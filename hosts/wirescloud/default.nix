@@ -12,17 +12,24 @@
   ];
 
   boot.loader.systemd-boot.enable = true;
-  networking.firewall.allowedTCPPorts = [80 443];
-
-  programs.zsh.enable = true;
 
   hey.sshServer.enable = true;
-  hey.matrix = {
-    enable = true;
-    serverName = "lefishe.club";
-    matrixHostname = "matrix.lefishe.club";
+
+  hey.services = {
+    matrix = {
+      enable = true;
+      serverName = "lefishe.club";
+      matrixHostname = "matrix.lefishe.club";
+    };
+    vault = {
+      enable = true;
+      domain = "vault.lefishe.club";
+    };
+    website = {
+      enable = true;
+      domain = "lefishe.club";
+    };
   };
-  hey.lefishe.enable = true;
   users.users = {
     root.openssh.authorizedKeys.keys = config.hey.keys.users.lychee;
     lychee = {

@@ -1,5 +1,4 @@
 _: {
-  # We don't import ./wrappers, appropriate package sets do.
   imports = [
     ./nix.nix
     ./openssh.nix
@@ -8,6 +7,7 @@ _: {
     ./keys.nix
     ./home.nix
     ./matrix.nix
-    ./lefisheclub.nix
+    ./vaultwarden.nix
+    ./caddy-module-patch.nix
   ];
 }
