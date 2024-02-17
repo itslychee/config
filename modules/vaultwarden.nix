@@ -25,9 +25,12 @@ in
       };
       vaultwarden = {
         enable = true;
-        dbBackend = true;
+        dbBackend = "postgresql";
         config = {
-          DATABASE_URL="postgresql://vaultwarden/vaultwarden";
+          DATABASE_URL="postgresql:///vaultwarden?host=/run/postgresql";
+          ROCKET_ADDRESS = "127.0.0.1";
+          ROCKET_PORT = "8888";
+          DOMAIN = "https://${cfg.domain}";
         };
       };
       caddy = let
