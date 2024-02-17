@@ -8,6 +8,7 @@ _: {
     ./home.nix
     ./matrix.nix
     ./vaultwarden.nix
+    ./website.nix
     ./caddy-module-patch.nix
   ];
 }

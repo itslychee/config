@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.hey.website;
+  cfg = config.hey.services.website;
   inherit (lib) mkEnableOption mkOption mkIf types ;
 in {
-  options.hey.website = {
+  options.hey.services.website = {
     enable = mkEnableOption "Server";
     domain = mkOption { type = types.str; };
   };
