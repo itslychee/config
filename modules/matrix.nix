@@ -11,19 +11,19 @@ in {
     enable = mkEnableOption "matrix";
     serverName = mkOption { type = types.str; };
     matrixHostname = mkOption { type = types.str; };
+    elementHostname = mkOption { type = types.str; };
   };
   config = lib.mkIf cfg.enable {
     services = {
       postgresql = {
         enable = true;
-        # ehe this is probably not a good idea :3 but i don't care :333
-        initdbArgs = [ "--no-locale" ];
-        ensureUsers = [{
-          name = "matrix-synapse";
-          ensureDBOwnership = true;
-          ensureClauses.login = true;
-        }];
-        ensureDatabases = [ "matrix-synapse" ];
+        initialScript = pkgs.writeText "synapse-init.sql" ''
+          CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
+          CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
+            TEMPLATE template0
+            LC_COLLATE = "C"
+            LC_CTYPE = "C";
+        '';
       };
 
        matrix-synapse = {
@@ -51,6 +51,16 @@ in {
             reverse_proxy /_matrix/* http://127.0.0.1:8008
             reverse_proxy /_synapse/* http://127.0.0.0.1:8008
           '';
+          ${cfg.elementHostname}.extraConfig = let
+            element = pkgs.element-web.override {
+              conf = {
+                "m.homeserver".base_url = "https://${cfg.matrixHostname}";
+              };
+            };
+          in
+            ''
+              root * ${element}
+            '';
         };
       };
     };
