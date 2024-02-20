@@ -31,7 +31,9 @@ in
           ROCKET_ADDRESS = "127.0.0.1";
           ROCKET_PORT = "8888";
           DOMAIN = "https://${cfg.domain}";
+          SIGNUPS_ALLOWED = false;
         };
+        environmentFile = config.age.secrets.vault-admin.path;
       };
       caddy = let
         cfg2 = config.services.vaultwarden.config;
