@@ -1,47 +1,34 @@
-{
-  config,
-  inputs,
-  pkgs,
-  lib,
-  modulesPath,
-  ...
-}: {
+{ inputs, config, ... }: {
   imports = [
-    ./secrets.nix
     ./hardware-configuration.nix
+    "${inputs.self}/users/lychee"
   ];
 
   boot.loader.systemd-boot.enable = true;
-
-  hey.sshServer.enable = true;
-
-  hey.services = {
-    matrix = {
-      enable = true;
-      serverName = "lefishe.club";
-      matrixHostname = "matrix.lefishe.club";
-    };
-    vault = {
-      enable = true;
-      domain = "vault.lefishe.club";
-    };
-    website = {
-      enable = true;
-      domain = "lefishe.club";
-    };
-  };
-  users.users = {
-    root.openssh.authorizedKeys.keys = config.hey.keys.users.lychee;
-    lychee = {
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = config.hey.keys.users.lychee;
-      extraGroups = ["wheel"];
-      hashedPasswordFile = config.age.secrets.lychee-password.path;
+  hey = {
+    ctx.platform = "server";
+    services = {
+      sshServer.enable = true;
+      matrix = {
+        enable = true;
+        serverName = "lefishe.club";
+        matrixHostname = "matrix.lefishe.club";
+        elementHostname = "element.lefishe.club";
+      };
+      vault = {
+        enable = true;
+        domain = "vault.lefishe.club";
+      };
+      website = {
+        enable = true;
+        domain = "lefishe.club";
+      };
     };
   };
 
-
-
+  users.users.root.openssh = {
+    authorizedKeys.keys = config.hey.keys.users.lychee;
+  };
 
   # do not change
   system.stateVersion = "23.05";

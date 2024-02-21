@@ -76,7 +76,7 @@ in {
     ];
 
     # Packages
-    users.users = mapAttrs' (name: value: {inherit name value;}) config.hey.users;
+    users.users = mapAttrs' (name: value: {inherit name; value.packages = value.packages;}) config.hey.users;
     # File management
     systemd.user.tmpfiles.users =
       mapAttrs' (

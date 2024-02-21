@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   ...
 }: let
   cfg = config.hey.services.vault;
@@ -13,6 +14,8 @@ in
     domain = mkOption { type = str; description = "(sub)domain for vault"; };
   };
   config = mkIf cfg.enable {
+    age.secrets.vault-admin.file = ../secrets/vault-admin.age;
+
     services = {
       postgresql = {
         enable = true;

@@ -10,9 +10,6 @@ in
     # Not to be confused with lib.platforms, platform denotes what the host
     # is designed to be used as.
     platform = mkOption { type = enum [ "server" "client" "hybrid"]; };
-    # Should the installation avoid adding any unnecessary packages?
-    minimal = mkOption { type = bool; default = false; };
-
 
   };
 }

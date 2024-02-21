@@ -4,6 +4,7 @@ _: {
     ./openssh.nix
     ./fail2ban.nix
     ./agenix.nix
+    ./meta.nix
     ./keys.nix
     ./home.nix
     ./matrix.nix
