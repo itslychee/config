@@ -8,7 +8,7 @@
   hey = {
     ctx.platform = "server";
     services = {
-      sshServer.enable = true;
+      openssh.enable = true;
       matrix = {
         enable = true;
         serverName = "lefishe.club";

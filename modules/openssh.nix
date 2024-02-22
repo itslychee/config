@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.hey.services.sshServer;
+  cfg = config.hey.services.openssh;
 in {
-  options.hey.services.sshServer = {
+  options.hey.services.openssh = {
     enable = lib.mkEnableOption "OpenSSH Server";
   };
   config = lib.mkIf cfg.enable {
