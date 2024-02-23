@@ -14,6 +14,7 @@ in {
     emulation = mylib.mkDefaultOption;
   };
   config = mkIf nix.enable {
+    nixpkgs.config.allowUnfree = true;
     nix = {
       sshServe = {
         protocol = "ssh-ng";

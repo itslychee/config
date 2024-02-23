@@ -20,13 +20,18 @@ in {
   hey.users.lychee = {
     wrappers.enable = true;
     packages = mkMerge [
-      # Desktop only apps
+      (builtins.attrValues {
+        inherit (pkgs) 
+          git
+        ;
+      })
       (mkIf (builtins.elem cfg.platform ["hybrid" "client"]) builtins.attrValues {
-        inherit (pkgs) firefox;
+        inherit (pkgs)
+          firefox
+          discord-canary
+        ;
       })
-      # Server only
-      (mkIf (builtins.elem cfg.platform ["hybrid" "server"]) builtins.attrValues {
-      })
+      (mkIf (builtins.elem cfg.platform ["hybrid" "server"]) builtins.attrValues {})
       
    ];
   };
