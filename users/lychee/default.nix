@@ -25,15 +25,20 @@ in {
           git
         ;
       })
-      (mkIf (builtins.elem cfg.platform ["hybrid" "client"]) builtins.attrValues {
+      (mkIf (builtins.elem cfg.platform ["hybrid" "client"]) (builtins.attrValues {
         inherit (pkgs)
           firefox
           discord-canary
         ;
-      })
-      (mkIf (builtins.elem cfg.platform ["hybrid" "server"]) builtins.attrValues {})
+      }))
       
    ];
+   wms.sway = mkIf (builtins.elem cfg.platform [ "hybrid" "client"]) {
+     enable = true;
+     keybindings = {
+       "Mod4+Return" = lib.getExe pkgs.alacritty;
+     };
+   };
   };
 
 }

@@ -11,10 +11,11 @@
   ];
 
   age.secrets = {
-    wifi-ssid.file = ../../secrets/wifi-ssid.age;
-    wifi-password.file = ../../secrets/wifi-password.age; 
+    wifi.file = ../../secrets/wifi.age;
     lastfm.file = ../../secrets/lastfm.age;
   };
+
+  boot.loader.systemd-boot.enable = true;
 
   services = {
     sonarr =   { enable = true; openFirewall = true; };
@@ -44,12 +45,11 @@
     services.openssh.enable = true;
   };
   networking.networkmanager = {
+    enable = true;
+    ensureProfiles.environmentFiles = [ config.age.secrets.wifi.path ];
     ensureProfiles.profiles.wifi = let
-      # you're probably wondering why I'm doing this, and the short answer
-      # is that I don't care if my system can see these, i just don't want
-      # you seeing it :3
-      ssid = builtins.readFile config.age.secrets.wifi-ssid.path;
-      psk = builtins.readFile config.age.secrets.wifi-password;
+      psk = "$SSID";
+      ssid = "$PASSWORD";
     in {
       connection = {
         type = "wifi";
