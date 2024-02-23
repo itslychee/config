@@ -5,9 +5,11 @@
   lib,
   ...
 }: let
+  cfg = config.hey.ctx;
   inherit
     (lib)
     mkOption
+    mkIf
     mapAttrs'
     mapAttrsToList
     nameValuePair
@@ -98,7 +100,9 @@ in {
               )
               v.root;
           }
-      )
-      config.hey.users;
+      ) config.hey.users;
+    hardware.opengl.enable = mkIf (builtins.elem cfg.platform [ "hybrid" "client" ]) true;
   };
+
+
 }
