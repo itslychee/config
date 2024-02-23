@@ -10,6 +10,30 @@
   age.secrets = {
     wifi-ssid.file = ../../secrets/wifi-ssid.age;
     wifi-password.file = ../../secrets/wifi-password.age; 
+    lastfm.file = ../../secrets/lastfm.age;
+  };
+
+  services = {
+    sonarr =   { enable = true; openFirewall = true; };
+    radarr =   { enable = true; openFirewall = true; };
+    jellyfin = { enable = true; openFirewall = true; };
+    mpd = {
+      enable = true;
+      dataDir = "/storage/data/mpd";
+      musicDirectory = "/storage/media/music";
+      startWhenNeeded = true;
+    };
+    # I really do not like to have this as a system service
+    # as this is really a user-specific thing, eventually I'll make a module
+    # for this on the home-level. I'm aware that I'm the only user but it still
+    # irks me.
+    mpdscribble = {
+      enable = config.services.mpd.enable;
+      endpoints."last.fm" = {
+        username = "ItsNotLychee";
+        passwordFile = config.age.secrets.lastfm.path;
+      };
+    };
   };
 
   hey = {
