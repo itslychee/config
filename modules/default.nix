@@ -10,6 +10,7 @@ _: {
     ./matrix.nix
     ./vaultwarden.nix
     ./website.nix
+    ./kmscon.nix
     ./caddy-module-patch.nix
   ];
 }
