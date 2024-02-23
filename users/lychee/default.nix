@@ -36,7 +36,7 @@ in {
    wms.sway = mkIf (builtins.elem cfg.platform [ "hybrid" "client"]) {
      enable = true;
      keybindings = {
-       "Mod4+Return" = lib.getExe pkgs.alacritty;
+       "Mod4+Return" = "exec ${lib.getExe pkgs.alacritty}";
      };
    };
   };
