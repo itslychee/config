@@ -5,7 +5,10 @@
   lib,
   ...
 }: {
-  imports = [ "${inputs.self}/users/lychee" ];
+  imports = [
+    "${inputs.self}/users/lychee"
+    ./hardware-configuration.nix
+  ];
 
   age.secrets = {
     wifi-ssid.file = ../../secrets/wifi-ssid.age;
