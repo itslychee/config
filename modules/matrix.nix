@@ -9,9 +9,9 @@
 in {
   options.hey.services.matrix = {
     enable = mkEnableOption "matrix";
-    serverName = mkOption { type = types.str; };
-    matrixHostname = mkOption { type = types.str; };
-    elementHostname = mkOption { type = types.str; };
+    serverName = mkOption {type = types.str;};
+    matrixHostname = mkOption {type = types.str;};
+    elementHostname = mkOption {type = types.str;};
   };
   config = lib.mkIf cfg.enable {
     services = {
@@ -26,17 +26,17 @@ in {
         '';
       };
 
-       matrix-synapse = {
-         enable = true;
-         settings = {
-           registration_shared_secret_path = "/var/lib/matrix-synapse/secret-safe-with-me";
-           server_name = cfg.serverName;
-           url_preview_enabled = true;
-           max_upload_size = "200M";
-           registration_requires_token = true;
-         };
-       }; 
-      
+      matrix-synapse = {
+        enable = true;
+        settings = {
+          registration_shared_secret_path = "/var/lib/matrix-synapse/secret-safe-with-me";
+          server_name = cfg.serverName;
+          url_preview_enabled = true;
+          max_upload_size = "200M";
+          registration_requires_token = true;
+        };
+      };
+
       caddy = {
         enable = true;
         virtualHosts = {
@@ -57,10 +57,9 @@ in {
                 "m.homeserver".base_url = "https://${cfg.matrixHostname}";
               };
             };
-          in
-            ''
-              root * ${element}
-            '';
+          in ''
+            root * ${element}
+          '';
         };
       };
     };

@@ -18,9 +18,18 @@
   boot.loader.systemd-boot.enable = true;
 
   services = {
-    sonarr =   { enable = true; openFirewall = true; };
-    radarr =   { enable = true; openFirewall = true; };
-    jellyfin = { enable = true; openFirewall = true; };
+    sonarr = {
+      enable = true;
+      openFirewall = true;
+    };
+    radarr = {
+      enable = true;
+      openFirewall = true;
+    };
+    jellyfin = {
+      enable = true;
+      openFirewall = true;
+    };
     mpd = {
       enable = true;
       dataDir = "/storage/data/mpd";
@@ -46,7 +55,7 @@
   };
   networking.networkmanager = {
     enable = true;
-    ensureProfiles.environmentFiles = [ config.age.secrets.wifi.path ];
+    ensureProfiles.environmentFiles = [config.age.secrets.wifi.path];
     ensureProfiles.profiles.wifi = let
       psk = "$SSID";
       ssid = "$PASSWORD";

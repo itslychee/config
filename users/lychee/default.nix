@@ -1,8 +1,9 @@
-{ config,
- inputs,
- lib,
- pkgs,
- ...
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
 }: let
   cfg = config.hey.ctx;
   inherit (lib) mkIf mkMerge;
@@ -13,7 +14,7 @@ in {
 
   users.users.lychee = {
     isNormalUser = true;
-    openssh.authorizedKeys.keys = mkIf (builtins.elem cfg.platform [ "hybrid" "server"]) config.hey.keys.users.lychee;
+    openssh.authorizedKeys.keys = mkIf (builtins.elem cfg.platform ["hybrid" "server"]) config.hey.keys.users.lychee;
     extraGroups = ["wheel"];
     hashedPasswordFile = config.age.secrets.lychee-password.path;
   };
@@ -21,24 +22,24 @@ in {
     wrappers.enable = true;
     packages = mkMerge [
       (builtins.attrValues {
-        inherit (pkgs) 
+        inherit
+          (pkgs)
           git
-        ;
+          ;
       })
       (mkIf (builtins.elem cfg.platform ["hybrid" "client"]) (builtins.attrValues {
-        inherit (pkgs)
+        inherit
+          (pkgs)
           firefox
           discord-canary
-        ;
+          ;
       }))
-      
-   ];
-   wms.sway = mkIf (builtins.elem cfg.platform [ "hybrid" "client"]) {
-     enable = true;
-     keybindings = {
-       "Mod4+Return" = "exec ${lib.getExe pkgs.alacritty}";
-     };
-   };
+    ];
+    wms.sway = mkIf (builtins.elem cfg.platform ["hybrid" "client"]) {
+      enable = true;
+      keybindings = {
+        "Mod4+Return" = "exec ${lib.getExe pkgs.alacritty}";
+      };
+    };
   };
-
 }

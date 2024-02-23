@@ -1,7 +1,13 @@
-{ mylib, lib, config, ...}: let
-  inherit (lib)
+{
+  mylib,
+  lib,
+  config,
+  ...
+}: let
+  inherit
+    (lib)
     mkIf
-  ;
+    ;
   cfg = config.hey.net.fail2ban;
 in {
   options.hey.net = {
@@ -20,5 +26,4 @@ in {
       bantime = "24h";
     };
   };
-
 }

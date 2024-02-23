@@ -1,4 +1,8 @@
-{ inputs, config, ... }: {
+{
+  inputs,
+  config,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     "${inputs.self}/users/lychee"

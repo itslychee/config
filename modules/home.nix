@@ -53,8 +53,14 @@
       ./home
     ];
     options = {
-      root = mkOption { type = attrsOf fileType; default = {}; };
-      packages = mkOption { type = listOf package; default = []; };
+      root = mkOption {
+        type = attrsOf fileType;
+        default = {};
+      };
+      packages = mkOption {
+        type = listOf package;
+        default = [];
+      };
     };
   });
 in {
@@ -78,31 +84,34 @@ in {
     ];
 
     # Packages
-    users.users = mapAttrs' (name: value: {inherit name; value.packages = value.packages;}) config.hey.users;
+    users.users =
+      mapAttrs' (name: value: {
+        inherit name;
+        value.packages = value.packages;
+      })
+      config.hey.users;
     # File management
-    systemd.user.tmpfiles.users =
-      mapAttrs' (
-        k: v:
-          nameValuePair k
-          {
-            rules =
-              mapAttrsToList (
-                name: value: let
-                  file =
-                    if value.text != null
-                    then
-                      pkgs.writeTextFile {
-                        name = "${k}-${name}-tmpfile";
-                        inherit (value) text executable;
-                      }
-                    else value.source;
-                in "L+ %h/${name} - - - - ${file}"
-              )
-              v.root;
-          }
-      ) config.hey.users;
-    hardware.opengl.enable = mkIf (builtins.elem cfg.platform [ "hybrid" "client" ]) true;
+    systemd.user.tmpfiles.users = mapAttrs' (
+      k: v:
+        nameValuePair k
+        {
+          rules =
+            mapAttrsToList (
+              name: value: let
+                file =
+                  if value.text != null
+                  then
+                    pkgs.writeTextFile {
+                      name = "${k}-${name}-tmpfile";
+                      inherit (value) text executable;
+                    }
+                  else value.source;
+              in "L+ %h/${name} - - - - ${file}"
+            )
+            v.root;
+        }
+    )
+    config.hey.users;
+    hardware.opengl.enable = mkIf (builtins.elem cfg.platform ["hybrid" "client"]) true;
   };
-
-
 }

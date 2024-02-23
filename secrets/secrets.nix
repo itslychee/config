@@ -24,6 +24,6 @@ in {
   "wifi.age".publicKeys = withPrivileged "hearth";
   "pi-hellfire.age".publicKeys = withPrivileged "hellfire";
   "lychee-password.age".publicKeys = withPrivileged ["hellfire" "hearth" "wirescloud"];
-  "vault-admin.age".publicKeys = withPrivileged [ "wirescloud" ];
-  "lastfm.age".publicKeys = withPrivileged [ "hearth" ];
+  "vault-admin.age".publicKeys = withPrivileged ["wirescloud"];
+  "lastfm.age".publicKeys = withPrivileged ["hearth"];
 }
