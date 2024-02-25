@@ -37,7 +37,6 @@
   # as possible
   fileSystems."/".options = ["noatime"];
 
-  time.timeZone = "US/Central";
   users.users.root.openssh.authorizedKeys.keys = inputs.self.publicSSHKeys;
   users.users.pi = {
     isNormalUser = true;
