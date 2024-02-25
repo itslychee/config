@@ -11,6 +11,7 @@
   boot = {
     kernelParams = ["irqpoll"];
     loader.systemd-boot.enable = true;
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 
   services = lib.genAttrs ["sonarr" "radarr" "jellyfin"] (name: {
