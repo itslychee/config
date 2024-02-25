@@ -19,6 +19,7 @@
   });
 
   hey = {
+    fonts.enable = true;
     services = {
       openssh.enable = true;
       kmscon.enable = false;
