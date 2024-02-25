@@ -8,7 +8,7 @@
 # umm uhhh, :) :) wires wires
 {
   imports = [
-    ./sway-env.nix
+    ./sway.nix
     ./wrappers.nix
   ];
 }
