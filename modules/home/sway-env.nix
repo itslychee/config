@@ -81,9 +81,7 @@ in {
     extraConfig = mkOption {
       type = lines;
       default = "";
-      apply = f:
-        lib.concatStringsSep "\n" [
-          f
+      apply = f: lib.concatStringsSep "\n" [ f
           "exec_always ${lib.getExe pkgs.autotiling-rs}"
         ];
     };
