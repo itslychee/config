@@ -1,16 +1,22 @@
-_: {
+{inputs, ...}: {
   imports = [
+    ./agenix.nix
+    ./caddy-module-patch.nix
+    ./fail2ban.nix
+    ./fonts.nix
+    ./home.nix
+    ./keys.nix
+    ./kmscon.nix
+    ./matrix.nix
+    ./meta.nix
     ./nix.nix
     ./openssh.nix
-    ./fail2ban.nix
-    ./agenix.nix
-    ./meta.nix
-    ./keys.nix
-    ./home.nix
-    ./matrix.nix
+    ./pipewire.nix
     ./vaultwarden.nix
     ./website.nix
-    ./kmscon.nix
-    ./caddy-module-patch.nix
+    "${inputs.self}/users"
   ];
+  # Global options
+  time.timeZone = "US/Central";
+  security.polkit.enable = true;
 }
