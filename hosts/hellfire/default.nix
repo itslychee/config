@@ -27,7 +27,34 @@
     services.openssh.enable = true;
     users.lychee.enable = true;
   };
-  users.users.root.openssh.authorizedKeys.keys = lib.flatten (builtins.attrValues config.hey.keys.privileged);
+
+  users.users.root = {
+    openssh.authorizedKeys.keys = lib.flatten (builtins.attrValues config.hey.keys.privileged);
+  };
+
+  # thanks mjm!
+  services.blocky = {
+    enable = true;
+    settings = {
+      upstreams = {
+        init.strategy = "failOnError"; # this must work!
+        groups.default = [
+          # CloudFlare
+          "1.1.1.1"
+          "1.0.0.1"
+          "2606:4700:4700::1111"
+          "2606:4700:4700::1001"
+        ];
+      };
+      blocking.blackLists.ads = [
+        "https://raw.githubusercontent.com/StevenBlack/hosts/d75a9114c4d96438e710dd6686c431bd48108752/hosts"
+      ];
+    };
+  };
+  networking.firewall = {
+    allowedTCPPorts = [53];
+    allowedUDPPorts = [53];
+  };
 
   # do not touch #
   system.stateVersion = "24.05";
