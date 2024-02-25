@@ -17,13 +17,19 @@
           kanagawa-nvim
           bufferline-nvim
           telescope-nvim
-	  nvim-treesitter
+          nvim-treesitter
+          nvim-web-devicons
           ;
       in [
         {
           plugin = git-conflict-nvim;
           config = null;
           optional = false;
+        }
+        {
+          plugin = nvim-web-devicons;
+          config = null;
+          optional = true;
         }
         {
           plugin = nvim-treesitter.withAllGrammars;
@@ -59,7 +65,7 @@
       inherit
         (pkgs)
         git
-	ripgrep
+        ripgrep
         ;
     };
   };

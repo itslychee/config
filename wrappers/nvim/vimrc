@@ -1,6 +1,5 @@
 colorscheme kanagawa
 
-set background=light
 filetype plugin indent on
 syntax on
 
@@ -11,7 +10,7 @@ set smartindent
 set cindent
 set backup
 set backupdir=~/.cache/vim/backups
-set background=dark
+set background=light
 set cmdheight=1
 set cursorline
 set history=100
