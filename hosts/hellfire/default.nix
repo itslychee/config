@@ -11,10 +11,7 @@
     ./secrets.nix
   ];
 
-  hey = {
-    # SSH Server
-    services.openssh.enable = true;
-  };
+  hey.services.openssh.enable = true;
 
   # I don't wanna compile filesystem drivers or whatever the fuck
   # they're called.
