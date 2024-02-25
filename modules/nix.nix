@@ -21,12 +21,7 @@ in {
         keys = config.hey.keys.users.lychee;
         enable = true;
       };
-      registry =
-        mapAttrs' (name: val: {
-          inherit name;
-          value.flake = val;
-        })
-        inputs;
+      registry = mapAttrs' (name: val: { inherit name; value.flake = val; }) inputs;
       channel.enable = false;
       settings = {
         trusted-users = ["@wheel" "root"];
