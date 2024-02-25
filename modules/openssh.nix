@@ -27,6 +27,19 @@ in {
         startAgent = true;
         enableAskPassword = true;
         agentTimeout = "10m";
+        knownHosts = {
+          "pi.lan" = {
+            extraHostNames = ["192.168.0.2"];
+            publicKey = config.hey.keys.hosts.hellfire;
+          };
+          "hearth.lan" = {
+            extraHostNames = ["192.168.0.3"];
+            publicKey = config.hey.keys.hosts.hearth;
+          };
+          "lefishe.club" = {
+            publicKey = config.hey.keys.hosts.wirescloud;
+          };
+        };
       };
     }
   ];
