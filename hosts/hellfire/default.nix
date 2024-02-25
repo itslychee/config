@@ -10,10 +10,11 @@
     "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
   ];
 
-  # I don't wanna compile filesystem drivers or whatever the fuck
-  # they're called.
-  boot.supportedFilesystems = lib.mkForce ["ext4" "vfat"];
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
+  boot = {
+    # I do not want to compile any filesystem driver other than the ones listed.
+    supportedFilesystems = lib.mkForce ["ext4" "vfat"];
+    kernelPackages = lib.mkForce pkgs.linuxPackages;
+  };
 
   sdImage = {
     imageBaseName = config.networking.hostName;
