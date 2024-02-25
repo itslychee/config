@@ -47,7 +47,11 @@
         ];
       };
       blocking.blackLists.ads = [
-        "https://raw.githubusercontent.com/StevenBlack/hosts/d75a9114c4d96438e710dd6686c431bd48108752/hosts"
+        "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-porn/hosts"
+        "https://easylist.to/easylist/easylist.txt"
+      ];
+      blocking.whiteLists.ads = [
+        "https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt"
       ];
     };
   };
