@@ -14,7 +14,6 @@
   hey = {
     # SSH Server
     services.openssh.enable = true;
-    nix.emulation = false;
   };
 
   # I don't wanna compile filesystem drivers or whatever the fuck
