@@ -17,5 +17,6 @@ in {
   };
   hey.users.lychee = {
     wrappers.enable = true;
+    packages = [];
   };
 }

@@ -29,6 +29,7 @@
     users.lychee = {
       enable = true;
       wms.sway.enable = true;
+      packages = [ pkgs.firefox pkgs.discord-canary pkgs.xdg-utils ];
     };
   };
   networking = {
