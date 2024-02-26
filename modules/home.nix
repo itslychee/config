@@ -71,6 +71,8 @@ in {
             type = listOf package;
             default = [];
           };
+	  # switches are for home -> system translations
+	  switches.opengl = mkEnableOption "OpenGL System Support";
         };
       }));
       description = "User-specific options";
@@ -90,4 +92,5 @@ in {
 
   config.users.users = eachUser config.hey.users;
   config.systemd.user.tmpfiles.users = eachFile config.hey.users;
+  config.hardware.opengl.enable = lib.any (v: v.switches.opengl) (lib.flatten (builtins.attrValues config.hey.users));
 }

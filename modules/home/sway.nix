@@ -90,6 +90,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    switches.opengl = true;
     root.".config/sway/config".text =
       (
         concatStringsSep "\n"
