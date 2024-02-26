@@ -5,12 +5,11 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    "${inputs.self}/users/lychee"
   ];
 
   boot.loader.systemd-boot.enable = true;
   hey = {
-    ctx.platform = "server";
+    users.lychee.enable = true;
     services = {
       openssh.enable = true;
       matrix = {
