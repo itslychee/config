@@ -71,8 +71,8 @@ in {
             type = listOf package;
             default = [];
           };
-	  # switches are for home -> system translations
-	  switches.opengl = mkEnableOption "OpenGL System Support";
+          # switches are for home -> system translations
+          switches.opengl = mkEnableOption "OpenGL System Support";
         };
       }));
       description = "User-specific options";
