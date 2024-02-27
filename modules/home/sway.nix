@@ -101,6 +101,6 @@ in {
       )
       + cfg.extraConfig;
 
-    packages = [pkgs.swayfx];
+    packages = [pkgs.swayfx pkgs.wl-clipboard];
   };
 }
