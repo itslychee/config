@@ -30,7 +30,15 @@
     users.lychee = {
       enable = true;
       wms.sway.enable = true;
-      packages = [pkgs.firefox pkgs.discord-canary pkgs.xdg-utils];
+      packages = [
+        pkgs.firefox
+        pkgs.xdg-utils
+	pkgs.qbittorrent
+        (pkgs.discord-canary.override {
+          withVencord = true;
+          withOpenASAR = true;
+        })
+      ];
     };
   };
   networking = {
