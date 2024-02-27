@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./agenix.nix
     ./caddy-module-patch.nix
@@ -19,4 +23,6 @@
   # Global options
   time.timeZone = "US/Central";
   security.polkit.enable = true;
+
+  environment.defaultPackages = [pkgs.git];
 }
