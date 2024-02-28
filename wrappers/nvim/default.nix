@@ -10,48 +10,22 @@
       vimAlias = true;
       viAlias = true;
       customRc = builtins.readFile ./vimrc;
-      plugins = let
-        inherit
-          (pkgs.vimPlugins)
-          git-conflict-nvim
-          kanagawa-nvim
-          bufferline-nvim
-          telescope-nvim
-          nvim-treesitter
-          nvim-web-devicons
-          ;
-      in [
-        {
-          plugin = git-conflict-nvim;
+      plugins =
+        map (plugin: {
+          inherit plugin;
           config = null;
           optional = false;
-        }
-        {
-          plugin = nvim-web-devicons;
-          config = null;
-          optional = true;
-        }
-        {
-          plugin = nvim-treesitter.withAllGrammars;
-          config = null;
-          optional = false;
-        }
-        {
-          plugin = kanagawa-nvim;
-          config = null;
-          optional = false;
-        }
-        {
-          plugin = bufferline-nvim;
-          config = null;
-          optional = false;
-        }
-        {
-          plugin = telescope-nvim;
-          config = null;
-          optional = false;
-        }
-      ];
+        }) (builtins.attrValues {
+          inherit
+            (pkgs.vimPlugins)
+            git-conflict-nvim
+            nvim-web-devicons
+            kanagawa-nvim
+            telescope-nvim
+            nvim-lspconfig
+            ;
+          treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+        });
     };
   in {
     basePackage = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped neovim;
