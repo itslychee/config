@@ -9,7 +9,7 @@ set relativenumber
 set smartindent
 set cindent
 set backup
-set backupdir=~/.cache/vim/backups
+set backupdir=/tmp/$USER/vim/backups
 set background=light
 set cmdheight=1
 set cursorline
