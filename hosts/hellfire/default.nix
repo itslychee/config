@@ -54,7 +54,7 @@
         "https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt"
       ];
       customDNS = {
-        customTTL = "3m";
+        customTTL = "24h";
         mapping = {
           "pi.lan" = "192.168.0.2";
           "hearth.lan" = "192.168.0.3";
