@@ -9,6 +9,6 @@
 {
   imports = [
     ./sway.nix
-    ./wrappers.nix
+    ./neovim.nix
   ];
 }

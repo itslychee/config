@@ -111,29 +111,12 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1702151865,
-        "narHash": "sha256-9VAt19t6yQa7pHZLDbil/QctAgVsA66DLnzdRGqDisg=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "666fc80e7b2afb570462423cb0e1cf1a3a34fedd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "agenix": "agenix",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
-        "unstable": "unstable",
-        "wrapper-manager": "wrapper-manager"
+        "unstable": "unstable"
       }
     },
     "systems": {
@@ -164,24 +147,6 @@
         "owner": "NixOS",
         "ref": "master",
         "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "wrapper-manager": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_3"
-      },
-      "locked": {
-        "lastModified": 1702396227,
-        "narHash": "sha256-JTgwZK6m3Lt1LrjgWdl5+9RyDlAI9mzH3QHFMY8RwVY=",
-        "owner": "viperML",
-        "repo": "wrapper-manager",
-        "rev": "3a4c510ffb9f01fc7cab5e23f5ae818d72a66e1a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "viperML",
-        "repo": "wrapper-manager",
         "type": "github"
       }
     }

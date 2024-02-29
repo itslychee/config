@@ -5,7 +5,6 @@
     unstable.url = "github:NixOS/nixpkgs/master";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     agenix.url = "github:ryantm/agenix";
-    wrapper-manager.url = "github:viperML/wrapper-manager";
   };
   outputs = {
     self,
@@ -13,7 +12,6 @@
     agenix,
     nixpkgs,
     nixos-hardware,
-    wrapper-manager,
   } @ inputs: {
     lib = (import ./lib inputs) // (import ./lib/types.nix inputs);
     nixosConfigurations =

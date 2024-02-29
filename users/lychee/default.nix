@@ -16,7 +16,6 @@ in {
     hashedPasswordFile = config.age.secrets.lychee-password.path;
   };
   hey.users.lychee = {
-    wrappers.enable = true;
     packages = [];
   };
 }
