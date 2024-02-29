@@ -12,6 +12,7 @@
     users.lychee.enable = true;
     services = {
       openssh.enable = true;
+      fail2ban.enable = true;
       matrix = {
         enable = true;
         serverName = "lefishe.club";
