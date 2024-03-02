@@ -27,7 +27,6 @@ in {
           value.flake = val;
         })
         inputs;
-      channel.enable = false;
       settings = {
         trusted-users = ["@wheel" "root"];
         builders-use-substitutes = true;
