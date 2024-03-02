@@ -49,7 +49,7 @@
                     inherit (f) text executable;
                   }
                 else f.source;
-            in "L+ %h/${name} - - - - ${file}"
+            in "L+ %h/${filename} - - - - ${file}"
           )
           value.root;
       }) (lib.filterAttrs (n: v: v.enable) u);
