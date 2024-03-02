@@ -56,6 +56,7 @@ ts = require("telescope.builtin")
 k("n", "<leader>f", ts.find_files)
 k("n", "<leader>g", ts.git_files)
 k("n", "<leader>b", ts.buffers)
+k('t', '<ESC>', "<C-\\><C-n>")
 k("n", "-", require("mini.files").open)
 
 
