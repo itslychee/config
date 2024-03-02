@@ -10,5 +10,6 @@
   imports = [
     ./sway.nix
     ./neovim.nix
+    ./meta.nix
   ];
 }

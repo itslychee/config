@@ -1,34 +1,14 @@
 {
-  config,
-  pkgs,
   inputs,
+  config,
   lib,
+  pkgs,
   ...
 }: let
-  cfg = config.hey.ctx;
-  inherit (lib) mkOption mkEnableOption mkIf mapAttrs' mapAttrsToList nameValuePair;
-  inherit (lib.types) attrsOf listOf nullOr package submodule path str bool;
+  inherit (lib) mkOption mapAttrs' mapAttrsToList nameValuePair;
+  inherit (lib.types) attrsOf submodule;
+  inherit (lib) any flatten all;
 
-  fileType = submodule ({
-    name,
-    config,
-    ...
-  }: {
-    options = {
-      source = mkOption {
-        type = nullOr path;
-        default = null;
-      };
-      text = mkOption {
-        type = nullOr str;
-        default = null;
-      };
-      executable = mkOption {
-        type = bool;
-        default = false;
-      };
-    };
-  });
   eachUser = u:
     mapAttrs' (name: value:
       nameValuePair name {
@@ -53,6 +33,8 @@
           )
           value.root;
       }) (lib.filterAttrs (n: v: v.enable) u);
+
+  switch = f: lib.mkForce (any f (flatten (builtins.attrValues config.hey.users)));
 in {
   options = {
     hey.users = mkOption {
@@ -61,27 +43,13 @@ in {
           {_module.args = {inherit pkgs inputs;};}
           ./home
         ];
-        options = {
-          enable = mkEnableOption "User";
-          root = mkOption {
-            type = attrsOf fileType;
-            default = {};
-          };
-          packages = mkOption {
-            type = listOf package;
-            default = [];
-          };
-          # switches are for home -> system translations
-          switches.opengl = mkEnableOption "OpenGL System Support";
-        };
       }));
       description = "User-specific options";
-      default = {};
     };
   };
   config.assertions = [
     {
-      assertion = lib.all (b: b) (lib.flatten (
+      assertion = all (b: b) (flatten (
         lib.forEach
         (builtins.attrValues config.hey.users)
         (user: map (x: (x.source == null && x.text != null) || (x.source != null && x.text == null)) (builtins.attrValues user.root))
@@ -93,6 +61,7 @@ in {
   config = {
     users.users = eachUser config.hey.users;
     systemd.user.tmpfiles.users = eachFile config.hey.users;
-    hardware.opengl.enable = lib.mkForce (lib.any (v: v.switches.opengl) (lib.flatten (builtins.attrValues config.hey.users)));
+    # switches
+    hardware.opengl.enable = switch (u: u.switches.opengl);
   };
 }
