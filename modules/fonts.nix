@@ -4,8 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf mkOption mkAfter mkEnableOption;
-  inherit (lib.types) bool;
+  inherit (lib) mkIf mkAfter mkEnableOption;
 in {
   options.hey.fonts = {
     enable = mkEnableOption "Font management";
