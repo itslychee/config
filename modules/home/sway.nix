@@ -29,7 +29,6 @@ in {
         pamixer = lib.getExe pkgs.pamixer;
         player = "${lib.getExe pkgs.playerctl} --player='spotify,mpd,%any'";
         _ = lib.getExe;
-        inherit (pkgs) wayshot slurp swappy;
         modifier = "Mod4";
       in
         {
