@@ -90,7 +90,9 @@ in {
     }
   ];
 
-  config.users.users = eachUser config.hey.users;
-  config.systemd.user.tmpfiles.users = eachFile config.hey.users;
-  config.hardware.opengl.enable = lib.mkForce (lib.any (v: v.switches.opengl) (lib.flatten (builtins.attrValues config.hey.users)));
+  config = {
+    users.users = eachUser config.hey.users;
+    systemd.user.tmpfiles.users = eachFile config.hey.users;
+    hardware.opengl.enable = lib.mkForce (lib.any (v: v.switches.opengl) (lib.flatten (builtins.attrValues config.hey.users)));
+  };
 }
