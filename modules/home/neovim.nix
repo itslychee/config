@@ -3,28 +3,50 @@
   config,
   lib,
   ...
-}: {
-  options.neovim.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = true;
+}: let
+  cfg = config.neovim;
+  inherit (lib) mkOption;
+  inherit (lib.types) package bool listOf;
+in {
+  options.neovim = {
+    enable = mkOption {
+      type = bool;
+      default = true;
+    };
+    extraPackages = mkOption {
+      default = builtins.attrValues {
+        inherit (pkgs)
+          ripgrep
+          nil
+        ;
+      };
+      apply = f: lib.makeBinPath f;
+      type = listOf package;
+    };
   };
-
-  config = lib.mkIf config.neovim.enable {
+  config = lib.mkIf cfg.enable {
     packages = let
       inherit (pkgs) wrapNeovimUnstable neovim-unwrapped;
       inherit (pkgs.neovimUtils) makeNeovimConfig;
-    in [
-      (pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped (makeNeovimConfig {
-        makeWrapperArgs = ["--suffix PATH : ${lib.getExe pkgs.ripgrep}"];
+      nvimConfig = makeNeovimConfig {
         vimAlias = true;
         plugins = builtins.attrValues {
-          inherit (pkgs.vimPlugins) kanagawa-nvim;
+          inherit (pkgs.vimPlugins)
+            kanagawa-nvim
+            nvim-lspconfig
+            git-conflict-nvim
+            nvim-web-devicons
+            mini-nvim
+            telescope-nvim;
+          ts = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
         };
-        luaRcContent = ''
-          vim.o.background = "light"
-          vim.cmd [[ colorscheme kanagawa ]]
-        '';
-      }))
+        luaRcContent = builtins.readFile ./init.lua;
+      };
+    in [
+      (wrapNeovimUnstable neovim-unwrapped (nvimConfig
+        // {
+          wrapperArgs = nvimConfig.wrapperArgs ++ ["--prefix" "PATH" ":" cfg.extraPackages];
+        }))
     ];
   };
 }
