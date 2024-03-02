@@ -19,7 +19,9 @@ in {
         source-code-pro
         noto-fonts-emoji
         dejavu_fonts
+        liberation_ttf
         ;
+      nerdfonts = (pkgs.nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; });
     });
     fontconfig.defaultFonts = {
       monospace = ["Terminus" "Source Code Pro"];
