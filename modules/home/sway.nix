@@ -30,8 +30,11 @@ in {
         player = "${lib.getExe pkgs.playerctl} --player='spotify,mpd,%any'";
         _ = lib.getExe;
         modifier = "Mod4";
+        wayshot = "${_ pkgs.wayshot} -s \"$(${_ pkgs.slurp})\" --stdout";
       in
         {
+          Print = "exec ${wayshot} | wl-copy";
+          "Shift+Print" = "exec ${wayshot} | ${_ pkgs.swappy} -f - -o - | wl-copy";
           XF86AudioRaiseVolume = "exec ${pamixer} -i 2";
           XF86AudioLowerVolume = "exec ${pamixer} -d 2";
           XF86AudioMute = "exec ${pamixer} -t";
