@@ -21,7 +21,7 @@ in {
         dejavu_fonts
         liberation_ttf
         ;
-      nerdfonts = (pkgs.nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; });
+      nerdfonts = pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];};
     });
     fontconfig.defaultFonts = {
       monospace = ["Terminus" "Source Code Pro"];

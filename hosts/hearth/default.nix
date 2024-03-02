@@ -64,10 +64,10 @@
     };
   };
 
-  hardware.opengl.extraPackages = [ pkgs.amdvlk ];
+  hardware.opengl.extraPackages = [pkgs.amdvlk];
   environment.systemPackages = [
     (pkgs.lutris.override {
-     extraPkgs = p: [ p.winetricks p.wineWowPackages.waylandFull ];
+      extraPkgs = p: [p.winetricks p.wineWowPackages.waylandFull];
     })
     pkgs.gnome3.adwaita-icon-theme
   ];

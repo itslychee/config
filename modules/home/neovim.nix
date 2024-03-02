@@ -15,10 +15,11 @@ in {
     };
     extraPackages = mkOption {
       default = builtins.attrValues {
-        inherit (pkgs)
+        inherit
+          (pkgs)
           ripgrep
           nil
-        ;
+          ;
       };
       apply = f: lib.makeBinPath f;
       type = listOf package;
@@ -31,13 +32,15 @@ in {
       nvimConfig = makeNeovimConfig {
         vimAlias = true;
         plugins = builtins.attrValues {
-          inherit (pkgs.vimPlugins)
+          inherit
+            (pkgs.vimPlugins)
             kanagawa-nvim
             nvim-lspconfig
             git-conflict-nvim
             nvim-web-devicons
             mini-nvim
-            telescope-nvim;
+            telescope-nvim
+            ;
           ts = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
         };
         luaRcContent = builtins.readFile ./init.lua;
