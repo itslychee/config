@@ -72,6 +72,12 @@
     pkgs.bluez-tools
   ];
 
+
+  # "Fix" the kernel log spam for "h2c command failed" or whatever
+  environment.etc."modprobe.d/rtw88_8821ce.conf".text = ''
+      option rtw88_core disable_lps_deep=y 
+  '';
+
   # do not touch ever! #
   system.stateVersion = "24.05";
 }
