@@ -64,12 +64,14 @@
     };
   };
 
+
+
   hardware.opengl.extraPackages = [pkgs.amdvlk];
+  hardware.bluetooth.enable = true;
   environment.systemPackages = [
-    (pkgs.lutris.override {
-      extraPkgs = p: [p.winetricks p.wineWowPackages.waylandFull];
-    })
+    (pkgs.lutris.override { extraPkgs = p: [p.winetricks p.wineWowPackages.waylandFull]; })
     pkgs.gnome3.adwaita-icon-theme
+    pkgs.bluez-tools 
   ];
 
   # do not touch ever! #
