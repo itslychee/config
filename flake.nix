@@ -5,6 +5,8 @@
     unstable.url = "github:NixOS/nixpkgs/master";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     agenix.url = "github:ryantm/agenix";
+
+    pr-wlscreenrec.url = "github:LudovicoPiero/nixpkgs?rev=84cd983e2136991313080480216413288b5398e3";
   };
   outputs = {
     self,
@@ -12,6 +14,7 @@
     agenix,
     nixpkgs,
     nixos-hardware,
+    pr-wlscreenrec
   } @ inputs: {
     lib = (import ./lib inputs) // (import ./lib/types.nix inputs);
     nixosConfigurations =

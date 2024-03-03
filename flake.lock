@@ -111,11 +111,28 @@
         "type": "github"
       }
     },
+    "pr-wlscreenrec": {
+      "locked": {
+        "lastModified": 1708353309,
+        "narHash": "sha256-TRPHaYZSVW2U+wGqlvq1lYtoFUC7GPqBSlQHNdRuUe8=",
+        "owner": "LudovicoPiero",
+        "repo": "nixpkgs",
+        "rev": "84cd983e2136991313080480216413288b5398e3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LudovicoPiero",
+        "repo": "nixpkgs",
+        "rev": "84cd983e2136991313080480216413288b5398e3",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
+        "pr-wlscreenrec": "pr-wlscreenrec",
         "unstable": "unstable"
       }
     },

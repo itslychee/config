@@ -24,12 +24,15 @@ in {
       keybindings = let
         _ = getExe;
         pamixer = getExe pkgs.pamixer;
-        player = "${getExe pkgs.playerctl} --player='spotify,mpd,%any'";
+        player = "${_ pkgs.playerctl} --player='spotify,mpd,%any'";
         modifier = "Mod4";
         wayshot = "${_ pkgs.wayshot} -s \"$(${_ pkgs.slurp})\" --stdout";
+        wl-screenrec = inputs.pr-wlscreenrec.legacyPackages.${pkgs.system}.wl-screenrec;
       in {
         Print = "exec ${wayshot} | wl-copy";
         "Shift+Print" = "exec ${wayshot} | ${_ pkgs.swappy} -f - -o - | wl-copy";
+        "Control+Print" = "exec ${_ wl-screenrec} -g \"`${_ pkgs.slurp}`\" -f ~/media/screenshots/\"`date +'%F_%H.%H_%M_%N'`\".mp4";
+        "Control+Delete" = "exec ${lib.getExe' pkgs.procps "pkill"} wl-screenrec";
         XF86AudioRaiseVolume = "exec ${pamixer} -i 2";
         XF86AudioLowerVolume = "exec ${pamixer} -d 2";
         XF86AudioMute = "exec ${pamixer} -t";
