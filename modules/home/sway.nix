@@ -47,7 +47,7 @@ in {
             (lib.filterAttrs (_: v: v != null) sway.keybindings)
           )
         )
-        + sway.extraConfig;
+        + "\n${sway.extraConfig}";
 
       packages = [pkgs.swayfx pkgs.wl-clipboard];
     })
