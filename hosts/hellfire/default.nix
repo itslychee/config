@@ -8,6 +8,8 @@
   imports = [
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
     "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+
+    ./blocky.nix
   ];
 
   boot = {
@@ -22,7 +24,6 @@
   };
 
   fileSystems."/".options = ["noatime"];
-
   hey = {
     services.openssh.enable = true;
     users.lychee.enable = true;
@@ -30,37 +31,6 @@
 
   users.users.root = {
     openssh.authorizedKeys.keys = lib.flatten (builtins.attrValues config.hey.keys.privileged);
-  };
-
-  # thanks mjm!
-  services.blocky = {
-    enable = true;
-    settings = {
-      upstreams = {
-        init.strategy = "failOnError"; # this must work!
-        groups.default = [
-          # CloudFlare
-          "1.1.1.1"
-          "1.0.0.1"
-          "2606:4700:4700::1111"
-          "2606:4700:4700::1001"
-        ];
-      };
-      blocking.blackLists.ads = [
-        "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-porn/hosts"
-        "https://easylist.to/easylist/easylist.txt"
-      ];
-      blocking.whiteLists.ads = [
-        "https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt"
-      ];
-      customDNS = {
-        customTTL = "24h";
-        mapping = {
-          "pi.lan" = "192.168.0.2";
-          "hearth.lan" = "192.168.0.3";
-        };
-      };
-    };
   };
 
   networking.firewall = {
