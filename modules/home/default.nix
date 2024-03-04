@@ -9,6 +9,7 @@
 {
   imports = [
     ./sway.nix
+    ./dev.nix
     ./neovim.nix
     ./meta.nix
   ];

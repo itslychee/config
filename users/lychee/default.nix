@@ -17,6 +17,18 @@ in {
     hashedPasswordFile = config.age.secrets.lychee-password.path;
   };
   hey.users.lychee = {
+    programs.git = {
+        enable = true;
+        extraConfig = {
+            user = {
+                email = "itslychee@protonmail.com";
+                name = "itslychee";
+                signingkey = "~/.ssh/id_ed25519.pub";
+            };
+            commit.gpgsign = true;
+            gpg.format = "ssh";
+        };
+    };
     wms.sway = {
       extraConfig = ''
         exec_always ${lib.getExe pkgs.autotiling-rs}
