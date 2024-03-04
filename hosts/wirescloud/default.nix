@@ -1,8 +1,4 @@
-{
-  inputs,
-  config,
-  ...
-}: {
+{ config, ... }: {
   imports = [
     ./hardware-configuration.nix
   ];
