@@ -68,25 +68,22 @@ api.nvim_create_autocmd('LspAttach', {
 })
 
 
-
-
-
-
 local cmp = require('cmp')
+local mappin = cmp.mapping
 cmp.setup({
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end,
   },
-  mapping = cmp.mapping.preset.insert({
-    ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-    ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
-    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
-    ["<C-c>"] = cmp.mapping.abort(), -- close completion window
-    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+  mapping = mappin.preset.insert({
+    ["<C-k>"] = mappin.select_prev_item(), -- previous suggestion
+    ["<C-j>"] = mappin.select_next_item(), -- next suggestion
+    ["<C-b>"] = mappin.scroll_docs(-4),
+    ["<C-f>"] = mappin.scroll_docs(4),
+    ["<C-Space>"] = mappin.complete(), -- show completion suggestions
+    ["<C-c>"] = mappin.abort(), -- close completion window
+    ["<CR>"] = mappin.confirm({ select = false }),
   }),
   -- sources for autocompletion
   sources = cmp.config.sources({
