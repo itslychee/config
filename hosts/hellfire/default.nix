@@ -38,6 +38,8 @@
     allowedUDPPorts = [53];
   };
 
+  networking.interfaces.end0.useDHCP = true;
+
   # do not touch #
   system.stateVersion = "24.05";
 }

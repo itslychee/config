@@ -7,14 +7,9 @@
     (nixpkgs.lib)
     genAttrs
     listToAttrs
-    hasSuffix
     nixosSystem
-    optionals
     flatten
-    ;
-  inherit
-    (builtins)
-    pathExists
+    mkForce
     ;
 in rec {
   # Supported systems that I use throughout my daily life
@@ -36,6 +31,7 @@ in rec {
       };
       modules = flatten [
         {
+          networking.useDHCP = mkForce false;
           hey.nix.enable = true;
           networking.hostName = hostname;
           nixpkgs.config.allowUnfree = true;
