@@ -1,16 +1,14 @@
 {
   config,
-  pkgs,
   lib,
   inputs,
-  mylib,
   ...
 }: let
-  inherit (lib) mkIf mapAttrs';
+  inherit (lib) mkIf mapAttrs' mkEnableOption;
   inherit (config.hey) nix;
 in {
   options.hey.nix = {
-    enable = mylib.mkDefaultOption;
+    enable = mkEnableOption "Nix";
   };
   config = mkIf nix.enable {
     nixpkgs.config.allowUnfree = true;

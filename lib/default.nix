@@ -36,8 +36,8 @@ in rec {
       };
       modules = flatten [
         {
+          hey.nix.enable = true;
           networking.hostName = hostname;
-          # Nixpkgs
           nixpkgs.config.allowUnfree = true;
           nixpkgs.hostPlatform = arch;
         }

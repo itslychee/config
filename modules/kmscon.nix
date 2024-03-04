@@ -2,14 +2,13 @@
   config,
   lib,
   pkgs,
-  mylib,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.hey.services.kmscon;
 in {
   options.hey.services.kmscon = {
-    enable = mylib.mkDefaultOption;
+    enable = mkEnableOption "Kmscon";
   };
 
   config.services.kmscon = mkIf cfg.enable {

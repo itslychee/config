@@ -1,13 +1,13 @@
 {
   config,
   lib,
-  mylib,
   ...
 }: let
   cfg = config.hey.network;
+  inherit (lib) mkEnableOption;
 in {
   options.hey.network = {
-    useNetworkd = mylib.mkDefaultOption;
+    useNetworkd = mkEnableOption "Networkd";
   };
 
   config = lib.mkIf cfg.networkd {
