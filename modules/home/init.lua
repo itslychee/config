@@ -2,11 +2,12 @@ local cmd = vim.cmd
 local o = vim.opt
 local api = vim.api
 local k = vim.keymap.set
+local ts = require("telescope.builtin")
 local lspconfig = require("lspconfig")
 
-o.bg = "light"
 cmd.colorscheme "kanagawa"
 
+o.bg = "light"
 o.splitbelow = true
 o.number = true
 o.relativenumber = true
@@ -21,7 +22,16 @@ o.backup = true
 o.backupdir = "/tmp";
 o.cindent = true
 o.shiftwidth = 4
+o.completeopt = "menu,menuone,noselect"
 vim.g.mapleader = ","
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local LSPs = { 'ccls', 'nil_ls', 'gopls', 'pyright', 'ruff_lsp'}
+for _, server in ipairs(LSPs) do
+    lspconfig[server].setup {
+        capabilities = capabilities,
+    }
+end
 
 api.nvim_create_autocmd('TermOpen', {
     pattern = "*",
@@ -33,11 +43,58 @@ api.nvim_create_autocmd('TermOpen', {
     end,
 })
 
--- LSP setup
-lspconfig.nil_ls.setup  { autostart = true, }
-lspconfig.gopls.setup   { autostart = true, }
-lspconfig.clangd.setup  { autostart = true, }
-lspconfig.ruff_lsp.setup{ autostart = true, }
+api.nvim_create_autocmd('LspAttach', {
+  group = api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    local opts = { buffer = ev.buf }
+    k('n', '<space>D', vim.lsp.buf.type_definition, opts)
+    k('n', 'gD', vim.lsp.buf.declaration, opts)
+    k('n', 'gd', vim.lsp.buf.definition, opts)
+    k('n', 'gr', vim.lsp.buf.references, opts)
+    k('n', 'K', vim.lsp.buf.hover, opts)
+    k('n', 'gi', vim.lsp.buf.implementation, opts)
+    k('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    -- Workspace
+    k('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+    k('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    k('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
+    k('n', '<space>rn', vim.lsp.buf.rename, opts)
+    k({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+    -- Formatting
+    k('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
+  end,
+})
+
+
+
+
+
+
+local cmp = require('cmp')
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+    ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+    ["<C-c>"] = cmp.mapping.abort(), -- close completion window
+    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+  }),
+  -- sources for autocompletion
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+    { name = "buffer" }, 
+    { name = "path" },
+  }),
+})
 
 -- git conflict handler!!
 require 'git-conflict'.setup({
@@ -51,27 +108,27 @@ require 'git-conflict'.setup({
     },
 })
 
-ts = require("telescope.builtin")
-
 -- keymaps
+k("n", "-", require("mini.files").open)
 k("n", "<leader>f", ts.find_files)
 k("n", "<leader>g", ts.git_files)
 k("n", "<leader>G", ts.live_grep)
 k("n", "<leader>b", ts.buffers)
 k('t', '<ESC>', "<C-\\><C-n>")
-k("n", "-", require("mini.files").open)
+k('n', '<space>e', vim.diagnostic.open_float)
+k('n', '[d', vim.diagnostic.goto_prev)
+k('n', ']d', vim.diagnostic.goto_next)
+k('n', '<space>q', vim.diagnostic.setloclist)
 
 
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
   indent = {
       enable = true,
   },
 }
+
+

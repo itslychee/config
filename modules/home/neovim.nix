@@ -19,7 +19,13 @@ in {
           (pkgs)
           ripgrep
           nil
+          ruff-lsp
+          gopls
+          rust-analyzer
+          ccls
+
           ;
+        inherit (pkgs.nodePackages_latest) pyright;
       };
       apply = f: lib.makeBinPath f;
       type = listOf package;
@@ -36,10 +42,15 @@ in {
             (pkgs.vimPlugins)
             kanagawa-nvim
             nvim-lspconfig
+	    cmp-nvim-lsp
+            nvim-cmp
+            cmp-path
+            cmp-buffer
             git-conflict-nvim
             nvim-web-devicons
             mini-nvim
             telescope-nvim
+            cmp_luasnip
             ;
           ts = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
         };
