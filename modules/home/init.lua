@@ -128,4 +128,6 @@ require 'nvim-treesitter.configs'.setup {
   },
 }
 
-
+vim.filetype.add { filename = {
+    [".envrc"] = "bash",
+}}
