@@ -1,6 +1,7 @@
 let
   inherit (import <nixpkgs> {}) lib;
   inherit (builtins) isList;
+  secrets = import ../lib/keys.nix;
 
   keys =
     (lib.evalModules {
@@ -11,19 +12,21 @@ let
     .keys;
 
   # Wrapper for privileged + host keys
-  withPrivileged = hosts:
+  withPrivilegedUser = user: hosts:
     lib.flatten [
-      (builtins.attrValues keys.privileged)
+      # user public keys
+      (secrets.encrypt keys.users.${user})
+      # Hosts pub keys
       (
         if (isList hosts)
         then (map (name: keys.hosts.${name}) hosts)
         else keys.hosts.${hosts}
       )
     ];
+
+  withPrivileged = withPrivilegedUser "lychee";
 in {
   "wifi.age".publicKeys = withPrivileged "hearth";
-  "pi-hellfire.age".publicKeys = withPrivileged "hellfire";
   "lychee-password.age".publicKeys = withPrivileged ["hellfire" "hearth" "wirescloud"];
   "vault-admin.age".publicKeys = withPrivileged ["wirescloud"];
-  "lastfm.age".publicKeys = withPrivileged ["hearth"];
 }

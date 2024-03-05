@@ -14,11 +14,6 @@ in {
     nixpkgs.config.allowUnfree = true;
     nix = {
       nixPath = ["nixpkgs=flake:nixpkgs"];
-      sshServe = {
-        protocol = "ssh-ng";
-        keys = config.hey.keys.users.lychee;
-        enable = true;
-      };
       registry =
         mapAttrs' (name: val: {
           inherit name;

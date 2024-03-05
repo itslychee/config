@@ -3,6 +3,7 @@
   inputs,
   lib,
   pkgs,
+  mylib,
   ...
 }: let
   inherit (lib) getExe getExe';
@@ -12,7 +13,7 @@ in {
   age.secrets.lychee-password.file = "${inputs.self}/secrets/lychee-password.age";
   users.users.lychee = mkIf cfg.lychee.enable {
     isNormalUser = true;
-    openssh.authorizedKeys.keys = config.hey.keys.users.lychee;
+    openssh.authorizedKeys.keys = (mylib.keys.all config.hey.keys.users.lychee);
     extraGroups = ["wheel"];
     hashedPasswordFile = config.age.secrets.lychee-password.path;
   };

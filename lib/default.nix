@@ -15,6 +15,7 @@ in rec {
   # Supported systems that I use throughout my daily life
   systems = ["x86_64-linux" "aarch64-linux"];
   per = genAttrs systems;
+  keys = import ./keys.nix; 
 
   mkSystems = arch: hosts: (listToAttrs (
     map (name: {
