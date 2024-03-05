@@ -31,17 +31,21 @@ in rec {
         inherit inputs;
       };
       modules = flatten [
-        {
-          networking.useDHCP = mkForce false;
+        { 
           hey.nix.enable = true;
-          networking.hostName = hostname;
-          nixpkgs.config.allowUnfree = true;
-          nixpkgs.hostPlatform = arch;
+          networking = {
+              useDHCP = mkForce false;
+              hostName = hostname;
+          };
+          nixpkgs = {
+              config.allowUnfree = true;
+              hostPlatform = arch;
+          };
         }
         # Host
-        (import ../hosts/${hostname})
+        (import "${self}/hosts/${hostname}")
         # Module system
-        (import ../modules)
+        (import "${self}/modules")
       ];
     };
 }
