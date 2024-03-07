@@ -20,11 +20,10 @@
   });
 
   hey = {
-    fonts.enable = true;
+    graphical.enable = true;
     services = {
       openssh.enable = true;
       kmscon.enable = false;
-      pipewire.enable = true;
     };
 
     users.lychee = {

@@ -7,7 +7,7 @@
     ./agenix.nix
     ./caddy-module-patch.nix
     ./fail2ban.nix
-    ./fonts.nix
+    ./graphical.nix
     ./home.nix
     ./keys.nix
     ./kmscon.nix
@@ -15,7 +15,6 @@
     ./meta.nix
     ./nix.nix
     ./openssh.nix
-    ./pipewire.nix
     ./vaultwarden.nix
     ./website.nix
     "${inputs.self}/users/lychee"
