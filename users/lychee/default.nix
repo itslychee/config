@@ -2,7 +2,6 @@
   config,
   inputs,
   lib,
-  pkgs,
   mylib,
   ...
 }: let
@@ -10,7 +9,9 @@
   inherit (lib) mkIf;
 in {
   imports = [./sway.nix];
-  age.secrets.lychee-password.file = "${inputs.self}/secrets/lychee-password.age";
+  age.secrets = mkIf cfg.lychee.enable {
+      lychee-password.file =  "${inputs.self}/secrets/lychee-password.age";
+  };
   users.users.lychee = mkIf cfg.lychee.enable {
     isNormalUser = true;
     openssh.authorizedKeys.keys = (mylib.keys.all config.hey.keys.users.lychee);

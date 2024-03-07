@@ -15,6 +15,7 @@
       # Desktop
       self.lib.mkSystems "x86_64-linux" [
         "wirescloud"
+        "wiretop"
         "hearth"
       ]
       // self.lib.mkSystems "aarch64-linux" [
@@ -26,8 +27,9 @@
         })
         self.lib.systems));
 
-    formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
+    diskoConfigurations = self.lib.mkDisko [ "wiretop" ];
 
+    formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
     packages = self.lib.per (system: rec {
       default = iso;
       iso = self.nixosConfigurations."iso-${system}".config.system.build.isoImage;

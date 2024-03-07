@@ -18,7 +18,7 @@
     ./pipewire.nix
     ./vaultwarden.nix
     ./website.nix
-    "${inputs.self}/users"
+    "${inputs.self}/users/lychee"
   ];
   # Global options
   time.timeZone = "US/Central";

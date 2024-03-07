@@ -9,6 +9,7 @@
     listToAttrs
     nixosSystem
     flatten
+    optionals
     mkForce
     ;
 in rec {

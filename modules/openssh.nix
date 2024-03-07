@@ -29,7 +29,7 @@ in {
         agentTimeout = "10m";
         knownHosts = {
           "pi.lan" = {
-            extraHostNames = ["192.168.0.2"];
+            extraHostNames = ["192.168.0.10"];
             publicKey = config.hey.keys.hosts.hellfire;
           };
           "hearth.lan" = {
