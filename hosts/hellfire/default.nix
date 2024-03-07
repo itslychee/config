@@ -12,12 +12,7 @@
     ./blocky.nix
   ];
 
-  boot = {
-    # I do not want to compile any filesystem driver other than the ones listed.
-    supportedFilesystems = lib.mkForce ["ext4" "vfat"];
-    kernelPackages = lib.mkForce pkgs.linuxPackages;
-  };
-
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   sdImage = {
     imageBaseName = config.networking.hostName;
     compressImage = false;
