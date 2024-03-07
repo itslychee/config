@@ -12,7 +12,6 @@
     ./keys.nix
     ./kmscon.nix
     ./matrix.nix
-    ./meta.nix
     ./nix.nix
     ./openssh.nix
     ./vaultwarden.nix
