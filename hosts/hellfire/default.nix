@@ -2,7 +2,7 @@
   inputs,
   mylib,
   config,
-  pkgs, 
+  pkgs,
   ...
 }: {
   imports = [
@@ -25,7 +25,7 @@
   };
 
   users.users.root = {
-      openssh.authorizedKeys.keys = mylib.keys.all config.hey.keys.users.lychee;
+    openssh.authorizedKeys.keys = mylib.keys.all config.hey.keys.users.lychee;
   };
 
   networking.firewall = {

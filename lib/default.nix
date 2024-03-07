@@ -16,7 +16,7 @@ in rec {
   # Supported systems that I use throughout my daily life
   systems = ["x86_64-linux" "aarch64-linux"];
   per = genAttrs systems;
-  keys = import ./keys.nix; 
+  keys = import ./keys.nix;
 
   mkSystems = arch: hosts: (listToAttrs (
     map (name: {
@@ -32,16 +32,16 @@ in rec {
         inherit inputs;
       };
       modules = flatten [
-        { 
+        {
           programs.command-not-found.enable = false;
           hey.nix.enable = true;
           networking = {
-              useDHCP = mkForce false;
-              hostName = hostname;
+            useDHCP = mkForce false;
+            hostName = hostname;
           };
           nixpkgs = {
-              config.allowUnfree = true;
-              hostPlatform = arch;
+            config.allowUnfree = true;
+            hostPlatform = arch;
           };
         }
         # Host
@@ -50,14 +50,16 @@ in rec {
         (import "${self}/modules")
 
         (optionals (self.diskoConfigurations ? "${hostname}") [
-         inputs.disko.nixosModules.disko
-         self.diskoConfigurations.${hostname}
+          inputs.disko.nixosModules.disko
+          self.diskoConfigurations.${hostname}
         ])
       ];
     };
 
-  mkDisko = hosts: listToAttrs ( map (name: {
-      inherit name;
-      value.disko.devices = import "${inputs.self}/hosts/${name}/disko.nix";
-    }) hosts );
+  mkDisko = hosts:
+    listToAttrs (map (name: {
+        inherit name;
+        value.disko.devices = import "${inputs.self}/hosts/${name}/disko.nix";
+      })
+      hosts);
 }

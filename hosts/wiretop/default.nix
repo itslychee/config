@@ -1,8 +1,13 @@
-{pkgs, config, lib, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   boot = {
-      loader.systemd-boot.enable = true;
-      initrd.availableKernelModules = ["xhci_pci" "usb_storage" "sd_mod" "sdhci_pci"];
-      kernelModules = ["kvm-intel"];
+    loader.systemd-boot.enable = true;
+    initrd.availableKernelModules = ["xhci_pci" "usb_storage" "sd_mod" "sdhci_pci"];
+    kernelModules = ["kvm-intel"];
   };
 
   hey = {
@@ -21,7 +26,6 @@
       ];
     };
   };
-
 
   networking.networkmanager.enable = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

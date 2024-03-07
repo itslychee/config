@@ -13,17 +13,17 @@ in {
       readOnly = true;
       type = attrsOf (listOf (submodule {
         options = {
-            key = mkOption {
-              type = str;
-            };
-            encrypt = mkOption {
-              type = bool;
-              default = false;
-            };
-            privileged = mkOption {
-              type = bool;
-              default = false;
-            };
+          key = mkOption {
+            type = str;
+          };
+          encrypt = mkOption {
+            type = bool;
+            default = false;
+          };
+          privileged = mkOption {
+            type = bool;
+            default = false;
+          };
         };
       }));
     };

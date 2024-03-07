@@ -9,7 +9,11 @@
 
     pr-wlscreenrec.url = "github:LudovicoPiero/nixpkgs?rev=84cd983e2136991313080480216413288b5398e3";
   };
-  outputs = { self, nixpkgs, ... } @ inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: {
     lib = (import ./lib inputs) // (import ./lib/types.nix inputs);
     nixosConfigurations =
       # Desktop
@@ -27,7 +31,7 @@
         })
         self.lib.systems));
 
-    diskoConfigurations = self.lib.mkDisko [ "wiretop" ];
+    diskoConfigurations = self.lib.mkDisko ["wiretop"];
 
     formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
     packages = self.lib.per (system: rec {

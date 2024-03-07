@@ -1,4 +1,8 @@
-{ config, mylib, ... }: {
+{
+  config,
+  mylib,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -27,7 +31,7 @@
   };
 
   users.users.root.openssh = {
-    authorizedKeys.keys = (mylib.keys.all config.hey.keys.users.lychee);
+    authorizedKeys.keys = mylib.keys.all config.hey.keys.users.lychee;
   };
 
   # do not change

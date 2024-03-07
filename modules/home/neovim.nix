@@ -23,7 +23,6 @@ in {
           gopls
           rust-analyzer
           ccls
-
           ;
         inherit (pkgs.nodePackages_latest) pyright;
       };
@@ -42,7 +41,7 @@ in {
             (pkgs.vimPlugins)
             kanagawa-nvim
             nvim-lspconfig
-	    cmp-nvim-lsp
+            cmp-nvim-lsp
             nvim-cmp
             cmp-path
             cmp-buffer

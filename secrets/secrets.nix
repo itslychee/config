@@ -27,6 +27,6 @@ let
   withPrivileged = withPrivilegedUser "lychee";
 in {
   "wifi.age".publicKeys = withPrivileged "hearth";
-  "lychee-password.age".publicKeys = withPrivileged ["hellfire" "hearth" "wirescloud" "wiretop" ];
+  "lychee-password.age".publicKeys = withPrivileged ["hellfire" "hearth" "wirescloud" "wiretop"];
   "vault-admin.age".publicKeys = withPrivileged ["wirescloud"];
 }
