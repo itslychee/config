@@ -1,4 +1,4 @@
-{ lib, modulesPath, mylib, config, ... }:
+{ lib, modulesPath, mylib, config, pkgs, ... }:
 let
   inherit (lib) mkForce;
 in {
@@ -9,4 +9,6 @@ in {
   users.users = {
      root.openssh.authorizedKeys.keys = mylib.keys.privileged config.hey.keys.users.lychee;
   };
+
+  environment.systemPackages = [ pkgs.rsync ];
 }
