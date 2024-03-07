@@ -82,6 +82,10 @@
       options rtw_pci disable_msi=y disable_aspm=y
   '';
 
+  # nix-index
+  environment.sessionVariables.NIX_INDEX_DATABASE = "/var/lib/nix-index-db";
+  programs.nix-index.enable = true;
+
   # do not touch ever! #
   system.stateVersion = "24.05";
 }
