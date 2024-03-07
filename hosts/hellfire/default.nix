@@ -30,7 +30,7 @@
   };
 
   users.users.root = {
-    openssh.authorizedKeys.keys = lib.flatten (builtins.attrValues config.hey.keys.privileged);
+      openssh.authorizedKeys.keys = mylib.keys.all config.hey.keys.users.lychee;
   };
 
   networking.firewall = {
