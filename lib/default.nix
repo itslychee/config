@@ -46,6 +46,16 @@ in rec {
         (import "${self}/hosts/${hostname}")
         # Module system
         (import "${self}/modules")
+
+        (optionals (self.diskoConfigurations ? "${hostname}") [
+         inputs.disko.nixosModules.disko
+         self.diskoConfigurations.${hostname}
+        ])
       ];
     };
+
+  mkDisko = hosts: listToAttrs ( map (name: {
+      inherit name;
+      value.disko.devices = import "${inputs.self}/hosts/${name}/disko.nix";
+    }) hosts );
 }
