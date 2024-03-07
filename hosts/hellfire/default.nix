@@ -1,8 +1,8 @@
 {
   inputs,
-  pkgs,
+  mylib,
   config,
-  lib,
+  pkgs, 
   ...
 }: {
   imports = [

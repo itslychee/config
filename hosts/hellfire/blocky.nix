@@ -6,6 +6,17 @@
             minTime = "20m";
             prefetching = true;
         };
+        upstreams.groups = {
+            default = [
+                # CF
+                "1.1.1.1"
+                "1.0.0.1"
+                "8.8.8.8"
+                # ControlD
+                "76.76.2.2"
+                "76.76.10.2"
+            ];
+        };
         bootstrapDns = [
             "tcp+udp:1.1.1.1"
         ];
@@ -13,7 +24,7 @@
             customTTL = "24h";
             mapping = {
                 "hearth.lan" = "192.168.0.3";
-                "pi.lan" = "192.168.0.2";
+                "pi.lan" = "192.168.0.10";
             };
         };
         blocking.blackLists.ads = [
