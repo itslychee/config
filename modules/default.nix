@@ -6,14 +6,13 @@
   imports = [
     ./agenix.nix
     ./caddy-module-patch.nix
-    ./fail2ban.nix
     ./graphical.nix
+    ./networking.nix
     ./home.nix
     ./keys.nix
     ./kmscon.nix
     ./matrix.nix
     ./nix.nix
-    ./openssh.nix
     ./vaultwarden.nix
     ./website.nix
     "${inputs.self}/users/lychee"

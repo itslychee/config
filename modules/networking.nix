@@ -4,14 +4,23 @@
   lib,
   ...
 }: let
-  cfg = config.hey.services.openssh;
+  cfg = config.hey.net;
   inherit (lib) mkIf mkMerge mkEnableOption;
 in {
-  options = {
-    hey.services.openssh.enable = mkEnableOption "OpenSSH Server";
+  options.hey.net = {
+    openssh = mylib.mkDefaultOption;
+    fail2ban = mylib.mkDefaultOption;
   };
   config = mkMerge [
-    (mkIf cfg.enable {
+    (mkIf cfg.fail2ban {
+      services.fail2ban = {
+        enable = true;
+        maxretry = 5;
+        ignoreIP = ["::1" "127.0.0.1"];
+        bantime = "24h";
+      };
+    })
+    (mkIf cfg.openssh {
       # OpenSSH server
       services.openssh = {
         enable = true;

@@ -15,7 +15,6 @@
     services = {
       kmscon.enable = false;
       pipewire.enable = true;
-      openssh.enable = true;
     };
 
     users.lychee = {

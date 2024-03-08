@@ -20,7 +20,6 @@
 
   fileSystems."/".options = ["noatime"];
   hey = {
-    services.openssh.enable = true;
     users.lychee.enable = true;
   };
 
