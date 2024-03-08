@@ -6,8 +6,6 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     agenix.url = "github:ryantm/agenix";
     disko.url = "github:nix-community/disko";
-
-    pr-wlscreenrec.url = "github:LudovicoPiero/nixpkgs?rev=84cd983e2136991313080480216413288b5398e3";
   };
   outputs = {
     self,

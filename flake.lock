@@ -84,11 +84,11 @@
     },
     "master": {
       "locked": {
-        "lastModified": 1709837965,
-        "narHash": "sha256-9cu86E0M7HwgMtUjvX8MfImmaUNYWZFNEEYTaTn11io=",
+        "lastModified": 1709864253,
+        "narHash": "sha256-03Icgm7qr2UY+cZ8MnNLpQxNf+1JyXhZqBb/rXmStOI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5f4a3408de64672268ca35d497e2c467d05e5fdf",
+        "rev": "83bfe406db44f485611e73f5e3864bbe6b1fa79d",
         "type": "github"
       },
       "original": {
@@ -161,30 +161,13 @@
         "type": "github"
       }
     },
-    "pr-wlscreenrec": {
-      "locked": {
-        "lastModified": 1708353309,
-        "narHash": "sha256-TRPHaYZSVW2U+wGqlvq1lYtoFUC7GPqBSlQHNdRuUe8=",
-        "owner": "LudovicoPiero",
-        "repo": "nixpkgs",
-        "rev": "84cd983e2136991313080480216413288b5398e3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "LudovicoPiero",
-        "repo": "nixpkgs",
-        "rev": "84cd983e2136991313080480216413288b5398e3",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "agenix": "agenix",
         "disko": "disko",
         "master": "master",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_3",
-        "pr-wlscreenrec": "pr-wlscreenrec"
+        "nixpkgs": "nixpkgs_3"
       }
     },
     "systems": {
