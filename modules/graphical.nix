@@ -22,12 +22,18 @@ in {
           noto-fonts-emoji
           dejavu_fonts
           liberation_ttf
+          font-awesome
           ;
-        nerdfonts = pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];};
+        nerdfonts = pkgs.nerdfonts.override {fonts = [
+            "NerdFontsSymbolsOnly"
+            "JetBrainsMono"
+        ];};
       });
       fontconfig.defaultFonts = {
-        monospace = ["Terminus" "Source Code Pro"];
-        emoji = ["Noto Color Emoji"];
+        monospace = ["Terminus" "JetBrains Nerd Font Mono" "Source Code Pro"];
+        emoji = ["Noto Color Emoji" "Font Awesome 6 Free" ];
+        serif = [ "Terminus" ]; 
+        sansSerif = [ "Terminus" ];
       };
     };
     services.pipewire = {
