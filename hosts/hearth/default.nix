@@ -14,7 +14,7 @@
     binfmt.emulatedSystems = ["aarch64-linux"];
   };
 
-  services = lib.genAttrs ["sonarr" "radarr" "jellyfin"] (name: {
+  services = lib.genAttrs ["jellyfin"] (name: {
     enable = true;
     openFirewall = true;
   });
