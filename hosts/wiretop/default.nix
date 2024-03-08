@@ -11,11 +11,7 @@
   };
 
   hey = {
-    fonts.enable = true;
-    services = {
-      kmscon.enable = false;
-      pipewire.enable = true;
-    };
+    graphical.enable = true;
 
     users.lychee = {
       enable = true;
