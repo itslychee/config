@@ -24,16 +24,18 @@ in {
           liberation_ttf
           font-awesome
           ;
-        nerdfonts = pkgs.nerdfonts.override {fonts = [
+        nerdfonts = pkgs.nerdfonts.override {
+          fonts = [
             "NerdFontsSymbolsOnly"
             "JetBrainsMono"
-        ];};
+          ];
+        };
       });
       fontconfig.defaultFonts = {
         monospace = ["Terminus" "JetBrains Nerd Font Mono" "Source Code Pro"];
-        emoji = ["Noto Color Emoji" "Font Awesome 6 Free" ];
-        serif = [ "Terminus" ]; 
-        sansSerif = [ "Terminus" ];
+        emoji = ["Noto Color Emoji" "Font Awesome 6 Free"];
+        serif = ["Terminus"];
+        sansSerif = ["Terminus"];
       };
     };
     services.pipewire = {
