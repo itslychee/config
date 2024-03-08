@@ -35,7 +35,7 @@ in {
       programs.ssh = {
         startAgent = true;
         enableAskPassword = true;
-        agentTimeout = "10m";
+        agentTimeout = "30m";
         knownHosts = {
           "pi.lan" = {
             extraHostNames = ["192.168.0.10"];
