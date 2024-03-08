@@ -21,10 +21,6 @@
 
   hey = {
     graphical.enable = true;
-    services = {
-      kmscon.enable = false;
-    };
-
     users.lychee = {
       enable = true;
       wms.sway.enable = true;
