@@ -58,7 +58,6 @@
     };
   };
 
-  hardware.opengl.extraPackages = [pkgs.amdvlk];
   hardware.bluetooth.enable = true;
   environment.systemPackages = [
     (pkgs.lutris.override {extraPkgs = p: [p.winetricks p.wineWowPackages.waylandFull];})
