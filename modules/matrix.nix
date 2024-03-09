@@ -34,6 +34,8 @@ in {
           url_preview_enabled = true;
           max_upload_size = "200M";
           registration_requires_token = true;
+          presence.enabled = false;
+          withJemalloc = true;
         };
       };
 
