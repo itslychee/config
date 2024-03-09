@@ -51,15 +51,6 @@ in {
             reverse_proxy /_matrix/* http://127.0.0.1:8008
             reverse_proxy /_synapse/* http://127.0.0.0.1:8008
           '';
-          ${cfg.elementHostname}.extraConfig = let
-            element = pkgs.element-web.override {
-              conf = {
-                "m.homeserver".base_url = "https://${cfg.matrixHostname}";
-              };
-            };
-          in ''
-            root * ${element}
-          '';
         };
       };
     };
