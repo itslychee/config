@@ -33,6 +33,7 @@ in rec {
       };
       modules = flatten [
         {
+          hardware.enableAllFirmware = true;
           programs.command-not-found.enable = false;
           hey.nix.enable = true;
           networking = {
