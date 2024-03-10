@@ -1,10 +1,10 @@
 {
-    config = {
-      security.sudo = {
-          execWheelOnly = true;
-          extraConfig = ''
-            Defaults pwfeedback
-          '';
-      };
+  config = {
+    security.sudo = {
+      execWheelOnly = true;
+      extraConfig = ''
+        Defaults pwfeedback
+      '';
     };
+  };
 }

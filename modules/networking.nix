@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.hey.net;
-  inherit (lib) mkIf mkMerge mkEnableOption;
+  inherit (lib) mkIf mkMerge;
 in {
   options.hey.net = {
     openssh = mylib.mkDefaultOption;
@@ -37,7 +37,7 @@ in {
         enableAskPassword = true;
         agentTimeout = "30m";
         extraConfig = ''
-            AddKeysToAgent yes
+          AddKeysToAgent yes
         '';
         knownHosts = {
           "pi.lan" = {

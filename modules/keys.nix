@@ -47,8 +47,8 @@ in {
           key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXeFJBxjG2NgeKr4l58KIp7lPf/pUeYD/4bYVapuump phone";
         }
         {
-            # wiretop
-            key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM1RF5Vn4BMd+BOajiORYjWcC3o2Sd+RC7zAkYq7sz/8 lychee@wiretop";
+          # wiretop
+          key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM1RF5Vn4BMd+BOajiORYjWcC3o2Sd+RC7zAkYq7sz/8 lychee@wiretop";
         }
       ];
     };
