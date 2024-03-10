@@ -1,22 +1,5 @@
 {
-  inputs,
-  pkgs,
-  ...
-}: {
-  imports = [
-    ./agenix.nix
-    ./caddy-module-patch.nix
-    ./graphical.nix
-    ./networking.nix
-    ./home.nix
-    ./keys.nix
-    ./matrix.nix
-    ./security.nix
-    ./nix.nix
-    ./vaultwarden.nix
-    ./website.nix
-    "${inputs.self}/users/lychee"
-  ];
+
   # Global options
   time.timeZone = "US/Central";
 

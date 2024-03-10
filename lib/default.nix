@@ -6,12 +6,17 @@
   inherit
     (nixpkgs.lib)
     genAttrs
+    optionals
     listToAttrs
     nixosSystem
     flatten
-    optionals
     mkForce
     ;
+  inherit (nixpkgs.lib.fileset)
+    toList
+    unions
+    difference
+  ;
 in rec {
   # Supported systems that I use throughout my daily life
   systems = ["x86_64-linux" "aarch64-linux"];
@@ -45,11 +50,15 @@ in rec {
             hostPlatform = arch;
           };
         }
+        # Module system
+        (toList (
+           difference
+           (unions [ ../modules ../users])
+           (unions [ ../modules/home ])
+        ))
+
         # Host
         (import "${self}/hosts/${hostname}")
-        # Module system
-        (import "${self}/modules")
-
         (optionals (self.diskoConfigurations ? "${hostname}") [
           inputs.disko.nixosModules.disko
           self.diskoConfigurations.${hostname}
