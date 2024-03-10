@@ -10,7 +10,6 @@
     ./networking.nix
     ./home.nix
     ./keys.nix
-    ./kmscon.nix
     ./matrix.nix
     ./security.nix
     ./nix.nix
