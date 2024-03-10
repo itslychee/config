@@ -12,6 +12,7 @@
     ./keys.nix
     ./kmscon.nix
     ./matrix.nix
+    ./security.nix
     ./nix.nix
     ./vaultwarden.nix
     ./website.nix
@@ -66,4 +67,6 @@
       };
     };
   };
+
+
 }
