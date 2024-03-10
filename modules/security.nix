@@ -1,10 +1,11 @@
 {
-  config = {
-    security.sudo = {
-      execWheelOnly = true;
-      extraConfig = ''
-        Defaults pwfeedback
-      '';
+    security = {
+        sudo = {
+          execWheelOnly = true;
+          extraConfig = ''
+            Defaults pwfeedback
+          '';
+        };
+        polkit.enable = true;
     };
-  };
 }

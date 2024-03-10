@@ -20,7 +20,6 @@
   ];
   # Global options
   time.timeZone = "US/Central";
-  security.polkit.enable = true;
 
   environment.defaultPackages = [pkgs.git];
   environment.etc."xdg/user-dirs.default".text = ''
