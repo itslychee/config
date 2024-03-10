@@ -69,7 +69,8 @@ in rec {
   mkDisko = hosts:
     listToAttrs (map (name: {
         inherit name;
-        value.disko.devices = import "${inputs.self}/hosts/${name}/disko.nix";
+        value.disko.devices = import "${self}/hosts/${name}/disko.nix";
       })
       hosts);
+
 }
