@@ -57,8 +57,6 @@ in {
       "${modifier}+up" = "resize grow height 5";
       "${modifier}+down" = "resize shrink height 5";
     };
-    extraConfig = ''
-      exec_always ${lib.getExe pkgs.autotiling-rs}
-    '';
+    autostart = [ pkgs.autotiling-rs ];
   };
 }
