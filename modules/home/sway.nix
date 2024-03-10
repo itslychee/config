@@ -6,6 +6,7 @@
 }: let
   inherit
     (lib)
+    flatten
     mkOption
     mkMerge
     mkIf
@@ -39,15 +40,10 @@ in {
     # Sway
     (mkIf sway.enable {
       switches.opengl = true;
-      root.".config/sway/config".text =
-        (
-          concatStringsSep "\n"
-          (
-            mapAttrsToList (k: v: "bindsym ${k} ${v}")
-            (lib.filterAttrs (_: v: v != null) sway.keybindings)
-          )
-        )
-        + "\n${sway.extraConfig}";
+      root.".config/sway/config".text = concatStringsSep "\n" (flatten [
+        (mapAttrsToList (k: v: "bindsym ${k} ${v}") sway.keybindings)
+        sway.extraConfig
+      ]);
 
       packages = [pkgs.swayfx pkgs.wl-clipboard];
     })
