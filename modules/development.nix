@@ -10,7 +10,7 @@
   programs.starship = {
     enable = true;
     settings = {
-      hostname.format = "in [$ssh_symbol$hostname]($style)";
+      hostname.format = " in [$ssh_symbol$hostname]($style)";
       username = {
         style_user = "bold cyan";
         format = "[$user]($style)";
