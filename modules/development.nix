@@ -1,5 +1,4 @@
-{ pkgs, ...}: {
-
+{pkgs, ...}: {
   environment.defaultPackages = [pkgs.git];
 
   programs.direnv = {

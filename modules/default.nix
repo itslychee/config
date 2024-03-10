@@ -1,5 +1,4 @@
 {
-
   # Global options
   time.timeZone = "US/Central";
 
@@ -13,5 +12,4 @@
     XDG_TEMPLATES_DIR="$HOME/media/templates"
     XDG_VIDEOS_DIR="$HOME/media/videos"
   '';
-
 }
