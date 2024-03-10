@@ -5,10 +5,20 @@
   pkgs,
   ...
 }: let
-  inherit (lib) forEach filterAttrs mkOption mkForce mapAttrs' mapAttrsToList nameValuePair;
-  inherit (lib.types) attrsOf submodule;
-  inherit (lib) any flatten all;
   inherit (builtins) attrValues;
+  inherit (lib.types) attrsOf submodule;
+  inherit (lib.fileset) toList fileFilter;
+  inherit
+    (lib)
+    any
+    flatten
+    filterAttrs
+    mkOption
+    mkForce
+    mapAttrs'
+    mapAttrsToList
+    nameValuePair
+    ;
 
   eachUser = u:
     mapAttrs' (name: value:
@@ -30,12 +40,12 @@
 in {
   options = {
     hey.users = mkOption {
-      type = attrsOf (submodule ({config, ...}: {
-        imports = [
+      type = attrsOf (submodule {
+        imports = flatten [
           {_module.args = {inherit pkgs inputs;};}
-          ./home
+          (toList (fileFilter (file: file.hasExt "nix") ./home))
         ];
-      }));
+      });
       description = "User-specific options";
     };
   };
