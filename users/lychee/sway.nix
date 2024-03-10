@@ -26,8 +26,8 @@ in {
       XF86AudioNext = "exec ${player} next";
       XF86MonBrightnessUp = "exec ${_ pkgs.light} -A 5";
       XF86MonBrightnessDown = "exec ${_ pkgs.light} -U 5";
-      "${modifier}+Return" = "exec ${_ pkgs.alacritty}";
-      "${modifier}+Space" = "exec ${_ pkgs.fuzzel}";
+      "${modifier}+Return" = pkgs.alacritty;
+      "${modifier}+Space" = pkgs.fuzzel;
       "${modifier}+shift+escape" = "exit";
       "${modifier}+h" = "focus left";
       "${modifier}+j" = "focus down";
