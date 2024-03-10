@@ -40,10 +40,10 @@ in {
     # Sway
     (mkIf sway.enable {
       switches.opengl = true;
-      root.".config/sway/config".text = concatStringsSep "\n" (flatten [
+      root.".config/sway/config".source = pkgs.writeText "home-sway" (concatStringsSep "\n" (flatten [
         (mapAttrsToList (k: v: "bindsym ${k} ${v}") sway.keybindings)
         sway.extraConfig
-      ]);
+      ]));
 
       packages = [pkgs.swayfx pkgs.wl-clipboard];
     })

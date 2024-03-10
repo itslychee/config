@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -16,6 +17,6 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    root.".config/git/config".text = cfg.extraConfig;
+    root.".config/git/config".source = pkgs.writeText "home-git" cfg.extraConfig;
   };
 }
