@@ -65,11 +65,7 @@ in {
         type = listOf (either str package);
         apply = f: ''
           exec_always {
-              ${concatStringsSep "\n" (map (e:
-            if isString e
-            then e
-            else getExe e)
-          f)}
+          ${concatStringsSep "\n" (map (e: "  " + (if isString e then e else getExe e)) f)}
           }
         '';
       };
@@ -92,7 +88,6 @@ in {
         "# extraConfig"
         sway.extraConfig
       ]));
-
       packages = [pkgs.swayfx pkgs.wl-clipboard];
     })
     (mkIf mako.enable {
