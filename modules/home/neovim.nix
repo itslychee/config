@@ -15,6 +15,7 @@ in {
     };
     extraPackages = mkOption {
       default = builtins.attrValues {
+        inherit (pkgs.nodePackages_latest) pyright;
         inherit
           (pkgs)
           ripgrep
@@ -23,8 +24,8 @@ in {
           gopls
           rust-analyzer
           ccls
+          statix
           ;
-        inherit (pkgs.nodePackages_latest) pyright;
       };
       apply = f: lib.makeBinPath f;
       type = listOf package;
@@ -39,17 +40,17 @@ in {
         plugins = builtins.attrValues {
           inherit
             (pkgs.vimPlugins)
-            kanagawa-nvim
-            nvim-lspconfig
-            cmp-nvim-lsp
-            nvim-cmp
-            cmp-path
             cmp-buffer
-            git-conflict-nvim
-            nvim-web-devicons
-            mini-nvim
-            telescope-nvim
+            cmp-nvim-lsp
+            cmp-path
             cmp_luasnip
+            git-conflict-nvim
+            kanagawa-nvim
+            mini-nvim
+            nvim-cmp
+            nvim-lspconfig
+            nvim-web-devicons
+            telescope-nvim
             ;
           ts = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
         };
