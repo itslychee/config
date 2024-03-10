@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkOption mapAttrs' mapAttrsToList nameValuePair;
+  inherit (lib) forEach filterAttrs mkOption mkForce mapAttrs' mapAttrsToList nameValuePair;
   inherit (lib.types) attrsOf submodule;
   inherit (lib) any flatten all;
 
@@ -13,7 +13,7 @@
     mapAttrs' (name: value:
       nameValuePair name {
         inherit (value) packages;
-      }) (lib.filterAttrs (n: v: v.enable) u);
+      }) (filterAttrs (n: v: v.enable) u);
 
   eachFile = u:
     mapAttrs' (name: value:
@@ -32,9 +32,9 @@
             in "L+ %h/${filename} - - - - ${file}"
           )
           value.root;
-      }) (lib.filterAttrs (n: v: v.enable) u);
+      }) (filterAttrs (n: v: v.enable) u);
 
-  switch = f: lib.mkForce (any f (flatten (builtins.attrValues config.hey.users)));
+  switch = f: mkForce (any f (flatten (builtins.attrValues config.hey.users)));
 in {
   options = {
     hey.users = mkOption {
@@ -50,7 +50,7 @@ in {
   config.assertions = [
     {
       assertion = all (b: b) (flatten (
-        lib.forEach
+        forEach
         (builtins.attrValues config.hey.users)
         (user: map (x: (x.source == null && x.text != null) || (x.source != null && x.text == null)) (builtins.attrValues user.root))
       ));
