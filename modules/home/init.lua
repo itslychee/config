@@ -7,7 +7,6 @@ local lspconfig = require("lspconfig")
 
 cmd.colorscheme "kanagawa"
 
-o.bg = "light"
 o.splitbelow = true
 o.number = true
 o.relativenumber = true
