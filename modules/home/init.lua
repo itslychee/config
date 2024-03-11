@@ -25,7 +25,7 @@ o.completeopt = "menu,menuone,noselect"
 vim.g.mapleader = ","
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local LSPs = { 'ccls', 'nil_ls', 'gopls', 'pyright', 'ruff_lsp'}
+local LSPs = { 'ccls', 'nil_ls', 'gopls', 'pyright', 'ruff_lsp', 'rust_analyzer' }
 for _, server in ipairs(LSPs) do
     lspconfig[server].setup {
         capabilities = capabilities,
