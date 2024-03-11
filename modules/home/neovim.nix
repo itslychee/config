@@ -21,10 +21,7 @@ in {
           ripgrep
           nil
           ruff-lsp
-          gopls
-          rust-analyzer
           ccls
-          statix
           ;
       };
       apply = f: lib.makeBinPath f;
