@@ -28,6 +28,7 @@
     ;
   sway = config.wms.sway;
   mako = config.programs.mako;
+  waybar = config.programs.waybar;
 in {
   options = {
     programs.mako = {
@@ -40,6 +41,14 @@ in {
         default = "";
       };
     };
+
+    programs.waybar = {
+        enable = mkOption {
+            type = bool;
+            default = sway.enable;
+        };
+    };
+
     wms.sway = {
       enable = mkEnableOption "Sway";
       keybindings = mkOption {
@@ -93,6 +102,13 @@ in {
     (mkIf mako.enable {
       root.".config/mako/config".source = pkgs.writeText "home-mako" mako.settings;
       wms.sway.autostart = [pkgs.mako];
+    })
+    (mkIf waybar.enable {
+       root = {
+         ".config/waybar/config".source = ./config.json;
+         ".config/waybar/style.css".source = ./style.css;
+       };
+       wms.sway.autostart = [ pkgs.waybar ];
     })
   ];
 }
