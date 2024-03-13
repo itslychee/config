@@ -11,10 +11,11 @@
     binfmt.emulatedSystems = ["aarch64-linux"];
   };
 
-  services = lib.genAttrs ["jellyfin"] (name: {
+  services.fwupd.enable = true;
+  services.jellyfin = {
     enable = true;
     openFirewall = true;
-  });
+  };
 
   hey = {
     net.home = true;
