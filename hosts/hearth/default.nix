@@ -11,7 +11,6 @@
     binfmt.emulatedSystems = ["aarch64-linux"];
   };
 
-  services.fwupd.enable = true;
   services.jellyfin = {
     enable = true;
     openFirewall = true;
