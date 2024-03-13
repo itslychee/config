@@ -52,7 +52,7 @@ api.nvim_create_autocmd('LspAttach', {
     k('n', 'gD', vim.lsp.buf.declaration, opts)
     k('n', 'gd', vim.lsp.buf.definition, opts)
     k('n', 'gr', vim.lsp.buf.references, opts)
-    k('n', 'K', vim.lsp.buf.hover, opts)
+    k('n', 'gh', vim.lsp.buf.hover, opts)
     k('n', 'gi', vim.lsp.buf.implementation, opts)
     k('n', '<C-k>', vim.lsp.buf.signature_help, opts)
     -- Workspace
@@ -121,7 +121,7 @@ require 'nvim-treesitter.configs'.setup {
 k("n", "-", require("mini.files").open)
 k("n", "<leader>f", ts.find_files)
 k("n", "<leader>g", ts.git_files)
-k("n", "<leader>G", ts.live_grep)
+k("n", "<leader>G", ts.live_grep)init
 k("n", "<leader>b", ts.buffers)
 k('t', '<ESC>', "<C-\\><C-n>")
 k('n', '<space>e', vim.diagnostic.open_float)
