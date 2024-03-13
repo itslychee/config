@@ -58,7 +58,11 @@
     };
   };
 
-  hardware.bluetooth.enable = true;
+  hardware = {
+      bluetooth.enable = true;
+      keyboard.qmk.enable = true;
+      opengl.extraPackages = [ pkgs.amdvlk ];
+  };
   environment.systemPackages = [
     (pkgs.lutris.override {extraPkgs = p: [p.winetricks p.wineWowPackages.waylandFull];})
     pkgs.gnome3.adwaita-icon-theme
