@@ -1,17 +1,38 @@
 {
   config,
+  inputs,
   mylib,
   lib,
   ...
 }: let
   cfg = config.hey.net;
-  inherit (lib) mkIf mkMerge;
+  inherit (lib) mkIf mkMerge mkEnableOption;
 in {
   options.hey.net = {
     openssh = mylib.mkDefaultOption;
     fail2ban = mylib.mkDefaultOption;
+    home = mkEnableOption "Home networking";
   };
   config = mkMerge [
+    (mkIf cfg.home {
+        age.secrets.wifi.file = "${inputs.self}/secrets/wifi.age";
+        networking.networkmanager = {
+          enable = true;
+          ensureProfiles = {
+            environmentFiles = [config.age.secrets.wifi.path];
+            profiles.homeWifi = {
+              connection.type = "wifi";
+              connection.id = "$SSID";
+              wifi.ssid = "$SSID";
+              wifi-security = {
+                auth-alg = "open";
+                key-mgmt = "wpa-psk";
+                psk = "$PASSWORD";
+              };
+            };
+          };
+        };
+     })
     (mkIf cfg.fail2ban {
       services.fail2ban = {
         enable = true;

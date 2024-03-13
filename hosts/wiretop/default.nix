@@ -12,7 +12,7 @@
 
   hey = {
     graphical.enable = true;
-
+    net.home = true;
     users.lychee = {
       enable = true;
       wms.sway.enable = true;
