@@ -28,8 +28,20 @@
     };
   };
 
-  users.users.root.openssh = {
-    authorizedKeys.keys = mylib.keys.all config.hey.keys.users.lychee;
+
+  services.headscale = {
+      enable = true;
+      settings = {
+         server_url = "https://scaley.lefishe.club:443";
+         prefixes.v4 = "1.0.0.0/24";
+      };
+  };
+
+  services.caddy = {
+      enable = true;
+      virtualHosts."scaley.lefishe.club".extraConfig = ''
+          reverse_proxy ${config.services.headscale.address}:${toString config.services.headscale.port}
+      '';
   };
 
   # do not change
