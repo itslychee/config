@@ -91,6 +91,9 @@ cmp.setup({
     { name = "path" },
   }),
 })
+vim.filetype.add { filename = {
+    [".envrc"] = "bash",
+}}
 
 -- git conflict handler!!
 require 'git-conflict'.setup({
@@ -104,6 +107,16 @@ require 'git-conflict'.setup({
     },
 })
 
+require 'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+  indent = {
+      enable = true,
+  },
+}
+
 -- keymaps
 k("n", "-", require("mini.files").open)
 k("n", "<leader>f", ts.find_files)
@@ -115,18 +128,12 @@ k('n', '<space>e', vim.diagnostic.open_float)
 k('n', '[d', vim.diagnostic.goto_prev)
 k('n', ']d', vim.diagnostic.goto_next)
 k('n', '<space>q', vim.diagnostic.setloclist)
+-- saner window navigation
+k('n', 'H', '<C-w>h')
+k('n', 'J', '<C-w>j')
+k('n', 'K', '<C-w>k')
+k('n', 'L', '<C-w>l')
 
 
-require 'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-  indent = {
-      enable = true,
-  },
-}
 
-vim.filetype.add { filename = {
-    [".envrc"] = "bash",
-}}
+
