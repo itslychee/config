@@ -82,7 +82,12 @@ in
         };
       };
 
-      services.tailscale.enable = true;
+      services.tailscale = {
+          enable = true;
+          extraUpFlags = [
+              "--login-server=https://scaley.lefishe.club"
+          ];
+      };
     }
   ];
 }
