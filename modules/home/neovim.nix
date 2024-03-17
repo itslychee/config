@@ -43,6 +43,8 @@ in {
             cmp_luasnip
             git-conflict-nvim
             kanagawa-nvim
+            luasnip
+            lualine-nvim
             mini-nvim
             nvim-cmp
             nvim-lspconfig
