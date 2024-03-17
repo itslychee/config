@@ -12,7 +12,16 @@
     ./blocky.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # relevant issue(s):
+  # https://github.com/NixOS/nixpkgs/issues/154163
+  # 
+  # using 6.7 as latest is broken due to zfs-kernel being marked as broken
+  # >:(
+
+  boot.kernelPackages = pkgs.linuxPackages_6_7_hardened;
+  boot.supportedFilesystems = [ "ext4" "vfat" ];
+
   sdImage = {
     imageBaseName = config.networking.hostName;
     compressImage = false;
