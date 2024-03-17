@@ -12,7 +12,7 @@
     nixpkgs,
     ...
   } @ inputs: {
-    lib = (import ./lib inputs) // (import ./lib/types.nix inputs);
+    lib = import ./lib inputs;
     nixosConfigurations =
       # Desktop
       self.lib.mkSystems "x86_64-linux" [
