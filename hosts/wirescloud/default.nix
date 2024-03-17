@@ -37,7 +37,7 @@
   services.caddy = {
       enable = true;
       virtualHosts."scaley.lefishe.club".extraConfig = ''
-          reverse_proxy ${config.services.headscale.address}:${toString config.services.headscale.port}
+          reverse_proxy http://${config.services.headscale.address}:${toString config.services.headscale.port}
       '';
   };
 
