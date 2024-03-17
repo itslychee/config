@@ -1,37 +1,29 @@
 # itslychee/config
 
+my nixos configuration, designed with multi-user and multi-host in mind, as I
+value extensibility.
+
 ## hosts
 - `hosts/hearth` -  main computer
 - `hosts/hellfire` - raspberry pi
 - `hosts/iso` - multi-arch ISO image
 - `hosts/wirescloud` - hetzner server instance
+- `hosts/wiretop` - former school laptop repurposed for NixOS
 
-## building ISO
+## Building ISO
 
 Simply run `nix build` to build `iso`, otherwise pass `.#hellfire` to build
-hellfire's ISO.
-
-## rules of this config
-
-- specific options stay in their specific host files
-- if the option is widely used, then it must be a module
-- if a module's option is widely used, then it must be enabled by default
-- modules must be declared under the `hey` option namespace to prevent conflicts.
-- packages that are for a specific user must be available only for this user.
-- the code must be readable
-
-basically the rules here are simple, keep the scope as small as possible as long
-as it makes sense to. This keeps the system modular and I like to think it makes it feel
-cleaner!!!
-
-got a problem with this design? guess what I don't care.
+hellfire's ISO. You can also specify architectures via `nix build .#iso-ARCH`
 
 ## acknowledgements
 
-my config was inspired from
+I drew inspiration from these users, no matter how big or small
+it was.
 
-- https://github.com/nu-nu-ko/crystal
 - https://github.com/Gerg-L/nixos
 - https://github.com/NobbZ/nixos-config
+- https://github.com/nu-nu-ko/crystal
 
-much love to those users <3
+These configurations taught me the importance of the module system and how it can be used
+to your advantage, you can look at the other branches in the repository and you will see the difference :D
+
