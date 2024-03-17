@@ -11,7 +11,10 @@
   };
 
   hey = {
-    graphical.enable = true;
+    caps = {
+        graphical = true;
+        headless = true;
+    };
     net.home = true;
     users.lychee = {
       enable = true;
