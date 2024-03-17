@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{ pkgs, ... }: {
   imports = [./hardware-configuration.nix];
 
   boot = {
@@ -17,8 +13,11 @@
   };
 
   hey = {
+    caps = {
+        graphical = true;
+        headless = true;
+    };
     net.home = true;
-    graphical.enable = true;
     users.lychee = {
       enable = true;
       wms.sway.enable = true;

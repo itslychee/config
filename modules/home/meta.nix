@@ -34,5 +34,6 @@ in {
     };
     # switches are for home -> system translations
     switches.opengl = mkEnableOption "OpenGL System Support";
+    switches.light = mkEnableOption "Brightness udev rules";
   };
 }

@@ -1,14 +1,11 @@
-{
-  config,
-  mylib,
-  ...
-}: {
+{ config, ... }: {
   imports = [
     ./hardware-configuration.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
   hey = {
+    caps.headless = true;
     users.lychee.enable = true;
     services = {
       matrix = {

@@ -4,10 +4,14 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf mkAfter mkEnableOption;
+  inherit (lib) mkIf mkAfter mkOption;
+  inherit (lib.types) bool;
 in {
   options.hey.graphical = {
-    enable = mkEnableOption "Graphical";
+    enable = mkOption {
+        type = bool;
+        default = config.hey.caps.graphical;
+    };
   };
 
   config = mkIf config.hey.graphical.enable {

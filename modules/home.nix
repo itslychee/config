@@ -54,5 +54,6 @@ in {
     systemd.user.tmpfiles.users = eachFile config.hey.users;
     # switches
     hardware.opengl.enable = switch (u: u.switches.opengl);
+    programs.light.enable = switch (u: u.switches.light);
   };
 }

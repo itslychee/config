@@ -29,12 +29,14 @@
 
   fileSystems."/".options = ["noatime"];
   hey = {
+    caps = {
+        headless = true;
+        rootLogin = true;
+    };
     users.lychee.enable = true;
   };
 
-  users.users.root = {
-    openssh.authorizedKeys.keys = mylib.keys.all config.hey.keys.users.lychee;
-  };
+
 
   networking.firewall = {
     allowedTCPPorts = [53];

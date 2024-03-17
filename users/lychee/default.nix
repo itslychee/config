@@ -16,7 +16,7 @@ in {
   users.users.lychee = mkIf cfg.lychee.enable {
     isNormalUser = true;
     openssh.authorizedKeys.keys = mylib.keys.all config.hey.keys.users.lychee;
-    extraGroups = ["wheel"];
+    extraGroups = ["wheel" "video"];
     hashedPasswordFile = config.age.secrets.lychee-password.path;
   };
   hey.users.lychee = {
