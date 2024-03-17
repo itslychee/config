@@ -1,8 +1,6 @@
 {
   lib,
   modulesPath,
-  mylib,
-  config,
   pkgs,
   ...
 }: let
@@ -11,9 +9,12 @@ in {
   imports = [(modulesPath + "/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")];
   networking.networkmanager.enable = true;
   networking.wireless.enable = mkForce false;
-  users.users = {
-    root.openssh.authorizedKeys.keys = mylib.keys.privileged config.hey.keys.users.lychee;
+
+  hey.caps = {
+      rootLogin = true;
+      headless = true;
   };
 
+  # for nixos-anywhere
   environment.systemPackages = [pkgs.rsync];
 }
