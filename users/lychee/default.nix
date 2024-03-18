@@ -13,17 +13,27 @@ in {
   age.secrets = mkIf cfg.lychee.enable {
     lychee-password.file = "${inputs.self}/secrets/lychee-password.age";
   };
+  programs.zsh = {
+      enable = true;
+      enableLsColors = false;
+      vteIntegration = true;
+      syntaxHighlighting.enable = true;
+      enableBashCompletion = true;
+      autosuggestions.enable = true;
+
+  };
   users.users.lychee = mkIf cfg.lychee.enable {
     isNormalUser = true;
     openssh.authorizedKeys.keys = mylib.keys.all config.hey.keys.users.lychee;
     extraGroups = ["wheel" "video"];
     hashedPasswordFile = config.age.secrets.lychee-password.path;
+    shell = pkgs.zsh;
   };
   hey.users.lychee = {
     packages = [pkgs.ripgrep];
     programs.git = {
       enable = true;
-      extraConfig = {
+      config = {
         user = {
           email = "itslychee@protonmail.com";
           name = "itslychee";
