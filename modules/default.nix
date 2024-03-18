@@ -35,6 +35,7 @@ in {
       XDG_VIDEOS_DIR="$HOME/media/videos"
     '';
 
+    boot.loader.systemd-boot.configurationLimit = 10;
     environment.systemPackages = [ pkgs.deploy-rs ];
   };
 }
