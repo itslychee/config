@@ -29,6 +29,8 @@
         })
         self.lib.systems));
 
+    deploy.nodes = import ./deploy.nix {inherit inputs;};
+
     diskoConfigurations = self.lib.mkDisko ["wiretop"];
 
     formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
