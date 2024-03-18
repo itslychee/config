@@ -71,14 +71,15 @@ in {
         '';
         knownHosts = {
           "pi.lan" = {
-            extraHostNames = ["192.168.0.10"];
+            extraHostNames = ["192.168.0.10" "hellfire"];
             publicKey = config.hey.keys.hosts.hellfire;
           };
           "hearth.lan" = {
-            extraHostNames = ["192.168.0.3"];
+            extraHostNames = ["192.168.0.3" "hearth"];
             publicKey = config.hey.keys.hosts.hearth;
           };
           "lefishe.club" = {
+            extraHostNames = ["wirescloud"];
             publicKey = config.hey.keys.hosts.wirescloud;
           };
         };
