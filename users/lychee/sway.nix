@@ -58,5 +58,8 @@ in {
       "${modifier}+down" = "resize shrink height 5";
     };
     autostart = [ pkgs.autotiling-rs ];
+    extraConfig = ''
+        workspace 1
+    '';
   };
 }
