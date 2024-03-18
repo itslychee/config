@@ -31,6 +31,7 @@ in {
   };
   hey.users.lychee = {
     packages = [pkgs.ripgrep];
+    programs.zsh.enable = true;
     programs.git = {
       enable = true;
       config = {
