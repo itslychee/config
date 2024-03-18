@@ -42,12 +42,38 @@ in {
         sansSerif = ["Terminus"];
       };
     };
-    services.pipewire = {
-      enable = true;
-      pulse.enable = true;
-      jack.enable = true;
-      alsa.enable = true;
-    };
+
     security.rtkit.enable = true;
+
+    services = {
+      greetd = {
+        enable = true;
+        settings.default_session.command = "${getExe pkgs.greetd.tuigreet} --cmd ${getExe pkgs.swayfx}";
+      };
+      pipewire = {
+        enable = true;
+        pulse.enable = true;
+        jack.enable = true;
+        alsa.enable = true;
+      };
+      kmscon = {
+        enable = true;
+        hwRender = true;
+        fonts = [
+          {
+            name = "Terminus";
+            package = pkgs.terminus_font;
+          }
+          {
+            name = "NerdFontsSymbolsOnly";
+            package = pkgs.nerdfonts.override {
+              fonts = [
+                "NerdFontsSymbolsOnly"
+              ];
+            };
+          }
+        ];
+      };
+    };
   };
 }
