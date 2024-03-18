@@ -59,6 +59,9 @@
     options rtw_pci disable_msi=y disable_aspm=y
   '';
 
+  # SSD trimming
+  services.fstrim.enable = true;
+
   # nix-index
   environment.sessionVariables.NIX_INDEX_DATABASE = "/var/lib/nix-index-db";
   programs.nix-index.enable = true;
