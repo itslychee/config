@@ -35,7 +35,22 @@
 
     diskoConfigurations = self.lib.mkDisko ["wiretop"];
 
-    formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
+    formatter = self.lib.per (system:
+            let pkgs = nixpkgs.legacyPackages.${system};
+            in pkgs.writeShellApplication {
+                runtimeInputs = builtins.attrValues {
+                    inherit (pkgs) git alejandra;
+                };
+                name = "flake-formatter";
+                text = ''
+                    if ! git diff --quiet; then
+                        echo "Dirty tree, exiting..."
+                        exit 1
+                    fi
+
+                    alejandra "$@"
+                '';
+            });
     packages = self.lib.per (system: rec {
       default = iso;
       iso = self.nixosConfigurations."iso-${system}".config.system.build.isoImage;
