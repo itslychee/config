@@ -2,6 +2,7 @@
   lib,
   config,
   mylib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
@@ -33,5 +34,7 @@ in {
       XDG_TEMPLATES_DIR="$HOME/media/templates"
       XDG_VIDEOS_DIR="$HOME/media/videos"
     '';
+
+    environment.systemPackages = [ pkgs.deploy-rs ];
   };
 }
