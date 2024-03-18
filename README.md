@@ -10,11 +10,6 @@ value extensibility.
 - `hosts/wirescloud` - hetzner server instance
 - `hosts/wiretop` - former school laptop repurposed for NixOS
 
-## Building ISO
-
-Simply run `nix build` to build `iso`, otherwise pass `.#hellfire` to build
-hellfire's ISO. You can also specify architectures via `nix build .#iso-ARCH`
-
 ## acknowledgements
 
 I drew inspiration from these users, no matter how big or small
