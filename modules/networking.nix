@@ -58,6 +58,9 @@ in {
       };
       boot.initrd.network.ssh.enable = true;
     })
+    (mkIf config.services.caddy.enable {
+        networking.firewall.allowedTCPPorts = [80 443];
+    })
     {
       programs.ssh = {
         startAgent = true;
@@ -88,5 +91,7 @@ in {
         ];
       };
     }
+
+
   ];
 }
