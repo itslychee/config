@@ -82,6 +82,7 @@ in {
             extraHostNames = ["wirescloud"];
             publicKey = config.hey.keys.hosts.wirescloud;
           };
+          "wiretop".publicKey = config.hey.keys.hosts.wiretop;
         };
       };
 
