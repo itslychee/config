@@ -43,7 +43,7 @@
     bluetooth.enable = true;
     keyboard.qmk.enable = true;
   };
-  environment.systemPackages = [ pkgs.bluez-tools ];
+  environment.systemPackages = [pkgs.bluez-tools];
 
   # https://github.com/lwfinger/rtw88/issues/61
   # "Fix" the kernel log spam for "h2c command failed" or whatever

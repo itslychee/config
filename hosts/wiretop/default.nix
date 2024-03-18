@@ -29,7 +29,6 @@
   networking.networkmanager.enable = true;
   hardware.cpu.intel.updateMicrocode = true;
 
-
   # hey cutie, don't touch!
   system.stateVersion = "24.05";
 }

@@ -14,13 +14,12 @@ in {
     lychee-password.file = "${inputs.self}/secrets/lychee-password.age";
   };
   programs.zsh = {
-      enable = true;
-      enableLsColors = false;
-      vteIntegration = true;
-      syntaxHighlighting.enable = true;
-      enableBashCompletion = true;
-      autosuggestions.enable = true;
-
+    enable = true;
+    enableLsColors = false;
+    vteIntegration = true;
+    syntaxHighlighting.enable = true;
+    enableBashCompletion = true;
+    autosuggestions.enable = true;
   };
   users.users.lychee = mkIf cfg.lychee.enable {
     isNormalUser = true;
@@ -33,7 +32,7 @@ in {
     packages = [pkgs.ripgrep];
 
     root.".ssh/config".source = pkgs.writeText "ssh" ''
-        AddKeysToAgent yes
+      AddKeysToAgent yes
     '';
 
     programs.zsh.enable = true;

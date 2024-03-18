@@ -13,25 +13,24 @@ in {
     git = {
       enable = mkEnableOption "Git";
       config = mkOption {
-          inherit (gitConf) type;
+        inherit (gitConf) type;
       };
     };
     zsh = {
-        enable = mkEnableOption "Zsh configuration";
-        init = mkOption {
-            type = lib.types.lines;
-            default = ''
-            '';
-        };
+      enable = mkEnableOption "Zsh configuration";
+      init = mkOption {
+        type = lib.types.lines;
+        default = ''
+        '';
+      };
     };
   };
   config = mkMerge [
-      (mkIf git.enable {
-        root.".config/git/config".source = gitConf.generate "git" git.config;
-      })
-      (mkIf zsh.enable {
-        root.".zshrc".source = pkgs.writeText "zshrc" zsh.init;
-      })
-
+    (mkIf git.enable {
+      root.".config/git/config".source = gitConf.generate "git" git.config;
+    })
+    (mkIf zsh.enable {
+      root.".zshrc".source = pkgs.writeText "zshrc" zsh.init;
+    })
   ];
 }

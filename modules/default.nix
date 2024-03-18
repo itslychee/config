@@ -36,6 +36,6 @@ in {
     '';
 
     boot.loader.systemd-boot.configurationLimit = 10;
-    environment.systemPackages = [ pkgs.deploy-rs ];
+    environment.systemPackages = [pkgs.deploy-rs];
   };
 }

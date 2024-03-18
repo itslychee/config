@@ -58,8 +58,8 @@ in {
       "${modifier}+down" = "resize shrink height 5";
     };
     autostart = [
-        pkgs.autotiling-rs
-        "${getExe pkgs.swaybg} -m fill -i ~/.wallpaper-image"
+      pkgs.autotiling-rs
+      "${getExe pkgs.swaybg} -m fill -i ~/.wallpaper-image"
     ];
     extraConfig = ''
       workspace 1
