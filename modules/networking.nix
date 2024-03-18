@@ -66,9 +66,6 @@ in {
         startAgent = true;
         enableAskPassword = true;
         agentTimeout = "30m";
-        extraConfig = ''
-          AddKeysToAgent yes
-        '';
         knownHosts = {
           "pi.lan" = {
             extraHostNames = ["192.168.0.10" "hellfire"];

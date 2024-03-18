@@ -31,6 +31,11 @@ in {
   };
   hey.users.lychee = {
     packages = [pkgs.ripgrep];
+
+    root.".ssh/config".source = pkgs.writeText "ssh" ''
+        AddKeysToAgent yes
+    '';
+
     programs.zsh.enable = true;
     programs.git = {
       enable = true;
