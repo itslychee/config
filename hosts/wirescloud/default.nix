@@ -29,7 +29,6 @@
     enable = true;
     settings = {
       server_url = "https://scaley.lefishe.club:443";
-      prefixes.v4 = "1.0.0.0/24";
     };
   };
 
