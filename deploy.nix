@@ -6,16 +6,17 @@ in {
     interactiveSudo = true;
     remoteBuild = true;
     hostname = "wirescloud";
-    user = "lychee";
     profiles.system = {
       path = lib.x86_64-linux.activate.nixos hosts.wirescloud;
+      user = "root";
     };
   };
   wiretop = {
     interactiveSudo = true;
+    sshUser = "lychee";
     hostname = "wiretop";
-    user = "lychee";
     profiles.system = {
+      user = "root";
       path = lib.x86_64-linux.activate.nixos hosts.wiretop;
     };
   };
@@ -23,17 +24,17 @@ in {
     interactiveSudo = true;
     remoteBuild = true;
     hostname = "hearth";
-    user = "lychee";
     profiles.system = {
+      user = "root";
       path = lib.x86_64-linux.activate.nixos hosts.hearth;
     };
   };
   hellfire = {
-    interactiveSudo = true;
-    user = "lychee";
     hostname = "hellfire";
+    sshUser = "root";
     profiles.system = {
-      path = lib.x86_64-linux.activate.nixos hosts.hellfire;
+      user = "root";
+      path = lib.aarch64-linux.activate.nixos hosts.hellfire;
     };
   };
 }
