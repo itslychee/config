@@ -9,14 +9,14 @@
   gitConf = pkgs.formats.gitIni {};
   inherit (lib) mkOption mkEnableOption mkIf mkMerge;
 in {
-  options = {
-    programs.git = {
+  options.programs = {
+    git = {
       enable = mkEnableOption "Git";
       config = mkOption {
           inherit (gitConf) type;
       };
     };
-    programs.zsh = {
+    zsh = {
         enable = mkEnableOption "Zsh configuration";
         init = mkOption {
             type = lib.types.lines;
@@ -32,8 +32,6 @@ in {
       (mkIf zsh.enable {
         root.".zshrc".source = pkgs.writeText "zshrc" zsh.init;
       })
-    
-    
 
   ];
 }
