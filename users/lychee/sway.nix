@@ -57,9 +57,9 @@ in {
       "${modifier}+up" = "resize grow height 5";
       "${modifier}+down" = "resize shrink height 5";
     };
-    autostart = [ pkgs.autotiling-rs ];
+    autostart = [pkgs.autotiling-rs];
     extraConfig = ''
-        workspace 1
+      workspace 1
     '';
   };
 }

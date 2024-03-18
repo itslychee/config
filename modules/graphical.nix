@@ -4,13 +4,13 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf mkAfter mkOption;
+  inherit (lib) mkIf mkAfter mkOption getExe;
   inherit (lib.types) bool;
 in {
   options.hey.graphical = {
     enable = mkOption {
-        type = bool;
-        default = config.hey.caps.graphical;
+      type = bool;
+      default = config.hey.caps.graphical;
     };
   };
 

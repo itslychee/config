@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [./hardware-configuration.nix];
 
   boot = {
@@ -14,8 +14,8 @@
 
   hey = {
     caps = {
-        graphical = true;
-        headless = true;
+      graphical = true;
+      headless = true;
     };
     net.home = true;
     users.lychee = {
@@ -37,13 +37,12 @@
       allowedTCPPorts = [1113];
       allowedUDPPorts = [1113];
     };
-
   };
 
   hardware = {
-      bluetooth.enable = true;
-      keyboard.qmk.enable = true;
-      opengl.extraPackages = [ pkgs.amdvlk ];
+    bluetooth.enable = true;
+    keyboard.qmk.enable = true;
+    opengl.extraPackages = [pkgs.amdvlk];
   };
   environment.systemPackages = [
     (pkgs.lutris.override {extraPkgs = p: [p.winetricks p.wineWowPackages.waylandFull];})

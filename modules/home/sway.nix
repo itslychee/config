@@ -43,10 +43,10 @@ in {
     };
 
     programs.waybar = {
-        enable = mkOption {
-            type = bool;
-            default = sway.enable;
-        };
+      enable = mkOption {
+        type = bool;
+        default = sway.enable;
+      };
     };
 
     wms.sway = {
@@ -74,7 +74,14 @@ in {
         type = listOf (either str package);
         apply = f: ''
           exec_always {
-          ${concatStringsSep "\n" (map (e: "  " + (if isString e then e else getExe e)) f)}
+          ${concatStringsSep "\n" (map (e:
+            "  "
+            + (
+              if isString e
+              then e
+              else getExe e
+            ))
+          f)}
           }
         '';
       };
@@ -104,11 +111,11 @@ in {
       wms.sway.autostart = [pkgs.mako];
     })
     (mkIf waybar.enable {
-       root = {
-         ".config/waybar/config".source = ./config.json;
-         ".config/waybar/style.css".source = ./style.css;
-       };
-       wms.sway.autostart = [ pkgs.waybar ];
+      root = {
+        ".config/waybar/config".source = ./config.json;
+        ".config/waybar/style.css".source = ./style.css;
+      };
+      wms.sway.autostart = [pkgs.waybar];
     })
   ];
 }

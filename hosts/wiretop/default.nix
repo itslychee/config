@@ -12,8 +12,8 @@
 
   hey = {
     caps = {
-        graphical = true;
-        headless = true;
+      graphical = true;
+      headless = true;
     };
     net.home = true;
     users.lychee = {

@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -25,20 +25,19 @@
     };
   };
 
-
   services.headscale = {
-      enable = true;
-      settings = {
-         server_url = "https://scaley.lefishe.club:443";
-         prefixes.v4 = "1.0.0.0/24";
-      };
+    enable = true;
+    settings = {
+      server_url = "https://scaley.lefishe.club:443";
+      prefixes.v4 = "1.0.0.0/24";
+    };
   };
 
   services.caddy = {
-      enable = true;
-      virtualHosts."scaley.lefishe.club".extraConfig = ''
-          reverse_proxy http://${config.services.headscale.address}:${toString config.services.headscale.port}
-      '';
+    enable = true;
+    virtualHosts."scaley.lefishe.club".extraConfig = ''
+      reverse_proxy http://${config.services.headscale.address}:${toString config.services.headscale.port}
+    '';
   };
 
   # do not change

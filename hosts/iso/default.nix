@@ -11,8 +11,8 @@ in {
   networking.wireless.enable = mkForce false;
 
   hey.caps = {
-      rootLogin = true;
-      headless = true;
+    rootLogin = true;
+    headless = true;
   };
 
   # for nixos-anywhere

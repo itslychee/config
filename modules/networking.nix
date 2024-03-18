@@ -7,16 +7,15 @@
   cfg = config.hey.net;
   inherit (lib) mkIf mkMerge mkEnableOption mkOption;
   inherit (lib.types) bool;
-in
-{
+in {
   options.hey.net = {
     openssh = mkOption {
-        type = bool;
-        default = config.hey.caps.headless;
+      type = bool;
+      default = config.hey.caps.headless;
     };
     fail2ban = mkOption {
-        type = bool;
-        default = config.hey.caps.headless;
+      type = bool;
+      default = config.hey.caps.headless;
     };
     home = mkEnableOption "Home networking";
   };
@@ -83,10 +82,10 @@ in
       };
 
       services.tailscale = {
-          enable = true;
-          extraUpFlags = [
-              "--login-server=https://scaley.lefishe.club"
-          ];
+        enable = true;
+        extraUpFlags = [
+          "--login-server=https://scaley.lefishe.club"
+        ];
       };
     }
   ];

@@ -20,7 +20,7 @@ in {
     hashedPasswordFile = config.age.secrets.lychee-password.path;
   };
   hey.users.lychee = {
-    packages = [ pkgs.ripgrep ];
+    packages = [pkgs.ripgrep];
     programs.git = {
       enable = true;
       extraConfig = {

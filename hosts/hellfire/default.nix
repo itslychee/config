@@ -12,15 +12,14 @@
     ./blocky.nix
   ];
 
-
   # relevant issue(s):
   # https://github.com/NixOS/nixpkgs/issues/154163
-  # 
+  #
   # using 6.7 as latest is broken due to zfs-kernel being marked as broken
   # >:(
 
   boot.kernelPackages = pkgs.linuxPackages_6_7_hardened;
-  boot.supportedFilesystems = [ "ext4" "vfat" ];
+  boot.supportedFilesystems = ["ext4" "vfat"];
 
   sdImage = {
     imageBaseName = config.networking.hostName;
@@ -30,13 +29,11 @@
   fileSystems."/".options = ["noatime"];
   hey = {
     caps = {
-        headless = true;
-        rootLogin = true;
+      headless = true;
+      rootLogin = true;
     };
     users.lychee.enable = true;
   };
-
-
 
   networking.firewall = {
     allowedTCPPorts = [53];
