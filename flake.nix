@@ -6,10 +6,12 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     agenix.url = "github:ryantm/agenix";
     disko.url = "github:nix-community/disko";
+    deploy.url = "github:serokell/deploy-rs";
   };
   outputs = {
     self,
     nixpkgs,
+    deploy,
     ...
   } @ inputs: {
     lib = import ./lib inputs;
