@@ -48,8 +48,8 @@
               echo "Dirty tree, exiting..."
               exit 1
           fi
-
           alejandra "$@"
+          git commit -a -m "chore(alejandra): formatting (nix-fmt)"
         '';
       });
     packages = self.lib.per (system: rec {
