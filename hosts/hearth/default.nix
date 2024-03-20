@@ -1,13 +1,17 @@
-{pkgs, inputs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
-      inputs.wiresbot.nixosModule
-      ./hardware-configuration.nix
+    inputs.wiresbot.nixosModule
+    ./hardware-configuration.nix
   ];
 
   services.wiresbot = {
-      enable = true;
-      package = inputs.wiresbot.packages.${pkgs.system}.default;
-      config = "/home/lychee/g/wires-bot/config.toml";
+    enable = true;
+    package = inputs.wiresbot.packages.${pkgs.system}.default;
+    config = "/home/lychee/g/wires-bot/config.toml";
   };
 
   boot = {

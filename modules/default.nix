@@ -37,9 +37,10 @@ in {
 
     boot.loader.systemd-boot.configurationLimit = 10;
     environment.systemPackages = builtins.attrValues {
-        inherit (pkgs)
-            deploy-rs
-            dnsutils
+      inherit
+        (pkgs)
+        deploy-rs
+        dnsutils
         ;
     };
   };
