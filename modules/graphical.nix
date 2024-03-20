@@ -75,5 +75,11 @@ in {
         ];
       };
     };
+    xdg.portal = {
+        enable = true;
+        wlr.enable = true;
+        xdgOpenUsePortal = true;
+        config.sway.default = [ "wlr" "gtk"];
+    };
   };
 }
