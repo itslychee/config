@@ -1,6 +1,6 @@
 {lib, ...}: let
   inherit (lib) mkOption;
-  inherit (lib.types) attrsOf bool str submodule listOf;
+  inherit (lib.types) attrsOf str listOf;
 in {
   options.hey.keys = {
     # Public SSH keys for hosts
@@ -11,21 +11,7 @@ in {
     # Public SSH keys for users
     users = mkOption {
       readOnly = true;
-      type = attrsOf (listOf (submodule {
-        options = {
-          key = mkOption {
-            type = str;
-          };
-          encrypt = mkOption {
-            type = bool;
-            default = false;
-          };
-          privileged = mkOption {
-            type = bool;
-            default = false;
-          };
-        };
-      }));
+      type = attrsOf (attrsOf (listOf str));
     };
   };
   config.hey.keys = {
@@ -37,20 +23,15 @@ in {
     };
     users = {
       # me
-      lychee = [
-        {
-          key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG lychee@desktop";
-          privileged = true;
-          encrypt = true;
-        }
-        {
-          key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXeFJBxjG2NgeKr4l58KIp7lPf/pUeYD/4bYVapuump phone";
-        }
-        {
-          # wiretop
-          key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM1RF5Vn4BMd+BOajiORYjWcC3o2Sd+RC7zAkYq7sz/8 lychee@wiretop";
-        }
-      ];
+      lychee = {
+          # "Tags" for finer permissions
+          secrets  = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG lychee@desktop" ];
+          local_ssh = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXeFJBxjG2NgeKr4l58KIp7lPf/pUeYD/4bYVapuump phone" ];
+          ssh =      [
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG lychee@desktop"
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM1RF5Vn4BMd+BOajiORYjWcC3o2Sd+RC7zAkYq7sz/8 lychee@wiretop"
+          ];
+      };
     };
   };
 }

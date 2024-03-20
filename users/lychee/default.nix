@@ -23,7 +23,7 @@ in {
   };
   users.users.lychee = mkIf cfg.lychee.enable {
     isNormalUser = true;
-    openssh.authorizedKeys.keys = mylib.keys.all config.hey.keys.users.lychee;
+    openssh.authorizedKeys.keys = config.hey.keys.users.lychee.ssh;
     extraGroups = ["wheel" "video"];
     hashedPasswordFile = config.age.secrets.lychee-password.path;
     shell = pkgs.zsh;

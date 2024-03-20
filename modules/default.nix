@@ -19,7 +19,7 @@ in {
 
   config = {
     users.users.root = mkIf config.hey.caps.rootLogin {
-      openssh.authorizedKeys.keys = mylib.keys.all config.hey.keys.users.lychee;
+      openssh.authorizedKeys.keys = config.hey.keys.users.lychee.ssh;
     };
     # Global options
     time.timeZone = "US/Central";

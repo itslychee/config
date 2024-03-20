@@ -15,7 +15,7 @@ let
   withPrivilegedUser = user: hosts:
     lib.flatten [
       # user public keys
-      (secrets.encrypt keys.users.${user})
+      keys.users.${user}.secrets
       # Hosts pub keys
       (
         if (isList hosts)
