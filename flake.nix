@@ -7,6 +7,7 @@
     agenix.url = "github:ryantm/agenix";
     disko.url = "github:nix-community/disko";
     deploy.url = "github:serokell/deploy-rs";
+    wiresbot.url = "github:itslychee/wires-bot";
   };
   outputs = {
     self,
