@@ -1,6 +1,6 @@
 {
   inputs,
-  mylib,
+  lib,
   config,
   pkgs,
   ...
@@ -26,6 +26,8 @@
     compressImage = false;
   };
 
+
+  users.users.lychee.openssh.authorizedKeys.keys = lib.mkAfter config.hey.keys.users.lychee.local_ssh;
   fileSystems."/".options = ["noatime"];
   hey = {
     caps = {

@@ -1,6 +1,8 @@
 {
   pkgs,
   inputs,
+  lib,
+  config,
   ...
 }: {
   imports = [
@@ -66,6 +68,8 @@
     options rtw_core disable_lps_deep=y
     options rtw_pci disable_msi=y disable_aspm=y
   '';
+
+  users.users.lychee.openssh.authorizedKeys.keys = lib.mkAfter config.hey.keys.users.lychee.local_ssh;
 
   # SSD trimming
   services.fstrim.enable = true;
