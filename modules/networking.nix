@@ -51,7 +51,6 @@ in {
       # OpenSSH server
       services.openssh = {
         enable = true;
-        banner = "woe to all who try to enter!\n";
         settings = {
           PasswordAuthentication = false;
         };
