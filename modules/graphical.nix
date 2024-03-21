@@ -49,12 +49,12 @@ in {
       greetd = {
         enable = true;
         settings.default_session = {
-            command = lib.concatStringsSep " " [
-                (getExe pkgs.greetd.tuigreet)
-                "--cmd \"${getExe pkgs.cage} -s ${getExe pkgs.swayfx}\""
-                "--asterisks"
-                "--time"
-            ];
+          command = lib.concatStringsSep " " [
+            (getExe pkgs.greetd.tuigreet)
+            "--cmd \"${getExe pkgs.cage} -s ${getExe pkgs.swayfx}\""
+            "--asterisks"
+            "--time"
+          ];
         };
       };
       pipewire = {

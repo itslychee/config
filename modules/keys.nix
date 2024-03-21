@@ -24,13 +24,13 @@ in {
     users = {
       # me
       lychee = {
-          # "Tags" for finer permissions
-          secrets  = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG lychee@desktop" ];
-          local_ssh = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXeFJBxjG2NgeKr4l58KIp7lPf/pUeYD/4bYVapuump phone" ];
-          ssh =      [
-              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG lychee@desktop"
-              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM1RF5Vn4BMd+BOajiORYjWcC3o2Sd+RC7zAkYq7sz/8 lychee@wiretop"
-          ];
+        # "Tags" for finer permissions
+        secrets = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG lychee@desktop"];
+        local_ssh = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXeFJBxjG2NgeKr4l58KIp7lPf/pUeYD/4bYVapuump phone"];
+        ssh = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG lychee@desktop"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM1RF5Vn4BMd+BOajiORYjWcC3o2Sd+RC7zAkYq7sz/8 lychee@wiretop"
+        ];
       };
     };
   };

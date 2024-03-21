@@ -26,7 +26,6 @@
     compressImage = false;
   };
 
-
   users.users.lychee.openssh.authorizedKeys.keys = config.hey.keys.users.lychee.local_ssh;
   fileSystems."/".options = ["noatime"];
   hey = {
