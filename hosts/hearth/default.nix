@@ -69,7 +69,7 @@
     options rtw_pci disable_msi=y disable_aspm=y
   '';
 
-  users.users.lychee.openssh.authorizedKeys.keys = lib.mkAfter config.hey.keys.users.lychee.local_ssh;
+  users.users.lychee.openssh.authorizedKeys.keys = config.hey.keys.users.lychee.local_ssh;
 
   # SSD trimming
   services.fstrim.enable = true;

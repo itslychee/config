@@ -27,7 +27,7 @@
   };
 
 
-  users.users.lychee.openssh.authorizedKeys.keys = lib.mkAfter config.hey.keys.users.lychee.local_ssh;
+  users.users.lychee.openssh.authorizedKeys.keys = config.hey.keys.users.lychee.local_ssh;
   fileSystems."/".options = ["noatime"];
   hey = {
     caps = {
