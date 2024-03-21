@@ -48,7 +48,14 @@ in {
     services = {
       greetd = {
         enable = true;
-        settings.default_session.command = "${getExe pkgs.greetd.tuigreet} --cmd ${getExe pkgs.swayfx}";
+        settings.default_session = {
+            command = lib.concatStringsSep " " [
+                (getExe pkgs.greetd.tuigreet)
+                "--cmd \"${getExe pkgs.cage} -s ${getExe pkgs.swayfx}\""
+                "--asterisks"
+                "--time"
+            ];
+        };
       };
       pipewire = {
         enable = true;
