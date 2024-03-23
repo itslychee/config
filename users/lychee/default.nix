@@ -13,18 +13,7 @@ in {
   age.secrets = mkIf cfg.lychee.enable {
     lychee-password.file = "${inputs.self}/secrets/lychee-password.age";
   };
-  programs.zsh = {
-    enable = true;
-    enableLsColors = false;
-    vteIntegration = true;
-    syntaxHighlighting.enable = true;
-    enableBashCompletion = true;
-    autosuggestions.enable = true;
-    shellInit = ''
-        bindkey "^[[1;5C" forward-word
-        bindkey "^[[1;5D" backward-word
-    '';
-  };
+
   users.users.lychee = mkIf cfg.lychee.enable {
     isNormalUser = true;
     openssh.authorizedKeys.keys = config.hey.keys.users.lychee.ssh;

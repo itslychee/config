@@ -7,6 +7,19 @@
     nix-direnv.enable = true;
   };
 
+  programs.zsh = {
+    enable = true;
+    enableLsColors = false;
+    vteIntegration = true;
+    syntaxHighlighting.enable = true;
+    enableBashCompletion = true;
+    autosuggestions.enable = true;
+    shellInit = ''
+        bindkey "^[[1;5C" forward-word
+        bindkey "^[[1;5D" backward-word
+    '';
+  };
+
   programs.starship = {
     enable = true;
     settings = {
