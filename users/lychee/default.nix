@@ -20,6 +20,10 @@ in {
     syntaxHighlighting.enable = true;
     enableBashCompletion = true;
     autosuggestions.enable = true;
+    shellInit = ''
+        bindkey "^[[1;5C" forward-word
+        bindkey "^[[1;5D" backward-word
+    '';
   };
   users.users.lychee = mkIf cfg.lychee.enable {
     isNormalUser = true;
