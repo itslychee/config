@@ -63,7 +63,6 @@ in {
     {
       programs.ssh = {
         startAgent = true;
-        enableAskPassword = true;
         agentTimeout = "30m";
         knownHosts = {
           "pi.lan" = {
