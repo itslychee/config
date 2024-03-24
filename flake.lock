@@ -120,11 +120,11 @@
     },
     "master": {
       "locked": {
-        "lastModified": 1711279415,
-        "narHash": "sha256-kp7sAqjIlHMD+n9iVK7+9t940uOKcAJBnfT0dnPFNqk=",
+        "lastModified": 1711281695,
+        "narHash": "sha256-IZcTs7HgtfsmrTLbx89ehAWVzcSQPWwKb9jXa3PL5+U=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b0da52a02fd0dbd90733c2089d4b12b3900dde61",
+        "rev": "a078c0abe11cc954eec640759a707f98f923a5c3",
         "type": "github"
       },
       "original": {
@@ -292,11 +292,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1711208948,
-        "narHash": "sha256-tdKrrcT5Q6w/Dkexya2ilXvpE5LIoQ/c7d02ch/wPkM=",
+        "lastModified": 1711281907,
+        "narHash": "sha256-hdmcfIpC/5kvA4chbtWcCn6Km4kz54sQ4P9qZD0ovhQ=",
         "owner": "itslychee",
         "repo": "wires-bot",
-        "rev": "c8a4ae0ee94bf8164fe391186467227b6a2b9d20",
+        "rev": "7a60f4e83caa11897b0c0eebcde47716a9c812b1",
         "type": "github"
       },
       "original": {
