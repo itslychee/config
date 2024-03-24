@@ -26,6 +26,8 @@ in {
     root.".ssh/config".source = pkgs.writeText "ssh" ''
     Host *
       AddKeysToAgent yes
+      IdentitiesOnly yes
+      UseKeychain yes
     '';
 
     programs.zsh.enable = true;
