@@ -3,7 +3,6 @@
   config,
   inputs,
   lib,
-  mylib,
   ...
 }: let
   cfg = config.hey.users;
