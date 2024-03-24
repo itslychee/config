@@ -27,7 +27,6 @@ in {
     Host *
       AddKeysToAgent yes
       IdentitiesOnly yes
-      UseKeychain yes
     '';
 
     programs.zsh.enable = true;
