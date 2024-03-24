@@ -24,6 +24,7 @@ in {
     packages = [pkgs.ripgrep];
 
     root.".ssh/config".source = pkgs.writeText "ssh" ''
+    Host *
       AddKeysToAgent yes
     '';
 
