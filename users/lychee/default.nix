@@ -40,7 +40,6 @@ in {
         };
         commit.gpgsign = true;
         gpg.format = "ssh";
-        core.askPass = lib.getExe' pkgs.openssh "ssh-add";
       };
     };
   };
