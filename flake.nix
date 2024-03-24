@@ -41,7 +41,7 @@
     in
       pkgs.writeShellApplication {
         runtimeInputs = builtins.attrValues {
-          git = pkgs.git;
+          inherit (pkgs) gitFull;
           alejandra = pkgs.callPackage ./pkgs/alejandra.nix {};
         };
         name = "flake-formatter";
