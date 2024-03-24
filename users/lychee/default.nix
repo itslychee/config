@@ -24,9 +24,9 @@ in {
     packages = [pkgs.ripgrep];
 
     root.".ssh/config".source = pkgs.writeText "ssh" ''
-    Host *
-      AddKeysToAgent yes
-      IdentitiesOnly yes
+      Host *
+        AddKeysToAgent yes
+        IdentitiesOnly yes
     '';
 
     programs.zsh.enable = true;
@@ -40,6 +40,7 @@ in {
         };
         commit.gpgsign = true;
         gpg.format = "ssh";
+        core.askPass = lib.getExe' pkgs.openssh "ssh-add";
       };
     };
   };
