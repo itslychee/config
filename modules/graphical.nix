@@ -85,7 +85,7 @@ in {
     xdg.portal = {
       enable = true;
       wlr.enable = true;
-      configPackages = [         pkgs.xdg-desktop-portal-gtk ];
+      configPackages = [pkgs.xdg-desktop-portal-gtk];
       xdgOpenUsePortal = true;
     };
   };

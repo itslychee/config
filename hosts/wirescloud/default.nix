@@ -1,4 +1,9 @@
-{config, inputs, pkgs, ...}: {
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.wiresbot.nixosModule
     ./hardware-configuration.nix
@@ -41,7 +46,7 @@
       reverse_proxy http://${config.services.headscale.address}:${toString config.services.headscale.port}
     '';
   };
-  
+
   age.secrets.wiresconfig.file = "${inputs.self}/secrets/wiresbot.age";
   services.wiresbot = {
     enable = true;

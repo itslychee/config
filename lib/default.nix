@@ -33,7 +33,7 @@ in rec {
   mkSystem = arch: hostname:
     nixosSystem {
       specialArgs = {
-          inherit inputs;
+        inherit inputs;
       };
       modules = flatten [
         {
