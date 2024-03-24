@@ -116,7 +116,7 @@ in {
         ".config/waybar/config".source = ./config.json;
         ".config/waybar/style.css".source = ./style.css;
       };
-      wms.sway.autostart = [inputs.master.legacyPackages.${pkgs.system}.waybar];
+      wms.sway.autostart = [ pkgs.waybar];
     })
   ];
 }

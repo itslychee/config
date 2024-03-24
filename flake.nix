@@ -2,7 +2,6 @@
   description = "the most powerful config ever to exist";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    master.url = "github:NixOS/nixpkgs/master";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     agenix.url = "github:ryantm/agenix";
     disko.url = "github:nix-community/disko";
