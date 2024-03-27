@@ -40,6 +40,7 @@ o.cmdheight = 1
 o.termguicolors = true
 o.backup = true
 o.backupdir = "/tmp";
+o.background = "light";
 o.cindent = true
 o.shiftwidth = 4
 o.completeopt = "menu,menuone,noselect"
