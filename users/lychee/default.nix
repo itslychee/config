@@ -19,6 +19,9 @@ in {
     extraGroups = ["wheel" "video"];
     hashedPasswordFile = config.age.secrets.lychee-password.path;
     shell = pkgs.zsh;
+    packages = mkIf config.hey.caps.graphical [
+        pkgs.anki
+    ];
   };
   hey.users.lychee = {
     packages = [pkgs.ripgrep];
