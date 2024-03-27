@@ -66,11 +66,11 @@ in {
         agentTimeout = "30m";
         knownHosts = {
           "pi.lan" = {
-            extraHostNames = ["192.168.0.10" "hellfire"];
+            extraHostNames = [ "hellfire"];
             publicKey = config.hey.keys.hosts.hellfire;
           };
           "hearth.lan" = {
-            extraHostNames = ["192.168.0.3" "hearth"];
+            extraHostNames = [ "hearth"];
             publicKey = config.hey.keys.hosts.hearth;
           };
           "lefishe.club" = {
