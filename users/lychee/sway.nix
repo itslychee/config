@@ -3,20 +3,17 @@
   pkgs,
   ...
 }: let
-  inherit (lib) getExe getExe';
+  inherit (lib) getExe;
 in {
   hey.users.lychee.wms.sway = {
     keybindings = let
       _ = getExe;
-      __ = getExe';
       player = "${_ pkgs.playerctl} --player='spotify,mpd,%any'";
       modifier = "Mod4";
       wayshot = "${_ pkgs.wayshot} -s \"$(${_ pkgs.slurp})\" --stdout";
     in {
       Print = "exec ${wayshot} | wl-copy";
       "Shift+Print" = "exec ${wayshot} | ${_ pkgs.swappy} -f - -o - | wl-copy";
-      "Control+Print" = "exec ${_ pkgs.wl-screenrec} -g \"`${_ pkgs.slurp}`\" -f ~/media/screenshots/\"`date +'%F_%H.%H_%M_%N'`\".mp4";
-      "Control+Delete" = "exec ${__ pkgs.procps "pkill"} wl-screenrec";
       XF86AudioRaiseVolume = "exec ${_ pkgs.pamixer} -i 2";
       XF86AudioLowerVolume = "exec ${_ pkgs.pamixer} -d 2";
       XF86AudioMute = "exec ${_ pkgs.pamixer} -t";
