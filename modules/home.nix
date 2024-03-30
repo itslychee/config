@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (builtins) attrValues;
-  inherit (lib.types) attrsOf submodule;
+  inherit (lib.types) attrsOf submoduleWith;
   inherit (lib.fileset) toList fileFilter;
   inherit
     (lib)
@@ -40,8 +40,8 @@
 in {
   options = {
     hey.users = mkOption {
-      type = attrsOf (submodule {
-        imports = flatten [
+      type = attrsOf (submoduleWith {
+        modules = flatten [
           {_module.args = {inherit pkgs inputs;};}
           (toList (fileFilter (file: file.hasExt "nix") ./home))
         ];
