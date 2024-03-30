@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.neovim;
-  inherit (lib) mkOption;
+  inherit (lib) mkOption mkIf;
   inherit (lib.types) package bool listOf;
 in {
   options.neovim = {
@@ -27,8 +27,15 @@ in {
       apply = f: lib.makeBinPath f;
       type = listOf package;
     };
+
+    treesitter = mkOption {
+        type = package;
+        default = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+        description = "treesitter to use";
+    };
+
   };
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     packages = let
       inherit (pkgs) wrapNeovimUnstable neovim-unwrapped;
       inherit (pkgs.neovimUtils) makeNeovimConfig;
@@ -51,7 +58,7 @@ in {
             nvim-web-devicons
             telescope-nvim
             ;
-          ts = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+          ts = cfg.treesitter;
         };
         luaRcContent = builtins.readFile ./init.lua;
       };
