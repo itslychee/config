@@ -60,8 +60,7 @@ in {
     ];
     extraConfig = ''
       workspace 1
-      default_dim_inactive 0.3
-      default_border pixel 3
+      default_border pixel 2.5
 
       #                 <border>    <bg>     <text>   <indicator>  <child_border>
       client.focused   '#FF9AD2' '#523645' '#debdcf' '#FF9AD2'     '#FF9AD2'
