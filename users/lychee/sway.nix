@@ -63,6 +63,12 @@ in {
     ];
     extraConfig = ''
       workspace 1
+      default_dim_inactive 0.3
+      default_border pixel 3
+
+      #                 <border>    <bg>     <text>   <indicator>  <child_border>
+      client.focused   '#FF9AD2' '#523645' '#debdcf' '#FF9AD2'     '#FF9AD2'
+      client.unfocused '#401f31' '#523645' '#855f74' '#401f31'     '#401f31'
     '';
   };
 }
