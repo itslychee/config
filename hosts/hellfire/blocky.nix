@@ -1,6 +1,6 @@
 {
   services.blocky = {
-    enable = true;
+    enable = false;
     settings = {
       caching = {
         minTime = "20m";
