@@ -7,6 +7,7 @@
     disko.url = "github:nix-community/disko";
     deploy.url = "github:serokell/deploy-rs";
     wiresbot.url = "github:itslychee/wires-bot";
+    home-manager.url = "github:nix-community/home-manager";
   };
   outputs = {
     self,
