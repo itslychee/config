@@ -26,6 +26,7 @@
     users.lychee = {
       enable = true;
       state = "24.05";
+      sshKeys = config.hey.keys.users.lychee.local_ssh;
       wms.sway = {
           enable = true;
           outputs.HDMI-A-1 = {
