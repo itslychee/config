@@ -72,21 +72,7 @@ in {
       programs.ssh = {
         startAgent = true;
         agentTimeout = "30m";
-        knownHosts = {
-          "pi.lan" = {
-            extraHostNames = [ "hellfire"];
-            publicKey = config.hey.keys.hosts.hellfire;
-          };
-          "hearth.lan" = {
-            extraHostNames = [ "hearth"];
-            publicKey = config.hey.keys.hosts.hearth;
-          };
-          "lefishe.club" = {
-            extraHostNames = ["wirescloud"];
-            publicKey = config.hey.keys.hosts.wirescloud;
-          };
-          "wiretop".publicKey = config.hey.keys.hosts.wiretop;
-        };
+
       };
 
       services.tailscale = {
