@@ -25,7 +25,15 @@
     net.home = true;
     users.lychee = {
       enable = true;
-      wms.sway.enable = true;
+      state = "24.05";
+      wms.sway = {
+          enable = true;
+          outputs.HDMI-A-1 = {
+              bg = "~/.wallpaper-image fill";
+              mode = "1920x1080@144.001Hz";
+              adaptive_sync = "on";
+          };
+      };
       packages = [
         pkgs.firefox
         pkgs.xdg-utils
@@ -46,14 +54,7 @@
     bluetooth.enable = true;
     keyboard.qmk.enable = true;
   };
-
-
   environment.systemPackages = [pkgs.bluez-tools];
-
-  users.users.lychee = {
-      openssh.authorizedKeys.keys = config.hey.keys.users.lychee.local_ssh;
-      extraGroups = [ "audio" ];
-  };
 
   # SSD trimming
   services.fstrim.enable = true;

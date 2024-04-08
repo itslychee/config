@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.hey.net;
@@ -22,6 +23,13 @@ in {
   config = mkMerge [
     (mkIf cfg.home {
       age.secrets.wifi.file = "${inputs.self}/secrets/wifi.age";
+
+      # https://github.com/NixOS/nixpkgs/issues/180175#issuecomment-1658731959
+      systemd.services.NetworkManager-wait-online = {
+          serviceConfig = {
+            ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+          };
+        };
       networking.networkmanager = {
         enable = true;
         ensureProfiles = {

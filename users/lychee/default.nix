@@ -6,51 +6,7 @@
   ...
 }: let
   cfg = config.hey.users;
-  inherit (lib) mkIf mkMerge;
+  inherit (lib) mkIf;
 in {
-  age.secrets = mkIf cfg.lychee.enable {
-    lychee-password.file = "${inputs.self}/secrets/lychee-password.age";
-  };
-
-  users.users.lychee = mkIf cfg.lychee.enable {
-    isNormalUser = true;
-    openssh.authorizedKeys.keys = config.hey.keys.users.lychee.ssh;
-    hashedPasswordFile = config.age.secrets.lychee-password.path;
-    extraGroups = ["wheel" "video"];
-    shell = pkgs.zsh;
-  };
-
-  imports = [ ./sway.nix ];
-  hey.users.lychee = mkMerge [
-    # Graphical contexts
-    (mkIf config.hey.caps.graphical {
-     packages = [ pkgs.anki ];
-    })
-    # Non graphical contexts
-    (mkIf (!config.hey.caps.graphical) {
-      neovim.treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [p.nix p.c p.python p.bash]);
-    })
-    {
-      packages = [pkgs.ripgrep];
-      root.".ssh/config".source = pkgs.writeText "ssh" ''
-        Host *
-          AddKeysToAgent yes
-          IdentitiesOnly yes
-      '';
-
-      programs.zsh.enable = true;
-      programs.git = {
-        enable = true;
-        config = {
-          user = {
-            email = "itslychee@protonmail.com";
-            name = "itslychee";
-            signingkey = "~/.ssh/id_ed25519.pub";
-          };
-          commit.gpgsign = true;
-          gpg.format = "ssh";
-        };
-      };
-    }
-  ];
+    
 }

@@ -17,7 +17,7 @@
     };
     net.home = true;
     users.lychee = {
-      enable = true;
+      state = "24.05";
       wms.sway.enable = true;
       packages = [
         pkgs.firefox

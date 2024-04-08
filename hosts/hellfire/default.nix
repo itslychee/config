@@ -26,15 +26,20 @@
     compressImage = false;
   };
 
-  users.users.lychee.openssh.authorizedKeys.keys = config.hey.keys.users.lychee.local_ssh;
   fileSystems."/".options = ["noatime"];
   hey = {
     caps = {
       headless = true;
       rootLogin = true;
     };
-    users.lychee.enable = true;
+    # add phone to keys
+    users.lychee = {
+        state = "24.05";
+        sshKeys = config.hey.keys.users.lychee.local_ssh;
+    };
   };
+
+  home-manager.users.lychee.programs.neovim.treesitter = null;
 
   networking.firewall = {
     allowedTCPPorts = [53];

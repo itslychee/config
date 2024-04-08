@@ -1,59 +1,79 @@
+{inputs, lib, config, ...}:
+let
+    inherit (lib) mkOption mkEnableOption mapAttrs mkDefault;
+    inherit (lib.types) submodule attrsOf listOf package str nullOr;
+    inherit (lib.fileset) toList fileFilter maybeMissing;
+    cfg = lib.filterAttrs (k: v: v.enable) config.hey.users;
+in
 {
-  inputs,
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
-  inherit (builtins) attrValues;
-  inherit (lib.types) attrsOf submoduleWith;
-  inherit (lib.fileset) toList fileFilter;
-  inherit
-    (lib)
-    any
-    flatten
-    filterAttrs
-    mkOption
-    mkForce
-    mapAttrs'
-    mapAttrsToList
-    nameValuePair
-    ;
+    imports = [
+        inputs.home-manager.nixosModules.default
+    ];
+    options.hey.users = mkOption {
+        description = "Hey user management";
+        type = attrsOf (submodule ({ name, ...}: {
+            options = {
+                enable = mkEnableOption "Enable management of user";
+                packages = mkOption {
+                    type = listOf package;
+                    default = [];
+                    description = "user packages";
+                };
+                groups = mkOption {
+                    type = listOf str;
+                    default = [];
+                    description = "user groups";
+                };
+                passwordFile = mkOption {
+                   type = nullOr str;
+                   description = "Path to hashed password";
+                   default = null;
+                };
+                sshKeys = mkOption {
+                    type = listOf str;
+                    description = "Public SSH Keys for OpenSSH Server";
+                };
 
-  eachUser = u:
-    mapAttrs' (name: value:
-      nameValuePair name {
-        inherit (value) packages;
-      }) (filterAttrs (n: v: v.enable) u);
+                state = mkOption {
+                    type = str;
+                    description = "Home Manager state version";
+                };
 
-  eachFile = u:
-    mapAttrs' (name: value:
-      nameValuePair name {
-        rules =
-          mapAttrsToList (
-            filename: f: "L+ %h/${filename} - - - - ${f.source}"
-          )
-          value.root;
-      }) (filterAttrs (n: v: v.enable) u);
-
-  switch = f: mkForce (any f (flatten (attrValues config.hey.users)));
-in {
-  options = {
-    hey.users = mkOption {
-      type = attrsOf (submoduleWith {
-        modules = flatten [
-          {_module.args = {inherit pkgs inputs;};}
-          (toList (fileFilter (file: file.hasExt "nix") ./home))
-        ];
-      });
-      description = "User-specific options";
+                wms.sway = {
+                    enable = mkEnableOption "Sway";
+                    outputs = mkOption {
+                        type = attrsOf (attrsOf str);
+                        default = {};
+                    };
+                };
+            };
+        }));
     };
-  };
-  config = {
-    users.users = eachUser config.hey.users;
-    systemd.user.tmpfiles.users = eachFile config.hey.users;
-    # switches
-    hardware.opengl.enable = switch (u: u.switches.opengl);
-    programs.light.enable = switch (u: u.switches.light);
-  };
+
+    config = {
+        home-manager = {
+            backupFileExtension = "backup";
+            extraSpecialArgs = {
+                inherit inputs;
+            };
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users = mapAttrs (name: value: {
+                   imports = (toList (fileFilter (file: file.hasExt "nix") ../users/${name}));
+
+                   home.stateVersion = value.state;
+                   wayland.windowManager.sway = {
+                       enable = value.wms.sway.enable;
+                       config.output = value.wms.sway.outputs;
+                   };
+            }) cfg;
+        };
+        users.users = mapAttrs (name: value: {
+                inherit (value) packages;
+                isNormalUser = true;
+                hashedPasswordFile = value.passwordFile;
+                extraGroups = value.groups;
+                openssh.authorizedKeys.keys = value.sshKeys;
+        }) cfg;
+    };
 }

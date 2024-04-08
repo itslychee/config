@@ -9,18 +9,7 @@ window { background-color: @bar-background; border-bottom: 0.5px solid @bar-bott
 
 * { font-family: Terminus, 'Font Awesome 6 Free', 'Font Awesome 6 Brands', sans-serif; color: @bar-foreground; } 
 
-#mpris,
-#battery,
-#memory,
-#disk,
-#pulseaudio,
-#network,
-#workspaces,
-#clock,
-#battery,
-#wireplumber,
-#backlight
-{
+#mpris, #battery, #memory, #disk, #pulseaudio, #network, #workspaces, #clock {
   background-color: @module-background;
   border-bottom: 1px solid @module-underline;
   border-right: 1px solid @module-vert-transition;
@@ -28,22 +17,7 @@ window { background-color: @bar-background; border-bottom: 0.5px solid @bar-bott
   margin: 0px 5px;
   padding: 1px 4px;
 }
-
-
-#wireplumber.muted { color: grey; }
-
-
-#workspaces { margin: 0; }
-#workspaces button { background-color: @module-background; padding: 0 3px; }
+#workspaces { box-shadow: unset; margin: 0; }
+#workspaces button { background-color: @module-background; padding: 1px 3px; }
 #workspaces button.focused { border-bottom: 2px solid @module-underline; }
 #workspaces button:hover { background: unset; box-shadow: unset; border-color: unset; border: unset; }
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-#workspaces button:hover {
-    box-shadow: none; /* Remove predefined box-shadow */
-    text-shadow: none; /* Remove predefined text-shadow */
-    background: none; /* Remove predefined background color (white) */
-    transition: none; /* Disable predefined animations */
-    border: none;
-}
-
