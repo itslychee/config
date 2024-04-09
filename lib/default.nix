@@ -50,7 +50,7 @@ in rec {
           };
         }
         # Module system
-        (toList ( (unions [../modules ])))
+        (toList (unions [../modules]))
 
         # Host
         (import "${self}/hosts/${hostname}")

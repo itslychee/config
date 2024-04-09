@@ -13,8 +13,8 @@
   hey = {
     caps.headless = true;
     users.lychee = {
-        state = "24.05";
-        enable = true;
+      state = "24.05";
+      enable = true;
     };
     services = {
       matrix = {

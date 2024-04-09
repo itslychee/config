@@ -26,10 +26,10 @@ in {
 
       # https://github.com/NixOS/nixpkgs/issues/180175#issuecomment-1658731959
       systemd.services.NetworkManager-wait-online = {
-          serviceConfig = {
-            ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
-          };
+        serviceConfig = {
+          ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
         };
+      };
       networking.networkmanager = {
         enable = true;
         ensureProfiles = {
@@ -72,7 +72,6 @@ in {
       programs.ssh = {
         startAgent = true;
         agentTimeout = "30m";
-
       };
 
       services.tailscale = {

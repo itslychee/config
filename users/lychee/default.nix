@@ -8,5 +8,4 @@
   cfg = config.hey.users;
   inherit (lib) mkIf;
 in {
-    
 }

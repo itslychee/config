@@ -63,24 +63,7 @@ in {
         jack.enable = true;
         alsa.enable = true;
       };
-      kmscon = {
-        enable = true;
-        hwRender = true;
-        fonts = [
-          {
-            name = "Terminus";
-            package = pkgs.terminus_font;
-          }
-          {
-            name = "NerdFontsSymbolsOnly";
-            package = pkgs.nerdfonts.override {
-              fonts = [
-                "NerdFontsSymbolsOnly"
-              ];
-            };
-          }
-        ];
-      };
+
     };
     xdg.portal = {
       enable = true;

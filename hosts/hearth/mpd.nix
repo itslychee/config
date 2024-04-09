@@ -1,5 +1,6 @@
 {pkgs, ...}: {
-  home-manager.sharedModules = [ {
+  home-manager.sharedModules = [
+    {
       home.packages = [pkgs.libnotify pkgs.mpc_cli];
       services = {
         mpd = {
@@ -26,12 +27,24 @@
       # MPD Client
       programs.ncmpcpp = {
         enable = true;
-        package = pkgs.ncmpcpp.override { visualizerSupport = true; };
+        package = pkgs.ncmpcpp.override {visualizerSupport = true;};
         bindings = [
-          { key = "j"; command = "scroll_down"; }
-          { key = "k"; command = "scroll_up"; }
-          { key = "J"; command = ["select_item" "scroll_down"]; }
-          { key = "K"; command = ["select_item" "scroll_up"]; }
+          {
+            key = "j";
+            command = "scroll_down";
+          }
+          {
+            key = "k";
+            command = "scroll_up";
+          }
+          {
+            key = "J";
+            command = ["select_item" "scroll_down"];
+          }
+          {
+            key = "K";
+            command = ["select_item" "scroll_up"];
+          }
         ];
         settings = {
           display_bitrate = "yes";

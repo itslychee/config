@@ -18,7 +18,7 @@
   # using 6.7 as latest is broken due to zfs-kernel being marked as broken
   # >:(
 
-  boot.kernelPackages = pkgs.linuxPackages_6_7_hardened;
+  boot.kernelPackages = pkgs.linuxPackages;
   boot.supportedFilesystems = ["ext4" "vfat"];
 
   sdImage = {
@@ -34,8 +34,8 @@
     };
     # add phone to keys
     users.lychee = {
-        state = "24.05";
-        sshKeys = config.hey.keys.users.lychee.local_ssh;
+      state = "24.05";
+      sshKeys = config.hey.keys.users.lychee.local_ssh;
     };
   };
 

@@ -28,12 +28,12 @@
       state = "24.05";
       sshKeys = config.hey.keys.users.lychee.local_ssh;
       wms.sway = {
-          enable = true;
-          outputs.HDMI-A-1 = {
-              bg = "~/.wallpaper-image fill";
-              mode = "1920x1080@144.001Hz";
-              adaptive_sync = "on";
-          };
+        enable = true;
+        outputs.HDMI-A-1 = {
+          bg = "~/.wallpaper-image fill";
+          mode = "1920x1080@144.001Hz";
+          adaptive_sync = "on";
+        };
       };
       packages = [
         pkgs.firefox
@@ -47,8 +47,8 @@
     };
   };
   networking.firewall = {
-      allowedTCPPorts = [1113];
-      allowedUDPPorts = [1113];
+    allowedTCPPorts = [1113];
+    allowedUDPPorts = [1113];
   };
 
   hardware = {
