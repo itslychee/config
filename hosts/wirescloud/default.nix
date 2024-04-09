@@ -34,28 +34,31 @@
     };
   };
 
-  services.headscale = {
-    enable = true;
-    settings = {
-      server_url = "https://scaley.lefishe.club:443";
-      # headscale shouldn't be handling DNS beyond the tailnet
-      dns_config.nameservers = [];
-    };
-  };
-
-  services.caddy = {
-    enable = true;
-    virtualHosts."scaley.lefishe.club".extraConfig = ''
-      reverse_proxy http://${config.services.headscale.address}:${toString config.services.headscale.port}
-    '';
-  };
 
   age.secrets.wiresconfig.file = "${inputs.self}/secrets/wiresbot.age";
-  services.wiresbot = {
-    enable = true;
-    package = inputs.wiresbot.packages.${pkgs.system}.default;
-    config = config.age.secrets.wiresconfig.path;
+  services = {
+      headscale = {
+        enable = true;
+        settings = {
+          server_url = "https://scaley.lefishe.club:443";
+          # headscale shouldn't be handling DNS beyond the tailnet
+          dns_config.nameservers = [];
+        };
+      };
+
+      caddy = {
+        enable = true;
+        virtualHosts."scaley.lefishe.club".extraConfig = ''
+          reverse_proxy http://${config.services.headscale.address}:${toString config.services.headscale.port}
+        '';
+      };
+      wiresbot = {
+        enable = true;
+        package = inputs.wiresbot.packages.${pkgs.system}.default;
+        config = config.age.secrets.wiresconfig.path;
+      };
   };
+
 
   # do not change
   system.stateVersion = "23.05";
