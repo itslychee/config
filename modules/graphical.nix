@@ -15,6 +15,7 @@ in {
   };
 
   config = mkIf config.hey.graphical.enable {
+    programs.light.enable = true;
     fonts = {
       fontDir.enable = true;
       packages = mkAfter (builtins.attrValues {

@@ -15,6 +15,7 @@ in {
     passwordFile = config.age.secrets.lychee-password.path;
     groups = [
       "wheel"
+      "video" # needed for light
       "networkmanager"
     ];
   };
