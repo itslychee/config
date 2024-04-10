@@ -57,7 +57,6 @@
       };
       wiresbot = {
         enable = true;
-        package = inputs.wiresbot.packages.${pkgs.system}.default;
         config = config.age.secrets.wiresconfig.path;
       };
       terraria = {
