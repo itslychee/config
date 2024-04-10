@@ -35,7 +35,10 @@
   };
 
 
-  age.secrets.wiresconfig.file = "${inputs.self}/secrets/wiresbot.age";
+  age.secrets = {
+      wiresconfig.file = "${inputs.self}/secrets/wiresbot.age";
+      terraria.file = "${inputs.self}/secrets/terraria.age";
+  };
   services = {
       headscale = {
         enable = true;
@@ -57,7 +60,23 @@
         package = inputs.wiresbot.packages.${pkgs.system}.default;
         config = config.age.secrets.wiresconfig.path;
       };
+      terraria = {
+          password = "$Password";
+          openFirewall = true;
+          messageOfTheDay = "wires";
+          maxPlayers = 10;
+          enable = true;
+          autoCreatedWorldSize = "large";
+      };
   };
+
+
+
+  systemd.services.terraria.serviceConfig = {
+      EnvironmentFile = config.age.secrets.terraria.path;
+  };
+
+
 
 
   # do not change
