@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkForce;
 in {
   # System capabilities, for finer control and context
   options.hey.caps = {
@@ -42,5 +42,7 @@ in {
         dnsutils
         ;
     };
+
+    documentation.nixos.enable = mkForce false;
   };
 }
