@@ -62,7 +62,7 @@
           autocenter_mode = "yes";
           startup_screen = "visualizer";
           playlist_display_mode = "classic";
-          visualizer_data_source = "~/.cache/mpdv.fifo";
+          visualizer_data_source = "~/.cache/mpd.fifo";
           visualizer_in_stereo = "yes";
           visualizer_type = "wave_filled";
           visualizer_look = "••";
