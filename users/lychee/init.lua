@@ -120,26 +120,20 @@ cmp.setup({
 })
 
 
-require('lualine').setup{
-    options = {
-        theme = "dracula",
-    },
-}
+require('lualine').setup{ options = { theme = "dracula" } }
 
 vim.filetype.add { filename = { [".envrc"] = "bash", }}
-
-
 
 -- keymaps
 k("n", "-", require("mini.files").open)
 k("n", "<leader>f", ts.find_files)
 k("n", "<leader>g", ts.live_grep)
 k("n", "<leader>b", ts.buffers)
-k('t', '<ESC>', "<C-\\><C-n>")
-k('n', '<space>e', vim.diagnostic.open_float)
-k('n', '[d', vim.diagnostic.goto_prev)
-k('n', ']d', vim.diagnostic.goto_next)
-k('n', '<space>q', vim.diagnostic.setloclist)
+k("t", "<ESC>", "<C-\\><C-n>")
+k("n", "<space>e", vim.diagnostic.open_float)
+k("n", "[d", vim.diagnostic.goto_prev)
+k("n", "]d", vim.diagnostic.goto_next)
+k("n", "<space>q", vim.diagnostic.setloclist)
 
 
 
