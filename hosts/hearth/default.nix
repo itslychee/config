@@ -30,7 +30,6 @@
       wms.sway = {
         enable = true;
         outputs.HDMI-A-1 = {
-          bg = "~/.wallpaper-image fill";
           mode = "1920x1080@144.001Hz";
           adaptive_sync = "on";
         };

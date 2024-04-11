@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   config,
   lib,
   ...
@@ -27,6 +28,7 @@ in {
       modifier = "Mod4";
       terminal = pkgs.alacritty;
       menu = pkgs.fuzzel;
+      output."*".bg = "${inputs.self}/assets/wallpaper fill";
 
       keybindings = let
         pamixer = "${pkgs.pamixer}/bin/pamixer";
