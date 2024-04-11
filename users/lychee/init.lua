@@ -30,6 +30,7 @@ local lspconfig = require("lspconfig")
 cmd.colorscheme "kanagawa"
 
 o.splitbelow = true
+o.wrap = false
 o.number = true
 o.relativenumber = true
 o.expandtab = true
