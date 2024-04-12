@@ -38,10 +38,6 @@
         pkgs.firefox
         pkgs.xdg-utils
         pkgs.qbittorrent
-        (pkgs.discord-canary.override {
-          withVencord = true;
-          withOpenASAR = true;
-        })
       ];
     };
   };

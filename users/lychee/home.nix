@@ -13,7 +13,7 @@ in {
       inherit
         (pkgs)
         anki
-        discord-canary
         ;
+      discord = pkgs.vesktop;
     });
 }
