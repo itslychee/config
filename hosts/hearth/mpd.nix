@@ -1,7 +1,9 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   home-manager.sharedModules = [
+    inputs.mpdrp.homeManagerModules.default
     {
       home.packages = [pkgs.libnotify pkgs.mpc_cli];
+      programs.mpdrp.enable = true;
       services = {
         mpd = {
           enable = true;
