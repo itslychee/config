@@ -1,50 +1,18 @@
--- git conflict handler!!
-require 'git-conflict'.setup({
-    default_mappings = {
-        ours = 'o',
-        theirs = 't',
-        none = "0",
-        both = "b",
-        next = "n",
-        prev = "p",
-    },
-})
+local api = vim.api 
+local lspconfig = require("lspconfig")
+local k = vim.keymap.set
 
-require 'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-  indent = {
-      enable = true,
-  },
+
+local LSPs = {
+    'ccls',
+    'nil_ls',
+    'gopls',
+    'pyright',
+    'ruff_lsp',
+    'rust_analyzer',
+    'statix'
 }
 
-local cmd = vim.cmd
-local o = vim.opt
-local api = vim.api
-local k = vim.keymap.set
-local ts = require("telescope.builtin")
-local lspconfig = require("lspconfig")
-
-cmd.colorscheme "kanagawa"
-
-o.splitbelow = true
-o.wrap = false
-o.number = true
-o.relativenumber = true
-o.expandtab = true
-o.cursorline = true
-o.splitright = true
-o.splitbelow = true
-o.termguicolors = true
-o.background = "light";
-o.cindent = true
-o.shiftwidth = 4
-o.completeopt = "menu,menuone,noselect"
-vim.g.mapleader = ","
-
-local LSPs = { 'ccls', 'nil_ls', 'gopls', 'pyright', 'ruff_lsp', 'rust_analyzer' }
 for _, server in ipairs(LSPs) do
     lspconfig[server].setup {
         capabilities = require'cmp_nvim_lsp'.default_capabilities(),
@@ -56,15 +24,7 @@ for _, server in ipairs(LSPs) do
     }
 end
 
-api.nvim_create_autocmd('TermOpen', {
-    pattern = "*",
-    callback = function()
-        local opt = vim.opt_local
-        opt.relativenumber = false
-        opt.number = false
-    end,
-})
-
+-- LSP setup
 api.nvim_create_autocmd('LspAttach', {
   group = api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
@@ -75,7 +35,7 @@ api.nvim_create_autocmd('LspAttach', {
     k('n', 'gD', vim.lsp.buf.declaration, opts)
     k('n', 'gd', vim.lsp.buf.definition, opts)
     k('n', 'gr', vim.lsp.buf.references, opts)
-    k('n', ';', vim.lsp.buf.hover, opts)
+    k('n', ';',  vim.lsp.buf.hover, opts)
     k('n', 'gi', vim.lsp.buf.implementation, opts)
     k('n', '<C-k>', vim.lsp.buf.signature_help, opts)
     -- Workspace
@@ -84,12 +44,10 @@ api.nvim_create_autocmd('LspAttach', {
     k('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
     k('n', '<space>rn', vim.lsp.buf.rename, opts)
     k({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-    -- Formatting
-    k('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
   end,
 })
 
-
+-- Autocompletion
 local cmp = require('cmp')
 local mappin = cmp.mapping
 cmp.setup({
@@ -110,26 +68,18 @@ cmp.setup({
   -- sources for autocompletion
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
-    { name = "path" },
+    { name = "async_path" },
     { name = "buffer" }, 
     { name = "luasnip" },
   }),
 })
 
 
-require('lualine').setup{ options = { theme = "dracula" } }
-
-vim.filetype.add { filename = { [".envrc"] = "bash", }}
-
--- keymaps
-k("n", "-", require("mini.files").open)
-k("n", "<leader>f", ts.find_files)
-k("n", "<leader>g", ts.live_grep)
-k("n", "<leader>b", ts.buffers)
-k("t", "<ESC>", "<C-\\><C-n>")
-k("n", "<space>e", vim.diagnostic.open_float)
-k("n", "[d", vim.diagnostic.goto_prev)
-k("n", "]d", vim.diagnostic.goto_next)
-k("n", "<space>q", vim.diagnostic.setloclist)
-
-
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "async_path" },
+	}, {
+		{ name = "cmdline" },
+	}),
+})

@@ -8,7 +8,7 @@
   is = osConfig.hey.caps;
 in {
   home.packages =
-    []
+    [pkgs.ripgrep]
     ++ optionals is.graphical (builtins.attrValues {
       inherit
         (pkgs)

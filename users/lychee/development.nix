@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   config,
@@ -37,29 +38,23 @@ in {
           "*~"
         ];
       };
-
-      neovim = {
-        enable = true;
-        defaultEditor = true;
-        extraPackages = builtins.attrValues {
-          inherit
-            (pkgs)
-            ripgrep
-            nil
-            ;
-        };
+    };
+    home.packages = let
+      nvim-config = pkgs.neovimUtils.makeNeovimConfig {
         plugins =
           (builtins.attrValues {
             inherit
               (pkgs.vimPlugins)
+              cmp-async-path
               cmp-buffer
+              cmp-cmdline
               cmp-nvim-lsp
-              cmp-path
               cmp_luasnip
+              conform-nvim
               git-conflict-nvim
               kanagawa-nvim
-              luasnip
               lualine-nvim
+              luasnip
               mini-nvim
               nvim-cmp
               nvim-lspconfig
@@ -68,14 +63,28 @@ in {
               ;
           })
           ++ optional (treesitter != null) treesitter;
-
-        withPython3 = true;
-        withNodeJs = true;
-        vimdiffAlias = true;
-        vimAlias = true;
-        viAlias = true;
-        extraLuaConfig = builtins.readFile ./init.lua;
+        wrapRc = false;
       };
-    };
+    in [
+      ((pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped nvim-config).overrideAttrs (old: {
+        generatedWrapperArgs =
+          old.generatedWrapperArgs
+          or []
+          ++ [
+            "--set"
+            "NVIM_APPNAME"
+            "neovim"
+            "--set"
+            "XDG_CONFIG_HOME"
+            "${inputs.self}"
+            "--suffix"
+            "PATH"
+            ":"
+            (lib.makeBinPath (builtins.attrValues {
+              inherit (pkgs) alejandra gotools rustfmt ruff gopls nil statix;
+            }))
+          ];
+      }))
+    ];
   };
 }
