@@ -65,7 +65,6 @@ in {
               nvim-lspconfig
               nvim-web-devicons
               telescope-nvim
-              noice-nvim
               ;
           })
           ++ optional (treesitter != null) treesitter;
