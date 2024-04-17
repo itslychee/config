@@ -58,7 +58,8 @@
     packages = self.lib.per (system: rec {
       default = iso;
       iso = self.nixosConfigurations."iso-${system}".config.system.build.isoImage;
-      hellfire = self.nixosConfigurations.hellfire.config.system.build.sdImage;
-    });
+    }) // {
+        aarch64-linux.hellfire = self.nixosConfigurations.hellfire.config.system.build.sdImage;
+    };
   };
 }
