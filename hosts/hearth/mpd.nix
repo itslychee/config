@@ -1,4 +1,8 @@
-{pkgs, inputs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   home-manager.sharedModules = [
     inputs.mpdrp.homeManagerModules.default
     {

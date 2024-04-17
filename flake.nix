@@ -37,29 +37,14 @@
 
     diskoConfigurations = self.lib.mkDisko ["wiretop"];
 
-    formatter = self.lib.per (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-      pkgs.writeShellApplication {
-        runtimeInputs = builtins.attrValues {
-          inherit (pkgs) gitFull;
-          alejandra = pkgs.callPackage ./pkgs/alejandra.nix {};
-        };
-        name = "flake-formatter";
-        text = ''
-          if ! git diff --quiet; then
-              echo "Dirty tree, exiting..."
-              exit 1
-          fi
-          alejandra "$@"
-          git commit -a -m "chore(alejandra): formatting (nix-fmt)"
-        '';
-      });
-    packages = self.lib.per (system: rec {
-      default = iso;
-      iso = self.nixosConfigurations."iso-${system}".config.system.build.isoImage;
-    }) // {
+    formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
+    packages =
+      self.lib.per (system: rec {
+        default = iso;
+        iso = self.nixosConfigurations."iso-${system}".config.system.build.isoImage;
+      })
+      // {
         aarch64-linux.hellfire = self.nixosConfigurations.hellfire.config.system.build.sdImage;
-    };
+      };
   };
 }

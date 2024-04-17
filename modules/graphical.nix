@@ -64,7 +64,6 @@ in {
         jack.enable = true;
         alsa.enable = true;
       };
-
     };
     xdg.portal = {
       enable = true;

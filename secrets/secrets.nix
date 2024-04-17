@@ -30,5 +30,5 @@ in {
   "wifi.age".publicKeys = withPrivileged ["hearth" "wiretop"];
   "lychee-password.age".publicKeys = withPrivileged ["hellfire" "hearth" "wirescloud" "wiretop"];
   "vault-admin.age".publicKeys = withPrivileged ["wirescloud"];
-  "terraria.age".publicKeys = withPrivileged [ "wirescloud" ];
+  "terraria.age".publicKeys = withPrivileged ["wirescloud"];
 }

@@ -59,10 +59,9 @@
   environment.sessionVariables.NIX_INDEX_DATABASE = "/var/lib/nix-index-db";
   programs.nix-index.enable = true;
 
-
   programs.steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
+    enable = true;
+    remotePlay.openFirewall = true;
   };
 
   # do not touch ever! #

@@ -12,8 +12,8 @@ in {
 
   services.kmscon.autologinUser = "lychee";
   hey.users.lychee = {
-      state = "24.05";
-      passwordFile = mkForce null;
+    state = "24.05";
+    passwordFile = mkForce null;
   };
   hey.caps = {
     rootLogin = true;
@@ -27,7 +27,6 @@ in {
     doc.enable = mkForce false;
     nixos.enable = mkForce false;
   };
-
 
   # for nixos-anywhere
   environment.systemPackages = [pkgs.rsync];
