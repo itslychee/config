@@ -34,56 +34,36 @@ in {
   };
   home.packages = let
     nvim-config = pkgs.neovimUtils.makeNeovimConfig {
-      plugins = builtins.attrValues {
-        inherit
-          (pkgs.vimPlugins)
-          cmp-async-path
-          cmp-buffer
-          cmp-cmdline
-          cmp-nvim-lsp
-          cmp_luasnip
-          conform-nvim
-          git-conflict-nvim
-          kanagawa-nvim
-          lualine-nvim
-          luasnip
-          mini-nvim
-          nvim-cmp
-          nvim-lspconfig
-          nvim-web-devicons
-          telescope-nvim
-          ;
-        ts = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
-      };
+      plugins = [
+        (pkgs.vimUtils.buildVimPlugin {
+          name = "fruit-nvim-config";
+          dependencies = builtins.attrValues {
+            inherit
+              (pkgs.vimPlugins)
+              cmp-async-path
+              cmp-buffer
+              cmp-cmdline
+              cmp-nvim-lsp
+              cmp_luasnip
+              conform-nvim
+              git-conflict-nvim
+              kanagawa-nvim
+              lualine-nvim
+              luasnip
+              mini-nvim
+              nvim-cmp
+              nvim-lspconfig
+              nvim-web-devicons
+              telescope-nvim
+              ;
+            ts = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+          };
+          src = ../../nvim;
+        })
+      ];
       wrapRc = false;
     };
   in [
-    ((pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped nvim-config).overrideAttrs (old: {
-      generatedWrapperArgs =
-        old.generatedWrapperArgs
-        or []
-        ++ [
-          "--set"
-          "NVIM_APPNAME"
-          "neovim"
-          "--set"
-          "XDG_CONFIG_HOME"
-          ../../nvim
-          "--suffix"
-          "PATH"
-          ":"
-          (lib.makeBinPath (builtins.attrValues {
-            inherit
-              (pkgs)
-              alejandra
-              gotools
-              rustfmt
-              ruff
-              nil
-              statix
-              ;
-          }))
-        ];
-    }))
+    (pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped nvim-config)
   ];
 }

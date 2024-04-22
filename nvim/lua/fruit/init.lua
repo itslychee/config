@@ -1,7 +1,7 @@
--- git conflict handler!!
+require("fruit.terminal")
+require("fruit.lsp")
+require("fruit.formatting")
 
-
-require("fruit")
 
 require 'git-conflict'.setup({
     default_mappings = {
