@@ -39,8 +39,6 @@
     };
   };
 
-  home-manager.users.lychee.programs.neovim.treesitter = null;
-
   networking.firewall = {
     allowedTCPPorts = [53];
     allowedUDPPorts = [53];
