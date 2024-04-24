@@ -22,6 +22,7 @@ in rec {
   # Supported systems that I use throughout my daily life
   systems = ["x86_64-linux" "aarch64-linux"];
   per = genAttrs systems;
+  nixpkgsPer = f: per (system: f nixpkgs.legacyPackages.${system});
 
   mkSystems = arch: hosts: (listToAttrs (
     map (name: {

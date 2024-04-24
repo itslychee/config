@@ -1,17 +1,13 @@
 require("conform").setup({
   formatters_by_ft = {
     lua = { "stylua" },
-    -- Conform will run multiple formatters sequentially
     python = { { "ruff_fix", "ruff_format"}},
-    -- Use a sub-list to run only the first available formatter
-    javascript = { { "prettierd", "prettier" } },
     nix = { "alejandra" },
     golang = {{"goimports", "gofmt"}},
   },
   format_on_save = {
-          -- These options will be passed to conform.format()
-          timeout_ms = 500,
-          lsp_fallback = true,
+      timeout_ms = 500,
+      lsp_fallback = true,
   },
 }) 
 
@@ -22,3 +18,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     require("conform").format({ bufnr = args.buf })
   end,
 })
+
+vim.keymap.set("n", "<space>f", function()
+    require("conform").format()
+end, { noremap = true, silent = true, buffer = bufnr, desc = "Format document" })

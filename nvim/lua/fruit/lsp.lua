@@ -83,3 +83,9 @@ cmp.setup.cmdline(":", {
 		{ name = "cmdline" },
 	}),
 })
+
+k("n", "<space>e", vim.diagnostic.open_float)
+k("n", "[d", vim.diagnostic.goto_prev)
+k("n", "]d", vim.diagnostic.goto_next)
+k("n", "<space>q", vim.diagnostic.setloclist)
+k("n", "<leader>t", vim.cmd.terminal)

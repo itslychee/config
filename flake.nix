@@ -15,7 +15,9 @@
     nixpkgs,
     deploy,
     ...
-  } @ inputs: {
+  } @ inputs: let
+    inherit (nixpkgs.lib) recursiveUpdate listToAttrs;
+  in {
     lib = import ./lib inputs;
     nixosConfigurations =
       # Desktop
@@ -27,7 +29,7 @@
       // self.lib.mkSystems "aarch64-linux" [
         "hellfire"
       ]
-      // (nixpkgs.lib.listToAttrs (map (k: {
+      // (listToAttrs (map (k: {
           name = "iso-${k}";
           value = self.lib.mkSystem k "iso";
         })
@@ -37,14 +39,17 @@
 
     diskoConfigurations = self.lib.mkDisko ["wiretop"];
 
-    formatter = self.lib.per (system: nixpkgs.legacyPackages.${system}.alejandra);
-    packages =
-      self.lib.per (system: rec {
-        default = iso;
-        iso = self.nixosConfigurations."iso-${system}".config.system.build.isoImage;
-      })
-      // {
+    formatter = self.lib.nixpkgsPer (pkgs: pkgs.alejandra);
+    packages = (recursiveUpdate
+      # per system 
+      (self.lib.nixpkgsPer (pkgs: {
+        iso = self.nixosConfigurations."iso-${pkgs.system}".config.system.build.isoImage;
+        nvim = pkgs.callPackage ./pkgs/nvim.nix {};
+      }))
+      # specific
+      {
         aarch64-linux.hellfire = self.nixosConfigurations.hellfire.config.system.build.sdImage;
-      };
+      }
+    );
   };
 }
