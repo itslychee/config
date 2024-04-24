@@ -40,8 +40,7 @@
     diskoConfigurations = self.lib.mkDisko ["wiretop"];
 
     formatter = self.lib.nixpkgsPer (pkgs: pkgs.alejandra);
-    packages = (
-      recursiveUpdate
+    packages = recursiveUpdate
       # per system
       (self.lib.nixpkgsPer (pkgs: {
         iso = self.nixosConfigurations."iso-${pkgs.system}".config.system.build.isoImage;
@@ -50,7 +49,6 @@
       # specific
       {
         aarch64-linux.hellfire = self.nixosConfigurations.hellfire.config.system.build.sdImage;
-      }
-    );
+      };
   };
 }

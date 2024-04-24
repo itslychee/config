@@ -33,7 +33,7 @@ in {
       keybindings = let
         pamixer = "${pkgs.pamixer}/bin/pamixer";
         player = "${pkgs.playerctl}/bin/playerctl --player='spotify,mpd,%any'";
-        modifier = cfg.config.modifier;
+        inherit (cfg.config) modifier;
       in {
         Print = ''
           exec wayshot -c -s "`slurp -f '%x %y %w %h'`" --stdout | wl-copy -t image/png'';
@@ -87,7 +87,7 @@ in {
     '';
   };
   programs.waybar = {
-    enable = config.wayland.windowManager.sway.enable;
+    inherit (config.wayland.windowManager.sway) enable;
     settings.mainBar = {
       layer = "top";
       height = 20;

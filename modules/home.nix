@@ -67,7 +67,7 @@ in {
 
           home.stateVersion = value.state;
           wayland.windowManager.sway = {
-            enable = value.wms.sway.enable;
+            inherit (value.wms.sway) enable;
             config.output = value.wms.sway.outputs;
           };
         })

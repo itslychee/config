@@ -3,13 +3,11 @@ let
   inherit (builtins) isList;
   secrets = import ../lib/keys.nix;
 
-  keys =
-    (lib.evalModules {
+  inherit ((lib.evalModules {
       modules = [../modules/keys.nix];
     })
     .config
-    .hey
-    .keys;
+    .hey) keys;
 
   # Wrapper for privileged + host keys
   withPrivilegedUser = user: hosts:
