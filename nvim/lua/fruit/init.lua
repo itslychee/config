@@ -27,19 +27,21 @@ require("fruit.lsp")
 require("fruit.formatting")
 require("fruit.telescope")
 require("fruit.treesitter")
+
+require("mini.comment").setup()
 require("mini.sessions").setup()
 require("mini.pairs").setup()
-require("mini.files").setup {
-  windows = {
-    max_number = 3,
-    preview = true,
-    width_preview = 50,
-  },
-  options = {
-    permanent_delete = true,
-    use_as_default_explorer = true,
-  },
-}
-require('lualine').setup{ options = { theme = "dracula" } }
+require("mini.files").setup({
+	windows = {
+		max_number = 3,
+		preview = true,
+		width_preview = 50,
+	},
+	options = {
+		permanent_delete = true,
+		use_as_default_explorer = true,
+	},
+})
+require("lualine").setup({ options = { theme = "dracula" } })
 
 k("n", "-", require("mini.files").open)
