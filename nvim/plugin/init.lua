@@ -1,1 +1,1 @@
-require("fruit")
+require "fruit"
