@@ -40,8 +40,9 @@
     diskoConfigurations = self.lib.mkDisko ["wiretop"];
 
     formatter = self.lib.nixpkgsPer (pkgs: pkgs.alejandra);
-    packages = (recursiveUpdate
-      # per system 
+    packages = (
+      recursiveUpdate
+      # per system
       (self.lib.nixpkgsPer (pkgs: {
         iso = self.nixosConfigurations."iso-${pkgs.system}".config.system.build.isoImage;
         nvim = pkgs.callPackage ./pkgs/nvim.nix {};

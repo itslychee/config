@@ -32,5 +32,5 @@ in {
       ];
     };
   };
-  home.packages = [ inputs.self.packages.${pkgs.system}.nvim ];
+  home.packages = [inputs.self.packages.${pkgs.system}.nvim];
 }
