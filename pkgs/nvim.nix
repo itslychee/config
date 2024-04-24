@@ -7,7 +7,6 @@
   neovim-unwrapped,
   ripgrep,
   nil,
-  statix,
   stylua,
   gotools,
   ruff,
