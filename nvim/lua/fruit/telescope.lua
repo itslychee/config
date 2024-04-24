@@ -1,5 +1,3 @@
-
-
 local ts = require("telescope.builtin")
 local k = vim.keymap.set
 k("n", "<leader>f", ts.find_files)

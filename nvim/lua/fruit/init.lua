@@ -5,9 +5,8 @@ local k = vim.keymap.set
 local colorscheme = vim.cmd.colorscheme
 
 -- Theme setup!
-o.background = "light";
-colorscheme "kanagawa"
-
+o.background = "light"
+colorscheme("kanagawa")
 
 -- Options
 o.splitbelow = true
