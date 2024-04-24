@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkIf mkMerge optionals;
+  inherit (lib) optionals;
   is = osConfig.hey.caps;
 in {
   home.packages =
@@ -14,6 +14,6 @@ in {
         (pkgs)
         anki
         ;
-      discord = pkgs.vesktop;
+      discord = pkgs.discord-canary.override {withVencord = true;};
     });
 }
