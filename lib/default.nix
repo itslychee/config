@@ -49,6 +49,9 @@ in rec {
             config.allowUnfree = true;
             hostPlatform = arch;
           };
+          boot.blacklistedKernelModules = [
+            "uvcvideo"
+          ];
         }
         # Module system
         (toList (unions [../modules]))
