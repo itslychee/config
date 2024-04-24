@@ -23,12 +23,10 @@
             cmp-buffer
             cmp-cmdline
             cmp-nvim-lsp
-            cmp_luasnip
             conform-nvim
             git-conflict-nvim
             kanagawa-nvim
             lualine-nvim
-            luasnip
             mini-nvim
             nvim-cmp
             nvim-lspconfig

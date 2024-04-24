@@ -11,13 +11,11 @@ require("conform").setup {
   },
 }
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function(args)
-    require("conform").format { bufnr = args.buf }
-  end,
-})
-
 vim.keymap.set("n", "<space>f", function()
-  require("conform").format()
-end, { noremap = true, silent = true, buffer = bufnr, desc = "Format document" })
+  require("conform").format { lsp_fallback = true }
+end, {
+  noremap = true,
+  silent = true,
+  buffer = bufnr,
+  desc = "Format document",
+})

@@ -19,6 +19,8 @@ o.splitright = true
 o.splitbelow = true
 o.termguicolors = true
 o.shiftwidth = 4
+o.completeopt = "menu,menuone,noinsert"
+
 vim.g.mapleader = ","
 
 require "fruit.terminal"

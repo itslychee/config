@@ -7,18 +7,14 @@ local LSPs = {
   "nil_ls",
   "gopls",
   "pyright",
-  "ruff_lsp",
   "rust_analyzer",
+  "ruff_lsp",
 }
 
+local caps = require("cmp_nvim_lsp").default_capabilities()
 for _, server in ipairs(LSPs) do
   lspconfig[server].setup {
-    capabilities = require("cmp_nvim_lsp").default_capabilities(),
-    on_attach = function(client, bufnr)
-      if client.server_capabilities.inlayHintProvider then
-        vim.lsp.buf.inlay_hint(bufnr, true)
-      end
-    end,
+    capabilities = caps,
   }
 end
 
@@ -53,7 +49,7 @@ local mappin = cmp.mapping
 cmp.setup {
   snippet = {
     expand = function(args)
-      require("luasnip").lsp_expand(args.body)
+      vim.snippet.expand(args.body)
     end,
   },
   mapping = mappin.preset.insert {
@@ -70,7 +66,6 @@ cmp.setup {
     { name = "nvim_lsp" },
     { name = "async_path" },
     { name = "buffer" },
-    { name = "luasnip" },
   },
 }
 
@@ -87,4 +82,3 @@ k("n", "<space>e", vim.diagnostic.open_float)
 k("n", "[d", vim.diagnostic.goto_prev)
 k("n", "]d", vim.diagnostic.goto_next)
 k("n", "<space>q", vim.diagnostic.setloclist)
-k("n", "<leader>t", vim.cmd.terminal)
