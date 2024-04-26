@@ -35,13 +35,13 @@ in rec {
         inherit inputs;
       };
       modules = flatten [
+        inputs.agenix.nixosModules.default
         {
           networking.hostName = hostname;
           nixpkgs.hostPlatform = arch;
         }
         # Module system
         (toList (unions [../modules]))
-
         # Host
         (import "${self}/hosts/${hostname}")
         (optionals (self.diskoConfigurations ? "${hostname}") [
