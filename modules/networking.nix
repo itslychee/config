@@ -78,6 +78,7 @@ in {
           "--login-server=https://scaley.lefishe.club"
         ];
       };
+      systemd.network.wait-online.ignoredInterfaces = [config.services.tailscale.interfaceName];
     }
   ];
 }
