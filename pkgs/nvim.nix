@@ -32,6 +32,7 @@
             nvim-lspconfig
             nvim-web-devicons
             telescope-nvim
+            typescript-tools-nvim
             nvim-ts-context-commentstring
             ;
           ts = vimPlugins.nvim-treesitter.withAllGrammars;
