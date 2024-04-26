@@ -6,7 +6,7 @@
   ...
 }: let
   cfg = config.hey.net;
-  inherit (lib) mkIf mkMerge mkEnableOption mkOption;
+  inherit (lib) mkIf mkMerge mkEnableOption mkOption mkForce;
   inherit (lib.types) bool;
 in {
   options.hey.net = {
@@ -66,7 +66,10 @@ in {
       boot.initrd.network.ssh.enable = true;
     })
     {
-      networking.firewall.allowedTCPPorts = mkIf config.services.caddy.enable [80 443];
+      networking = {
+        useDHCP = mkForce false;
+        firewall.allowedTCPPorts = mkIf config.services.caddy.enable [80 443];
+      };
       programs.ssh = {
         startAgent = true;
         agentTimeout = "30m";

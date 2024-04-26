@@ -10,13 +10,11 @@
     listToAttrs
     nixosSystem
     flatten
-    mkForce
     ;
   inherit
     (nixpkgs.lib.fileset)
     toList
     unions
-    difference
     ;
 in rec {
   # Supported systems that I use throughout my daily life
@@ -38,20 +36,8 @@ in rec {
       };
       modules = flatten [
         {
-          hardware.enableAllFirmware = true;
-          programs.command-not-found.enable = false;
-          hey.nix.enable = true;
-          networking = {
-            useDHCP = mkForce false;
-            hostName = hostname;
-          };
-          nixpkgs = {
-            config.allowUnfree = true;
-            hostPlatform = arch;
-          };
-          boot.blacklistedKernelModules = [
-            "uvcvideo"
-          ];
+          networking.hostName = hostname;
+          nixpkgs.hostPlatform = arch;
         }
         # Module system
         (toList (unions [../modules]))
