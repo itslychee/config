@@ -54,6 +54,7 @@
 
   # SSD trimming
   services.fstrim.enable = true;
+  services.tailscale.extraUpFlags = ["--exit-node wirescloud"];
 
   # nix-index
   environment.sessionVariables.NIX_INDEX_DATABASE = "/var/lib/nix-index-db";

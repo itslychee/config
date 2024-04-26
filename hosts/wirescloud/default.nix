@@ -38,6 +38,9 @@
     terraria.file = "${inputs.self}/secrets/terraria.age";
   };
   services = {
+    # use as vpn exit node
+    tailscale.extraUpFlags = ["--advertise-exit-node"];
+
     headscale = {
       enable = true;
       settings = {

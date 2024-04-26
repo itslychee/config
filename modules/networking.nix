@@ -65,10 +65,8 @@ in {
       };
       boot.initrd.network.ssh.enable = true;
     })
-    (mkIf config.services.caddy.enable {
-      networking.firewall.allowedTCPPorts = [80 443];
-    })
     {
+      networking.firewall.allowedTCPPorts = mkIf config.services.caddy.enable [80 443];
       programs.ssh = {
         startAgent = true;
         agentTimeout = "30m";
