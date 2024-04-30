@@ -66,10 +66,7 @@
 
     devShells = self.lib.nixpkgsPer (pkgs: {
       default = pkgs.mkShell {
-        packages = [
-          pkgs.deploy-rs
-          inputs.agenix.packages.${pkgs.system}.default
-        ];
+        packages = [inputs.agenix.packages.${pkgs.system}.default];
       };
     });
   };
