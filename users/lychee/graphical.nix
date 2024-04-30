@@ -126,4 +126,11 @@ in {
     systemd.target = mkIf swaySystemd "sway-session.target";
     style = builtins.readFile ./style.css;
   };
+
+  services.mako = {
+    enable = true;
+    borderColor = "#f7cde4";
+    backgroundColor = "#543245";
+    layer = "overlay";
+  };
 }
