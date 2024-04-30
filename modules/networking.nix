@@ -25,13 +25,13 @@ in {
       age.secrets.wifi.file = "${inputs.self}/secrets/wifi.age";
 
       # https://github.com/NixOS/nixpkgs/issues/180175#issuecomment-1658731959
-      systemd.services.NetworkManager-wait-online = {
-        serviceConfig = {
-          ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
-        };
+      systemd.services.NetworkManager-wait-online.serviceConfig = {
+        ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
       };
       networking.networkmanager = {
         enable = true;
+        unmanaged = [config.services.tailscale.interfaceName];
+        wifi.backend = "iwd";
         ensureProfiles = {
           environmentFiles = [config.age.secrets.wifi.path];
           profiles.homeWifi = {
