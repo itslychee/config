@@ -14,6 +14,7 @@ in {
         (pkgs)
         anki
         ;
-      discord = pkgs.discord-canary.override {withVencord = true;};
+      #discord = pkgs.discord-canary.override {withVencord = true;};
+      discord = pkgs.vesktop;
     });
 }
