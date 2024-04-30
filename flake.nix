@@ -1,14 +1,26 @@
 {
   description = "the most powerful config ever to exist";
   inputs = {
+    disko.url = "github:nix-community/disko";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
+
+    # agenix
     agenix.url = "github:ryantm/agenix";
-    disko.url = "github:nix-community/disko";
-    deploy.url = "github:serokell/deploy-rs";
+    agenix.inputs.darwin.follows = "";
+    agenix.inputs.home-manager.follows = "";
+
+    # wires bot
     wiresbot.url = "github:itslychee/wires-bot";
+    wiresbot.inputs.nixpkgs.follows = "nixpkgs";
+
+    # mpdrp
     mpdrp.url = "github:itslychee/mpdrp";
+    mpdrp.inputs.nixpkgs.follows = "nixpkgs";
+
+    # home manager
     home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = {
     self,
