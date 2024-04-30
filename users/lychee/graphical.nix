@@ -22,9 +22,14 @@ in {
     package = pkgs.swayfx;
     config = {
       bars = [];
+      window.commands = [
+        {
+          command = "floating true";
+          criteria.app_id = "xdg-desktop-portal-*";
+        }
+      ];
       gaps.smartBorders = "on";
       focus.followMouse = "always";
-      defaultWorkspace = "workspace number 1";
       modifier = "Mod4";
       terminal = pkgs.alacritty;
       menu = pkgs.fuzzel;
@@ -84,6 +89,7 @@ in {
     };
     extraConfig = ''
       exec ${getExe pkgs.autotiling-rs}
+      workspace number 1
     '';
   };
   programs.waybar = {
