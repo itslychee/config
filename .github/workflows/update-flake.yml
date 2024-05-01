@@ -18,3 +18,4 @@ jobs:
         with:
           pr-assignees: itslychee 
           pr-title: "Update flake.lock" # Title of PR to be created
+          token: ${{ secrets.GH_TOKEN }}
