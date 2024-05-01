@@ -7,6 +7,7 @@
 
     # agenix
     agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.darwin.follows = "";
     agenix.inputs.home-manager.follows = "";
 
