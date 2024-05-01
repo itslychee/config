@@ -13,7 +13,6 @@
 
     # wires bot
     wiresbot.url = "github:itslychee/wires-bot";
-    wiresbot.inputs.nixpkgs.follows = "nixpkgs";
 
     # mpdrp
     mpdrp.url = "github:itslychee/mpdrp";
