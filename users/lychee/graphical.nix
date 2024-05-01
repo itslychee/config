@@ -24,8 +24,12 @@ in {
       bars = [];
       window.commands = [
         {
-          command = "floating true";
+          command = "floating enable";
           criteria.app_id = "xdg-desktop-portal-*";
+        }
+        {
+          command = "floating enable";
+          criteria.title = "^Extension: .+";
         }
       ];
       gaps.smartBorders = "on";
