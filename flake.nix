@@ -26,7 +26,6 @@
   outputs = {
     self,
     nixpkgs,
-    deploy,
     ...
   } @ inputs: let
     inherit (nixpkgs.lib) recursiveUpdate listToAttrs;
@@ -47,8 +46,6 @@
           value = self.lib.mkSystem k "iso";
         })
         self.lib.systems));
-
-    deploy.nodes = import ./deploy.nix {inherit inputs;};
 
     diskoConfigurations = self.lib.mkDisko ["wiretop"];
 
