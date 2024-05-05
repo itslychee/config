@@ -20,6 +20,7 @@ in {
   };
   wayland.windowManager.sway = {
     package = pkgs.swayfx;
+    checkConfig = false; # fixes the dumb build time check
     config = {
       bars = [];
       window.commands = [
