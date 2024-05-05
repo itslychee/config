@@ -2,7 +2,7 @@ name: update-flake-lock
 on:
   workflow_dispatch: # allows manual triggering
   schedule:
-    - cron: '0 0 * * 0' # runs weekly on Sunday at 00:00
+    - cron: '4 0 * * 3' # Run weekly at 4AM every wednesday
 
 jobs:
   "Lockfile":
@@ -17,5 +17,4 @@ jobs:
         uses: DeterminateSystems/update-flake-lock@main
         with:
           pr-assignees: itslychee
-          pr-reviewers: itslychee
           
