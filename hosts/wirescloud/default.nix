@@ -34,8 +34,8 @@
   };
 
   age.secrets = {
-    wiresconfig.file = "${inputs.self}/secrets/wiresbot.age";
-    terraria.file = "${inputs.self}/secrets/terraria.age";
+    wiresconfig.file = ../../secrets/wiresbot.age;
+    terraria.file = ../../secrets/terraria.age;
   };
   services = {
     # use as vpn exit node
