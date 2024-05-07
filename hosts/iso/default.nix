@@ -13,7 +13,7 @@ in {
   services.kmscon.autologinUser = "lychee";
   hey.users.lychee = {
     state = "24.05";
-    passwordFile = mkForce null;
+    usePasswdFile = mkForce false;
   };
   hey.caps = {
     rootLogin = true;
