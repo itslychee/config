@@ -1,5 +1,6 @@
 builds:
-  exclude: []
+  exclude:
+    - nixosConfigurations.iso-*
   include:
-  - nixosConfigurations.*
-  - packages.*.*
+    - nixosConfigurations.*
+    - packages.*.*
