@@ -4,6 +4,7 @@
     disko.url = "github:nix-community/disko";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    deploy.url = "github:serokell/deploy-rs";
 
     # agenix
     agenix.url = "github:ryantm/agenix";
@@ -25,6 +26,7 @@
   outputs = {
     self,
     nixpkgs,
+    deploy,
     ...
   } @ inputs: let
     inherit (nixpkgs.lib) recursiveUpdate listToAttrs;
@@ -48,6 +50,7 @@
 
     diskoConfigurations = self.lib.mkDisko ["wiretop"];
 
+    deploy.nodes = import ./deploy.nix inputs;
     formatter = self.lib.nixpkgsPer (pkgs: pkgs.alejandra);
     packages =
       recursiveUpdate
@@ -63,7 +66,10 @@
 
     devShells = self.lib.nixpkgsPer (pkgs: {
       default = pkgs.mkShell {
-        packages = [inputs.agenix.packages.${pkgs.system}.default];
+        packages = [
+          inputs.agenix.packages.${pkgs.system}.default
+          pkgs.deploy-rs
+        ];
       };
     });
   };

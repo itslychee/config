@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkOption;
   inherit (lib.types) attrsOf str listOf;
 in {
@@ -31,6 +35,7 @@ in {
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG lychee@desktop"
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKFqTbiSzLECj3huZ5NBd8xQwB+TEvCbUTKCxBmwmWWw lychee@wiretop"
         ];
+        deployment = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG lychee@desktop"];
       };
     };
   };
