@@ -8,3 +8,5 @@ require("git-conflict").setup {
     prev = "p",
   },
 }
+
+vim.keymap.set("n", "`", "<cmd>LazyGit<CR>", { desc = "lazygit" })

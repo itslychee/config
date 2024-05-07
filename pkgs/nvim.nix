@@ -10,6 +10,7 @@
   stylua,
   gotools,
   ruff,
+  lazygit,
   alejandra,
 }: let
   nvim-config = neovimUtils.makeNeovimConfig {
@@ -32,6 +33,7 @@
             nvim-lspconfig
             nvim-web-devicons
             telescope-nvim
+            lazygit-nvim
             typescript-tools-nvim
             nvim-ts-context-commentstring
             ;
@@ -54,6 +56,7 @@ in
         (lib.makeBinPath [
           ripgrep
           nil
+          lazygit
           stylua
           gotools
           ruff
