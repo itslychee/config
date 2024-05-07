@@ -25,6 +25,7 @@ vim.g.mapleader = ","
 
 require "fruit.terminal"
 require "fruit.lsp"
+require "fruit.git"
 require "fruit.formatting"
 require "fruit.telescope"
 require "fruit.treesitter"
