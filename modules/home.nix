@@ -27,6 +27,7 @@ in {
           default = [];
           description = "user groups";
         };
+        usePasswdFile = mkEnableOption "use hashed password file";
         passwordFile = mkOption {
           type = nullOr str;
           description = "Path to hashed password";
