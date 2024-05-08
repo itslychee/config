@@ -10,15 +10,12 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.networkmanager.enable = true;
-
   hey = {
     caps = {
       graphical = true;
       headless = true;
     };
-    # net.home = true;
+    net.home = true;
     users.lychee = {
       state = "24.05";
       sshKeys = config.hey.keys.users.lychee.local_ssh;
