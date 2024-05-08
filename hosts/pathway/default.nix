@@ -23,7 +23,6 @@
     users.lychee = {
       state = "24.05";
       sshKeys = config.hey.keys.users.lychee.local_ssh;
-      usePasswdFile = lib.mkForce false;
       wms.sway = {
         enable = true;
       };
