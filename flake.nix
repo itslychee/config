@@ -29,7 +29,7 @@
     deploy,
     ...
   } @ inputs: let
-    inherit (nixpkgs.lib) recursiveUpdate listToAttrs;
+    inherit (nixpkgs.lib) recursiveUpdate listToAttrs filterAttrs hasPrefix;
   in {
     lib = import ./lib inputs;
     nixosConfigurations =
@@ -51,16 +51,15 @@
 
     diskoConfigurations = self.lib.mkDisko ["wiretop"];
 
-    deploy.nodes =
-      builtins.mapAttrs (hostname: config: {
-        inherit hostname;
-        sshUser = "root";
-        profiles.system = {
-          user = "root";
-          path = deploy.lib.${config.pkgs.stdenv.system}.activate.nixos config;
-        };
-      })
-      self.nixosConfigurations;
+    deploy.nodes = builtins.mapAttrs (hostname: config: {
+      inherit hostname;
+      sshUser = "root";
+      profiles.system = {
+        user = "root";
+        path = deploy.lib.${config.pkgs.stdenv.system}.activate.nixos config;
+      };
+    }) (filterAttrs (name: _: !hasPrefix "iso-" name) self.nixosConfigurations);
+
     formatter = self.lib.nixpkgsPer (pkgs: pkgs.alejandra);
     packages =
       recursiveUpdate
