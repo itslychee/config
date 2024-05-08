@@ -35,7 +35,6 @@
       # Desktop
       self.lib.mkSystems "x86_64-linux" [
         "wirescloud"
-        "wiretop"
         "hearth"
         "pathway"
       ]
