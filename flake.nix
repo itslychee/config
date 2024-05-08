@@ -40,12 +40,7 @@
       ]
       // self.lib.mkSystems "aarch64-linux" [
         "hellfire"
-      ]
-      // (listToAttrs (map (k: {
-          name = "iso-${k}";
-          value = self.lib.mkSystem k "iso";
-        })
-        self.lib.systems));
+      ];
 
     deploy.nodes = builtins.mapAttrs (hostname: config: {
       inherit hostname;
@@ -54,14 +49,14 @@
         user = "root";
         path = deploy.lib.${config.pkgs.stdenv.system}.activate.nixos config;
       };
-    }) (filterAttrs (name: _: !hasPrefix "iso-" name) self.nixosConfigurations);
+    });
 
     formatter = self.lib.nixpkgsPer (pkgs: pkgs.alejandra);
     packages =
       recursiveUpdate
       # per system
       (self.lib.nixpkgsPer (pkgs: {
-        iso = self.nixosConfigurations."iso-${pkgs.system}".config.system.build.isoImage;
+        iso = (self.lib.mkSystem pkgs.stdenv.system "iso").config.system.build.isoImage;
         nvim = pkgs.callPackage ./pkgs/nvim.nix {};
       }))
       # specific
