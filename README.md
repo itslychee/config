@@ -8,7 +8,7 @@ value extensibility.
 - `hosts/hellfire` - raspberry pi
 - `hosts/iso` - multi-arch ISO image
 - `hosts/wirescloud` - hetzner server instance
-- `hosts/pathway` - 2nd laptop that was used to use for extensive dev, repurposed in NixOS, served a big role in who i am today!
+- `hosts/pathway` - 2nd laptop that I have ever had, it served a significant role in me getting into software dev!
 
 ## acknowledgements
 
