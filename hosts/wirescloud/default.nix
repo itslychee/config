@@ -45,8 +45,6 @@
       enable = true;
       settings = {
         server_url = "https://scaley.lefishe.club:443";
-        # headscale shouldn't be handling DNS beyond the tailnet
-        dns_config.nameservers = [];
       };
     };
 
