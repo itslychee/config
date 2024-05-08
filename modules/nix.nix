@@ -15,18 +15,9 @@ in {
       })
       inputs;
     settings = {
-      substituters = [
-        "https://cache.garnix.io"
-        "https://colmena.cachix.org"
-      ];
-      trusted-substituters = [
-        "https://cache.garnix.io"
-        "https://colmena.cachix.org"
-      ];
-      trusted-public-keys = [
-        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-        "colmena.cachix.org-1:7BzpDnjjH8ki2CT3f6GdOk7QAzPOl+1t3LvTLXqYcSg="
-      ];
+      substituters = ["https://cache.garnix.io"];
+      trusted-substituters = ["https://cache.garnix.io"];
+      trusted-public-keys = ["cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="];
       trusted-users = ["@wheel" "root"];
       builders-use-substitutes = true;
       use-xdg-base-directories = true;
