@@ -5,7 +5,7 @@ local k = vim.keymap.set
 local colorscheme = vim.cmd.colorscheme
 
 -- Theme setup!
-o.background = "light"
+o.background = "dark"
 colorscheme "kanagawa"
 
 -- Options
