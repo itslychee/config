@@ -1,7 +1,6 @@
 {
   description = "the most powerful config ever to exist";
   inputs = {
-    disko.url = "github:nix-community/disko";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     deploy.url = "github:serokell/deploy-rs";
@@ -48,8 +47,6 @@
           value = self.lib.mkSystem k "iso";
         })
         self.lib.systems));
-
-    diskoConfigurations = self.lib.mkDisko ["wiretop"];
 
     deploy.nodes = builtins.mapAttrs (hostname: config: {
       inherit hostname;

@@ -6,7 +6,6 @@
   inherit
     (nixpkgs.lib)
     genAttrs
-    optionals
     listToAttrs
     nixosSystem
     flatten
@@ -44,17 +43,6 @@ in rec {
         (toList (unions [../modules]))
         # Host
         (import "${self}/hosts/${hostname}")
-        (optionals (self.diskoConfigurations ? "${hostname}") [
-          inputs.disko.nixosModules.disko
-          self.diskoConfigurations.${hostname}
-        ])
       ];
     };
-
-  mkDisko = hosts:
-    listToAttrs (map (name: {
-        inherit name;
-        value.disko.devices = import "${self}/hosts/${name}/disko.nix";
-      })
-      hosts);
 }
