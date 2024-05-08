@@ -24,7 +24,6 @@
     };
     net.home = true;
     users.lychee = {
-      enable = true;
       state = "24.05";
       sshKeys = config.hey.keys.users.lychee.local_ssh;
       wms.sway = {
