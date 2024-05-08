@@ -42,14 +42,16 @@
         "hellfire"
       ];
 
-    deploy.nodes = builtins.mapAttrs (hostname: config: {
-      inherit hostname;
-      sshUser = "root";
-      profiles.system = {
-        user = "root";
-        path = deploy.lib.${config.pkgs.stdenv.system}.activate.nixos config;
-      };
-    });
+    deploy.nodes =
+      builtins.mapAttrs (hostname: config: {
+        inherit hostname;
+        sshUser = "root";
+        profiles.system = {
+          user = "root";
+          path = deploy.lib.${config.pkgs.stdenv.system}.activate.nixos config;
+        };
+      })
+      self.nixosConfigurations;
 
     formatter = self.lib.nixpkgsPer (pkgs: pkgs.alejandra);
     packages =
