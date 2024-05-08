@@ -24,6 +24,7 @@ in {
       hellfire = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICzt2XbvnHZf0gPn68PNMW5jj2YrPfKo1plVh2Dtle+j";
       wirescloud = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICEfmXtpdYV4s2YhL0eG96H4iD+Gx/j3oXuB2opEqOai";
       wiretop = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID622//cxsXYlGosqCLHStsr8JufcIPD9bQl9iId/spm";
+      pathway = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMCKV09cEzRiI+ss0kaK++sKlqV17PAtQrpzQ37tO78a";
     };
     users = {
       # me

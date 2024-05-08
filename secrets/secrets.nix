@@ -3,11 +3,14 @@ let
   inherit (builtins) isList;
   secrets = import ../lib/keys.nix;
 
-  inherit ((lib.evalModules {
-      modules = [../modules/keys.nix];
-    })
-    .config
-    .hey) keys;
+  inherit
+    ((lib.evalModules {
+        modules = [../modules/keys.nix];
+      })
+      .config
+      .hey)
+    keys
+    ;
 
   # Wrapper for privileged + host keys
   withPrivilegedUser = user: hosts:
@@ -25,8 +28,12 @@ let
   withPrivileged = withPrivilegedUser "lychee";
 in {
   "wiresbot.age".publicKeys = withPrivileged ["wirescloud"];
-  "wifi.age".publicKeys = withPrivileged ["hearth" "wiretop"];
-  "lychee-password.age".publicKeys = withPrivileged ["hellfire" "hearth" "wirescloud" "wiretop"];
+  "wifi.age".publicKeys = withPrivileged [
+    "hearth"
+    "wiretop"
+    "pathway"
+  ];
+  "lychee-password.age".publicKeys = withPrivileged builtins.attrNames keys.hosts;
   "vault-admin.age".publicKeys = withPrivileged ["wirescloud"];
   "terraria.age".publicKeys = withPrivileged ["wirescloud"];
 }

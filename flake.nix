@@ -38,6 +38,7 @@
         "wirescloud"
         "wiretop"
         "hearth"
+        "pathway"
       ]
       // self.lib.mkSystems "aarch64-linux" [
         "hellfire"
