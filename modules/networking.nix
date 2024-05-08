@@ -29,9 +29,7 @@ in {
         ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
       };
       networking.networkmanager = {
-        enable = true;
         unmanaged = [config.services.tailscale.interfaceName];
-        wifi.backend = "iwd";
         ensureProfiles = {
           environmentFiles = [config.age.secrets.wifi.path];
           profiles.homeWifi = {
@@ -68,6 +66,7 @@ in {
     {
       networking = {
         useDHCP = mkForce false;
+        networkmanager.enable = true;
         firewall.allowedTCPPorts = mkIf config.services.caddy.enable [80 443];
       };
       programs.ssh = {
