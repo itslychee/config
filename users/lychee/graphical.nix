@@ -98,12 +98,6 @@ in {
       workspace number 1
     '';
   };
-
-  services.mako = {
-    enable = true;
-    borderColor = "#f7cde4";
-    backgroundColor = "#543245";
-    layer = "overlay";
-  };
   services.playerctld.enable = config.programs.waybar.enable;
+  services.mako.enable = true;
 }

@@ -4,6 +4,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     deploy.url = "github:serokell/deploy-rs";
+    catppuccin.url = "github:catppuccin/nix";
 
     # agenix
     agenix.url = "github:ryantm/agenix";

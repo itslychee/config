@@ -31,6 +31,7 @@ in {
     documentation.nixos.enable = mkForce false;
     hardware.enableAllFirmware = true;
     programs.command-not-found.enable = false;
+    programs.dconf.enable = config.hey.caps.graphical;
     boot.blacklistedKernelModules = [
       "uvcvideo"
     ];
