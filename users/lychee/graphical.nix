@@ -139,4 +139,5 @@ in {
     backgroundColor = "#543245";
     layer = "overlay";
   };
+  services.playerctld.enable = config.programs.waybar.enable;
 }
