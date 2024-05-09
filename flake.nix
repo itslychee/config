@@ -3,7 +3,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    deploy.url = "github:serokell/deploy-rs";
     catppuccin.url = "github:catppuccin/nix";
 
     # agenix
@@ -26,54 +25,77 @@
   outputs = {
     self,
     nixpkgs,
-    deploy,
     ...
   } @ inputs: let
-    inherit (nixpkgs.lib) recursiveUpdate listToAttrs filterAttrs hasPrefix;
-  in {
-    lib = import ./lib inputs;
-    nixosConfigurations =
-      # Desktop
-      self.lib.mkSystems "x86_64-linux" [
-        "wirescloud"
-        "hearth"
-        "pathway"
+    inherit (nixpkgs.lib) flatten genAttrs nixosSystem;
+    inherit (nixpkgs.lib.fileset) toList unions;
+    imports = flatten [
+      (toList (unions [./modules]))
+      inputs.agenix.nixosModules.default
+    ];
+
+    each = f:
+      genAttrs [
+        "x86_64-linux"
+        "aarch64-linux"
       ]
-      // self.lib.mkSystems "aarch64-linux" [
-        "hellfire"
-      ];
+      (system: f nixpkgs.legacyPackages.${system});
+  in {
+    colmena = {
+      meta = {
+        nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
+        # RPIs aren't x86_64-linux
+        nodeNixpkgs.hellfire = nixpkgs.legacyPackages.aarch64-linux;
 
-    deploy.nodes =
-      builtins.mapAttrs (hostname: config: {
-        inherit hostname;
-        sshUser = "root";
-        profiles.system = {
-          user = "root";
-          path = deploy.lib.${config.pkgs.stdenv.system}.activate.nixos config;
+        specialArgs.inputs = inputs;
+      };
+      defaults = {name, ...}: {
+        inherit imports;
+        networking.hostName = name;
+      };
+
+      # Hosts
+      pathway = {
+        imports = [./hosts/pathway];
+        deployment = {
+          allowLocalDeployment = true;
+          buildOnTarget = true;
         };
-      })
-      self.nixosConfigurations;
-
-    formatter = self.lib.nixpkgsPer (pkgs: pkgs.alejandra);
-    packages =
-      recursiveUpdate
-      # per system
-      (self.lib.nixpkgsPer (pkgs: {
-        iso = (self.lib.mkSystem pkgs.stdenv.system "iso").config.system.build.isoImage;
-        nvim = pkgs.callPackage ./pkgs/nvim.nix {};
-      }))
-      # specific
-      {
-        aarch64-linux.hellfire = self.nixosConfigurations.hellfire.config.system.build.sdImage;
       };
+      hellfire = {
+        imports = [./hosts/hellfire];
+        deployment.tags = ["servers" "always-on"];
+      };
+      hearth = {
+        imports = [./hosts/hearth];
+        deployment = {
+          allowLocalDeployment = true;
+          buildOnTarget = true;
+          tags = ["servers" "always-on"];
+        };
+      };
+      wirescloud = {
+        imports = [./hosts/wirescloud];
+        deployment = {
+          buildOnTarget = true;
+          tags = ["servers"];
+        };
+      };
+    };
 
-    devShells = self.lib.nixpkgsPer (pkgs: {
-      default = pkgs.mkShell {
-        packages = [
-          inputs.agenix.packages.${pkgs.system}.default
-          pkgs.deploy-rs
+    packages = each (pkgs: {
+      iso = nixosSystem {
+        modules = flatten [
+          imports
+          ./hosts/iso
+          {
+            nixpkgs.hostPlatform = pkgs.stdenv.system;
+            networking.hostName = "iso";
+          }
         ];
+        specialArgs.inputs = inputs;
       };
+      nvim = pkgs.callPackage ./pkgs/nvim.nix {};
     });
   };
 }
