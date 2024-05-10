@@ -5,8 +5,12 @@
   ...
 }: let
   sway = config.wayland.windowManager.sway.enable;
+  spicePkgs = inputs.spice.legacyPackages.${pkgs.stdenv.system};
 in {
-  imports = [inputs.catppuccin.homeManagerModules.catppuccin];
+  imports = [
+    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.spice.homeManagerModules.default
+  ];
 
   catppuccin.flavour = "macchiato";
   services.mako = {
@@ -18,10 +22,10 @@ in {
   home.pointerCursor = {
     name = "OpenZone";
     package = pkgs.openzone-cursors;
-    gtk.enable = sway;
+    gtk.enable = config.gtk.enable;
   };
   gtk = {
-    enable = sway;
+    enable = true;
     catppuccin.enable = true;
     font = {
       name = "DejaVu Sans";
@@ -32,6 +36,22 @@ in {
       name = "Papirus Light";
     };
   };
-  qt.enable = sway;
-  xdg.enable = sway;
+  qt.enable = true;
+  xdg.enable = true;
+
+  programs.spicetify = {
+    enable = true;
+    enabledExtensions = builtins.attrValues {
+      inherit
+        (spicePkgs.extensions)
+        adblock
+        autoVolume
+        copyToClipboard
+        history
+        hidePodcasts
+        ;
+    };
+    theme = spicePkgs.themes.catppuccin;
+    colorScheme = "mocha";
+  };
 }
