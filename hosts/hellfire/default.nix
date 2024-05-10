@@ -33,7 +33,6 @@
     };
     # add phone to keys
     users.lychee = {
-      state = "24.05";
       sshKeys = config.hey.keys.users.lychee.local_ssh;
     };
   };
