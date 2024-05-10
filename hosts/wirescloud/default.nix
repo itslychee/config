@@ -11,10 +11,6 @@
   boot.loader.systemd-boot.enable = true;
   hey = {
     caps.headless = true;
-    users.lychee = {
-      state = "24.05";
-      enable = true;
-    };
     services = {
       matrix = {
         enable = true;

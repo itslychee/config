@@ -4,10 +4,10 @@
   config,
   ...
 }: let
-  inherit (lib) mkOption mkEnableOption mapAttrs mkDefault;
+  inherit (lib) mkOption mkEnableOption mapAttrs filterAttrs;
   inherit (lib.types) submodule attrsOf listOf package str nullOr;
-  inherit (lib.fileset) toList fileFilter maybeMissing;
-  cfg = lib.filterAttrs (k: v: v.enable) config.hey.users;
+  inherit (lib.fileset) toList fileFilter;
+  cfg = filterAttrs (k: v: v.enable) config.hey.users;
 in {
   imports = [
     inputs.home-manager.nixosModules.default
@@ -39,7 +39,8 @@ in {
         };
 
         state = mkOption {
-          type = str;
+          type = nullOr str;
+          default = null;
           description = "Home Manager state version";
         };
 
@@ -63,16 +64,19 @@ in {
       useGlobalPkgs = true;
       useUserPackages = true;
       users =
-        mapAttrs (name: value: {
-          imports = toList (fileFilter (file: file.hasExt "nix") ../users/${name});
+        mapAttrs (
+          name: value: {
+            imports = toList (fileFilter (file: file.hasExt "nix") ../users/${name});
 
-          home.stateVersion = value.state;
-          wayland.windowManager.sway = {
-            inherit (value.wms.sway) enable;
-            config.output = value.wms.sway.outputs;
-          };
-        })
-        cfg;
+            home.stateVersion = value.state;
+            wayland.windowManager.sway = {
+              inherit (value.wms.sway) enable;
+              config.output = value.wms.sway.outputs;
+            };
+          }
+        )
+        (filterAttrs (name: value: value.state != null)
+          cfg);
     };
     users.users =
       mapAttrs (name: value: {
