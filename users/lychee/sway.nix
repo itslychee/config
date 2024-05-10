@@ -1,21 +1,12 @@
 {
+  lib,
   pkgs,
   config,
-  lib,
   ...
 }: let
-  inherit (lib) getExe mkIf;
+  inherit (lib) getExe;
   cfg = config.wayland.windowManager.sway;
 in {
-  home.packages = mkIf cfg.enable (builtins.attrValues {
-    inherit
-      (pkgs)
-      wayshot
-      wl-clipboard
-      slurp
-      swappy
-      ;
-  });
   wayland.windowManager.sway = {
     package = pkgs.swayfx;
     checkConfig = false; # fixes the dumb build time check
@@ -96,6 +87,4 @@ in {
       workspace number 1
     '';
   };
-  services.playerctld.enable = config.programs.waybar.enable;
-  services.mako.enable = true;
 }

@@ -1,9 +1,10 @@
 {
+  pkgs,
   config,
   lib,
   ...
 }: let
-  inherit (lib) mkIf mkMerge;
+  inherit (lib) mkIf mkMerge flatten optionals;
   cfg = config.hey.users.lychee;
 in {
   config = mkMerge [
@@ -22,6 +23,15 @@ in {
           "audio"
           "video" # needed for light
           "networkmanager"
+        ];
+        packages = flatten [
+          (optionals config.hey.caps.graphical [
+            pkgs.vesktop
+            pkgs.anki
+            pkgs.qbittorrent
+            pkgs.firefox
+          ])
+          [pkgs.ripgrep pkgs.jq]
         ];
       };
     }

@@ -1,13 +1,4 @@
 {
-  inputs,
-  pkgs,
-  lib,
-  config,
-  ...
-}: let
-  inherit (lib) mkOption optional;
-  inherit (lib.types) package nullOr;
-in {
   programs = {
     ssh = {
       enable = true;
@@ -17,7 +8,6 @@ in {
 
     git = {
       enable = true;
-      package = pkgs.gitFull;
       difftastic.enable = true;
       userName = "itslychee";
       userEmail = "itslychee@protonmail.com";
@@ -32,5 +22,4 @@ in {
       ];
     };
   };
-  home.packages = [inputs.self.packages.${pkgs.system}.nvim];
 }
