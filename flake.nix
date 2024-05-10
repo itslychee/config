@@ -50,6 +50,7 @@
       defaults = {name, ...}: {
         imports = imports ++ [./hosts/${name}];
         networking.hostName = name;
+        hey.caps.rootLogin = true;
       };
 
       # Hosts

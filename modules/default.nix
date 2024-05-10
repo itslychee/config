@@ -1,4 +1,5 @@
 {
+  inputs,
   lib,
   config,
   pkgs,
@@ -18,7 +19,7 @@ in {
 
   config = {
     users.users.root = mkIf config.hey.caps.rootLogin {
-      openssh.authorizedKeys.keys = config.hey.keys.users.lychee.ssh;
+      openssh.authorizedKeys.keys = config.hey.keys.users.lychee.deployment;
     };
     # Global options
     time.timeZone = "US/Central";
@@ -26,6 +27,7 @@ in {
     boot.loader.systemd-boot.configurationLimit = 10;
     environment.systemPackages = builtins.attrValues {
       inherit (pkgs) dnsutils;
+      inherit (inputs.self.packages.${pkgs.stdenv.system}) nvim;
     };
 
     documentation.nixos.enable = mkForce false;
