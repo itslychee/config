@@ -72,17 +72,22 @@
     };
 
     packages = each (pkgs: {
-      iso = nixosSystem {
-        modules = flatten [
-          imports
-          ./hosts/iso
-          {
-            nixpkgs.hostPlatform = pkgs.stdenv.system;
-            networking.hostName = "iso";
-          }
-        ];
-        specialArgs.inputs = inputs;
-      };
+      iso =
+        (nixosSystem {
+          modules = flatten [
+            imports
+            ./hosts/iso
+            {
+              nixpkgs.hostPlatform = pkgs.stdenv.system;
+              networking.hostName = "iso";
+            }
+          ];
+          specialArgs.inputs = inputs;
+        })
+        .config
+        .system
+        .build
+        .isoImage;
       nvim = pkgs.callPackage ./pkgs/nvim.nix {};
     });
 

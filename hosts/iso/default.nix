@@ -11,10 +11,7 @@ in {
   networking.wireless.enable = mkForce false;
 
   services.kmscon.autologinUser = "lychee";
-  hey.users.lychee = {
-    state = "24.05";
-    usePasswdFile = mkForce false;
-  };
+  hey.users.lychee.usePasswdFile = mkForce false;
   hey.caps = {
     rootLogin = true;
     headless = true;
