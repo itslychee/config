@@ -44,42 +44,28 @@
     colmena = {
       meta = {
         nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
-        # RPIs aren't x86_64-linux
         nodeNixpkgs.hellfire = nixpkgs.legacyPackages.aarch64-linux;
-
-        specialArgs.inputs = inputs;
+        specialArgs = {inherit inputs;};
       };
       defaults = {name, ...}: {
-        inherit imports;
+        imports = imports ++ [./hosts/${name}];
         networking.hostName = name;
       };
 
       # Hosts
-      pathway = {
-        imports = [./hosts/pathway];
-        deployment = {
-          allowLocalDeployment = true;
-          buildOnTarget = true;
-        };
+      hellfire.deployment.tags = ["servers" "always-on"];
+      hearth.deployment = {
+        allowLocalDeployment = true;
+        buildOnTarget = true;
+        tags = ["servers" "always-on"];
       };
-      hellfire = {
-        imports = [./hosts/hellfire];
-        deployment.tags = ["servers" "always-on"];
+      wirescloud.deployment = {
+        buildOnTarget = true;
+        tags = ["servers" "always-on"];
       };
-      hearth = {
-        imports = [./hosts/hearth];
-        deployment = {
-          allowLocalDeployment = true;
-          buildOnTarget = true;
-          tags = ["servers" "always-on"];
-        };
-      };
-      wirescloud = {
-        imports = [./hosts/wirescloud];
-        deployment = {
-          buildOnTarget = true;
-          tags = ["servers"];
-        };
+      pathway.deployment = {
+        allowLocalDeployment = true;
+        buildOnTarget = true;
       };
     };
 
@@ -96,6 +82,12 @@
         specialArgs.inputs = inputs;
       };
       nvim = pkgs.callPackage ./pkgs/nvim.nix {};
+    });
+
+    devShells = each (pkgs: {
+      default = pkgs.mkShell {
+        packages = [pkgs.colmena];
+      };
     });
   };
 }
