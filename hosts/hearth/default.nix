@@ -31,11 +31,6 @@
           adaptive_sync = "on";
         };
       };
-      packages = [
-        pkgs.firefox
-        pkgs.xdg-utils
-        pkgs.qbittorrent
-      ];
     };
   };
   networking.firewall = {

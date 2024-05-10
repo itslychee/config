@@ -13,6 +13,9 @@ in {
       inherit
         (pkgs)
         anki
+        firefox
+        xdg-utils
+        qbittorrent
         ;
       #discord = pkgs.discord-canary.override {withVencord = true;};
       discord = pkgs.vesktop;

@@ -3,7 +3,6 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
   config,
-  pkgs,
   lib,
   ...
 }: {
@@ -21,14 +20,7 @@
     users.lychee = {
       state = "24.05";
       sshKeys = config.hey.keys.users.lychee.local_ssh;
-      wms.sway = {
-        enable = true;
-      };
-      packages = [
-        pkgs.firefox
-        pkgs.xdg-utils
-        pkgs.qbittorrent
-      ];
+      wms.sway.enable = true;
     };
   };
 
