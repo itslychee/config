@@ -29,9 +29,9 @@
     ...
   } @ inputs: let
     inherit (nixpkgs.lib) flatten genAttrs nixosSystem;
-    inherit (nixpkgs.lib.fileset) toList unions;
+    inherit (nixpkgs.lib.fileset) toList;
     imports = flatten [
-      (toList (unions [./modules]))
+      (toList ./modules)
       inputs.agenix.nixosModules.default
     ];
 
@@ -49,7 +49,7 @@
         specialArgs = {inherit inputs;};
       };
       defaults = {name, ...}: {
-        imports = imports ++ [./hosts/${name}];
+        imports = imports ++ (toList ./hosts/${name});
         networking.hostName = name;
         hey.caps.rootLogin = true;
       };

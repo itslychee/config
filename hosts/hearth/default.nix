@@ -3,12 +3,6 @@
   config,
   ...
 }: {
-  imports = [
-    ./hardware-configuration.nix
-    ./rtw_fix.nix
-    ./mpd.nix
-  ];
-
   boot = {
     kernelParams = ["irqpoll"];
     loader.systemd-boot.enable = true;
