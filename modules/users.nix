@@ -26,7 +26,7 @@ in {
         ];
         packages = flatten [
           (optionals config.hey.caps.graphical [
-            pkgs.vesktop
+            (pkgs.discord-canary.override {withVencord = true;})
             pkgs.anki
             pkgs.qbittorrent
             pkgs.firefox
