@@ -14,7 +14,7 @@
   #
   # using 6.7 as latest is broken due to zfs-kernel being marked as broken
   # >:(
-
+  boot.kernelPackages = pkgs.linuxPackages;
   boot.supportedFilesystems = ["ext4" "vfat"];
 
   sdImage = {
