@@ -19,10 +19,5 @@
     fsType = "vfat";
   };
 
-  fileSystems."/storage" = {
-    device = "/dev/disk/by-label/Storage";
-    fsType = "ntfs";
-  };
-
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
