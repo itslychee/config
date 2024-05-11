@@ -7,8 +7,6 @@
   imports = [
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
     "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-
-    ./blocky.nix
   ];
 
   # relevant issue(s):
