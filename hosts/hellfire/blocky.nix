@@ -1,4 +1,8 @@
 {
+  config,
+  lib,
+  ...
+}: {
   services.blocky = {
     enable = false;
     settings = {
@@ -43,5 +47,10 @@
       ];
       blocking.clientGroupsBlock.default = ["ads"];
     };
+  };
+
+  networking.firewall = lib.mkIf config.services.blocky.enable {
+    allowedTCPPorts = [53];
+    allowedUDPPorts = [53];
   };
 }

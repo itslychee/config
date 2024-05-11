@@ -35,11 +35,6 @@
     };
   };
 
-  networking.firewall = {
-    allowedTCPPorts = [53];
-    allowedUDPPorts = [53];
-  };
-
   # do not touch #
   system.stateVersion = "24.05";
 }
