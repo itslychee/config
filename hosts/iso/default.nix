@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkForce;
 in {
-  imports = [(modulesPath + "/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")];
+  imports = [(modulesPath + "/installer/cd-dvd/installation-cd-minimal-new-kernel.nix")];
   networking.networkmanager.enable = true;
   networking.wireless.enable = mkForce false;
 
