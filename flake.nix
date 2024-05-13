@@ -61,12 +61,14 @@
         buildOnTarget = true;
         tags = ["servers" "always-on"];
       };
+
+      # Infrastructure
       wirescloud.deployment = {
         buildOnTarget = true;
         tags = ["servers" "always-on"];
       };
       pathway.deployment = {
-        allowLocalDeployment = true;
+        tags = ["servers" "always-on"];
         buildOnTarget = true;
       };
     };
