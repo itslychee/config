@@ -23,6 +23,7 @@ in {
           "audio"
           "video" # needed for light
           "networkmanager"
+          "wireshark"
         ];
         packages = flatten [
           (optionals config.hey.caps.graphical [
@@ -30,8 +31,9 @@ in {
             pkgs.anki
             pkgs.qbittorrent
             pkgs.firefox
+            pkgs.wireshark
           ])
-          [pkgs.ripgrep pkgs.jq]
+          [pkgs.htop pkgs.ripgrep pkgs.jq]
         ];
       };
     }
