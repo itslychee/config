@@ -93,7 +93,10 @@
 
     devShells = each (pkgs: {
       default = pkgs.mkShell {
-        packages = [pkgs.colmena];
+        packages = [
+          pkgs.colmena
+          inputs.agenix.packages.${pkgs.stdenv.system}.default
+        ];
       };
     });
   };
