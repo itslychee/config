@@ -59,7 +59,7 @@
       hearth.deployment = {
         allowLocalDeployment = true;
         buildOnTarget = true;
-        tags = ["servers"];
+        tags = ["servers" "client"];
       };
 
       # Infrastructure
