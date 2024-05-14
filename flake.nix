@@ -55,20 +55,20 @@
       };
 
       # Hosts
-      hellfire.deployment.tags = ["servers" "always-on"];
+      hellfire.deployment.tags = ["servers"];
       hearth.deployment = {
         allowLocalDeployment = true;
         buildOnTarget = true;
-        tags = ["servers" "always-on"];
+        tags = ["servers"];
       };
 
       # Infrastructure
       wirescloud.deployment = {
         buildOnTarget = true;
-        tags = ["servers" "always-on"];
+        tags = ["servers"];
       };
       pathway.deployment = {
-        tags = ["servers" "always-on"];
+        tags = ["servers"];
         buildOnTarget = true;
       };
     };
