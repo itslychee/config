@@ -17,14 +17,6 @@ in {
     headless = true;
   };
 
-  documentation = {
-    enable = mkForce false;
-    info.enable = mkForce false;
-    dev.enable = mkForce false;
-    doc.enable = mkForce false;
-    nixos.enable = mkForce false;
-  };
-
   # for nixos-anywhere
   environment.systemPackages = [pkgs.rsync];
 }
