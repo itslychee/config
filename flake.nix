@@ -59,16 +59,16 @@
       hearth.deployment = {
         allowLocalDeployment = true;
         buildOnTarget = true;
-        tags = ["servers" "client"];
+        tags = ["server" "client"];
       };
 
       # Infrastructure
       wirescloud.deployment = {
         buildOnTarget = true;
-        tags = ["servers"];
+        tags = ["server"];
       };
       pathway.deployment = {
-        tags = ["servers"];
+        tags = ["server"];
         buildOnTarget = true;
       };
     };
