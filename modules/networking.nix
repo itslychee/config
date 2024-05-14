@@ -62,7 +62,6 @@ in {
           PasswordAuthentication = false;
         };
       };
-      boot.initrd.network.ssh.enable = true;
     })
     {
       networking = {
