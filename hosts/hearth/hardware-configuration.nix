@@ -11,6 +11,7 @@
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "sr_mod"];
   boot.kernelModules = ["kvm-amd"];
+  boot.kernelParams = ["preempt=full"];
   boot.supportedFilesystems = ["zfs"];
   networking.hostId = "b2a38876";
 
