@@ -71,6 +71,10 @@
         tags = ["server"];
         buildOnTarget = true;
       };
+      wiretop.deployment = {
+        tags = ["client"];
+        buildOnTarget = true;
+      };
     };
 
     packages = each (pkgs: {
