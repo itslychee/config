@@ -12,6 +12,7 @@ in {
 
   services.kmscon.autologinUser = "lychee";
   hey.users.lychee.usePasswdFile = mkForce false;
+  hey.net.fail2ban = mkForce false;
   hey.caps = {
     rootLogin = true;
     headless = true;
