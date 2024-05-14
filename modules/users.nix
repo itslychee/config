@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkIf mkMerge flatten optionals;
+  inherit (lib) mkIf mkMerge flatten optionals mkDefault;
   cfg = config.hey.users.lychee;
 in {
   config = mkMerge [
@@ -31,11 +31,12 @@ in {
             pkgs.anki
             pkgs.qbittorrent
             pkgs.firefox
-            pkgs.wireshark
           ])
           [pkgs.htop pkgs.ripgrep pkgs.jq]
         ];
       };
+
+      programs.wireshark.enable = mkDefault config.hey.caps.graphical;
     }
   ];
 }
