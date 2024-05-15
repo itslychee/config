@@ -9,4 +9,9 @@ require("git-conflict").setup {
   },
 }
 
-vim.keymap.set("n", "`", "<cmd>LazyGit<CR>", { desc = "lazygit" })
+local neogit = require "neogit"
+neogit.setup {}
+
+vim.keymap.set("n", "<leader>i", function()
+  neogit.open { kind = "split" }
+end)

@@ -33,9 +33,9 @@
             nvim-lspconfig
             nvim-web-devicons
             telescope-nvim
-            lazygit-nvim
             typescript-tools-nvim
             nvim-ts-context-commentstring
+            neogit
             ;
           ts = vimPlugins.nvim-treesitter.withAllGrammars;
         };
