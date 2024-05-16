@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    inputs.wiresbot.nixosModule
     ./hardware-configuration.nix
   ];
 
@@ -29,10 +28,6 @@
     };
   };
 
-  age.secrets = {
-    wiresconfig.file = ../../secrets/wiresbot.age;
-    terraria.file = ../../secrets/terraria.age;
-  };
   services = {
     # use as vpn exit node
     tailscale.extraUpFlags = ["--advertise-exit-node"];
@@ -44,28 +39,21 @@
       };
     };
 
-    caddy = {
+    caddy = let
+      head = config.services.headscale;
+    in {
       enable = true;
-      virtualHosts."scaley.lefishe.club".extraConfig = ''
-        reverse_proxy http://${config.services.headscale.address}:${toString config.services.headscale.port}
+      virtualHosts.${head.settings.server_url}.extraConfig = ''
+        reverse_proxy http://${head.address}:${toString head.port}
       '';
     };
-    wiresbot = {
-      enable = true;
-      config = config.age.secrets.wiresconfig.path;
-    };
     terraria = {
-      password = "$Password";
       openFirewall = true;
       messageOfTheDay = "wires";
       maxPlayers = 10;
       enable = true;
       autoCreatedWorldSize = "large";
     };
-  };
-
-  systemd.services.terraria.serviceConfig = {
-    EnvironmentFile = config.age.secrets.terraria.path;
   };
 
   # do not change

@@ -27,7 +27,6 @@ let
 
   withPrivileged = withPrivilegedUser "lychee";
 in {
-  "wiresbot.age".publicKeys = withPrivileged ["wirescloud"];
   "wifi.age".publicKeys = withPrivileged [
     "hearth"
     "wiretop"
@@ -35,5 +34,4 @@ in {
   ];
   "lychee-password.age".publicKeys = withPrivileged (builtins.attrNames keys.hosts);
   "vault-admin.age".publicKeys = withPrivileged ["wirescloud"];
-  "terraria.age".publicKeys = withPrivileged ["wirescloud"];
 }

@@ -12,9 +12,6 @@
     agenix.inputs.darwin.follows = "";
     agenix.inputs.home-manager.follows = "";
 
-    # wires bot
-    wiresbot.url = "github:itslychee/wires-bot";
-
     # mpdrp
     mpdrp.url = "github:itslychee/mpdrp";
     mpdrp.inputs.nixpkgs.follows = "nixpkgs";
