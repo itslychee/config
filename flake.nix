@@ -5,6 +5,7 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     catppuccin.url = "github:catppuccin/nix";
     spice.url = "github:Gerg-L/spicetify-nix";
+    attic.url = "github:zhaofengli/attic";
 
     # agenix
     agenix.url = "github:ryantm/agenix";

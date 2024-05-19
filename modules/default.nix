@@ -28,6 +28,7 @@ in {
     environment.systemPackages = builtins.attrValues {
       inherit (pkgs) dnsutils;
       inherit (inputs.self.packages.${pkgs.stdenv.system}) nvim;
+      inherit (inputs.attic.packages.${pkgs.stdenv.system}) attic;
     };
 
     documentation.nixos.enable = mkForce false;
