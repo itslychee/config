@@ -1,4 +1,5 @@
 {
+  pkgs,
   inputs,
   lib,
   config,
@@ -85,6 +86,7 @@ in {
         hashedPasswordFile = value.passwordFile;
         extraGroups = value.groups;
         openssh.authorizedKeys.keys = value.sshKeys;
+        shell = pkgs.zsh;
       })
       cfg;
   };
