@@ -52,7 +52,7 @@ in {
         settings.default_session = {
           command = lib.concatStringsSep " " [
             (getExe pkgs.greetd.tuigreet)
-            "--cmd \"${getExe pkgs.cage} -s ${getExe pkgs.swayfx}\""
+            "--cmd ${getExe pkgs.swayfx}"
             "--asterisks"
             "--time"
           ];
