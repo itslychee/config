@@ -21,6 +21,14 @@ o.termguicolors = true
 o.shiftwidth = 4
 o.completeopt = "menu,menuone,noinsert"
 
+-- Folds -- stolen from @mrshmllow
+o.foldmethod = "expr"
+o.foldexpr = "nvim_treesitter#foldexpr()"
+o.foldenable = false
+
+o.list = true
+o.listchars = "space:.,tab:▎·,trail:."
+
 vim.g.mapleader = ","
 
 require "fruit.terminal"

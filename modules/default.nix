@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf mkForce;
+  inherit (lib) mkEnableOption mkIf mkForce mkDefault;
 in {
   # System capabilities, for finer control and context
   options.hey.caps = {
@@ -33,7 +33,7 @@ in {
     documentation.nixos.enable = mkForce false;
     hardware.enableAllFirmware = true;
     programs.command-not-found.enable = false;
-    programs.dconf.enable = config.hey.caps.graphical;
+    programs.dconf.enable = mkDefault config.hey.caps.graphical;
     boot.blacklistedKernelModules = [
       "uvcvideo"
     ];

@@ -1,10 +1,11 @@
 {
   osConfig,
   config,
+  lib,
   ...
 }: {
   programs.firefox = {
-    enable = osConfig.hey.caps.graphical;
+    enable = lib.mkDefault osConfig.hey.caps.graphical;
     profiles.lychee = {
       isDefault = true;
       settings = {
