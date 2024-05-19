@@ -19,6 +19,7 @@ o.splitright = true
 o.splitbelow = true
 o.termguicolors = true
 o.shiftwidth = 4
+o.signcolumn = "yes"
 o.completeopt = "menu,menuone,noinsert"
 
 -- Folds -- stolen from @mrshmllow
@@ -26,10 +27,11 @@ o.foldmethod = "expr"
 o.foldexpr = "nvim_treesitter#foldexpr()"
 o.foldenable = false
 
+o.showbreak = "↪ "
 o.list = true
 o.listchars = "space:.,tab:▎·,trail:."
 
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 
 require "fruit.terminal"
 require "fruit.lsp"

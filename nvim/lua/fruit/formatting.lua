@@ -12,7 +12,7 @@ require("conform").setup {
   },
 }
 
-vim.keymap.set("n", ",f", function()
+vim.keymap.set("n", "<leader>o", function()
   require("conform").format {
     lsp_fallback = true,
     quiet = true,
