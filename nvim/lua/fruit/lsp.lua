@@ -34,13 +34,6 @@ api.nvim_create_autocmd("LspAttach", {
     k("n", "gi", vim.lsp.buf.implementation, opts)
     k("n", "<C-k>", vim.lsp.buf.signature_help, opts)
     -- Workspace
-    k("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-    k("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-    k("n", "<space>wl", function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
-    k("n", "<space>rn", vim.lsp.buf.rename, opts)
-    k({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
   end,
 })
 
