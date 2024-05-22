@@ -12,7 +12,7 @@ in {
     inputs.spice.homeManagerModules.default
   ];
 
-  catppuccin.flavour = "macchiato";
+  catppuccin.flavor = "macchiato";
   services.mako = {
     borderColor = "#f7cde4";
     backgroundColor = "#543245";
