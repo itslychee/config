@@ -11,3 +11,5 @@ vim.api.nvim_create_autocmd("TermOpen", {
 local k = vim.keymap.set
 -- Add easy escape functionality like in INSERT mode
 k("n", "<leader>t", vim.cmd.terminal)
+-- C-\ C-N is really annoying
+k("t", "<ESC>", "<C-\\><C-N>")
