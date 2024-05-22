@@ -36,7 +36,7 @@ in {
         ];
       };
 
-      programs.wireshark.enable = mkDefault config.hey.caps.graphical;
+      programs.wireshark.enable = config.hey.caps.graphical;
     }
   ];
 }
