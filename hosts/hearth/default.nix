@@ -36,7 +36,7 @@
     bluetooth.enable = true;
     keyboard.qmk.enable = true;
   };
-  environment.systemPackages = [pkgs.bluez-tools];
+  environment.systemPackages = [pkgs.bluez-tools pkgs.okular];
 
   # SSD trimming
   services.fstrim.enable = true;
