@@ -1,4 +1,0 @@
-builds:
-  exclude: 
-    - 'nixosConfigurations.iso-*'
-    - 'packages.*.iso'
