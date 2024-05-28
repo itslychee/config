@@ -73,13 +73,7 @@ in {
         startAgent = true;
         agentTimeout = "30m";
       };
-
-      services.tailscale = {
-        enable = true;
-        extraUpFlags = [
-          "--login-server=https://scaley.lefishe.club"
-        ];
-      };
+      services.tailscale.enable = true;
       systemd.network.wait-online.ignoredInterfaces = [config.services.tailscale.interfaceName];
     }
   ];
