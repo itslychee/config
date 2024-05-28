@@ -1,15 +1,5 @@
 # itslychee/config
 
-
-> Archived!
->
-> I no longer use NixOS because I am unable to maintain my configuration without my hands seizing up on
-> me when I try to make changes to it, and I currently lack motivation because of this. I no
-> longer maintain a personal infrastructure so this configuration is no longer needed.
->
-> So for health reasons, I no longer participate in the Nix ecosystem for the foreseeable future.
-
-
 my nixos configuration, designed with multi-user and multi-host in mind, as I
 value extensibility.
 
