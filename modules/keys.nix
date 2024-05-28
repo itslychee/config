@@ -20,7 +20,7 @@ in {
   };
   config.hey.keys = {
     hosts = {
-      hearth = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL3iOSxtezc91ymXSjC67/EbSy0AMHPZvGcnhOQA0Lg3";
+      hearth = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIArMqV1t1DHgHH8nY9VbByx5/JXlHHySuBdsZr/UuHu+";
       hellfire = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICzt2XbvnHZf0gPn68PNMW5jj2YrPfKo1plVh2Dtle+j";
       wirescloud = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICEfmXtpdYV4s2YhL0eG96H4iD+Gx/j3oXuB2opEqOai";
       wiretop = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMFhSwQjd3J7iPGxSp1AnGD5eS5mzqSOCSA/1osOfKom";
@@ -28,15 +28,16 @@ in {
     };
     users = {
       # me
-      lychee = {
+      lychee = let
+        hearthKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG";
+      in {
         # "Tags" for finer permissions
-        secrets = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG lychee@desktop"];
-        local_ssh = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXeFJBxjG2NgeKr4l58KIp7lPf/pUeYD/4bYVapuump phone"];
-        ssh = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG lychee@desktop"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKFqTbiSzLECj3huZ5NBd8xQwB+TEvCbUTKCxBmwmWWw lychee@wiretop"
+        secrets = [hearthKey];
+        ssh = [hearthKey];
+        deployment = [hearthKey];
+        local_ssh = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXeFJBxjG2NgeKr4l58KIp7lPf/pUeYD/4bYVapuump phone"
         ];
-        deployment = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG lychee@desktop"];
       };
     };
   };
