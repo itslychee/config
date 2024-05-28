@@ -7,7 +7,6 @@ value extensibility.
 - `hosts/hearth` -  main computer
 - `hosts/hellfire` - raspberry pi
 - `hosts/iso` - multi-arch ISO image
-- `hosts/wirescloud` - hetzner server instance
 - `hosts/pathway` - 2nd laptop that I have ever had, it served a significant role in me getting into software dev!
 
 ## acknowledgements

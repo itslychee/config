@@ -33,6 +33,4 @@ in {
     "pathway"
   ];
   "lychee-password.age".publicKeys = withPrivileged (builtins.attrNames keys.hosts);
-  "vault-admin.age".publicKeys = withPrivileged ["wirescloud"];
-  "atticd.age".publicKeys = withPrivileged ["wirescloud"];
 }

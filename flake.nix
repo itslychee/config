@@ -60,11 +60,6 @@
         tags = ["server" "client"];
       };
 
-      # Infrastructure
-      wirescloud.deployment = {
-        buildOnTarget = true;
-        tags = ["server"];
-      };
       pathway.deployment = {
         tags = ["server"];
         buildOnTarget = true;
