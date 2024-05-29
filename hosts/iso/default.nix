@@ -8,7 +8,7 @@
 in {
   imports = [(modulesPath + "/installer/cd-dvd/installation-cd-minimal-new-kernel.nix")];
 
-  isoImage.isoName = mkForce "configuration";
+  isoImage.isoBaseName = mkForce "configuration";
   networking.networkmanager.enable = true;
   networking.wireless.enable = mkForce false;
 
