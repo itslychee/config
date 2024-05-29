@@ -2,6 +2,8 @@
   description = "the most powerful config ever to exist";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # zfs works here
+    nixpkgs-zfs-ok.url = "github:NixOS/nixpkgs/2057814051972fa1453ddfb0d98badbea9b83c06";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     catppuccin.url = "github:catppuccin/nix";
     spice.url = "github:Gerg-L/spicetify-nix";
@@ -71,7 +73,7 @@
 
     packages = each (pkgs: {
       iso =
-        (nixosSystem {
+        (inputs.nixpkgs-zfs-ok.lib.nixosSystem {
           modules = flatten [
             imports
             ./hosts/iso
