@@ -21,6 +21,10 @@ in {
           command = "floating enable";
           criteria.title = "^Extension: .+";
         }
+        {
+          command = "floating enable";
+          criteria.app_id = "anki";
+        }
       ];
       gaps.smartBorders = "on";
       focus.followMouse = "always";
