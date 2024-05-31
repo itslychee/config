@@ -49,6 +49,8 @@
     enable = true;
     remotePlay.openFirewall = true;
   };
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
   # do not touch ever! #
   system.stateVersion = "24.05";
