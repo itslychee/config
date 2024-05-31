@@ -25,6 +25,7 @@ in {
           noto-fonts-cjk
           source-code-pro
           noto-fonts-emoji
+          material-design-icons
           dejavu_fonts
           liberation_ttf
           font-awesome
