@@ -57,6 +57,9 @@ in {
   };
 
   config = {
+    systemd.user.tmpfiles.rules = [
+      "f %h/.zshrc - - - -"
+    ];
     home-manager = {
       backupFileExtension = "backup";
       extraSpecialArgs = {
