@@ -1,7 +1,7 @@
 {
   description = "the most powerful config ever to exist";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     # zfs works here
     nixpkgs-zfs-ok.url = "github:NixOS/nixpkgs/2057814051972fa1453ddfb0d98badbea9b83c06";
     nixos-hardware.url = "github:nixos/nixos-hardware";
