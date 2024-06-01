@@ -29,7 +29,7 @@ in {
     users = {
       # me
       lychee = let
-        hearthKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHt4eGShEQs/nNwsHYbZDqOz9k1WVxDlJ4lJUfzosiG";
+        hearthKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL0oSTfGZYuBmADdQofLJm22dcIFAUaos048sayYp5/J";
       in {
         # "Tags" for finer permissions
         secrets = [hearthKey];
