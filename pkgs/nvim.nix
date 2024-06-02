@@ -35,7 +35,6 @@
             telescope-nvim
             typescript-tools-nvim
             nvim-ts-context-commentstring
-            neogit
             ;
           ts = vimPlugins.nvim-treesitter.withAllGrammars;
         };
@@ -56,7 +55,6 @@ in
         (lib.makeBinPath [
           ripgrep
           nil
-          lazygit
           stylua
           gotools
           ruff

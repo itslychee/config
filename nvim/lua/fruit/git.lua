@@ -8,10 +8,3 @@ require("git-conflict").setup {
     prev = "p",
   },
 }
-
-local neogit = require "neogit"
-neogit.setup {}
-
-vim.keymap.set("n", "<leader>i", function()
-  neogit.open { kind = "split" }
-end)
