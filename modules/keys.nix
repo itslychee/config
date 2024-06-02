@@ -20,7 +20,7 @@ in {
   };
   config.hey.keys = {
     hosts = {
-      hearth = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIArMqV1t1DHgHH8nY9VbByx5/JXlHHySuBdsZr/UuHu+";
+      hearth = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPJrhPSPM6d9C34rDNXaB9qP69GijsvPMd0mUROwbfdO";
       hellfire = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICzt2XbvnHZf0gPn68PNMW5jj2YrPfKo1plVh2Dtle+j";
       wirescloud = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICEfmXtpdYV4s2YhL0eG96H4iD+Gx/j3oXuB2opEqOai";
       wiretop = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMFhSwQjd3J7iPGxSp1AnGD5eS5mzqSOCSA/1osOfKom";

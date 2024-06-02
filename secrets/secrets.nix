@@ -1,7 +1,6 @@
 let
   inherit (import <nixpkgs> {}) lib;
   inherit (builtins) isList;
-  secrets = import ../lib/keys.nix;
 
   inherit
     ((lib.evalModules {
