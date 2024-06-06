@@ -1,8 +1,11 @@
 {
   pkgs,
   config,
+  lib,
   ...
-}: {
+}: let
+  inherit (lib) mkForce;
+in {
   boot = {
     kernelParams = ["irqpoll"];
     loader.systemd-boot.enable = true;
@@ -14,10 +17,11 @@
       graphical = true;
       headless = true;
     };
-    net.home = true;
+    # net.home = true;
     users.lychee = {
       state = "24.05";
       sshKeys = config.hey.keys.users.lychee.local_ssh;
+      usePasswdFile = mkForce false;
       wms.sway = {
         enable = true;
         outputs.HDMI-A-1 = {
