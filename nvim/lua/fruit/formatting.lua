@@ -4,8 +4,10 @@ require("conform").setup {
     python = { { "ruff_fix", "ruff_format" } },
     nix = { "alejandra" },
     golang = { { "goimports", "gofmt" } },
+    ["*"] = { "injected" },
+    ["_"] = { "trim_whitespace" },
   },
-  format_on_save = {
+  format_after_save = {
     timeout_ms = 500,
     lsp_fallback = true,
     quiet = true,
