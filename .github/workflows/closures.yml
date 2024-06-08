@@ -10,6 +10,7 @@ jobs:
        matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
       - uses: DeterminateSystems/nix-installer-action@v4
+      - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: actions/checkout@v4
       - id: matrix
         name: "Run nix eval to generate node list"
@@ -39,6 +40,7 @@ jobs:
           trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
           trusted-substituters = https://cache.garnix.io https://cache.nixos.org
           substituters = https://cache.garnix.io https://cache.nixos.org
+    - uses: DeterminateSystems/magic-nix-cache-action@main
     - uses: cachix/cachix-action@v14
       name: Setup cachix
       with:
