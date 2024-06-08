@@ -167,7 +167,28 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-zfs-ok": "nixpkgs-zfs-ok",
+        "soteria": "soteria",
         "spice": "spice"
+      }
+    },
+    "soteria": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1717802151,
+        "narHash": "sha256-qmVymqhGyv92jU1ZWyP9ZRTKYEXz8b8R1bOrIwAfA0k=",
+        "owner": "ImVaskel",
+        "repo": "soteria",
+        "rev": "47f6c1e3ffec4806db40b9999470b9006335e8a7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ImVaskel",
+        "repo": "soteria",
+        "type": "github"
       }
     },
     "spice": {
