@@ -3,19 +3,18 @@ local lspconfig = require "lspconfig"
 local k = vim.keymap.set
 
 local LSPs = {
+  "rust_analyzer",
   "ccls",
   "nil_ls",
   "gopls",
   "pyright",
-  "rust_analyzer",
   "ruff_lsp",
   "eslint",
 }
 
-local caps = require("cmp_nvim_lsp").default_capabilities()
 for _, server in ipairs(LSPs) do
   lspconfig[server].setup {
-    capabilities = caps,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
   }
 end
 
@@ -23,10 +22,16 @@ end
 api.nvim_create_autocmd("LspAttach", {
   group = api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
-    vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+    vim.bo[ev.buf].formatexpr = "v:lua.vim.lsp.formatexpr"
+    if client.supports_method "textDocument/completion" then
+      vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+    end
+    if client.supports_method "textDocument/definition" then
+      vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
+    end
 
     local opts = { buffer = ev.buf }
-    k("n", "<space>D", vim.lsp.buf.type_definition, opts)
+    k("n", "<leader>D", vim.lsp.buf.type_definition, opts)
     k("n", "gD", vim.lsp.buf.declaration, opts)
     k("n", "gd", vim.lsp.buf.definition, opts)
     k("n", "gr", vim.lsp.buf.references, opts)
@@ -72,22 +77,22 @@ cmp.setup.cmdline(":", {
   }),
 })
 
-k("n", "<space>e", vim.diagnostic.open_float)
+k("n", "<leader>e", vim.diagnostic.open_float)
+k("n", "<leader>q", vim.diagnostic.setloclist)
 k("n", "[d", vim.diagnostic.goto_prev)
 k("n", "]d", vim.diagnostic.goto_next)
-k("n", "<space>q", vim.diagnostic.setloclist)
 
 require("typescript-tools").setup {
-  cmd = { "typescript-language-server", "--stdio" },
+  cmd = {
+    "typescript-language-server",
+    "--stdio",
+  },
   settings = {
-    -- https://github.com/pmizio/typescript-tools.nvim/blob/master/lua/typescript-tools/protocol/text_document/did_open.lua#L8
     tsserver_file_preferences = {
       includeInlayParameterNameHints = "all",
       includeInlayFunctionParameterTypeHints = true,
       includeInlayEnumMemberValueHints = true,
-
       includeCompletionsForModuleExports = true,
-
       quotePreference = "auto",
     },
     tsserver_format_options = {
