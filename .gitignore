@@ -11,3 +11,4 @@ result
 
 # direnv
 .direnv/
+.gcroots/
