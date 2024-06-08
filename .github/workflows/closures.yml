@@ -44,7 +44,6 @@ jobs:
       with:
         name: lychee
         authToken: '${{ secrets.CACHIX_KEY }}'
-    - name: Install profile dependencies
     - name: Build ${{ matrix.node }}
       run: |
         nix run nixpkgs#colmena build --no-build-on-target -v --on ${{ matrix.node }}
