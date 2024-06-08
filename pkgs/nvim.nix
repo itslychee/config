@@ -9,7 +9,6 @@
   nil,
   stylua,
   gotools,
-  rust-analyzer,
   alejandra,
 }: let
   nvim-config = neovimUtils.makeNeovimConfig {
@@ -28,6 +27,7 @@
             kanagawa-nvim
             lualine-nvim
             mini-nvim
+            luasnip
             nvim-cmp
             nvim-lspconfig
             nvim-web-devicons
@@ -57,7 +57,6 @@ in
           stylua
           gotools
           alejandra
-          rust-analyzer
         ])
       ];
   })

@@ -3,7 +3,6 @@ local lspconfig = require "lspconfig"
 local k = vim.keymap.set
 
 local LSPs = {
-  "rust_analyzer",
   "ccls",
   "nil_ls",
   "gopls",
@@ -11,18 +10,35 @@ local LSPs = {
   "ruff_lsp",
   "eslint",
 }
-
+local caps = require("cmp_nvim_lsp").default_capabilities()
 for _, server in ipairs(LSPs) do
   lspconfig[server].setup {
-    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    capabilities = caps,
   }
 end
+
+lspconfig["rust_analyzer"].setup {
+  capabilities = caps,
+  settings = {
+    ["rust_analyzer"] = {
+      diagnostics = {
+        enable = true,
+        experimental = {
+          enable = true,
+        },
+      },
+    },
+  },
+}
 
 -- LSP setup
 api.nvim_create_autocmd("LspAttach", {
   group = api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
-    vim.bo[ev.buf].formatexpr = "v:lua.vim.lsp.formatexpr"
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    local bufnr = ev.buf
+
+    vim.bo[bufnr].formatexpr = "v:lua.vim.lsp.formatexpr"
     if client.supports_method "textDocument/completion" then
       vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
     end
@@ -58,7 +74,7 @@ cmp.setup {
     ["<C-f>"] = mappin.scroll_docs(4),
     ["<C-Space>"] = mappin.complete(), -- show completion suggestions
     ["<C-c>"] = mappin.abort(), -- close completion window
-    ["<CR>"] = mappin.confirm { select = false },
+    ["<CR>"] = mappin.confirm { select = true },
   },
   -- sources for autocompletion
   sources = cmp.config.sources {
@@ -70,11 +86,10 @@ cmp.setup {
 
 cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
+  sources = cmp.config.sources {
     { name = "async_path" },
-  }, {
     { name = "cmdline" },
-  }),
+  },
 })
 
 k("n", "<leader>e", vim.diagnostic.open_float)
