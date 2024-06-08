@@ -1,4 +1,4 @@
-name: update-flake-lock
+name: Update Flake Action
 on:
   workflow_dispatch: # allows manual triggering
   schedule:
@@ -16,4 +16,4 @@ jobs:
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@main
 
-          
+
