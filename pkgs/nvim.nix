@@ -9,8 +9,7 @@
   nil,
   stylua,
   gotools,
-  ruff,
-  lazygit,
+  rust-analyzer,
   alejandra,
 }: let
   nvim-config = neovimUtils.makeNeovimConfig {
@@ -57,8 +56,8 @@ in
           nil
           stylua
           gotools
-          ruff
           alejandra
+          rust-analyzer
         ])
       ];
   })
