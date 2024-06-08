@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: DeterminateSystems/nix-installer-action@v4
       - uses: actions/checkout@v4
-      - id: matrix 
+      - id: matrix
         name: "Run nix eval to generate node list"
         run: |
           JSON=$(nix eval .#colmena --apply 'with builtins; x: filter (f: !elem f [ "defaults" "meta" ]) (attrNames x)' --json)
@@ -22,7 +22,7 @@ jobs:
     strategy:
       # each closure is independent from each other
       fail-fast: false
-      matrix: 
+      matrix:
         node: ${{ fromJSON(needs.generate_matrix.outputs.matrix) }}
     runs-on: ubuntu-latest
     steps:
@@ -35,10 +35,9 @@ jobs:
       with:
         extra-conf: |
           extra-platforms = aarch64-linux i686-linux
-          trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= colmena.cachix.org-1:7BzpDnjjH8ki2CT3f6GdOk7QAzPOl+1t3LvTLXqYcSg= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= 
+          trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= colmena.cachix.org-1:7BzpDnjjH8ki2CT3f6GdOk7QAzPOl+1t3LvTLXqYcSg= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
           trusted-substituters = https://cache.garnix.io https://colmena.cachix.org https://cache.nixos.org
           substituters = https://cache.garnix.io https://colmena.cachix.org https://cache.nixos.org
-    - uses: DeterminateSystems/magic-nix-cache-action@main
     - uses: cachix/cachix-action@v14
       with:
         name: lychee
