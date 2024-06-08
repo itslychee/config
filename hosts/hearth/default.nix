@@ -45,6 +45,8 @@ in {
   # SSD trimming
   services.fstrim.enable = true;
 
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_9;
+
   # nix-index
   environment.sessionVariables.NIX_INDEX_DATABASE = "/var/lib/nix-index-db";
   programs.nix-index.enable = true;
