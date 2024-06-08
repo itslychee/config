@@ -17,14 +17,10 @@ jobs:
         run: |
           JSON=$(nix eval .#colmena --apply 'with builtins; x: filter (f: !elem f [ "defaults" "meta" ]) (attrNames x)' --json)
           echo "matrix=$JSON" >> $GITHUB_OUTPUT
-  build:
-    name: "Build node"
+  bootstrap:
+    name: "Generate bootstrap environment"
     needs: generate_matrix
-    strategy:
-      # each closure is independent from each other
-      fail-fast: false
-      matrix:
-        node: ${{ fromJSON(needs.generate_matrix.outputs.matrix) }}
+
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -43,6 +39,15 @@ jobs:
       with:
         name: lychee
         authToken: '${{ secrets.CACHIX_KEY }}'
-    - name: Build ${{ matrix.node }}
-      run: |
-        nix run nixpkgs#colmena -- build --no-build-on-target -v --on ${{ matrix.node }}
+  build:
+    name: "Build node"
+    needs: bootstrap
+    strategy:
+      # each closure is independent from each other
+      fail-fast: false
+      matrix:
+        node: ${{ fromJSON(needs.bootstrap.needs.generate_matrix.outputs.matrix) }}
+      steps:
+      - name: Build ${{ matrix.node }}
+        run: |
+          nix run nixpkgs#colmena -- build --no-build-on-target -v --on ${{ matrix.node }}
