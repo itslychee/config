@@ -30,7 +30,7 @@ in {
       focus.followMouse = "always";
       modifier = "Mod4";
       terminal = pkgs.alacritty;
-      menu = pkgs.fuzzel;
+      menu = null;
       output."*".bg = "${../../assets/wallpaper} fill";
 
       keybindings = let
@@ -52,8 +52,9 @@ in {
         XF86AudioNext = "exec ${player} next";
         XF86MonBrightnessUp = "exec light -A 5";
         XF86MonBrightnessDown = "exec light -U 5";
+        "Alt+Tab" = "exec ${lib.getExe config.programs.rofi.package} -show window";
         "${modifier}+Return" = "exec ${lib.getExe pkgs.alacritty}";
-        "${modifier}+Space" = "exec ${pkgs.fuzzel}/bin/fuzzel";
+        "${modifier}+Space" = "exec ${lib.getExe config.programs.rofi.package} -show drun";
         "${modifier}+shift+escape" = "exit";
         "${modifier}+h" = "focus left";
         "${modifier}+j" = "focus down";

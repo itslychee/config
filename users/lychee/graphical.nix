@@ -57,4 +57,16 @@ in {
     style = builtins.readFile ./style.css;
     systemd.enable = true;
   };
+
+  programs.rofi = {
+    enable = true;
+    package = pkgs.rofi-wayland;
+    terminal = getExe pkgs.alacritty;
+    font = "Terminus 10";
+    extraConfig = {
+      modes = "drun,window,ssh";
+    };
+
+    theme = "${pkgs.rofi-wayland}/share/rofi/themes/Paper.rasi";
+  };
 }
