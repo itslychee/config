@@ -20,7 +20,7 @@ in {
   };
 
   home.pointerCursor = {
-    name = "OpenZone";
+    name = "OpenZone_Black";
     package = pkgs.openzone-cursors;
     gtk.enable = config.gtk.enable;
   };
