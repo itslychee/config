@@ -4,50 +4,35 @@ on:
   push:
 jobs:
   generate_matrix:
-    name: "Generate hive list"
     runs-on: ubuntu-latest
+    name: "Generate hive list"
     outputs:
        matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
-      - uses: DeterminateSystems/nix-installer-action@v4
-      - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: actions/checkout@v4
+      - uses: ./.github/actions/bootstrap
+        with:
+          CACHIX_KEY: ${{ secrets.CACHIX_KEY }}
       - id: matrix
         name: "Run nix eval to generate node list"
         run: |
-          JSON=$(nix eval .#colmena --apply 'with builtins; x: filter (f: !elem f [ "defaults" "meta" ]) (attrNames x)' --json)
+          JSON=$(nix eval .#colmena --no-substitute --apply 'with builtins; x: filter (f: !elem f [ "defaults" "meta" ]) (attrNames x)' --json)
           echo "matrix=$JSON" >> $GITHUB_OUTPUT
-  bootstrap:
-    name: "Generate bootstrap environment"
-    needs: generate_matrix
 
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Install QEMU
-      run: |
-          sudo apt update -q -y
-          sudo apt install -q -y binfmt-support qemu-efi qemu-system-aarch64 qemu-user-static
-    - uses: DeterminateSystems/nix-installer-action@v4
-      name: Install Nix
-      with:
-        extra-conf: |
-          extra-platforms = aarch64-linux i686-linux
-    - uses: DeterminateSystems/magic-nix-cache-action@main
-    - uses: cachix/cachix-action@v14
-      name: Setup cachix
-      with:
-        name: lychee
-        authToken: '${{ secrets.CACHIX_KEY }}'
   build:
+    runs-on: ubuntu-latest
     name: "Build node"
-    needs: bootstrap
+    needs: generate_matrix
     strategy:
       # each closure is independent from each other
       fail-fast: false
       matrix:
-        node: ${{ fromJSON(needs.bootstrap.needs.generate_matrix.outputs.matrix) }}
-      steps:
+        node: ${{ fromJSON(needs.generate_matrix.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/bootstrap
+        with:
+          CACHIX_KEY: ${{ secrets.CACHIX_KEY }}
       - name: Build ${{ matrix.node }}
         run: |
           nix run nixpkgs#colmena -- build --no-build-on-target -v --on ${{ matrix.node }}
