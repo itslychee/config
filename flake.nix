@@ -31,7 +31,7 @@
     nixpkgs,
     ...
   } @ inputs: let
-    inherit (nixpkgs.lib) flatten genAttrs nixosSystem;
+    inherit (nixpkgs.lib) flatten genAttrs;
     inherit (nixpkgs.lib.fileset) toList;
     imports = flatten [
       (toList ./modules)
