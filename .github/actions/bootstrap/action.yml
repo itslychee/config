@@ -22,3 +22,5 @@ runs:
     with:
       name: lychee
       authToken: ${{ inputs.CACHIX_KEY }}
+      skipAddingSubstituter: 'true'
+      installCommand: "nix profile install nixpkgs#cachix"
