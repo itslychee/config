@@ -44,7 +44,6 @@ jobs:
         with:
           name: lychee
           authToken: ${{ secrets.CACHIX_KEY }}
-      - uses: actions/checkout@v4
       - name: Build ${{ matrix.node }}
         run: |
           nix run nixpkgs#colmena -- build --no-build-on-target -v --on ${{ matrix.node }} -f github:itslychee/config
