@@ -1,27 +1,30 @@
-name: "Build closures with Colmena"
+name: Build closures with Colmena
 on:
-  pull_request:
   push:
+  pull_request:
+  workflow_run:
+    workflows: [Update Flake Action]
+    types:
+      - completed
 jobs:
   generate_matrix:
     runs-on: ubuntu-latest
-    name: "Generate hive list"
+    name: Generate hive list
     outputs:
        matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
+      - uses: cachix/install-nix-action@v27
+        name: Install Nix
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/bootstrap
-        with:
-          CACHIX_KEY: ${{ secrets.CACHIX_KEY }}
       - id: matrix
-        name: "Run nix eval to generate node list"
+        name: Run nix eval to generate node list
         run: |
           JSON=$(nix eval .#colmena --no-substitute --apply 'with builtins; x: filter (f: !elem f [ "defaults" "meta" ]) (attrNames x)' --json)
           echo "matrix=$JSON" >> $GITHUB_OUTPUT
 
   build:
     runs-on: ubuntu-latest
-    name: "Build node"
+    name: Build node
     needs: generate_matrix
     strategy:
       # each closure is independent from each other
@@ -29,10 +32,25 @@ jobs:
       matrix:
         node: ${{ fromJSON(needs.generate_matrix.outputs.matrix) }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/bootstrap
+      - name: Install QEMU
+        uses: docker/setup-qemu-action@v3
         with:
-          CACHIX_KEY: ${{ secrets.CACHIX_KEY }}
+          platforms: arm64
+      - uses: cachix/install-nix-action@v27
+        name: Install Nix
+        with:
+          extra_nix_config: |
+             extra-platforms = aarch64-linux i686-linux
+             trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+             trusted-substituters = https://cache.garnix.io https://cache.nixos.org
+             substituters = https://cache.garnix.io https://cache.nixos.org
+      - uses: cachix/cachix-action@v14
+        name: Setup cachix
+        with:
+          name: lychee
+          authToken: ${{ secrets.CACHIX_KEY }}
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: actions/checkout@v4
       - name: Build ${{ matrix.node }}
         run: |
           nix run nixpkgs#colmena -- build --no-build-on-target -v --on ${{ matrix.node }}
