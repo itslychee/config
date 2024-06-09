@@ -1,26 +1,25 @@
-name: "Build closures with Colmena"
+name: Build closures with Colmena
 on:
   pull_request:
   push:
 jobs:
   generate_matrix:
     runs-on: ubuntu-latest
-    name: "Generate hive list"
+    name: Generate hive list
     outputs:
        matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
-      - uses: ./.github/actions/bootstrap
-        with:
-          CACHIX_KEY: ${{ secrets.CACHIX_KEY }}
+      - uses: DeterminateSystems/nix-installer-action@v4
+        name: Install Nix
       - id: matrix
-        name: "Run nix eval to generate node list"
+        name: Run nix eval to generate node list
         run: |
           JSON=$(nix eval github:itslychee/config#colmena --no-substitute --apply 'with builtins; x: filter (f: !elem f [ "defaults" "meta" ]) (attrNames x)' --json)
           echo "matrix=$JSON" >> $GITHUB_OUTPUT
 
   build:
     runs-on: ubuntu-latest
-    name: "Build node"
+    name: Build node
     needs: generate_matrix
     strategy:
       # each closure is independent from each other
@@ -44,7 +43,7 @@ jobs:
           name: lychee
           authToken: ${{ secrets.CACHIX_KEY }}
           skipAddingSubstituter: 'true'
-          installCommand: "nix profile install nixpkgs#cachix"
+          installCommand: nix profile install nixpkgs#cachix
       - uses: actions/checkout@v4
       - name: Build ${{ matrix.node }}
         run: |
