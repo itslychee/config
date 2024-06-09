@@ -39,14 +39,11 @@ jobs:
              trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
              trusted-substituters = https://cache.garnix.io https://cache.nixos.org
              substituters = https://cache.garnix.io https://cache.nixos.org
-
-
       - uses: cachix/cachix-action@v14
         name: Setup cachix
         with:
           name: lychee
           authToken: ${{ secrets.CACHIX_KEY }}
-          installCommand: nix profile install nixpkgs#cachix
       - uses: actions/checkout@v4
       - name: Build ${{ matrix.node }}
         run: |
