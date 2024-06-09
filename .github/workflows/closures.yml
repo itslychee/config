@@ -11,7 +11,6 @@ jobs:
     steps:
       - uses: cachix/install-nix-action@v27
         name: Install Nix
-      - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: actions/checkout@v3
       - id: matrix
         name: Run nix eval to generate node list
