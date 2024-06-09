@@ -12,10 +12,11 @@ jobs:
       - uses: cachix/install-nix-action@v27
         name: Install Nix
       - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: actions/checkout@v3
       - id: matrix
         name: Run nix eval to generate node list
         run: |
-          JSON=$(nix eval github:itslychee/config#colmena --no-substitute --apply 'with builtins; x: filter (f: !elem f [ "defaults" "meta" ]) (attrNames x)' --json)
+          JSON=$(nix eval .#colmena --no-substitute --apply 'with builtins; x: filter (f: !elem f [ "defaults" "meta" ]) (attrNames x)' --json)
           echo "matrix=$JSON" >> $GITHUB_OUTPUT
 
   build:
