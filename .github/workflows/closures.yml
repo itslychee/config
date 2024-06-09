@@ -9,14 +9,13 @@ jobs:
     outputs:
        matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v4
       - uses: ./.github/actions/bootstrap
         with:
           CACHIX_KEY: ${{ secrets.CACHIX_KEY }}
       - id: matrix
         name: "Run nix eval to generate node list"
         run: |
-          JSON=$(nix eval .#colmena --no-substitute --apply 'with builtins; x: filter (f: !elem f [ "defaults" "meta" ]) (attrNames x)' --json)
+          JSON=$(nix eval github:itslychee/config#colmena --no-substitute --apply 'with builtins; x: filter (f: !elem f [ "defaults" "meta" ]) (attrNames x)' --json)
           echo "matrix=$JSON" >> $GITHUB_OUTPUT
 
   build:
@@ -29,10 +28,24 @@ jobs:
       matrix:
         node: ${{ fromJSON(needs.generate_matrix.outputs.matrix) }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/bootstrap
+      - name: Install QEMU
+        uses: docker/setup-qemu-action@v3
         with:
-          CACHIX_KEY: ${{ secrets.CACHIX_KEY }}
+          platforms: arm64
+      - uses: DeterminateSystems/nix-installer-action@v4
+        name: Install Nix
+        with:
+          extra-conf: |
+            extra-platforms = aarch64-linux i686-linux
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: cachix/cachix-action@v14
+        name: Setup cachix
+        with:
+          name: lychee
+          authToken: ${{ secrets.CACHIX_KEY }}
+          skipAddingSubstituter: 'true'
+          installCommand: "nix profile install nixpkgs#cachix"
+      - uses: actions/checkout@v4
       - name: Build ${{ matrix.node }}
         run: |
-          nix run nixpkgs#colmena -- build --no-build-on-target -v --on ${{ matrix.node }}
+          nix run nixpkgs#colmena -- build --no-build-on-target -v --on ${{ matrix.node }} -f github:itslychee/config
