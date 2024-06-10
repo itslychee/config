@@ -6,6 +6,7 @@ on:
     workflows: [Update Flake Action]
     types:
       - completed
+      - requested
 jobs:
   generate_matrix:
     runs-on: ubuntu-latest
