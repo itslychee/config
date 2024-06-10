@@ -2,7 +2,10 @@ name: Build closures with Colmena
 on:
   push:
   pull_request:
-  workflow_dispatch:
+  workflow_run:
+    workflows: [Update Flake Action]
+    types:
+      - completed
 jobs:
   generate_matrix:
     runs-on: ubuntu-latest
