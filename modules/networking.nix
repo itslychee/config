@@ -45,35 +45,33 @@ in {
         };
       };
     })
-    (mkIf cfg.fail2ban {
-      services.fail2ban = {
-        enable = true;
-        maxretry = 5;
-        ignoreIP = ["::1" "127.0.0.1"];
-        bantime = "24h";
-      };
-    })
-    (mkIf cfg.openssh {
-      # OpenSSH server
-      services.openssh = {
-        enable = true;
-        authorizedKeysInHomedir = false;
-        settings = {
-          PasswordAuthentication = false;
+    {
+      services = {
+        tailscale.enable = true;
+        fail2ban = {
+          enable = cfg.fail2ban;
+          maxretry = 5;
+          ignoreIP = ["::1" "127.0.0.1"];
+          bantime = "24h";
+        };
+        # OpenSSH server
+        openssh = {
+          enable = cfg.openssh;
+          authorizedKeysInHomedir = false;
+          settings = {
+            PasswordAuthentication = false;
+          };
         };
       };
-    })
-    {
-      networking = {
-        useDHCP = mkForce false;
-        networkmanager.enable = true;
-        firewall.allowedTCPPorts = mkIf config.services.caddy.enable [80 443];
-      };
+
+      # Convenience!
+      networking.firewall.allowedTCPPorts = mkIf config.services.caddy.enable [80 443];
+      # Convenience!
+      networking.networkmanager.enable = true;
       programs.ssh = {
         startAgent = true;
         agentTimeout = "30m";
       };
-      services.tailscale.enable = true;
       systemd.network.wait-online.ignoredInterfaces = [config.services.tailscale.interfaceName];
     }
   ];
