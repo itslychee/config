@@ -31,7 +31,7 @@
     nixpkgs,
     ...
   } @ inputs: let
-    inherit (nixpkgs.lib) flatten genAttrs;
+    inherit (nixpkgs.lib) flatten genAttrs mkForce;
     inherit (nixpkgs.lib.fileset) toList;
     imports = flatten [
       (toList ./modules)
@@ -55,24 +55,24 @@
         imports = imports ++ (toList ./hosts/${name});
         networking.hostName = name;
         hey.caps.rootLogin = true;
+
+        deployment = {
+          allowLocalDeployment = true;
+          buildOnTarget = true;
+        };
       };
 
       # Hosts
-      hellfire.deployment.tags = ["servers"];
-      hearth.deployment = {
-        allowLocalDeployment = true;
-        buildOnTarget = true;
-        tags = ["server" "client"];
+      hellfire.deployment = {
+        tags = ["servers"];
+        allowLocalDeployment = mkForce false;
+        buildOnTarget = mkForce false;
       };
 
-      pathway.deployment = {
-        tags = ["server"];
-        buildOnTarget = true;
-      };
-      wiretop.deployment = {
-        tags = ["client"];
-        buildOnTarget = true;
-      };
+      hearth.deployment.tags = ["server" "client"];
+      pathway.deployment.tags = ["server"];
+      wiretop.deployment.tags = ["client"];
+      school-desktop.deployment.tags = ["client"];
     };
 
     packages = each (pkgs: {
