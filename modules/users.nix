@@ -4,12 +4,12 @@
   lib,
   ...
 }: let
-  inherit (lib) mkIf mkMerge flatten optionals mkDefault;
+  inherit (lib) mkIf mkMerge flatten optionals;
   cfg = config.hey.users.lychee;
 in {
   config = mkMerge [
     (mkIf cfg.usePasswdFile {
-      age.secrets.lychee-password.file = mkIf cfg.usePasswdFile ../secrets/lychee-password.age;
+      age.secrets.lychee-password.file = ../secrets/lychee-password.age;
     })
     {
       # should be obvious why this is global
