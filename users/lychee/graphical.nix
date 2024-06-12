@@ -17,7 +17,10 @@ in {
       ;
   });
   services.playerctld.enable = config.programs.waybar.enable;
-  services.mako.enable = true;
+  services.mako = {
+    enable = true;
+    defaultTimeout = 30;
+  };
   programs.waybar = {
     enable = config.wayland.windowManager.sway.enable;
     settings.mainBar = {
