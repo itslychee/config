@@ -14,9 +14,7 @@
     users.lychee = {
       state = "24.05";
       wms.sway.enable = true;
-      packages = [
-        pkgs.firefox
-      ];
+      packages = [pkgs.firefox];
     };
   };
 

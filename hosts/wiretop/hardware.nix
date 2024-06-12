@@ -4,41 +4,33 @@
 {
   config,
   lib,
+  pkgs,
   modulesPath,
   ...
 }: {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "usb_storage" "sd_mod" "sdhci_pci"];
-  boot.initrd.kernelModules = [];
+  boot.initrd.availableKernelModules = ["xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
   boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/860f0369-de80-4aea-b9c5-31a127e7df84";
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/9798b1b9-adcf-4f77-9c27-1fa5804ddf09";
-    fsType = "ext4";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/86048cc2-c111-4118-9d9b-03083fccd0d6";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/8E46-6726";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022"];
+    };
   };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/05AE-FE76";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
+  swapDevices = lib.singleton {
+    device = "/dev/disk/by-uuid/fc1faaf9-2137-4780-a1c0-926cfb3aa99a";
   };
 
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/9bb59d9a-2882-4704-a1ea-12598604f63c";}
-  ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.tailscale0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp0s12f0.useDHCP = lib.mkDefault true;
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
