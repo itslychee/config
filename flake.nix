@@ -31,7 +31,7 @@
     nixpkgs,
     ...
   } @ inputs: let
-    inherit (nixpkgs.lib) flatten genAttrs mkForce;
+    inherit (nixpkgs.lib) flatten genAttrs mkForce nixosSystem;
     inherit (nixpkgs.lib.fileset) toList;
     imports = flatten [
       (toList ./modules)
@@ -61,7 +61,6 @@
           buildOnTarget = true;
         };
       };
-
       # Hosts
       hellfire.deployment = {
         tags = ["servers"];
@@ -71,17 +70,21 @@
 
       hearth.deployment.tags = ["server" "client"];
       pathway.deployment.tags = ["server"];
-      wiretop.deployment.tags = ["client"];
+      wiretop.deployment = {
+        tags = ["client"];
+        buildOnTarget = mkForce false;
+      };
       school-desktop.deployment.tags = ["client"];
     };
 
     packages = each (pkgs: {
       iso =
-        (inputs.nixpkgs-zfs-ok.lib.nixosSystem {
+        (nixosSystem {
           modules = flatten [
-            imports
-            ./hosts/iso
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
+            ./pkgs/iso
             {
+              inherit imports;
               nixpkgs.hostPlatform = pkgs.stdenv.system;
               networking.hostName = "iso";
             }

@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkForce;
 in {
-  imports = [(modulesPath + "/installer/cd-dvd/installation-cd-minimal-new-kernel.nix")];
+  imports = [];
 
   # Support LVM
   boot.kernelModules = [
