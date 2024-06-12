@@ -6,8 +6,6 @@
 }: let
   inherit (lib) mkForce;
 in {
-  imports = [];
-
   # Support LVM
   boot.kernelModules = [
     "dm-snapshot"
@@ -22,15 +20,14 @@ in {
 
   services.kmscon.autologinUser = "lychee";
 
-  # Disable defaults that don't make sense here
-  hey.users.lychee.usePasswdFile = mkForce false;
-  services.tailscale.enable = mkForce false;
-  hey.net.fail2ban = mkForce false;
-
-  # Caps
-  hey.caps = {
-    rootLogin = true;
-    headless = true;
+  hey = {
+    caps = {
+      rootLogin = true;
+      headless = true;
+    };
+    # Disable defaults that don't make sense here
+    users.lychee.usePasswdFile = mkForce false;
+    net.fail2ban = mkForce false;
   };
 
   # for nixos-anywhere
