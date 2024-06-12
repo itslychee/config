@@ -26,7 +26,6 @@ in {
   };
   gtk = {
     enable = true;
-    catppuccin.enable = true;
     font = {
       name = "DejaVu Sans";
       package = pkgs.dejavu_fonts;
