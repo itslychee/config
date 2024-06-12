@@ -20,11 +20,12 @@ in {
   };
   config.hey.keys = {
     hosts = {
-      hearth = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPJrhPSPM6d9C34rDNXaB9qP69GijsvPMd0mUROwbfdO";
+      hearth = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOaAxiB8BtVJC+3WM/ydH+8CRaINbE+7X3aO1l/0cJhV";
       hellfire = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICzt2XbvnHZf0gPn68PNMW5jj2YrPfKo1plVh2Dtle+j";
       wirescloud = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICEfmXtpdYV4s2YhL0eG96H4iD+Gx/j3oXuB2opEqOai";
-      wiretop = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMFhSwQjd3J7iPGxSp1AnGD5eS5mzqSOCSA/1osOfKom";
+      wiretop = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIINnq/AyE9T+4uA4/707mECHbt+5ZzeaK3zFW4AUEMvi";
       pathway = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICE5cYKkvfT55xxhmLirU6K+JAHaZNd0xCsXPYrTuAEu";
+      school-desktop = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIiZ7kKvxTiMJNtybsRHeF6Po9rl8onUZr1aQ0mhTRwx";
     };
     users = {
       # me
