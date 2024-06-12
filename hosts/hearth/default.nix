@@ -12,6 +12,8 @@ in {
     binfmt.emulatedSystems = ["aarch64-linux"];
   };
 
+  virtualisation.docker.enable = true;
+
   hey = {
     caps = {
       graphical = true;
@@ -20,6 +22,7 @@ in {
     # net.home = true;
     users.lychee = {
       state = "24.05";
+      groups = ["docker"];
       sshKeys = config.hey.keys.users.lychee.local_ssh;
       usePasswdFile = mkForce false;
       wms.sway = {
