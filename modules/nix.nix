@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   inputs,
   ...
@@ -15,6 +16,11 @@ in {
       })
       inputs;
     settings = {
+      keep-outputs = true;
+      keep-derivations = true;
+      plugin-files = [
+        "${pkgs.nix-doc}/lib/libnix_doc_plugin.so"
+      ];
       flake-registry = "";
       substituters = [
         "https://cache.garnix.io"
