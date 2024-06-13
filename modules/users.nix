@@ -33,10 +33,19 @@ in {
             pkgs.qbittorrent
             pkgs.firefox
           ])
-          [pkgs.htop pkgs.ripgrep pkgs.jq]
         ];
       };
 
+      environment.systemPackages = builtins.attrValues {
+        inherit
+          (pkgs)
+          htop
+          ripgrep
+          jq
+          nmap
+          nixpkgs-review
+          ;
+      };
       programs.wireshark.enable = config.hey.caps.graphical;
     }
   ];
