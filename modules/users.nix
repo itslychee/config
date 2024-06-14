@@ -46,7 +46,12 @@ in {
           nixpkgs-review
           ;
       };
-      programs.wireshark.enable = config.hey.caps.graphical;
+
+      programs.wireshark = {
+        package = pkgs.wireshark;
+        enable = config.hey.caps.graphical;
+      };
+
     }
   ];
 }

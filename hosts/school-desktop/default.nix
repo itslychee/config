@@ -1,5 +1,6 @@
 {
   lib,
+  config,
   pkgs,
   ...
 }: {
@@ -18,7 +19,10 @@
     headless = true;
     graphical = true;
   };
-  hey.users.lychee.state = "24.05";
+  hey.users.lychee = {
+    state = "24.05";
+    sshKeys = config.hey.keys.users.lychee.local_ssh;
+  };
 
   environment.systemPackages = with pkgs; [
     nmap
