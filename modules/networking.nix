@@ -54,6 +54,10 @@ in {
       programs.ssh = {
         startAgent = true;
         agentTimeout = "30m";
+        extraConfig = ''
+          Host big-floppa
+            User student
+        '';
       };
       systemd.network.wait-online.ignoredInterfaces = [config.services.tailscale.interfaceName];
     }
