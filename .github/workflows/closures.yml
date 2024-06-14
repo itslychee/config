@@ -1,4 +1,4 @@
-name: Build closures with Colmena
+name: Colmena
 on:
   push:
     branches-ignore:
