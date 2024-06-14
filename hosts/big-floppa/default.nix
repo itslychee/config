@@ -13,13 +13,11 @@ in {
   hey.users.lychee.enable = mkForce false;
   hey.users.student = {
     enable = true;
-    passwordFile =
-      (pkgs.writeText
-        "hash" "$y$j9T$m5s/dPahYaBtgjtKS0oiB1$ySOzkUNyXVwRLsJovfZa1fIz2oebLRm6x6P8lbUcUR6")
-      .outPath;
     groups = ["libvirtd" "wheel"];
-    inherit (config.hey.users.lychee) sshKeys;
+    inherit (config.hey.users.lychee) sshKeys passwordFile;
   };
+
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   services.nextcloud = {
     enable = true;

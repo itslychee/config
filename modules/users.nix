@@ -17,7 +17,7 @@ in {
     sshKeys = config.hey.keys.users.lychee.ssh;
     passwordFile =
       (pkgs.writeText
-        "hash" "$2b$05$XpUQp7q4DFZT.gbHyzcwqe9Vl57WtX9stTrbH04ilX9EMVthaiF1O")
+        "hash" "$y$j9T$i6s3FePGTaI/qFEI.DGnO/$Z80iTqKXQCu3AF8qsOkThNFN/eHisyfXirpjSZ4N.N6")
       .outPath;
     groups = [
       "wheel"

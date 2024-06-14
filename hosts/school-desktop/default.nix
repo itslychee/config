@@ -10,6 +10,8 @@
     wayland.enable = true;
   };
 
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
