@@ -26,6 +26,7 @@ in {
     configureRedis = true;
     database.createLocally = true;
     caching.redis = true;
+    settings.trusted_domains = [config.networking.hostName];
     config.adminpassFile = "/var/lib/nextcloud/password";
   };
 
