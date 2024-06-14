@@ -22,7 +22,7 @@ in {
     groups = [
       "wheel"
       "audio"
-      "libvirt"
+      "libvirtd"
       "video" # needed for light
       "networkmanager"
       "wireshark"

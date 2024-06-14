@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkOption mkEnableOption mapAttrs filterAttrs;
-  inherit (lib.types) submodule attrsOf listOf package str nullOr;
+  inherit (lib.types) submodule attrsOf listOf package str nullOr bool;
   inherit (lib.fileset) toList fileFilter;
   cfg = filterAttrs (k: v: v.enable) config.hey.users;
 in {
@@ -28,7 +28,10 @@ in {
           default = [];
           description = "user groups";
         };
-        usePasswdFile = mkEnableOption "use hashed password file";
+        usePasswdFile = mkOption {
+          type = bool;
+          default = true;
+        };
         passwordFile = mkOption {
           type = nullOr str;
           description = "Path to hashed password";

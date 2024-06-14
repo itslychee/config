@@ -66,6 +66,7 @@
         buildOnTarget = mkForce false;
       };
       school-desktop.deployment.tags = ["client"];
+      big-floppa.deployment.tags = ["server"];
     };
 
     packages = each (pkgs: {
