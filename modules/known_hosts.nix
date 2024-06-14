@@ -5,16 +5,12 @@
 }: let
   knownHosts = pkgs.writeText "known_host_file";
 in {
-  programs.ssh.knownHosts = {
-    # Devices
-    "hellfire".publicKey = config.hey.keys.hosts.hellfire;
-    "hearth".publicKey = config.hey.keys.hosts.hearth;
-    "lefishe.club" = {
-      extraHostNames = ["wirescloud"];
-      publicKey = config.hey.keys.hosts.wirescloud;
-    };
-    "wiretop".publicKey = config.hey.keys.hosts.wiretop;
-  };
+  programs.ssh.knownHosts =
+    builtins.mapAttrs (_: publicKey: {
+      inherit publicKey;
+    })
+    config.hey.keys.hosts;
+
   programs.ssh.knownHostsFiles = [
     # github
     (knownHosts ''
