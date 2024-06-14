@@ -24,7 +24,6 @@ in {
       state = "24.05";
       groups = ["docker"];
       sshKeys = config.hey.keys.users.lychee.local_ssh;
-      usePasswdFile = mkForce false;
       wms.sway = {
         enable = true;
         outputs.HDMI-A-1 = {

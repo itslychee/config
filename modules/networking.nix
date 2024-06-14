@@ -22,28 +22,11 @@ in {
   };
   config = mkMerge [
     (mkIf cfg.home {
-      age.secrets.wifi.file = ../secrets/wifi.age;
-
       # https://github.com/NixOS/nixpkgs/issues/180175#issuecomment-1658731959
       systemd.services.NetworkManager-wait-online.serviceConfig = {
         ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
       };
-      networking.networkmanager = {
-        unmanaged = [config.services.tailscale.interfaceName];
-        ensureProfiles = {
-          environmentFiles = [config.age.secrets.wifi.path];
-          profiles.homeWifi = {
-            connection.type = "wifi";
-            connection.id = "$SSID";
-            wifi.ssid = "$SSID";
-            wifi-security = {
-              auth-alg = "open";
-              key-mgmt = "wpa-psk";
-              psk = "$PASSWORD";
-            };
-          };
-        };
-      };
+      networking.networkmanager.unmanaged = [config.services.tailscale.interfaceName];
     })
     {
       services = {

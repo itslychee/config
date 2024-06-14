@@ -8,12 +8,6 @@
     catppuccin.url = "github:catppuccin/nix";
     spice.url = "github:Gerg-L/spicetify-nix";
 
-    # agenix
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
-    agenix.inputs.darwin.follows = "";
-    agenix.inputs.home-manager.follows = "";
-
     # mpdrp
     mpdrp.url = "github:itslychee/mpdrp";
     mpdrp.inputs.nixpkgs.follows = "nixpkgs";
@@ -33,10 +27,7 @@
   } @ inputs: let
     inherit (nixpkgs.lib) flatten genAttrs mkForce nixosSystem;
     inherit (nixpkgs.lib.fileset) toList;
-    imports = flatten [
-      (toList ./modules)
-      inputs.agenix.nixosModules.default
-    ];
+    imports = flatten [(toList ./modules)];
 
     each = f:
       genAttrs [
@@ -100,10 +91,7 @@
 
     devShells = each (pkgs: {
       default = pkgs.mkShell {
-        packages = [
-          pkgs.colmena
-          inputs.agenix.packages.${pkgs.stdenv.system}.default
-        ];
+        packages = [pkgs.colmena];
       };
     });
   };

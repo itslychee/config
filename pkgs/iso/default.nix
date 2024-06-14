@@ -25,8 +25,6 @@ in {
       rootLogin = true;
       headless = true;
     };
-    # Disable defaults that don't make sense here
-    users.lychee.usePasswdFile = mkForce false;
     net.fail2ban = mkForce false;
   };
 
