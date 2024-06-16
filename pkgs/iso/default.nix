@@ -27,10 +27,7 @@ in {
   services.kmscon.autologinUser = "lychee";
 
   hey = {
-    caps = {
-      rootLogin = true;
-      headless = true;
-    };
+    caps.headless = true;
     net.fail2ban = mkForce false;
   };
 
