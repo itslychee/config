@@ -9,12 +9,15 @@ in {
   boot.kernelParams = ["intel_iommu=on"];
   boot.loader.systemd-boot.enable = true;
 
-  hey.caps.headless = true;
-  hey.users.lychee.enable = mkForce false;
-  hey.users.student = {
-    enable = true;
-    groups = ["libvirtd" "wheel"];
-    inherit (config.hey.users.lychee) sshKeys passwordFile;
+  hey = {
+    hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICAKg9ZgbTR5ftw+nrm+Ch7Xl4LBs4z9M+e45/K0pG4u";
+    caps.headless = true;
+    users.lychee.enable = mkForce false;
+    users.student = {
+      enable = true;
+      groups = ["libvirtd" "wheel"];
+      inherit (config.hey.users.lychee) sshKeys passwordFile;
+    };
   };
 
   boot.binfmt.emulatedSystems = ["aarch64-linux"];

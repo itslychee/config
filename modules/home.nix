@@ -10,9 +10,8 @@
   inherit (lib.fileset) toList fileFilter;
   cfg = filterAttrs (k: v: v.enable) config.hey.users;
 in {
-  imports = [
-    inputs.home-manager.nixosModules.default
-  ];
+  imports = [inputs.home-manager.nixosModules.default];
+
   options.hey.users = mkOption {
     description = "Hey user management";
     type = attrsOf (submodule ({name, ...}: {
@@ -37,9 +36,11 @@ in {
           description = "Path to hashed password";
           default = null;
         };
+
         sshKeys = mkOption {
           type = listOf str;
-          description = "Public SSH Keys for OpenSSH Server";
+          description = "SSH Keys for OpenSSH";
+          default = [];
         };
 
         state = mkOption {
@@ -60,11 +61,10 @@ in {
   };
 
   config = {
-    systemd.user.tmpfiles.rules = [
-      "f %h/.zshrc - - - -"
-    ];
+    # zsh being stupid asf
+    systemd.user.tmpfiles.rules = ["f %h/.zshrc - - - -"];
     home-manager = {
-      backupFileExtension = "backup";
+      backupFileExtension = "backup.${inputs.self.rev or "dirty"}";
       extraSpecialArgs = {
         inherit inputs;
       };
@@ -82,8 +82,7 @@ in {
             };
           }
         )
-        (filterAttrs (name: value: value.state != null)
-          cfg);
+        (filterAttrs (_: value: value.state != null) cfg);
     };
     users.users =
       mapAttrs (name: value: {
@@ -91,8 +90,8 @@ in {
         isNormalUser = true;
         hashedPasswordFile = value.passwordFile;
         extraGroups = value.groups;
-        openssh.authorizedKeys.keys = value.sshKeys;
         shell = pkgs.zsh;
+        openssh.authorizedKeys.keys = value.sshKeys;
       })
       cfg;
   };

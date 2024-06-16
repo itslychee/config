@@ -6,6 +6,7 @@
   };
 
   hey = {
+    hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIINnq/AyE9T+4uA4/707mECHbt+5ZzeaK3zFW4AUEMvi";
     caps = {
       graphical = true;
       headless = true;

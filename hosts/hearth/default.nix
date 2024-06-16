@@ -8,13 +8,13 @@
 in {
   boot = {
     kernelParams = ["irqpoll"];
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_9;
     loader.systemd-boot.enable = true;
     binfmt.emulatedSystems = ["aarch64-linux"];
   };
 
-  virtualisation.docker.enable = true;
-
   hey = {
+    hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOaAxiB8BtVJC+3WM/ydH+8CRaINbE+7X3aO1l/0cJhV";
     caps = {
       graphical = true;
       headless = true;
@@ -23,7 +23,7 @@ in {
     users.lychee = {
       state = "24.05";
       groups = ["docker"];
-      sshKeys = config.hey.keys.users.lychee.local_ssh;
+      sshKeys = config.hey.keys.lychee.local_ssh;
       wms.sway = {
         enable = true;
         outputs.HDMI-A-1 = {
@@ -42,24 +42,25 @@ in {
     bluetooth.enable = true;
     keyboard.qmk.enable = true;
   };
-  environment.systemPackages = [pkgs.bluez-tools pkgs.okular];
 
-  # SSD trimming
+  services.blueman.enable = true;
   services.fstrim.enable = true;
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_9;
-
-  # nix-index
-  environment.sessionVariables.NIX_INDEX_DATABASE = "/var/lib/nix-index-db";
-  programs.nix-index.enable = true;
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
+  programs = {
+    nix-index.enable = true;
+    virt-manager.enable = true;
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+    };
   };
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
 
+  virtualisation = {
+    libvirtd.enable = true;
+    docker.enable = true;
+  };
+
+  environment.sessionVariables.NIX_INDEX_DATABASE = "/var/lib/nix-index-db";
   # do not touch ever! #
   system.stateVersion = "24.05";
 }

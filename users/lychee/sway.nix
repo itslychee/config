@@ -90,7 +90,6 @@ in {
     };
     extraConfig = ''
       exec ${getExe pkgs.autotiling-rs}
-      exec ${getExe inputs.soteria.packages.${pkgs.system}.soteria}
       workspace number 1
     '';
   };

@@ -2,8 +2,7 @@
   description = "the most powerful config ever to exist";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    # zfs works here
-    nixpkgs-zfs-ok.url = "github:NixOS/nixpkgs/2057814051972fa1453ddfb0d98badbea9b83c06";
+    colmena.url = "github:zhaofengli/colmena";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     catppuccin.url = "github:catppuccin/nix";
     spice.url = "github:Gerg-L/spicetify-nix";
@@ -12,10 +11,6 @@
     mpdrp.url = "github:itslychee/mpdrp";
     mpdrp.inputs.nixpkgs.follows = "nixpkgs";
 
-    # soteria
-    soteria.url = "github:ImVaskel/soteria";
-    soteria.inputs.nixpkgs.follows = "nixpkgs";
-
     # home manager
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -23,11 +18,11 @@
   outputs = {
     self,
     nixpkgs,
+    colmena,
     ...
   } @ inputs: let
-    inherit (nixpkgs.lib) flatten genAttrs mkForce nixosSystem;
-    inherit (nixpkgs.lib.fileset) toList;
-    imports = flatten [(toList ./modules)];
+    inherit (nixpkgs.lib) genAttrs mkForce nixosSystem;
+    inherit (nixpkgs.lib.fileset) toList unions;
 
     each = f:
       genAttrs [
@@ -42,10 +37,18 @@
         nodeNixpkgs.hellfire = nixpkgs.legacyPackages.aarch64-linux;
         specialArgs = {inherit inputs;};
       };
-      defaults = {name, ...}: {
-        imports = imports ++ (toList ./hosts/${name});
+      defaults = {
+        name,
+        config,
+        ...
+      }: {
+        imports = toList (unions [
+          ./hosts/${name}
+          ./modules
+        ]);
+
         networking.hostName = name;
-        hey.caps.rootLogin = true;
+        users.users.root.openssh.authorizedKeys.keys = config.hey.keys.lychee.deployment;
 
         deployment = {
           allowLocalDeployment = true;
@@ -72,16 +75,17 @@
     packages = each (pkgs: {
       iso =
         (nixosSystem {
-          modules = flatten [
-            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
-            ./pkgs/iso
+          modules = [
             {
-              inherit imports;
               nixpkgs.hostPlatform = pkgs.stdenv.system;
-              networking.hostName = "iso";
             }
+            ./pkgs/iso
           ];
-          specialArgs.inputs = inputs;
+          specialArgs = {
+            inherit inputs;
+            # hack to make the modules behave with the out-of-hive module instance
+            nodes = (colmena.lib.makeHive self.colmena).introspect ({nodes, ...}: nodes);
+          };
         })
         .config
         .system

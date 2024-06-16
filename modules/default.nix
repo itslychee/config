@@ -13,14 +13,9 @@ in {
     graphical = mkEnableOption "graphical capabilities";
     # SSH daemon, fail2ban, anything a server should have
     headless = mkEnableOption "headless capabilities";
-    # Will be used locally, servers should not use this.
-    rootLogin = mkEnableOption "root SSH login capabilities";
   };
 
   config = {
-    users.users.root = mkIf config.hey.caps.rootLogin {
-      openssh.authorizedKeys.keys = config.hey.keys.users.lychee.deployment;
-    };
     # Global options
     time.timeZone = "US/Central";
 
@@ -30,6 +25,7 @@ in {
       inherit (inputs.self.packages.${pkgs.stdenv.system}) nvim;
     };
 
+    environment.pathsToLink = ["/share"];
     documentation.nixos.enable = mkForce false;
     hardware.enableAllFirmware = true;
     programs.command-not-found.enable = false;

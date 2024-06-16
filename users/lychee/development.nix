@@ -8,7 +8,7 @@
 
     git = {
       enable = true;
-      difftastic.enable = true;
+      delta.enable = true;
       userName = "itslychee";
       userEmail = "itslychee@protonmail.com";
       signing = {

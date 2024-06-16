@@ -6,19 +6,42 @@
   ...
 }: let
   cfg = config.hey.net;
-  inherit (lib) mkIf mkMerge mkEnableOption mkOption mkForce;
-  inherit (lib.types) bool;
+  inherit
+    (lib)
+    mkIf
+    mkMerge
+    mkEnableOption
+    mkOption
+    mkForce
+    ;
+  inherit
+    (lib.types)
+    bool
+    str
+    either
+    listOf
+    ;
 in {
-  options.hey.net = {
-    openssh = mkOption {
-      type = bool;
-      default = config.hey.caps.headless;
+  options.hey = {
+    hostKeys = mkOption {
+      type = either str (listOf str);
+      apply = f:
+        if builtins.typeOf f == "string"
+        then [f]
+        else f;
+      description = "SSH public key for host, preferably ed25519";
     };
-    fail2ban = mkOption {
-      type = bool;
-      default = config.hey.caps.headless;
+    net = {
+      openssh = mkOption {
+        type = bool;
+        default = config.hey.caps.headless;
+      };
+      fail2ban = mkOption {
+        type = bool;
+        default = config.hey.caps.headless;
+      };
+      home = mkEnableOption "Home networking";
     };
-    home = mkEnableOption "Home networking";
   };
   config = mkMerge [
     (mkIf cfg.home {

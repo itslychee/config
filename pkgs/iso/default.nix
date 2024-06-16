@@ -4,8 +4,14 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkForce;
+  inherit (lib) mkForce flatten;
+  inherit (lib.fileset) toList;
 in {
+  imports = flatten [
+    (toList ../../modules)
+    "${modulesPath}/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
+  ];
+  networking.hostName = "iso";
   # Support LVM
   boot.kernelModules = [
     "dm-snapshot"
