@@ -4,17 +4,14 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf mkAfter mkOption getExe;
-  inherit (lib.types) bool;
+  inherit
+    (lib)
+    mkIf
+    mkAfter
+    getExe
+    ;
 in {
-  options.hey.graphical = {
-    enable = mkOption {
-      type = bool;
-      default = config.hey.caps.graphical;
-    };
-  };
-
-  config = mkIf config.hey.graphical.enable {
+  config = mkIf config.hey.caps.graphical {
     programs.light.enable = true;
     fonts = {
       fontDir.enable = true;
