@@ -41,17 +41,27 @@ in {
       browseable = "yes";
       public = "yes";
       available = "yes";
-      # comment = "Read-only ISO share, login via NextCloud to add ISOs";
+      comment = "Read-only ISO share, login via NextCloud to add ISOs";
       "read only" = "yes";
-      "guest ok" = "yes";
-      "force user" = "nextcloud";
-      "force group" = "nextcloud";
-      "guest account" = "nextcloud";
-      "guest only" = "yes";
+      "force user" = "root";
+      "force group" = "root";
     };
+    configText = ''
+      [global]
+          wins support = yes
+          security = user
+          server max protocol = SMB1
+          client max protocol = SMB1
+    '';
   };
 
   networking.firewall.allowedTCPPorts = [80 443 25565];
+  networking.firewall.allowedTCPPortRanges = [
+    {
+      from = 137;
+      to = 139;
+    }
+  ];
   networking.interfaces.eno3.useDHCP = false;
 
   virtualisation.libvirtd = {
