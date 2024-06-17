@@ -53,7 +53,11 @@ in {
     })
     {
       services = {
-        tailscale.enable = true;
+        tailscale = {
+          enable = true;
+          useRoutingFeatures = "both";
+          openFirewall = true;
+        };
         fail2ban = {
           enable = cfg.fail2ban;
           maxretry = 5;

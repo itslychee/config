@@ -18,31 +18,30 @@
     caps.graphical = true;
     net.home = true;
     users.lychee.enable = lib.mkForce false;
-    users.viewer = {
-      enable = true;
-    };
   };
 
-  services.kmscon.enable = lib.mkForce false;
-  services.greetd.enable = lib.mkForce false;
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-    settings = {
-      Autologin = {
-        User = "viewer";
-        Session = "plasma-bigscreen-x11.desktop";
-        Relogin = true;
-      };
-    };
-    theme = "chili";
-  };
-  environment.systemPackages = [pkgs.sddm-chili-theme];
-
-  services.xserver.enable = true;
-  services.xserver.desktopManager.plasma5 = {
-    bigscreen.enable = true;
-  };
+  # doesnt work for reasons idk (black screen, see cursor, HDMI-CEC seems to not work?)
+  #
+  # services.kmscon.enable = lib.mkForce false;
+  # services.greetd.enable = lib.mkForce false;
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   wayland.enable = true;
+  #   settings = {
+  #     Autologin = {
+  #       User = "viewer";
+  #       Session = "plasma-bigscreen-x11.desktop";
+  #       Relogin = true;
+  #     };
+  #   };
+  #   theme = "chili";
+  # };
+  # environment.systemPackages = [pkgs.sddm-chili-theme];
+  #
+  # services.xserver.enable = true;
+  # services.xserver.desktopManager.plasma5 = {
+  #   bigscreen.enable = true;
+  # };
   services.logind.lidSwitchExternalPower = "ignore";
   system.stateVersion = "23.11"; # Did you read the comment?
 }

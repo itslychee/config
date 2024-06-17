@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   config,
   pkgs,
@@ -16,6 +17,11 @@
   # >:(
   boot.kernelPackages = pkgs.linuxPackages;
   boot.supportedFilesystems = ["ext4" "vfat"];
+  nixpkgs.overlays = [
+    (final: prev: {
+      libcec = prev.libcec.override {withLibraspberrypi = true;};
+    })
+  ];
 
   sdImage = {
     imageBaseName = config.networking.hostName;
@@ -24,12 +30,32 @@
 
   fileSystems."/".options = ["noatime"];
   hey = {
-    hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICzt2XbvnHZf0gPn68PNMW5jj2YrPfKo1plVh2Dtle+j";
+    hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILxxBfeFvi0urMaWvg610+EUvl4xJu0R1oZ0edMVJD2U";
     caps.headless = true;
+    caps.graphical = true;
     # add phone to keys
-    users.lychee = {
-      sshKeys = config.hey.keys.lychee.local_ssh;
+    users.lychee.sshKeys = config.hey.keys.lychee.local_ssh;
+    users.viewer.enable = true;
+  };
+  services.kmscon.enable = lib.mkForce false;
+  services.greetd.enable = lib.mkForce false;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    settings = {
+      Autologin = {
+        User = "viewer";
+        Session = "plasma-bigscreen-x11.desktop";
+        Relogin = true;
+      };
     };
+    theme = "chili";
+  };
+  environment.systemPackages = [pkgs.sddm-chili-theme];
+
+  services.xserver.enable = true;
+  services.xserver.desktopManager.plasma5 = {
+    bigscreen.enable = true;
   };
 
   # do not touch #
