@@ -35,6 +35,7 @@
     dnsutils
     john
     johnny
+    remmina
   ];
 
   system.stateVersion = "24.05";
