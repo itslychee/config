@@ -34,14 +34,16 @@
     caps.headless = true;
     caps.graphical = true;
     # add phone to keys
-    users.lychee.sshKeys = config.hey.keys.lychee.local_ssh;
-    users.viewer.enable = true;
+    users.lychee.enable = lib.mkForce false;
+    users.viewer = {
+      enable = true;
+      groups = ["video" "uinput"];
+    };
   };
   services.kmscon.enable = lib.mkForce false;
   services.greetd.enable = lib.mkForce false;
   services.displayManager.sddm = {
     enable = true;
-    wayland.enable = true;
     settings = {
       Autologin = {
         User = "viewer";
@@ -49,9 +51,7 @@
         Relogin = true;
       };
     };
-    theme = "chili";
   };
-  environment.systemPackages = [pkgs.sddm-chili-theme];
 
   services.xserver.enable = true;
   services.xserver.desktopManager.plasma5 = {
