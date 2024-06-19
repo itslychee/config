@@ -21,54 +21,10 @@ in {
     };
   };
 
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
-
-  services.nextcloud = {
-    enable = true;
-    package = pkgs.nextcloud29;
-    hostName = "nextcloud.local";
-    configureRedis = true;
-    database.createLocally = true;
-    caching.redis = true;
-    settings.trusted_domains = [config.networking.hostName];
-    config.adminpassFile = "/var/lib/nextcloud/password";
-  };
-
-  services.samba = {
-    enable = true;
-    openFirewall = true;
-    shares.public = {
-      path = "/var/lib/nextcloud/data/13DE9EF2-5EAE-461D-B31C-C170BFD093B7/files/ISOs";
-      browseable = "yes";
-      public = "yes";
-      available = "yes";
-      comment = "Read-only ISO share, login via NextCloud to add ISOs";
-      "read only" = "yes";
-      "force user" = "root";
-      "force group" = "root";
-    };
-    configText = ''
-      [global]
-          wins support = yes
-          security = user
-          server max protocol = SMB1
-          client max protocol = SMB1
-    '';
-  };
-
   networking.firewall.allowedTCPPorts = [80 443 25565];
-  networking.firewall.allowedTCPPortRanges = [
-    {
-      from = 137;
-      to = 139;
-    }
-  ];
+  # For Kali VM to properly configure its own
+  # DNS and to appear like a separate device
   networking.interfaces.eno3.useDHCP = false;
-
-  virtualisation.libvirtd = {
-    enable = true;
-    allowedBridges = ["virbr0" "eno3"];
-  };
 
   system.stateVersion = "23.11";
 }
