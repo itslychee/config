@@ -14,5 +14,7 @@ jobs:
         uses: cachix/install-nix-action@v27
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@main
+        with:
+          token: ${{ secrets.ISSA_ME}}
 
 
