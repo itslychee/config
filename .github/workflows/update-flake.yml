@@ -16,5 +16,7 @@ jobs:
         uses: DeterminateSystems/update-flake-lock@main
         with:
           token: ${{ secrets.ISSA_ME}}
+          pr-assignees: itslychee
+          pr-reviewers: itslychee
 
 
