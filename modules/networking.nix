@@ -61,7 +61,11 @@ in {
         fail2ban = {
           enable = cfg.fail2ban;
           maxretry = 5;
-          ignoreIP = ["::1" "127.0.0.1"];
+          ignoreIP = [
+            "::1"
+            "127.0.0.1"
+            "100.0.0.0/8"
+          ];
           bantime = "24h";
         };
         # OpenSSH server
