@@ -36,6 +36,7 @@ in {
           firefox
           gimp
           ;
+        discord = pkgs.discord-canary.override {withVencord = true;};
       }))
     ];
   };
