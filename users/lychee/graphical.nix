@@ -18,11 +18,11 @@ in {
   });
   services.playerctld.enable = config.programs.waybar.enable;
   services.mako = {
-    enable = true;
+    enable = cfg.enable;
     defaultTimeout = 30;
   };
   programs.waybar = {
-    enable = config.wayland.windowManager.sway.enable;
+    enable = cfg.enable;
     settings.mainBar = {
       layer = "top";
       height = 20;
@@ -62,7 +62,7 @@ in {
   };
 
   programs.rofi = {
-    enable = true;
+    enable = cfg.enable;
     package = pkgs.rofi-wayland;
     terminal = getExe pkgs.alacritty;
     font = "Terminus 10";

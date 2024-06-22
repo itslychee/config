@@ -4,15 +4,12 @@
   pkgs,
   ...
 }: let
-  sway = config.wayland.windowManager.sway.enable;
   spicePkgs = inputs.spice.legacyPackages.${pkgs.stdenv.system};
 in {
   imports = [
-    inputs.catppuccin.homeManagerModules.catppuccin
     inputs.spice.homeManagerModules.default
   ];
 
-  catppuccin.flavor = "macchiato";
   services.mako = {
     borderColor = "#f7cde4";
     backgroundColor = "#543245";
