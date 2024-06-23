@@ -22,6 +22,26 @@ in {
     isBuilder = true;
   };
 
+  services.nginx.enable = true;
+  services.nextcloud = {
+    enable = true;
+    hostName = "cloud.rain.forest";
+    configureRedis = true;
+    package = pkgs.nextcloud29;
+    database.createLocally = true;
+    autoUpdateApps.enable = true;
+    caching.redis = true;
+    config = {
+      dbtype = "pgsql";
+      adminuser = "administrator";
+      adminpassFile = "/var/lib/nextcloud/password";
+    };
+    settings.trusted_domains = [
+      config.networking.hostName
+      config.services.nextcloud.hostName
+    ];
+  };
+
   networking.firewall.allowedTCPPorts = [80 443 25565];
   # For Kali VM to properly configure its own
   # DNS and to appear like a separate device
