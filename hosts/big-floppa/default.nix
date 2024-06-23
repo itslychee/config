@@ -19,6 +19,7 @@ in {
       groups = ["libvirtd" "wheel"];
       inherit (config.hey.users.lychee) sshKeys passwordFile;
     };
+    isBuilder = true;
   };
 
   networking.firewall.allowedTCPPorts = [80 443 25565];
