@@ -46,9 +46,7 @@ api.nvim_create_autocmd("LspAttach", {
       vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
     end
 
-    vim.lsp.inlay_hint.enable(true, {
-      bufnr = bufnr,
-    })
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 
     local opts = { buffer = ev.buf }
     k("n", "<leader>D", vim.lsp.buf.type_definition, opts)
