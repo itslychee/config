@@ -35,8 +35,8 @@ in {
           qbittorrent
           firefox
           gimp
+          vesktop
           ;
-        discord = pkgs.discord-canary.override {withVencord = true;};
       }))
     ];
   };
