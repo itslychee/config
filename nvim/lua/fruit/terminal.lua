@@ -5,6 +5,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.cmd.startinsert()
     opt.relativenumber = false
     opt.number = false
+    opt.signcolumn = "no"
   end,
 })
 
