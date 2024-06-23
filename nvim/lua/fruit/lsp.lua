@@ -50,13 +50,20 @@ api.nvim_create_autocmd("LspAttach", {
 
     local opts = { buffer = ev.buf }
     k("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-    k("n", "gD", vim.lsp.buf.declaration, opts)
-    k("n", "gd", vim.lsp.buf.definition, opts)
+    k("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+    k("n", "<leader>rn", vim.lsp.buf.rename, opts)
+    k("n", "gd", vim.lsp.buf.declaration, opts)
+    k("n", "gD", vim.lsp.buf.definition, opts)
     k("n", "gr", vim.lsp.buf.references, opts)
-    k("n", ";", vim.lsp.buf.hover, opts)
     k("n", "gi", vim.lsp.buf.implementation, opts)
-    k("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-    -- Workspace
+
+    -- Diagnostics
+    k("n", "<leader>;", vim.diagnostic.setloclist, opts)
+    k("n", "<leader>r", vim.diagnostic.goto_prev, opts)
+    k("n", "<leader>u", vim.diagnostic.goto_next, opts)
+
+    -- K triggers this by default
+    -- k("n", "gh", vim.lsp.buf.hover, opts)
   end,
 })
 
