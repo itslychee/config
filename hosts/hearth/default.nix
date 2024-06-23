@@ -19,20 +19,46 @@ in {
       graphical = true;
       headless = true;
     };
-    # net.home = true;
     users.lychee = {
       state = "24.05";
       groups = ["docker"];
       sshKeys = config.hey.keys.lychee.local_ssh;
-      wms.sway = {
-        enable = true;
-        outputs.HDMI-A-1 = {
-          mode = "1920x1080@144.001Hz";
-          adaptive_sync = "on";
-        };
-      };
+      packages = [
+        pkgs.ciscoPacketTracer8
+        pkgs.alacritty
+      ];
     };
   };
+
+  services.greetd.enable = mkForce false;
+  services.kmscon.enable = mkForce false;
+
+  environment.systemPackages = builtins.attrValues {
+    inherit
+      (pkgs)
+      sddm-chili-theme
+      libreoffice
+      ;
+  };
+  environment.plasma6.excludePackages = builtins.attrValues {
+    inherit
+      (pkgs.kdePackages)
+      elisa
+      konsole
+      kate
+      kwrited
+      ;
+  };
+  services.displayManager.sddm = {
+    enable = true;
+    theme = "chili";
+    wayland.enable = true;
+  };
+
+  services.desktopManager.plasma6 = {
+    enable = true;
+  };
+
   networking.firewall = {
     allowedTCPPorts = [1113];
     allowedUDPPorts = [1113];
@@ -43,7 +69,6 @@ in {
     keyboard.qmk.enable = true;
   };
 
-  services.blueman.enable = true;
   services.fstrim.enable = true;
 
   programs = {
