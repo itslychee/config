@@ -13,6 +13,7 @@
 in {
   config = mkIf config.hey.caps.graphical {
     programs.light.enable = true;
+    programs.dconf.enable = true;
     fonts = {
       fontDir.enable = true;
       packages = mkAfter (builtins.attrValues {
