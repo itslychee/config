@@ -18,6 +18,7 @@
   outputs = {
     self,
     nixpkgs,
+    unstable,
     colmena,
     ...
   } @ inputs: let
@@ -34,7 +35,7 @@
     colmena = {
       meta = {
         nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
-        nodeNixpkgs.hellfire = nixpkgs.legacyPackages.aarch64-linux;
+        nodeNixpkgs.hellfire = unstable.legacyPackages.aarch64-linux;
         specialArgs = {inherit inputs;};
       };
       defaults = {
