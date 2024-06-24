@@ -17,7 +17,7 @@ in {
 
   config = {
     # Global options
-    time.timeZone = "US/Central";
+    time.timeZone = mkDefault "US/Central";
 
     boot.loader.systemd-boot.configurationLimit = 10;
     environment.systemPackages = builtins.attrValues {
