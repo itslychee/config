@@ -4,7 +4,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     colmena.url = "github:zhaofengli/colmena";
-    nixos-hardware.url = "github:nixos/nixos-hardware";
     spice.url = "github:Gerg-L/spicetify-nix";
 
     # mpdrp
