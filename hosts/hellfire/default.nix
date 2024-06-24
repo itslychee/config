@@ -9,53 +9,67 @@
     "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
   ];
 
-  # relevant issue(s):
-  # https://github.com/NixOS/nixpkgs/issues/154163
-  #
-  # using 6.7 as latest is broken due to zfs-kernel being marked as broken
-  # >:(
-  boot.kernelPackages = pkgs.linuxPackages;
-  boot.supportedFilesystems = ["ext4" "vfat"];
-  nixpkgs.overlays = [
-    (final: prev: {
-      libcec = prev.libcec.override {withLibraspberrypi = true;};
-    })
-  ];
+  fileSystems."/".options = ["noatime"];
+  fileSystems."/home/viewer/.cache" = {
+    device = "none";
+    fsType = "tmpfs";
+  };
+
+  boot = {
+    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    initrd.availableKernelModules = ["xhci_pci" "usbhid" "usb_storage"];
+    blacklistedKernelModules = ["bluetooth"];
+    loader = {
+      grub.enable = false;
+      generic-extlinux-compatible.enable = true;
+    };
+  };
 
   sdImage = {
     imageBaseName = config.networking.hostName;
     compressImage = false;
   };
 
-  fileSystems."/".options = ["noatime"];
+  # A server does not need this to be on anyways
+  systemd.targets = {
+    sleep.enable = false;
+    suspend.enable = false;
+    hibernate.enable = false;
+    hybrid-sleep.enable = false;
+  };
+
   hey = {
-    hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILxxBfeFvi0urMaWvg610+EUvl4xJu0R1oZ0edMVJD2U";
+    hostKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK99Mee2XhXeWBm5bhNULCwCHIK6wNIRO+Svzyf2xsQn"];
     caps.headless = true;
     caps.graphical = true;
-    # add phone to keys
-    users.lychee.enable = lib.mkForce false;
     users.viewer = {
       enable = true;
       groups = ["video" "uinput"];
     };
+    users.lychee.enable = lib.mkForce false;
   };
   services.kmscon.enable = lib.mkForce false;
   services.greetd.enable = lib.mkForce false;
+
+  # Bigscreen
+  services.xserver.desktopManager.plasma5.bigscreen.enable = true;
   services.displayManager.sddm = {
     enable = true;
+    wayland.enable = true;
     settings = {
       Autologin = {
         User = "viewer";
-        Session = "plasma-bigscreen-x11.desktop";
+        Session = "plasma-bigscreen-wayland";
         Relogin = true;
       };
     };
   };
 
-  services.xserver.enable = true;
-  services.xserver.desktopManager.plasma5 = {
-    bigscreen.enable = true;
-  };
+  nixpkgs.overlays = [
+    (final: prev: {
+      libcec = prev.libcec.override {withLibraspberrypi = true;};
+    })
+  ];
 
   # do not touch #
   system.stateVersion = "24.05";
