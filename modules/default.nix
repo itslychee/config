@@ -33,7 +33,7 @@ in {
     boot.blacklistedKernelModules = [
       "uvcvideo"
     ];
-    environment.etc."xdg/user-dirs.default".text = ''
+    environment.etc."xdg/user-dirs.defaults".text = ''
       XDG_DESKTOP_DIR="$HOME/desktop"
       XDG_DOCUMENTS_DIR="$HOME/documents"
       XDG_DOWNLOAD_DIR="$HOME/downloads"
