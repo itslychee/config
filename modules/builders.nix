@@ -23,7 +23,7 @@ in {
   options.hey = {
     useBuilders = mkOption {
       type = bool;
-      default = true;
+      default = false;
       description = "Use builder infrastructure";
     };
     isBuilder = mkEnableOption "Advertise host as a builder";
@@ -66,6 +66,7 @@ in {
         isSystemUser = true;
         group = "builder";
         openssh.authorizedKeys.keys = config.hey.keys.lychee.ssh;
+        useDefaultShell = true;
       };
       services.openssh.extraConfig = ''
         Match User builder
