@@ -27,7 +27,6 @@ in {
 
     environment.pathsToLink = ["/share"];
     documentation.nixos.enable = mkForce false;
-    hardware.enableAllFirmware = true;
     programs.command-not-found.enable = false;
     boot.blacklistedKernelModules = [
       "uvcvideo"
