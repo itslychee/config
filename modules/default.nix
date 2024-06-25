@@ -18,7 +18,7 @@ in {
     time.timeZone = mkDefault "US/Central";
 
     boot.loader.systemd-boot.configurationLimit = 5;
-    boot.loader.timeout = 1;
+    boot.loader.timeout = mkDefault 1;
     environment.systemPackages = builtins.attrValues {
       inherit
         (pkgs)
