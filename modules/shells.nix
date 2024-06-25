@@ -14,9 +14,16 @@
     syntaxHighlighting.enable = true;
     enableBashCompletion = true;
     autosuggestions.enable = true;
+    shellAliases = {
+      try = "colmena apply-local --sudo -v";
+      deploy = "colmena apply";
+    };
     shellInit = ''
+      zsh-newuser-install() { :; }
+
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
+      bindkey '5~' kill-word
       bindkey '^H' backward-kill-word
     '';
   };

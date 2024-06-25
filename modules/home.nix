@@ -14,7 +14,7 @@ in {
 
   options.hey.users = mkOption {
     description = "Hey user management";
-    type = attrsOf (submodule ({ ...}: {
+    type = attrsOf (submodule ({...}: {
       options = {
         enable = mkEnableOption "Enable management of user";
         packages = mkOption {
@@ -61,8 +61,6 @@ in {
   };
 
   config = {
-    # zsh being stupid asf
-    systemd.user.tmpfiles.rules = ["f %h/.zshrc - - - -"];
     home-manager = {
       backupFileExtension = "backup.${inputs.self.rev or "dirty"}";
       extraSpecialArgs = {
