@@ -34,6 +34,7 @@
             nvim-web-devicons
             typescript-tools-nvim
             nvim-ts-context-commentstring
+            which-key-nvim
             ;
           inherit grammars;
         };

@@ -19,6 +19,7 @@ o.splitright = true
 o.splitbelow = true
 o.termguicolors = true
 o.shiftwidth = 4
+o.timeoutlen = 250
 o.signcolumn = "yes"
 o.completeopt = "menu,menuone,noinsert"
 
@@ -29,7 +30,7 @@ o.foldenable = false
 
 o.showbreak = "↪ "
 o.list = true
-o.listchars = "space:.,tab:▎·,trail:."
+o.listchars = "lead:.,tab:▎·,trail:."
 
 vim.g.mapleader = " "
 
@@ -37,9 +38,9 @@ require "fruit.terminal"
 require "fruit.lsp"
 require "fruit.git"
 require "fruit.formatting"
-require "fruit.telescope"
+require "fruit.pickin"
 require "fruit.treesitter"
-
+require("which-key").setup {}
 require("mini.comment").setup {
   options = {
     custom_commentstring = function()

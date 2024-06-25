@@ -48,19 +48,25 @@ api.nvim_create_autocmd("LspAttach", {
 
     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 
-    local opts = { buffer = ev.buf }
-    k("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-    k("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-    k("n", "<leader>rn", vim.lsp.buf.rename, opts)
-    k("n", "gd", vim.lsp.buf.declaration, opts)
-    k("n", "gD", vim.lsp.buf.definition, opts)
-    k("n", "gr", vim.lsp.buf.references, opts)
-    k("n", "gi", vim.lsp.buf.implementation, opts)
+    function lsp(kmType, keymap, func, description)
+      k("n", keymap, func, {
+        buffer = ev.buf,
+        desc = "[" .. kmType .. "]" .. description,
+      })
+    end
+    lsp("LSP", "<leader>D", vim.lsp.buf.type_definition, "Type Definition")
+    lsp("LSP", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+    lsp("LSP", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
+    lsp("LSP", "gd", vim.lsp.buf.declaration, "Goto declaration")
+    lsp("LSP", "gD", vim.lsp.buf.definition, "Goto definition")
+    lsp("LSP", "gr", vim.lsp.buf.references, "See references")
+    lsp("LSP", "gi", vim.lsp.buf.implementation, "Goto implementation")
 
     -- Diagnostics
-    k("n", "<leader>;", vim.diagnostic.setloclist, opts)
-    k("n", "<leader>e", vim.diagnostic.goto_prev, opts)
-    k("n", "<leader>i", vim.diagnostic.goto_next, opts)
+    lsp("Diagnostics", "<leader>s", vim.diagnostic.setloclist, "Overview")
+    lsp("Diagnostics", "<leader>a", vim.diagnostic.open_float, "Expand error")
+    lsp("Diagnostics", "<leader>e", vim.diagnostic.goto_prev, "Go to previous error")
+    lsp("Diagnostics", "<leader>i", vim.diagnostic.goto_next, "Go to next error")
 
     -- K triggers this by default
     -- k("n", "gh", vim.lsp.buf.hover, opts)
@@ -100,11 +106,6 @@ cmp.setup.cmdline(":", {
     { name = "cmdline" },
   },
 })
-
-k("n", "<leader>e", vim.diagnostic.open_float)
-k("n", "<leader>q", vim.diagnostic.setloclist)
-k("n", "[d", vim.diagnostic.goto_prev)
-k("n", "]d", vim.diagnostic.goto_next)
 
 require("typescript-tools").setup {
   cmd = {
