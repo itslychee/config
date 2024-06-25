@@ -26,11 +26,11 @@ in {
     };
   };
   config = mkMerge [
-    (mkIf cfg.enable {
-      environment.systemPackages = [(nvim.override {inherit (cfg) grammars;})];
-    })
     (mkIf config.hey.caps.graphical {
       hey.programs.neovim.grammars = nvim-treesitter.withAllGrammars;
+    })
+    (mkIf cfg.enable {
+      environment.systemPackages = [(nvim.override {inherit (cfg) grammars;})];
     })
   ];
 }

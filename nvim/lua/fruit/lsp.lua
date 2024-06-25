@@ -51,7 +51,7 @@ api.nvim_create_autocmd("LspAttach", {
     function lsp(kmType, keymap, func, description)
       k("n", keymap, func, {
         buffer = ev.buf,
-        desc = "[" .. kmType .. "]" .. description,
+        desc = "[" .. kmType .. "] " .. description,
       })
     end
     lsp("LSP", "<leader>D", vim.lsp.buf.type_definition, "Type Definition")
