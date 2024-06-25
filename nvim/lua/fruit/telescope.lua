@@ -1,6 +1,22 @@
-local ts = require "telescope.builtin"
+local pick = require "mini.pick"
+pick.setup {
+  options = {
+    use_cache = true,
+  },
+  mappings = {
+    move_up = "<C-k>",
+    move_down = "<C-j>",
+  },
+}
+
 local k = vim.keymap.set
-k("n", "<leader>f", ts.find_files)
-k("n", "<leader>F", ts.git_files)
-k("n", "<leader>G", ts.live_grep)
-k("n", "<leader>b", ts.buffers)
+
+k("n", "<leader>f", function()
+  pick.builtin.files { tool = "git" }
+end)
+k("n", "<leader>F", function()
+  pick.start {
+    source = { items = vim.fn.readdir "." },
+  }
+end)
+k("n", "<leader>g", pick.builtin.grep)

@@ -59,8 +59,8 @@ api.nvim_create_autocmd("LspAttach", {
 
     -- Diagnostics
     k("n", "<leader>;", vim.diagnostic.setloclist, opts)
-    k("n", "<leader>r", vim.diagnostic.goto_prev, opts)
-    k("n", "<leader>u", vim.diagnostic.goto_next, opts)
+    k("n", "<leader>e", vim.diagnostic.goto_prev, opts)
+    k("n", "<leader>i", vim.diagnostic.goto_next, opts)
 
     -- K triggers this by default
     -- k("n", "gh", vim.lsp.buf.hover, opts)

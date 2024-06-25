@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   inputs,
   ...
@@ -7,8 +6,16 @@
   inherit (lib) mapAttrs';
 in {
   nixpkgs.config.allowUnfree = true;
+
+  # Thank you Gerg!
+  environment.etc =
+    lib.mapAttrs' (name: value: {
+      name = "nix/inputs/${name}";
+      value.source = value;
+    })
+    inputs;
   nix = {
-    nixPath = ["nixpkgs=flake:nixpkgs"];
+    nixPath = ["/etc/nix/inputs"];
     registry =
       mapAttrs' (name: val: {
         inherit name;
@@ -18,9 +25,6 @@ in {
     settings = {
       keep-outputs = true;
       keep-derivations = true;
-      plugin-files = [
-        "${pkgs.nix-doc}/lib/libnix_doc_plugin.so"
-      ];
       flake-registry = "";
       substituters = [
         "https://cache.garnix.io"

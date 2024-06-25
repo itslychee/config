@@ -10,6 +10,7 @@
   stylua,
   gotools,
   alejandra,
+  grammars ? vimPlugins.nvim-treesitter.withAllGrammars,
 }: let
   nvim-config = neovimUtils.makeNeovimConfig {
     plugins = [
@@ -31,11 +32,10 @@
             nvim-cmp
             nvim-lspconfig
             nvim-web-devicons
-            telescope-nvim
             typescript-tools-nvim
             nvim-ts-context-commentstring
             ;
-          ts = vimPlugins.nvim-treesitter.withAllGrammars;
+          inherit grammars;
         };
         src = ../nvim;
       })

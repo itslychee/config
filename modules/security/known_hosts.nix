@@ -5,8 +5,17 @@
   ...
 }: let
   knownHosts = pkgs.writeText "known_host_file";
+  inherit (lib.types) listOf str either;
 in {
-  programs.ssh.knownHostsFiles =
+  options.hey.hostKeys = lib.mkOption {
+    type = either str (listOf str);
+    apply = f:
+      if builtins.typeOf f == "string"
+      then [f]
+      else f;
+    description = "SSH public keys for host";
+  };
+  config.programs.ssh.knownHostsFiles =
     [
       # github
       (knownHosts ''

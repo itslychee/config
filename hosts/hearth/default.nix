@@ -1,11 +1,8 @@
 {
   pkgs,
   config,
-  lib,
   ...
-}: let
-  inherit (lib) mkForce;
-in {
+}: {
   boot = {
     kernelParams = ["irqpoll"];
     kernelPackages = pkgs.linuxKernel.packages.linux_6_9;
@@ -23,15 +20,9 @@ in {
       state = "24.05";
       groups = ["docker"];
       sshKeys = config.hey.keys.lychee.local_ssh;
-      packages = [
-        pkgs.ciscoPacketTracer8
-        pkgs.alacritty
-      ];
+      packages = [pkgs.alacritty pkgs.nixpkgs-review];
     };
   };
-
-  services.greetd.enable = mkForce false;
-  services.kmscon.enable = mkForce false;
 
   environment.systemPackages = builtins.attrValues {
     inherit
@@ -40,6 +31,7 @@ in {
       libreoffice
       ;
   };
+
   environment.plasma6.excludePackages = builtins.attrValues {
     inherit
       (pkgs.kdePackages)
@@ -55,14 +47,7 @@ in {
     wayland.enable = true;
   };
 
-  services.desktopManager.plasma6 = {
-    enable = true;
-  };
-
-  networking.firewall = {
-    allowedTCPPorts = [1113];
-    allowedUDPPorts = [1113];
-  };
+  services.desktopManager.plasma6.enable = true;
 
   hardware = {
     bluetooth.enable = true;
@@ -73,16 +58,10 @@ in {
 
   programs = {
     nix-index.enable = true;
-    virt-manager.enable = true;
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
     };
-  };
-
-  virtualisation = {
-    libvirtd.enable = true;
-    docker.enable = true;
   };
 
   environment.sessionVariables.NIX_INDEX_DATABASE = "/var/lib/nix-index-db";

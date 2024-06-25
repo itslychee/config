@@ -1,11 +1,9 @@
 {
-  inputs,
   lib,
-  config,
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf mkForce mkDefault;
+  inherit (lib) mkEnableOption mkForce mkDefault;
 in {
   # System capabilities, for finer control and context
   options.hey.caps = {
@@ -19,10 +17,22 @@ in {
     # Global options
     time.timeZone = mkDefault "US/Central";
 
-    boot.loader.systemd-boot.configurationLimit = 10;
+    boot.loader.systemd-boot.configurationLimit = 5;
+    boot.loader.timeout = 1;
     environment.systemPackages = builtins.attrValues {
-      inherit (pkgs) dnsutils;
-      inherit (inputs.self.packages.${pkgs.stdenv.system}) nvim;
+      inherit
+        (pkgs)
+        htop
+        ripgrep
+        dnsutils
+        jq
+        nmap
+        ;
+    };
+
+    console = {
+      earlySetup = true;
+      font = "${pkgs.terminus_font}/share/consolefonts/ter-u12n.psf.gz";
     };
 
     environment.pathsToLink = ["/share"];

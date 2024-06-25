@@ -12,24 +12,21 @@ in {
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
   ];
   networking.hostName = "iso";
-  # Support LVM
   boot.kernelModules = [
+    # Support LVM
     "dm-snapshot"
     "dm-mod"
     "dm-cache"
     "dm-cache-default"
   ];
 
-  isoImage.isoBaseName = mkForce "configuration";
-  networking.networkmanager.enable = true;
   networking.wireless.enable = mkForce false;
+  isoImage.isoBaseName = mkForce "configuration";
 
   services.kmscon.autologinUser = "lychee";
+  services.fail2ban.enable = false;
 
-  hey = {
-    caps.headless = true;
-    net.fail2ban = mkForce false;
-  };
+  hey.caps.headless = true;
 
   # for nixos-anywhere
   environment.systemPackages = [pkgs.rsync];

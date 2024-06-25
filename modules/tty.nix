@@ -15,6 +15,10 @@
           ];
         };
       }
+      {
+        name = "Material Design Icons";
+        package = pkgs.material-design-icons;
+      }
     ];
   };
 }

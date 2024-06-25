@@ -1,23 +1,15 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
-  boot.loader.systemd-boot.enable = true;
+{config, ...}: {
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
   };
 
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
-
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
+  boot = {
+    loader.systemd-boot.enable = true;
+    binfmt.emulatedSystems = ["aarch64-linux"];
+  };
 
   services.desktopManager.plasma6.enable = true;
-  services.greetd.enable = lib.mkForce false;
-
   services.printing.enable = true;
   services.avahi = {
     enable = true;
@@ -36,14 +28,6 @@
       sshKeys = config.hey.keys.lychee.local_ssh;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    nmap
-    dnsutils
-    john
-    johnny
-    remmina
-  ];
 
   system.stateVersion = "24.05";
 }

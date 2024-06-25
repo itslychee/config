@@ -11,7 +11,6 @@
       graphical = true;
       headless = true;
     };
-    net.home = true;
     users.lychee = {
       state = "24.05";
       wms.sway.enable = true;

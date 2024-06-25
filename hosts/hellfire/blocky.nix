@@ -4,7 +4,7 @@
   ...
 }: {
   services.blocky = {
-    enable = false;
+    enable = true;
     settings = {
       caching = {
         minTime = "20m";
@@ -24,13 +24,7 @@
       bootstrapDns = [
         "tcp+udp:1.1.1.1"
       ];
-      customDNS = {
-        customTTL = "24h";
-        mapping = {
-          "hearth.lan" = "192.168.0.3";
-          "pi.lan" = "192.168.0.10";
-        };
-      };
+      customDNS.customTTL = "24h";
       blocking.blackLists.ads = [
         "https://adaway.org/hosts.txt"
         "https://hostfiles.frogeye.fr/firstparty-trackers-hosts.txt"

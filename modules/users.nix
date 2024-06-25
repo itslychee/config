@@ -41,17 +41,6 @@ in {
     ];
   };
 
-  environment.systemPackages = builtins.attrValues {
-    inherit
-      (pkgs)
-      htop
-      ripgrep
-      jq
-      nmap
-      nixpkgs-review
-      ;
-  };
-
   programs.wireshark = {
     package = pkgs.wireshark;
     enable = config.hey.caps.graphical;

@@ -8,13 +8,13 @@
   inherit (lib) mkOption mkEnableOption mapAttrs filterAttrs;
   inherit (lib.types) submodule attrsOf listOf package str nullOr bool;
   inherit (lib.fileset) toList fileFilter;
-  cfg = filterAttrs (k: v: v.enable) config.hey.users;
+  cfg = filterAttrs (_k: v: v.enable) config.hey.users;
 in {
   imports = [inputs.home-manager.nixosModules.default];
 
   options.hey.users = mkOption {
     description = "Hey user management";
-    type = attrsOf (submodule ({name, ...}: {
+    type = attrsOf (submodule ({ ...}: {
       options = {
         enable = mkEnableOption "Enable management of user";
         packages = mkOption {
@@ -85,7 +85,7 @@ in {
         (filterAttrs (_: value: value.state != null) cfg);
     };
     users.users =
-      mapAttrs (name: value: {
+      mapAttrs (_name: value: {
         inherit (value) packages;
         isNormalUser = true;
         hashedPasswordFile = value.passwordFile;
