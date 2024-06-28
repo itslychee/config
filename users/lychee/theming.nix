@@ -16,25 +16,6 @@ in {
     layer = "overlay";
   };
 
-  home.pointerCursor = {
-    name = "OpenZone_Black";
-    package = pkgs.openzone-cursors;
-    gtk.enable = config.gtk.enable;
-  };
-  gtk = {
-    enable = true;
-    font = {
-      name = "DejaVu Sans";
-      package = pkgs.dejavu_fonts;
-    };
-    iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus Light";
-    };
-  };
-  qt.enable = true;
-  xdg.enable = true;
-
   programs.spicetify = {
     enable = true;
     enabledExtensions = builtins.attrValues {
