@@ -1,6 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   services.kmscon = {
-    enable = true;
+    enable = lib.mkDefault config.hey.caps.graphical;
     hwRender = true;
     fonts = [
       {
