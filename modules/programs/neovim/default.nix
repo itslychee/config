@@ -6,7 +6,7 @@
   ...
 }: let
   cfg = config.hey.programs.neovim;
-  inherit (lib) mkOption mkIf mkMerge;
+  inherit (lib) mkOption mkIf mkMerge mkEnableOption;
   inherit (lib.types) bool package;
   inherit (inputs.self.packages.${pkgs.system}) nvim;
   inherit (inputs.unstable.legacyPackages.${pkgs.system}.vimPlugins) nvim-treesitter;
@@ -23,14 +23,19 @@ in {
         type = package;
         default = nvim-treesitter.withPlugins (p: [p.nix p.bash]);
       };
+
+      noLSPs = mkEnableOption "Do not include LSPs with Neovim";
     };
   };
   config = mkMerge [
+    (mkIf (!config.hey.caps.graphical) {
+      hey.programs.neovim.noLSPs = true;
+    })
     (mkIf config.hey.caps.graphical {
       hey.programs.neovim.grammars = nvim-treesitter.withAllGrammars;
     })
     (mkIf cfg.enable {
-      environment.systemPackages = [(nvim.override {inherit (cfg) grammars;})];
+      environment.systemPackages = [(nvim.override {inherit (cfg) grammars noLSPs;})];
     })
   ];
 }

@@ -11,6 +11,7 @@
   gotools,
   alejandra,
   grammars ? vimPlugins.nvim-treesitter.withAllGrammars,
+  noLSPs ? false,
 }: let
   nvim-config = neovimUtils.makeNeovimConfig {
     plugins = [
@@ -52,12 +53,14 @@ in
         "--suffix"
         "PATH"
         ":"
-        (lib.makeBinPath [
-          ripgrep
-          nil
-          stylua
-          gotools
-          alejandra
-        ])
+        (lib.makeBinPath ([
+            ripgrep
+            stylua
+            alejandra
+          ]
+          ++ lib.optionals (!noLSPs) [
+            gotools
+            nil
+          ]))
       ];
   })
