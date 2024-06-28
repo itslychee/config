@@ -1,5 +1,10 @@
-{pkgs, ...}: {
-  fonts = {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
+  fonts = lib.mkIf config.hey.caps.graphical {
     enableDefaultPackages = true;
     packages = builtins.attrValues {
       inherit
