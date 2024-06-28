@@ -14,6 +14,11 @@ in {
       value.source = value;
     })
     inputs;
+
+  environment.sessionVariables = {
+    NIXPKGS_ALLOW_UNFREE = "1";
+  };
+
   nix = {
     nixPath = ["/etc/nix/inputs"];
     registry =
