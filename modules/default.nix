@@ -41,5 +41,6 @@ in {
     boot.blacklistedKernelModules = [
       "uvcvideo"
     ];
+    hardware.enableRedistributableFirmware = mkDefault true;
   };
 }
