@@ -70,6 +70,7 @@
       };
       school-desktop.deployment.tags = ["client"];
       big-floppa.deployment.tags = ["server"];
+      kaycloud.deployment.tags = ["server"];
     };
 
     packages = each (pkgs: {

@@ -12,7 +12,7 @@
   services.openssh.enable = lib.mkDefault config.hey.caps.headless;
 
   networking.networkmanager.unmanaged = [config.services.tailscale.interfaceName];
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = lib.mkDefault true;
   programs.ssh = {
     startAgent = true;
     agentTimeout = "30m";
