@@ -11,7 +11,6 @@ in {
     inherit
       (pkgs)
       wayshot
-      wl-clipboard
       slurp
       swappy
       ;
