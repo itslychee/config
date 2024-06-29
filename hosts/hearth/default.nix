@@ -20,34 +20,17 @@
       state = "24.05";
       groups = ["docker"];
       sshKeys = config.hey.keys.lychee.local_ssh;
-      packages = [pkgs.alacritty pkgs.nixpkgs-review];
+      packages = [pkgs.nixpkgs-review];
+      wms.sway.enable = true;
     };
   };
 
   environment.systemPackages = builtins.attrValues {
     inherit
       (pkgs)
-      sddm-chili-theme
       libreoffice
       ;
   };
-
-  environment.plasma6.excludePackages = builtins.attrValues {
-    inherit
-      (pkgs.kdePackages)
-      elisa
-      konsole
-      kate
-      kwrited
-      ;
-  };
-  services.displayManager.sddm = {
-    enable = true;
-    theme = "chili";
-    wayland.enable = true;
-  };
-
-  services.desktopManager.plasma6.enable = true;
 
   hardware = {
     bluetooth.enable = true;

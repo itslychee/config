@@ -1,5 +1,6 @@
 {
   lib,
+  inputs,
   pkgs,
   config,
   ...
@@ -15,15 +16,11 @@ in {
       window.commands = [
         {
           command = "floating enable";
-          criteria.app_id = "xdg-desktop-portal-*";
+          criteria.app_id = ".*";
         }
         {
-          command = "floating enable";
-          criteria.title = "^Extension: .+";
-        }
-        {
-          command = "floating enable";
-          criteria.app_id = "anki";
+          command = "floating disable";
+          criteria.app_id = "Alacritty";
         }
       ];
       gaps.smartBorders = "on";
@@ -89,6 +86,7 @@ in {
     };
     extraConfig = ''
       exec ${getExe pkgs.autotiling-rs}
+      exec ${getExe inputs.soteria.packages.${pkgs.system}.default}
       workspace number 1
     '';
   };

@@ -143,6 +143,22 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1717196966,
+        "narHash": "sha256-yZKhxVIKd2lsbOqYd5iDoUIwsRZFqE87smE2Vzf6Ck0=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "57610d2f8f0937f39dbd72251e9614b1561942d8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1719254875,
         "narHash": "sha256-ECni+IkwXjusHsm9Sexdtq8weAq/yUyt1TWIemXt3Ko=",
         "owner": "NixOS",
@@ -163,14 +179,33 @@
         "home-manager": "home-manager",
         "mpdrp": "mpdrp",
         "nixpkgs": "nixpkgs_2",
+        "soteria": "soteria",
         "spice": "spice",
         "unstable": "unstable"
+      }
+    },
+    "soteria": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1719541571,
+        "narHash": "sha256-v4KGDq7Kma0F8T5yjoS88IDKgDUyCX6RmSjMghnf7Ns=",
+        "owner": "ImVaskel",
+        "repo": "soteria",
+        "rev": "186d99b817ecc62a32c246ea842421533e33171e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ImVaskel",
+        "repo": "soteria",
+        "type": "github"
       }
     },
     "spice": {
       "inputs": {
         "flake-compat": "flake-compat_2",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1719375127,

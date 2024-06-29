@@ -6,6 +6,8 @@
     colmena.url = "github:zhaofengli/colmena";
     spice.url = "github:Gerg-L/spicetify-nix";
 
+    soteria.url = "github:ImVaskel/soteria";
+
     # mpdrp
     mpdrp.url = "github:itslychee/mpdrp";
     mpdrp.inputs.nixpkgs.follows = "nixpkgs";

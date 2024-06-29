@@ -42,5 +42,6 @@ in {
       "uvcvideo"
     ];
     hardware.enableRedistributableFirmware = mkDefault true;
+    hardware.enableAllFirmware = mkDefault true;
   };
 }
