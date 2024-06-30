@@ -41,7 +41,7 @@
   # networking.interfaces.wlp9s0.useDHCP = lib.mkDefault true;
 
   systemd.network = {
-    enable = true;
+    enable = false;
     networks."lladdr" = {
       matchConfig.Name = "enp10s0";
       networkConfig.LinkLocalAddressing = "yes";

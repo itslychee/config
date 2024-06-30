@@ -29,7 +29,7 @@
   networking.useDHCP = lib.mkDefault true;
 
   systemd.network = {
-    enable = true;
+    enable = false;
     networks."lladdr" = {
       matchConfig.Name = "enp1s0";
       networkConfig = {
