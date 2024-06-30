@@ -20,7 +20,6 @@
       state = "24.05";
       groups = ["docker"];
       sshKeys = config.hey.keys.lychee.local_ssh;
-      packages = [pkgs.nixpkgs-review];
       wms.sway.enable = true;
     };
   };
@@ -29,6 +28,8 @@
     inherit
       (pkgs)
       libreoffice
+      nix-tree
+      nixpkgs-review
       ;
   };
 
