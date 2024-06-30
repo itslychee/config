@@ -24,6 +24,7 @@
             cmp-buffer
             cmp-cmdline
             cmp-nvim-lsp
+            vim-fugitive
             conform-nvim
             git-conflict-nvim
             kanagawa-nvim
