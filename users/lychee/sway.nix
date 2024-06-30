@@ -16,11 +16,15 @@ in {
       window.commands = [
         {
           command = "floating enable";
-          criteria.app_id = ".*";
+          criteria.app_id = "firefox";
         }
         {
-          command = "floating disable";
-          criteria.app_id = "Alacritty";
+          command = "floating enable";
+          criteria.class = "xdg_shell";
+        }
+        {
+          command = "floating enable";
+          criteria.app_id = "firefox";
         }
       ];
       gaps.smartBorders = "on";
