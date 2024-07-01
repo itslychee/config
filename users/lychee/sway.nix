@@ -1,4 +1,5 @@
 {
+  osConfig,
   lib,
   inputs,
   pkgs,
@@ -27,6 +28,25 @@ in {
           criteria.app_id = "firefox";
         }
       ];
+      colors =
+        lib.genAttrs [
+          "focused"
+          "unfocused"
+        ] (mode: let
+          inherit (osConfig.hey) theme;
+        in {
+          inherit (theme) background;
+          text = theme.foreground;
+          border =
+            if mode == "unfocused"
+            then theme.accent
+            else "#FF9AD2";
+          childBorder =
+            if mode == "unfocused"
+            then theme.accent
+            else "#FFFFFF";
+          indicator = theme.accent;
+        });
       gaps.smartBorders = "on";
       focus.followMouse = "always";
       modifier = "Mod4";
@@ -92,6 +112,7 @@ in {
       exec ${getExe pkgs.autotiling-rs}
       exec ${getExe inputs.soteria.packages.${pkgs.system}.default}
       workspace number 1
+      default_border pixel 2
     '';
   };
 }
