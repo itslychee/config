@@ -20,7 +20,7 @@ o.splitbelow = true
 o.termguicolors = true
 o.shiftwidth = 4
 o.timeoutlen = 550
-o.cmdheight = 0
+o.cmdheight = 1
 o.signcolumn = "yes"
 o.completeopt = "menu,menuone,noinsert"
 
