@@ -4,8 +4,7 @@ on:
     branches-ignore:
       - nixos-legacy
       - nixos-realise
-      - legacy
-
+      - update_flake_lock_action
   workflow_call:
   pull_request:
     types: [opened,reopened]
