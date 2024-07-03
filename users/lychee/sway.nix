@@ -27,6 +27,10 @@ in {
           command = "floating enable";
           criteria.app_id = "firefox";
         }
+        {
+          command = "floating enable";
+          criteria.app_id = "PacketTracer";
+        }
       ];
       colors =
         lib.genAttrs [
