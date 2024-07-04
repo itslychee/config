@@ -75,7 +75,7 @@
       kaycloud.deployment.tags = ["server"];
     };
 
-    packages = each (pkgs: {
+    packages = each (pkgs: rec {
       iso =
         (nixosSystem {
           modules = [
@@ -95,6 +95,7 @@
         .build
         .isoImage;
       nvim = inputs.unstable.legacyPackages.${pkgs.system}.callPackage ./pkgs/nvim.nix {};
+      default = nvim;
     });
 
     devShells = each (pkgs: {
