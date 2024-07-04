@@ -44,8 +44,9 @@
         format = "[$symbol$branch(:$remote_branch)]($style)";
       };
       golang.format = "go($version)";
+      git_status.stashed = "stashed";
       format = ''
-        [\[$directory$git_branch$git_state$git_commit\]](bold green)
+        [\[$directory$git_branch$git_state$git_commit$git_status\]](bold green)
         [❤️ $username$hostname](bold #ff9ad2)$character
       '';
       right_format = "$rust$golang$python$nix_shell";
