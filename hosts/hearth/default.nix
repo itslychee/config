@@ -19,7 +19,6 @@
     users.lychee = {
       state = "24.05";
       groups = ["docker"];
-      sshKeys = config.hey.keys.lychee.local_ssh;
       wms.sway.enable = true;
     };
   };

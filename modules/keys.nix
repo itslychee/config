@@ -14,11 +14,11 @@ in {
     in {
       # "Tags" for finer permissions
       secrets = [hearthKey];
-      ssh = [hearthKey];
-      deployment = [hearthKey];
-      local_ssh = [
+      ssh = [
+        hearthKey
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXeFJBxjG2NgeKr4l58KIp7lPf/pUeYD/4bYVapuump phone"
       ];
+      deployment = [hearthKey];
     };
   };
 }

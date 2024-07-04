@@ -25,7 +25,6 @@
     };
     users.lychee = {
       state = "24.05";
-      sshKeys = config.hey.keys.lychee.local_ssh;
     };
   };
 
