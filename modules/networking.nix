@@ -3,28 +3,48 @@
   config,
   lib,
   ...
-}: {
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "both";
-    openFirewall = true;
-  };
+}: let
+  inherit (lib) mkDefault mkMerge mkIf;
+  interfaceName = config.services.tailscale.interfaceName;
+in {
+  config = mkMerge [
+    {
+      programs.ssh = {
+        startAgent = true;
+        agentTimeout = "30m";
+        extraConfig = ''
+          Host big-floppa
+            User student
+        '';
+      };
 
-  services.openssh.enable = lib.mkDefault config.hey.caps.headless;
+      services.tailscale = {
+        enable = true;
+        useRoutingFeatures = "both";
+        openFirewall = true;
+      };
 
-  # https://github.com/NixOS/nixpkgs/issues/180175#issuecomment-1658731959
-  systemd.services.NetworkManager-wait-online.serviceConfig = {
-    ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
-  };
-  networking.networkmanager.unmanaged = [config.services.tailscale.interfaceName];
-  networking.networkmanager.enable = lib.mkDefault true;
-  programs.ssh = {
-    startAgent = true;
-    agentTimeout = "30m";
-    extraConfig = ''
-      Host big-floppa
-        User student
-    '';
-  };
-  systemd.network.wait-online.ignoredInterfaces = [config.services.tailscale.interfaceName];
+      services.openssh = {
+        enable = mkDefault config.hey.caps.headless;
+      };
+
+      # https://github.com/NixOS/nixpkgs/issues/180175#issuecomment-1658731959
+      systemd.services.NetworkManager-wait-online.serviceConfig = {
+        ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
+      };
+      systemd.network.wait-online.ignoredInterfaces = [interfaceName];
+
+      networking = {
+        networkmanager.unmanaged = [interfaceName];
+        networkmanager.enable = mkDefault true;
+        firewall.interfaces.${interfaceName} = {
+          allowedTCPPorts = [22];
+        };
+      };
+    }
+
+    (mkIf config.services.tailscale.enable {
+      services.openssh.openFirewall = mkDefault false;
+    })
+  ];
 }
