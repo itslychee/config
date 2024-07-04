@@ -18,7 +18,7 @@ in {
   services.playerctld.enable = config.programs.waybar.enable;
   services.mako = {
     enable = cfg.enable;
-    defaultTimeout = 30;
+    defaultTimeout = 4000;
   };
   programs.waybar = {
     enable = cfg.enable;
