@@ -43,9 +43,5 @@ in {
   };
 
   networking.firewall.allowedTCPPorts = [80 443 25565];
-  # For Kali VM to properly configure its own
-  # DNS and to appear like a separate device
-  networking.interfaces.eno3.useDHCP = false;
-
   system.stateVersion = "23.11";
 }
