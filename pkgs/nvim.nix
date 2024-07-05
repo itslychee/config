@@ -9,6 +9,7 @@
   nil,
   stylua,
   gotools,
+  nixfmt-rfc-style,
   alejandra,
   grammars ? vimPlugins.nvim-treesitter.withAllGrammars,
   noLSPs ? false,
@@ -58,6 +59,7 @@ in
             ripgrep
             stylua
             alejandra
+            nixfmt-rfc-style
           ]
           ++ lib.optionals (!noLSPs) [
             gotools
