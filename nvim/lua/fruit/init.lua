@@ -51,7 +51,6 @@ require("mini.comment").setup {
   },
 }
 require("mini.sessions").setup()
-require("mini.pairs").setup()
 require("mini.files").setup {
   windows = {
     max_number = 3,
