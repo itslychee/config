@@ -181,6 +181,7 @@
         "nixpkgs": "nixpkgs_2",
         "soteria": "soteria",
         "spice": "spice",
+        "templates": "templates",
         "unstable": "unstable"
       }
     },
@@ -234,6 +235,21 @@
         "owner": "NixOS",
         "ref": "nixos-23.05",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "templates": {
+      "locked": {
+        "lastModified": 1720155521,
+        "narHash": "sha256-+7h/w+Jhrs65htHMfhlazlYbrEnb2YEvBXbhQngcG3s=",
+        "owner": "itslychee",
+        "repo": "workflows",
+        "rev": "bb5780974285e29ada5636a81acb8b5b36a7f9a9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "itslychee",
+        "repo": "workflows",
         "type": "github"
       }
     },

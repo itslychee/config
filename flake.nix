@@ -5,7 +5,10 @@
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     colmena.url = "github:zhaofengli/colmena";
     spice.url = "github:Gerg-L/spicetify-nix";
-    templates.url = "github:itslychee/workflows";
+    templates = {
+      url = "github:itslychee/workflows";
+      flake = false;
+    };
 
     soteria.url = "github:ImVaskel/soteria";
 
