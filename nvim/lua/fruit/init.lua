@@ -43,6 +43,7 @@ require "fruit.formatting"
 require "fruit.pickin"
 require "fruit.treesitter"
 require("which-key").setup {}
+require("colorizer").setup {}
 require("mini.comment").setup {
   options = {
     custom_commentstring = function()

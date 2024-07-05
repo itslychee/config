@@ -24,6 +24,7 @@
             cmp-async-path
             cmp-buffer
             cmp-cmdline
+            nvim-colorizer-lua
             cmp-nvim-lsp
             vim-fugitive
             conform-nvim
