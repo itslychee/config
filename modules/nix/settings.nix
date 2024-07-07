@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   lib,
   inputs,
   ...
@@ -29,7 +30,9 @@ in {
         value.flake = val;
       })
       inputs;
+    channel.enable = false;
     settings = {
+      nix-path = config.nix.nixPath;
       keep-outputs = true;
       keep-derivations = true;
       accept-flake-config = false;
