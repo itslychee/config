@@ -39,13 +39,7 @@
 
   services.fstrim.enable = true;
 
-  programs = {
-    nix-index.enable = true;
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-    };
-  };
+  programs.nix-index.enable = true;
 
   environment.sessionVariables.NIX_INDEX_DATABASE = "/var/lib/nix-index-db";
   # do not touch ever! #
