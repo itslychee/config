@@ -32,6 +32,7 @@ in {
     settings = {
       keep-outputs = true;
       keep-derivations = true;
+      accept-flake-config = false;
       flake-registry = "";
       substituters = [
         "https://cache.garnix.io"
