@@ -24,12 +24,7 @@
   };
 
   environment.systemPackages = builtins.attrValues {
-    inherit
-      (pkgs)
-      libreoffice
-      nix-tree
-      nixpkgs-review
-      ;
+    inherit (pkgs) libreoffice nix-tree nixpkgs-review;
   };
 
   hardware = {
