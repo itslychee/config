@@ -5,25 +5,22 @@
   inputs,
   ...
 }: let
-  inherit (lib) mapAttrs';
-in {
-  nixpkgs.config.allowUnfree = true;
-
-  # Thank you Gerg!
-  environment.etc =
-    lib.mapAttrs' (name: value: {
-      name = "nix/inputs/${name}";
-      value.source = value;
+  inherit (lib) mapAttrs' mapAttrsToList;
+  inputFarm = pkgs.linkFarm "input-farm" (mapAttrsToList (name: path: {
+      inherit
+        name
+        path
+        ;
     })
-    inputs;
-
-  environment.sessionVariables = {
-    NIXPKGS_ALLOW_UNFREE = "1";
-  };
+    inputs);
+in {
+  # Unfree stuff <3
+  environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
+  nixpkgs.config.allowUnfree = true;
 
   nix = {
     package = pkgs.lix;
-    nixPath = ["/etc/nix/inputs"];
+    nixPath = [inputFarm.outPath];
     registry =
       mapAttrs' (name: val: {
         inherit name;
@@ -61,6 +58,7 @@ in {
         "repl-flake"
         "cgroups"
       ];
+      use-cgroups = true;
     };
   };
 }
