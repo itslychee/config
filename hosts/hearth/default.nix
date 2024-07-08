@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   boot = {
     kernelParams = ["irqpoll"];
     kernelPackages = pkgs.linuxKernel.packages.linux_6_9;
@@ -33,10 +29,6 @@
   };
 
   services.fstrim.enable = true;
-
-  programs.nix-index.enable = true;
-
-  environment.sessionVariables.NIX_INDEX_DATABASE = "/var/lib/nix-index-db";
   # do not touch ever! #
   system.stateVersion = "24.05";
 }
