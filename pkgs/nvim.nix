@@ -60,7 +60,6 @@ in
             ripgrep
             stylua
             alejandra
-            nixfmt-rfc-style
           ]
           ++ lib.optionals (!noLSPs) [
             gotools
