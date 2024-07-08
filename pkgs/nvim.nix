@@ -9,7 +9,7 @@
   nil,
   stylua,
   gotools,
-  nixfmt-rfc-style,
+  clang-tools,
   alejandra,
   grammars ? vimPlugins.nvim-treesitter.withAllGrammars,
   noLSPs ? false,
@@ -64,6 +64,7 @@ in
           ++ lib.optionals (!noLSPs) [
             gotools
             nil
+            clang-tools
           ]))
       ];
   })
