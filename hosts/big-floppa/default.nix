@@ -19,7 +19,6 @@ in {
       groups = ["libvirtd" "wheel"];
       inherit (config.hey.users.lychee) sshKeys passwordFile;
     };
-    isBuilder = true;
   };
 
   services.nginx.enable = true;
