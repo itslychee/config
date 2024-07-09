@@ -12,10 +12,6 @@ in {
       programs.ssh = {
         startAgent = true;
         agentTimeout = "30m";
-        extraConfig = ''
-          Host big-floppa
-            User student
-        '';
       };
 
       services.tailscale = {

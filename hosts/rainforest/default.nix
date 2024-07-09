@@ -13,12 +13,6 @@ in {
   hey = {
     hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICAKg9ZgbTR5ftw+nrm+Ch7Xl4LBs4z9M+e45/K0pG4u";
     caps.headless = true;
-    users.lychee.enable = mkForce false;
-    users.student = {
-      enable = true;
-      groups = ["libvirtd" "wheel"];
-      inherit (config.hey.users.lychee) sshKeys passwordFile;
-    };
   };
 
   services.nginx.enable = true;
