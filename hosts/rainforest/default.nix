@@ -1,11 +1,8 @@
 {
   pkgs,
-  lib,
   config,
   ...
-}: let
-  inherit (lib) mkForce;
-in {
+}: {
   boot.kernelParams = ["intel_iommu=on"];
   boot.loader.systemd-boot.enable = true;
   boot.binfmt.emulatedSystems = ["aarch64-linux"];

@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) mkDefault mkMerge mkIf;
-  interfaceName = config.services.tailscale.interfaceName;
+  inherit (config.services.tailscale) interfaceName;
 in {
   config = mkMerge [
     {

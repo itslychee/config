@@ -14,7 +14,7 @@ in {
 
   options.hey.users = mkOption {
     description = "Hey user management";
-    type = attrsOf (submodule ({...}: {
+    type = attrsOf (submodule (_: {
       options = {
         enable = mkEnableOption "Enable management of user";
         packages = mkOption {
