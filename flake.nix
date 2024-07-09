@@ -75,7 +75,7 @@
         buildOnTarget = mkForce false;
       };
       school-desktop.deployment.tags = ["client"];
-      big-floppa.deployment.tags = ["server"];
+      rainforest.deployment.tags = ["server"];
       kaycloud.deployment.tags = ["server"];
     };
 
