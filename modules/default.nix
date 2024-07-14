@@ -30,11 +30,6 @@ in {
         ;
     };
 
-    console = {
-      earlySetup = true;
-      font = "${pkgs.terminus_font}/share/consolefonts/ter-u12n.psf.gz";
-    };
-
     environment.pathsToLink = ["/share"];
     documentation.nixos.enable = mkForce false;
     programs.command-not-found.enable = false;
