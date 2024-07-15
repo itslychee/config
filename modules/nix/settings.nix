@@ -58,6 +58,7 @@ in {
         "no-url-literals"
         "repl-flake"
         "cgroups"
+        "auto-allocate-uids"
       ];
       use-cgroups = true;
     };
