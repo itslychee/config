@@ -9,6 +9,7 @@ local LSPs = {
   "pyright",
   "ruff_lsp",
   "eslint",
+  "rust_analyzer",
 }
 local caps = require("cmp_nvim_lsp").default_capabilities()
 for _, server in ipairs(LSPs) do
@@ -16,20 +17,6 @@ for _, server in ipairs(LSPs) do
     capabilities = caps,
   }
 end
-
-lspconfig["rust_analyzer"].setup {
-  capabilities = caps,
-  settings = {
-    ["rust_analyzer"] = {
-      diagnostics = {
-        enable = true,
-        experimental = {
-          enable = true,
-        },
-      },
-    },
-  },
-}
 
 -- LSP setup
 api.nvim_create_autocmd("LspAttach", {
