@@ -44,6 +44,11 @@ require "fruit.pickin"
 require "fruit.treesitter"
 require("which-key").setup {}
 require("colorizer").setup {}
+require("bufferline").setup {
+  options = {
+    numbers = "buffer_id",
+  },
+}
 require("mini.comment").setup {
   options = {
     custom_commentstring = function()

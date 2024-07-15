@@ -21,6 +21,7 @@
         dependencies = builtins.attrValues {
           inherit
             (vimPlugins)
+            bufferline-nvim
             cmp-async-path
             cmp-buffer
             cmp-cmdline
