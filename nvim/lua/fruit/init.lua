@@ -25,11 +25,6 @@ o.ignorecase = true
 o.signcolumn = "yes"
 o.completeopt = "menu,menuone,noinsert"
 
--- Folds -- stolen from @mrshmllow
-o.foldmethod = "expr"
-o.foldexpr = "nvim_treesitter#foldexpr()"
-o.foldenable = false
-
 o.showbreak = "↪ "
 o.list = true
 o.listchars = "lead:.,tab:▎·,trail:."
