@@ -21,6 +21,7 @@ in {
     groups = [
       "wheel"
       "audio"
+      "dialout"
       "libvirtd"
       "video" # needed for light
       "networkmanager"
