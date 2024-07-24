@@ -32,6 +32,24 @@
     ];
   };
 
-  networking.firewall.allowedTCPPorts = [80 443 25565];
+  services.ntp = {
+    enable = true;
+    servers = [
+      "0.us.pool.ntp.org"
+      "1.us.pool.ntp.org"
+      "2.us.pool.ntp.org"
+      "3.us.pool.ntp.org"
+    ];
+  };
+
+  services.atftpd = {
+    enable = true;
+    root = "/var/lib/nextcloud/data/F6E8B25D-A5E6-457F-8051-B19BB63CA477/files/Shared/ISOs";
+  };
+
+  networking.firewall = {
+    allowedTCPPorts = [80 443 25565];
+    allowedUDPPorts = [123 69];
+  };
   system.stateVersion = "23.11";
 }
