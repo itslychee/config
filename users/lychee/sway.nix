@@ -44,7 +44,7 @@ in {
           indicator = theme.accent;
         });
       gaps.smartBorders = "on";
-      focus.followMouse = "always";
+      focus.followMouse = "no";
       modifier = "Mod4";
       terminal = pkgs.alacritty;
       menu = null;
