@@ -38,5 +38,8 @@ in {
     ];
     hardware.enableRedistributableFirmware = mkDefault true;
     hardware.enableAllFirmware = mkDefault true;
+
+    # Better pager :3
+    environment.sessionVariables.PAGER = lib.getExe pkgs.moar;
   };
 }
