@@ -23,10 +23,6 @@ in {
           command = "floating enable";
           criteria.class = "xdg_shell";
         }
-        {
-          command = "floating enable";
-          criteria.app_id = "firefox";
-        }
       ];
       colors =
         lib.genAttrs [
