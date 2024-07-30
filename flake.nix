@@ -62,12 +62,6 @@
         };
       };
       # Hosts
-      hellfire.deployment = {
-        tags = ["servers"];
-        allowLocalDeployment = mkForce false;
-        buildOnTarget = mkForce false;
-      };
-
       hearth.deployment.tags = ["server" "client"];
       pathway.deployment.tags = ["server"];
       wiretop.deployment = {
