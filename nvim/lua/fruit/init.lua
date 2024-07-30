@@ -24,7 +24,7 @@ o.cmdheight = 1
 o.ignorecase = true
 o.signcolumn = "yes"
 o.completeopt = "menu,menuone,noinsert"
-
+o.autochdir = true
 o.showbreak = "↪ "
 o.list = true
 o.listchars = "lead:.,tab:▎·,trail:."
