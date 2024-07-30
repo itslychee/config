@@ -1,4 +1,4 @@
-{config, ...}: {
+{pkgs, ...}: {
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
@@ -16,6 +16,7 @@
     nssmdns4 = true;
     openFirewall = true;
   };
+  environment.systemPackages = [pkgs.remmina];
 
   hey = {
     hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIiZ7kKvxTiMJNtybsRHeF6Po9rl8onUZr1aQ0mhTRwx";
@@ -28,5 +29,7 @@
     };
   };
 
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = true;
   system.stateVersion = "24.05";
 }
