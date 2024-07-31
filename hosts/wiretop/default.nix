@@ -18,8 +18,15 @@
     };
   };
 
-  services.fwupd.enable = true;
   hardware.cpu.intel.updateMicrocode = true;
+
+  services.fwupd.enable = true;
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # hey cutie, don't touch!
   system.stateVersion = "24.05";
