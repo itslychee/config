@@ -19,6 +19,7 @@
   };
 
   hardware.cpu.intel.updateMicrocode = true;
+  hardware.bluetooth.enable = true;
 
   services.fwupd.enable = true;
   services.printing.enable = true;
