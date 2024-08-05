@@ -28,6 +28,7 @@
     nssmdns4 = true;
     openFirewall = true;
   };
+  environment.systemPackages = [pkgs.remmina];
 
   # hey cutie, don't touch!
   system.stateVersion = "24.05";
