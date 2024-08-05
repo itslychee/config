@@ -13,6 +13,7 @@
   alejandra,
   grammars ? vimPlugins.nvim-treesitter.withAllGrammars,
   noLSPs ? false,
+  extraLSPs ? [],
 }: let
   nvim-config = neovimUtils.makeNeovimConfig {
     plugins = [
@@ -62,6 +63,7 @@ in
             stylua
             alejandra
           ]
+          ++ extraLSPs
           ++ lib.optionals (!noLSPs) [
             gotools
             nil

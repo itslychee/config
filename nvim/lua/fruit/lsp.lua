@@ -7,6 +7,7 @@ local LSPs = {
   "nil_ls",
   "gopls",
   "pyright",
+  "typst_lsp",
   "ruff_lsp",
   "eslint",
   "rust_analyzer",
