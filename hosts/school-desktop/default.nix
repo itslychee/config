@@ -16,7 +16,7 @@
     nssmdns4 = true;
     openFirewall = true;
   };
-  environment.systemPackages = [pkgs.remmina];
+  environment.systemPackages = [pkgs.remmina pkgs.libreoffice];
 
   hey = {
     hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIiZ7kKvxTiMJNtybsRHeF6Po9rl8onUZr1aQ0mhTRwx";
