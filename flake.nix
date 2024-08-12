@@ -11,6 +11,7 @@
     };
 
     soteria.url = "github:ImVaskel/soteria";
+    conduwuit.url = "github:girlbossceo/conduwuit/c29197b3";
 
     # mpdrp
     mpdrp.url = "github:itslychee/mpdrp";
@@ -28,7 +29,7 @@
     ...
   } @ inputs: let
     inherit (nixpkgs.lib) genAttrs mkForce nixosSystem;
-    inherit (nixpkgs.lib.fileset) toList unions;
+    inherit (nixpkgs.lib.fileset) toList unions fileFilter;
 
     each = f:
       genAttrs [
@@ -49,7 +50,7 @@
         ...
       }: {
         imports = toList (unions [
-          ./hosts/${name}
+          (fileFilter (p: p.hasExt "nix") ./hosts/${name})
           ./modules
         ]);
 
