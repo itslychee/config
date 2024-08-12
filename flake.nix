@@ -12,6 +12,7 @@
 
     soteria.url = "github:ImVaskel/soteria";
     conduwuit.url = "github:girlbossceo/conduwuit/c29197b3";
+    attic.url = "github:zhaofengli/attic";
 
     # mpdrp
     mpdrp.url = "github:itslychee/mpdrp";

@@ -7,6 +7,7 @@
     allowedUDPPorts = [21027 22000];
   };
 
+  networking.firewall.allowedTCPPorts = [80 443];
   # IPv6 public IP
   systemd.network = {
     enable = true;
