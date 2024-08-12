@@ -25,6 +25,7 @@ in {
         ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
       };
       systemd.network.wait-online.ignoredInterfaces = [interfaceName];
+      networking.networkmanager.enable = true;
     }
 
     (mkIf config.services.tailscale.enable {
