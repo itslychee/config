@@ -1,6 +1,10 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   hey.caps.headless = true;
-  networking.networkmanager.enable = false;
+  networking.networkmanager.enable = lib.mkForce false;
 
   networking.firewall.interfaces.${config.services.tailscale.interfaceName} = {
     allowedTCPPorts = [22000 8384];
