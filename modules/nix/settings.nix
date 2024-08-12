@@ -63,4 +63,10 @@ in {
       use-cgroups = true;
     };
   };
+
+  # thank u raf
+  systemd.tmpfiles.rules = lib.mkIf (!config.nix.channel.enable) [
+    "R /root/.nix-defexpr/channels - - - -"
+    "R /nix/var/nix/profiles/per-user/root/channels - - - -"
+  ];
 }
