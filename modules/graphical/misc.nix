@@ -13,4 +13,10 @@ in {
     pkgs.wl-clipboard
     pkgs.xdg-utils
   ];
+  hey.programs.neovim.extraLSPs = mkIf config.hey.caps.graphical [
+    pkgs.typst
+    pkgs.typstyle
+    pkgs.typstfmt
+    pkgs.typst-lsp
+  ];
 }

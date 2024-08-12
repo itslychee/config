@@ -19,12 +19,6 @@
       groups = ["docker"];
       wms.sway.enable = true;
     };
-    programs.neovim.extraLSPs = [
-      pkgs.typst
-      pkgs.typstyle
-      pkgs.typstfmt
-      pkgs.typst-lsp
-    ];
   };
 
   environment.systemPackages = builtins.attrValues {
