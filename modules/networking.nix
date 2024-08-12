@@ -29,6 +29,8 @@ in {
         ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
       };
       systemd.network.wait-online.ignoredInterfaces = [interfaceName];
+      networking.useDHCP = false;
+      networking.useNetworkd = true;
 
       networking = {
         networkmanager.unmanaged = [interfaceName];
