@@ -35,12 +35,10 @@ in {
       accept-flake-config = false;
       flake-registry = "";
       substituters = [
-        "https://cache.garnix.io"
         "https://lychee.cachix.org"
       ];
       trusted-substituters = ["lychee.cachix.org-1:hyDZbHeziUb/pgU79Gy7wd6aGka8WQByZjP2DAalICw="];
       trusted-public-keys = [
-        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "lychee.cachix.org-1:hyDZbHeziUb/pgU79Gy7wd6aGka8WQByZjP2DAalICw="
       ];
       trusted-users = [
