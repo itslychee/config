@@ -57,7 +57,7 @@ in {
           exec wayshot -c -s "`slurp -f '%x %y %w %h'`" --stdout | swappy -f - -o - | wl-copy -t image/png'';
         XF86AudioRaiseVolume = "exec ${pamixer} -i 2";
         XF86AudioLowerVolume = "exec ${pamixer} -d 2";
-        "${modifier}+Shift+Backspace" = "exec ${pkgs.systemd}/bin/shutdown -h now";
+        "${modifier}+Shift+Backspace" = "exec ${pkgs.systemd}/bin/systemctl poweroff -i";
         XF86AudioMute = "exec ${pamixer} -t";
         XF86AudioStop = "exec ${player} stop";
         XF86AudioPrev = "exec ${player} previous";
