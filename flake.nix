@@ -5,13 +5,18 @@
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     colmena.url = "github:zhaofengli/colmena";
     spice.url = "github:Gerg-L/spicetify-nix";
+    liburing = {
+      url = "github:axboe/liburing?ref=master";
+      flake = false;
+    };
     templates = {
       url = "github:itslychee/workflows";
       flake = false;
     };
 
     soteria.url = "github:ImVaskel/soteria";
-    conduwuit.url = "github:girlbossceo/conduwuit/c29197b3";
+    conduwuit.url = "github:girlbossceo/conduwuit?ref=v0.4.5";
+    conduwuit.inputs.liburing.follows = "liburing";
     attic.url = "github:zhaofengli/attic";
 
     # mpdrp

@@ -150,7 +150,9 @@
         "fenix": "fenix",
         "flake-compat": "flake-compat_7",
         "flake-utils": "flake-utils_5",
-        "liburing": "liburing",
+        "liburing": [
+          "liburing"
+        ],
         "nix-filter": "nix-filter",
         "nixpkgs": "nixpkgs_6",
         "rocksdb": "rocksdb"
@@ -165,7 +167,7 @@
       },
       "original": {
         "owner": "girlbossceo",
-        "ref": "c29197b3",
+        "ref": "v0.4.5",
         "repo": "conduwuit",
         "type": "github"
       }
@@ -624,11 +626,11 @@
     "liburing": {
       "flake": false,
       "locked": {
-        "lastModified": 1720798442,
-        "narHash": "sha256-gtPppAoksMLW4GuruQ36nf4EAqIA1Bs6V9Xcx8dBxrQ=",
+        "lastModified": 1723553052,
+        "narHash": "sha256-sjqmYP/tvQKmsTD6FOd8m7aEja2hhEyyB3aTxVXEbuE=",
         "owner": "axboe",
         "repo": "liburing",
-        "rev": "1d674f83b7d0f07553ac44d99a401b05853d9dbe",
+        "rev": "401b3e4bde2316d35e93b548269c72bbb64adc02",
         "type": "github"
       },
       "original": {
@@ -1058,6 +1060,7 @@
         "colmena": "colmena",
         "conduwuit": "conduwuit",
         "home-manager": "home-manager",
+        "liburing": "liburing",
         "mpdrp": "mpdrp",
         "nixpkgs": "nixpkgs_7",
         "soteria": "soteria",
