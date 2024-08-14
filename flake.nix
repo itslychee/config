@@ -84,6 +84,7 @@
       school-desktop.deployment.tags = ["client"];
       rainforest.deployment.tags = ["server"];
       kaycloud.deployment.tags = ["server"];
+      gatekeeper.deployment.tags = ["server"];
     };
 
     packages = each (pkgs: rec {
