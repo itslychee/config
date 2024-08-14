@@ -71,7 +71,7 @@
       };
 
       hearth.deployment.tags = ["server" "client"];
-      pathway.deployment.tags = ["server"];
+      # pathway.deployment.tags = ["server"];
       wiretop.deployment = {
         tags = ["client"];
         buildOnTarget = mkForce false;
