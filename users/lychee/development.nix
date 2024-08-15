@@ -1,11 +1,5 @@
 {
   programs = {
-    ssh = {
-      enable = true;
-      compression = true;
-      addKeysToAgent = "yes";
-    };
-
     git = {
       enable = true;
       delta.enable = true;
@@ -13,13 +7,16 @@
       userEmail = "itslychee@protonmail.com";
       signing = {
         signByDefault = true;
-        key = "~/.ssh/id_ed25519";
+        key = "45324E7F52DA3BA3";
       };
-      extraConfig.gpg.format = "ssh";
-      ignores = [
-        "*.swp"
-        "*~"
-      ];
+      ignores = ["*.swp" "*~"];
     };
+  };
+
+  home.file.".gnupg/sshcontrol" = {
+    force = true;
+    text = ''
+      932A393893C9BCD3A179010B2917AD4447972B25
+    '';
   };
 }

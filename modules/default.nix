@@ -27,6 +27,7 @@ in {
         dnsutils
         jq
         nmap
+        gnupg
         ;
     };
 
@@ -41,5 +42,10 @@ in {
 
     # Better pager :3
     environment.sessionVariables.PAGER = lib.getExe pkgs.moar;
+
+    programs.gnupg.agent = {
+      enableSSHSupport = true;
+      enable = true;
+    };
   };
 }

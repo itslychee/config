@@ -9,11 +9,6 @@
 in {
   config = mkMerge [
     {
-      programs.ssh = {
-        startAgent = true;
-        agentTimeout = "30m";
-      };
-
       services.tailscale = {
         enable = true;
         useRoutingFeatures = "both";
