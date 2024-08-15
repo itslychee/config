@@ -32,13 +32,9 @@
       config.services.nextcloud.hostName
     ];
   };
-  services.samba.enable = true;
 
   virtualisation.libvirtd.enable = true;
 
-  networking.firewall = {
-    allowedTCPPorts = [80 443 25565];
-    allowedUDPPorts = [123 69];
-  };
+  networking.firewall.allowedTCPPorts = [80 443 25565];
   system.stateVersion = "23.11";
 }
