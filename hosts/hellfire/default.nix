@@ -32,8 +32,9 @@
   };
 
   hey = {
-    # hostKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK99Mee2XhXeWBm5bhNULCwCHIK6wNIRO+Svzyf2xsQn"];
-    hostKeys = [];
+    hostKeys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDmFBbxUjTO+yjrJOe4FnJtp0vojVy2xQ5thgaNsJxAF"
+    ];
     caps.headless = true;
   };
 
