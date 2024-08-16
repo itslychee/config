@@ -19,7 +19,10 @@ in {
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXeFJBxjG2NgeKr4l58KIp7lPf/pUeYD/4bYVapuump phone"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILv8G52B8ANAEczyOLd6N15pmasoVde1I9pXajQOeUL5 openpgp:0xF2E43235"
       ];
-      deployment = [hearthKey];
+      deployment = [
+        hearthKey
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILv8G52B8ANAEczyOLd6N15pmasoVde1I9pXajQOeUL5 openpgp:0xF2E43235"
+      ];
     };
   };
 }
