@@ -32,9 +32,6 @@
     keyboard.qmk.enable = true;
   };
 
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
-
   services.xserver = {
     enable = true;
     desktopManager.gnome.enable = true;
