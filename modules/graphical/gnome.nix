@@ -77,6 +77,7 @@ with lib.gvariant; {
           color-scheme = "default";
           gtk-enable-primary-paste = false;
           icon-theme = "Adwaita";
+          clock-format = "12h";
         };
 
         "org/gnome/desktop/notifications" = {
