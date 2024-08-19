@@ -1,12 +1,14 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   boot = {
     kernelParams = ["irqpoll"];
     kernelPackages = pkgs.linuxKernel.packages.linux_6_9;
     loader.systemd-boot.enable = true;
     binfmt.emulatedSystems = ["aarch64-linux"];
   };
-
-  services.syncthing.enable = true;
 
   hey = {
     hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOaAxiB8BtVJC+3WM/ydH+8CRaINbE+7X3aO1l/0cJhV";
@@ -32,6 +34,19 @@
 
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
+
+  services.xserver = {
+    enable = true;
+    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
+  };
+
+  services.gnome = lib.mkForce {
+    gnome-keyring.enable = false;
+    tracker.enable = false;
+  };
+
+  programs.steam.enable = true;
 
   services.fstrim.enable = true;
   # do not touch ever! #
