@@ -10,6 +10,11 @@ with lib.gvariant; {
     tracker.enable = false;
   };
 
+  environment.systemPackages = [
+    pkgs.gnomeExtensions.dash-to-panel
+    pkgs.gnomeExtensions.appindicator
+  ];
+
   programs.dconf.profiles.user.databases = [
     {
       settings = {
@@ -52,6 +57,7 @@ with lib.gvariant; {
           name = "suse-yast.directory";
           translate = true;
         };
+        "org/gnome/settings-daemon/plugins/power".sleep-inactive-ac-timeout = mkInt32 0;
 
         "org/gnome/desktop/background" = {
           color-shading-type = "solid";

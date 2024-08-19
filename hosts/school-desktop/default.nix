@@ -1,15 +1,9 @@
 {pkgs, ...}: {
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
-
   boot = {
     loader.systemd-boot.enable = true;
     binfmt.emulatedSystems = ["aarch64-linux"];
   };
 
-  services.desktopManager.plasma6.enable = true;
   services.printing.enable = true;
   services.avahi = {
     enable = true;
@@ -27,6 +21,11 @@
     users.lychee = {
       state = "24.05";
     };
+  };
+  services.xserver = {
+    enable = true;
+    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
   };
 
   programs.virt-manager.enable = true;
