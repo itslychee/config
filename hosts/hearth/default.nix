@@ -38,11 +38,6 @@
     displayManager.gdm.enable = true;
   };
 
-  services.gnome = lib.mkForce {
-    gnome-keyring.enable = false;
-    tracker.enable = false;
-  };
-
   programs.steam.enable = true;
 
   services.fstrim.enable = true;
