@@ -44,7 +44,6 @@ in {
       modifier = "Mod4";
       terminal = pkgs.alacritty;
       menu = null;
-      output."*".bg = "${../../assets/wallpaper} fill";
 
       keybindings = let
         pamixer = "${pkgs.pamixer}/bin/pamixer";
