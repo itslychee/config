@@ -28,7 +28,10 @@
     displayManager.gdm.enable = true;
   };
 
+  services.garage.enable = true;
+
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
   system.stateVersion = "24.05";
+  services.consul.enable = true;
 }

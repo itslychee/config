@@ -10,6 +10,13 @@
     allowedTCPPorts = [22000 8384];
     allowedUDPPorts = [21027 22000];
   };
+  services.consul = {
+    enable = true;
+    extraConfig.server = true;
+  };
+  services.garage = {
+    enable = true;
+  };
 
   networking.firewall.allowedTCPPorts = [80 443];
   # IPv6 public IP

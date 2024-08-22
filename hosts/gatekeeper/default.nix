@@ -5,4 +5,15 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEocveIiwBkFkdQQS7ArFCfZWF6dh/P/qT4EVYmORuHa root@gatekeeper"
   ];
   system.stateVersion = "24.05";
+
+  services.consul = {
+    enable = true;
+    extraConfig = {
+      server = true;
+    };
+  };
+
+  services.garage = {
+    enable = true;
+  };
 }
