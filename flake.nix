@@ -94,6 +94,7 @@
               nixpkgs.hostPlatform = pkgs.stdenv.system;
             }
             ./pkgs/iso
+            colmena.nixosModules.deploymentOptions
           ];
           specialArgs = {
             inherit inputs;
