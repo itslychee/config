@@ -1,10 +1,6 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   boot = {
     kernelParams = ["irqpoll"];
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_9;
     loader.systemd-boot.enable = true;
     binfmt.emulatedSystems = ["aarch64-linux"];
   };
