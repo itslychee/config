@@ -3,7 +3,20 @@
   nodes,
   lib,
   ...
-}: {
+}: let
+  inherit (lib) singleton mapAttrsToList filterAttrs;
+  generateStaticConfigs = {
+    static_configs,
+    pred,
+    job_name,
+  }:
+    singleton {
+      inherit job_name;
+      static_configs = mapAttrsToList (
+        hostname: cfg: (static_configs hostname cfg.config)
+      ) (filterAttrs pred nodes);
+    };
+in {
   # Caddy reverse proxy!
   services.caddy.enable = true;
   services.grafana = {
@@ -13,24 +26,36 @@
     };
     provision = {
       enable = true;
-      datasources.settings.datasources = lib.singleton {
-        name = "Prometheus (Personal Infra)";
-        url = "http://[::1]:${toString config.services.prometheus.port}";
-        type = "prometheus";
-      };
+      datasources.settings.datasources = [
+        {
+          name = "Prometheus (Personal)";
+          url = "http://[::1]:${toString config.services.prometheus.port}";
+          type = "prometheus";
+        }
+      ];
     };
   };
 
   services.prometheus = {
     enable = true;
     scrapeConfigs =
-      lib.mapAttrsToList (name: value: {
-        job_name = name;
-        static_configs = lib.singleton {
-          targets = ["${name}:${toString value.config.services.prometheus.exporters.node.port}"];
+      # Node exporter
+      generateStaticConfigs {
+        pred = n: v: v.config.services.prometheus.exporters.node.enable;
+        job_name = "Nodes";
+        static_configs = hostname: cfg: {
+          targets = singleton "${hostname}:${toString cfg.services.prometheus.exporters.node.port}";
         };
-      })
-      nodes;
+      }
+      ++
+      # Garage exporter
+      generateStaticConfigs {
+        pred = n: v: v.config.services.garage.enable && v.config.services.garage.settings ? admin;
+        job_name = "Garage S3";
+        static_configs = hostname: cfg: {
+          targets = singleton (toString cfg.services.garage.settings.admin.api_bind_addr);
+        };
+      };
   };
 
   services.caddy.virtualHosts = let
