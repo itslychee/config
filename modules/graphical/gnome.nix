@@ -9,6 +9,8 @@ with lib.gvariant; {
     tracker.enable = false;
   };
 
+  services.xserver.displayManager.gdm.autoSuspend = false;
+
   environment.systemPackages = [
     pkgs.gnomeExtensions.dash-to-panel
     pkgs.gnomeExtensions.appindicator
