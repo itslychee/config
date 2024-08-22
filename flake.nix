@@ -70,18 +70,17 @@
       };
       # Hosts
       hellfire.deployment = {
-        tags = ["servers"];
         allowLocalDeployment = mkForce false;
         buildOnTarget = mkForce false;
       };
 
-      hearth.deployment.tags = ["server" "client"];
+      hearth.deployment.tags = ["client"];
       # pathway.deployment.tags = ["server"];
       wiretop.deployment = {
         tags = ["client"];
         buildOnTarget = mkForce false;
       };
-      school-desktop.deployment.tags = ["client"];
+      school-desktop.deployment.tags = ["client" "server"];
       rainforest.deployment.tags = ["server"];
       kaycloud.deployment.tags = ["server"];
       gatekeeper.deployment.tags = ["server"];
