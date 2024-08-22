@@ -29,6 +29,7 @@
   };
 
   services.garage.enable = true;
+  services.tailscale.ip = "100.81.167.82";
 
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;

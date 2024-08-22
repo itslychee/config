@@ -18,6 +18,7 @@
     enable = true;
   };
 
+  services.tailscale.ip = "100.94.118.87";
   networking.firewall.allowedTCPPorts = [80 443];
   # IPv6 public IP
   systemd.network = {
