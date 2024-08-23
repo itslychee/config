@@ -34,7 +34,7 @@
     colmena,
     ...
   } @ inputs: let
-    inherit (nixpkgs.lib) genAttrs mkForce nixosSystem;
+    inherit (nixpkgs.lib) genAttrs mkForce nixosSystem recursiveUpdate;
     inherit (nixpkgs.lib.fileset) toList unions fileFilter;
 
     each = f:
@@ -44,47 +44,53 @@
       ]
       (system: f nixpkgs.legacyPackages.${system});
   in {
-    colmena = {
-      meta = {
-        nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
-        nodeNixpkgs.hellfire = nixpkgs.legacyPackages.aarch64-linux;
-        specialArgs = {inherit inputs;};
-      };
-      defaults = {
-        name,
-        config,
-        ...
-      }: {
-        imports = toList (unions [
-          (fileFilter (p: p.hasExt "nix") ./hosts/${name})
-          ./modules
-        ]);
-
-        networking.hostName = name;
-        users.users.root.openssh.authorizedKeys.keys = config.hey.keys.lychee.deployment;
-
-        deployment = {
-          allowLocalDeployment = true;
-          buildOnTarget = true;
+    colmena =
+      recursiveUpdate {
+        meta = {
+          nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
+          nodeNixpkgs.hellfire = nixpkgs.legacyPackages.aarch64-linux;
+          specialArgs = {inherit inputs;};
         };
-      };
-      # Hosts
-      hellfire.deployment = {
-        allowLocalDeployment = mkForce false;
-        buildOnTarget = mkForce false;
-      };
+        defaults = {
+          name,
+          config,
+          ...
+        }: {
+          imports = toList (unions [
+            (fileFilter (p: p.hasExt "nix") ./hosts/${name})
+            ./modules
+          ]);
 
-      hearth.deployment.tags = ["client"];
-      # pathway.deployment.tags = ["server"];
-      wiretop.deployment = {
-        tags = ["client"];
-        buildOnTarget = mkForce false;
-      };
-      school-desktop.deployment.tags = ["client" "server"];
-      rainforest.deployment.tags = ["server"];
-      kaycloud.deployment.tags = ["server"];
-      gatekeeper.deployment.tags = ["server"];
-    };
+          networking.hostName = name;
+          users.users.root.openssh.authorizedKeys.keys = config.hey.keys.lychee.deployment;
+
+          deployment = {
+            allowLocalDeployment = true;
+            buildOnTarget = true;
+          };
+        };
+        # Hosts
+        hellfire.deployment = {
+          allowLocalDeployment = mkForce false;
+          buildOnTarget = mkForce false;
+        };
+
+        wiretop.deployment.buildOnTarget = mkForce false;
+      }
+      (builtins.mapAttrs (name: value: {deployment.tags = value;}) {
+        hearth = ["client"];
+        wiretop = ["client" "thin-client"];
+        kaycloud = ["server" "vps" "hetzner" "s3"];
+        school-desktop = [
+          "client"
+          "server"
+          "school"
+          "s3"
+        ];
+        rainforest-node-3 = ["server" "school" "s3"];
+        rainforest-node-1 = ["server" "school" "s3"];
+        rainforest-node-2 = ["server" "school" "s3"];
+      });
 
     packages = each (pkgs: rec {
       iso =
