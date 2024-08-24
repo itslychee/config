@@ -61,6 +61,30 @@ require("mini.files").setup {
     use_as_default_explorer = true,
   },
 }
-require("lualine").setup { options = { theme = "dracula" } }
+
+local sections = {
+  lualine_a = { "mode" },
+  lualine_b = {
+    {
+      "filename",
+      file_status = true,
+      path = 1,
+      symbols = {
+        readonly = "[READONLY!]",
+        newfile = "[New Buffer]",
+      },
+    },
+  },
+  lualine_c = { "location" },
+  lualine_x = {},
+  lualine_y = {},
+  lualine_z = { "branch", "diff", "diagnostics" },
+}
+
+require("lualine").setup {
+  options = { theme = "material" },
+  sections = sections,
+  inactive_sections = sections,
+}
 
 k("n", "-", require("mini.files").open)
