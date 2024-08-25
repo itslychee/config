@@ -16,6 +16,7 @@
     ;
   inherit (lib.types) number;
   cfg = config.hey.remote;
+  builders = filterAttrs (name: value: value.config.hey.remote.builder.enable) nodes;
   mkNumericOption = opts: (mkOption {type = number;} // opts);
 in {
   options.hey.remote = {
@@ -31,6 +32,7 @@ in {
   };
 
   config = mkMerge [
+    # Builder
     (mkIf cfg.builder.enable {
       hey.users.builder = {
         enable = true;
@@ -46,6 +48,7 @@ in {
         Match All
       '';
     })
+    # Builder consumer
     (mkIf cfg.use {
       nix = {
         buildMachines =
@@ -64,9 +67,11 @@ in {
             ];
             supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
           })
-          (filterAttrs (name: value: value.config.hey.remote.builder.enable) nodes);
+          builders;
         distributedBuilds = true;
-        settings.builders-use-substitutes = true;
+        settings = {
+          builders-use-substitutes = true;
+        };
       };
     })
   ];
