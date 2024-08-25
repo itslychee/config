@@ -12,6 +12,11 @@
       server = true;
     };
   };
+  hey.remote.builder = {
+    enable = true;
+    maxJobs = 20;
+    speedFactor = 95;
+  };
 
   services.tailscale.ip = "100.108.191.121";
   services.garage = {

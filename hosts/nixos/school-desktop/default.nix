@@ -30,6 +30,11 @@
 
   services.garage.enable = true;
   services.tailscale.ip = "100.81.167.82";
+  hey.remote.builder = {
+    enable = true;
+    maxJobs = 5;
+    speedFactor = 35;
+  };
 
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;

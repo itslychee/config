@@ -16,6 +16,11 @@
   services.garage = {
     enable = true;
   };
+  hey.remote.builder = {
+    enable = true;
+    maxJobs = 20;
+    speedFactor = 100;
+  };
 
   system.stateVersion = "23.11";
 }

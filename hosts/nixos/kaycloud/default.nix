@@ -4,10 +4,12 @@
   inputs,
   ...
 }: {
-  hey.hostKeys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAnZoLOT6p4Pkad9YGTiVQvYTWuT6nG1UN2TeMacMNoG"
-  ];
-  hey.caps.headless = true;
+  hey = {
+    hostKeys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAnZoLOT6p4Pkad9YGTiVQvYTWuT6nG1UN2TeMacMNoG"
+    ];
+    caps.headless = true;
+  };
   networking.networkmanager.enable = lib.mkForce false;
 
   networking.firewall.interfaces.${config.services.tailscale.interfaceName} = {
@@ -32,5 +34,11 @@
         Gateway = "fe80::1";
       };
     };
+  };
+
+  hey.remote.builder = {
+    enable = true;
+    maxJobs = 10;
+    speedFactor = 40;
   };
 }
