@@ -16,7 +16,6 @@
       };
     };
     hardware.pulseaudio.enable = lib.mkForce false; # Ensure this remains off
-    sound.enable = lib.mkForce false; # Ensure this remains off
 
     environment.systemPackages = lib.mkIf config.services.pipewire.enable [
       pkgs.qpwgraph
