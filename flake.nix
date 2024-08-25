@@ -57,7 +57,7 @@
           ...
         }: {
           imports = toList (unions [
-            (fileFilter (p: p.hasExt "nix") ./hosts/${name})
+            (fileFilter (p: p.hasExt "nix") ./hosts/nixos/${name})
             ./modules
           ]);
 

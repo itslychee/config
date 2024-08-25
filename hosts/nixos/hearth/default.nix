@@ -14,7 +14,6 @@
     users.lychee = {
       state = "24.05";
       groups = ["docker"];
-      wms.sway.enable = true;
     };
   };
 

@@ -1,8 +1,12 @@
 {
   config,
   lib,
+  inputs,
   ...
 }: {
+  hey.hostKeys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAnZoLOT6p4Pkad9YGTiVQvYTWuT6nG1UN2TeMacMNoG"
+  ];
   hey.caps.headless = true;
   networking.networkmanager.enable = lib.mkForce false;
 
@@ -14,9 +18,7 @@
     enable = true;
     extraConfig.server = true;
   };
-  services.garage = {
-    enable = true;
-  };
+  services.garage.enable = true;
 
   services.tailscale.ip = "100.94.118.87";
   networking.firewall.allowedTCPPorts = [80 443];
