@@ -13,6 +13,11 @@
     extraConfig.server = true;
   };
   services.garage.enable = true;
+  hey.remote.builder = {
+    enable = true;
+    maxJobs = 20;
+    speedFactor = 55;
+  };
 
   system.stateVersion = "24.05";
 }
