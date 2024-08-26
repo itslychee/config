@@ -45,7 +45,6 @@ in {
 
     programs.gnupg.agent = {
       enableSSHSupport = true;
-      enable = true;
       pinentryPackage = pkgs.pinentry-qt;
     };
   };

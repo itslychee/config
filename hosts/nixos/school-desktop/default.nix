@@ -29,6 +29,7 @@
   };
 
   services.garage.enable = true;
+  programs.gnupg.agent.enable = true;
   services.tailscale.ip = "100.81.167.82";
   hey.remote.builder = {
     enable = true;
