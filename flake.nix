@@ -87,9 +87,10 @@
           "school"
           "s3"
         ];
-        rainforest-node-3 = ["server" "school" "s3"];
         rainforest-node-1 = ["server" "school" "s3"];
         rainforest-node-2 = ["server" "school" "s3"];
+        rainforest-node-3 = ["server" "school" "s3"];
+        rainforest-node-4 = ["server" "school" "s3"];
       });
 
     packages = each (pkgs: rec {
