@@ -15,6 +15,13 @@ with lib.gvariant; {
     pkgs.gnomeExtensions.dash-to-panel
     pkgs.gnomeExtensions.appindicator
   ];
+  environment.gnome.excludePackages = builtins.attrValues {
+    inherit
+      (pkgs)
+      gnome-tour
+      gnome-maps
+      ;
+  };
 
   programs.dconf.profiles.user.databases = [
     {
