@@ -10,20 +10,20 @@
     ];
     caps.headless = true;
   };
+  services.consul = {
+    enable = true;
+    extraConfig.server = true;
+  };
+  services.garage.enable = true;
   networking.networkmanager.enable = lib.mkForce false;
 
   networking.firewall.interfaces.${config.services.tailscale.interfaceName} = {
     allowedTCPPorts = [22000 8384];
     allowedUDPPorts = [21027 22000];
   };
-  services.consul = {
-    enable = true;
-    extraConfig.server = true;
-  };
-  services.garage.enable = true;
 
-  services.tailscale.ip = "100.94.118.87";
   networking.firewall.allowedTCPPorts = [80 443];
+  services.tailscale.ip = "100.94.118.87";
   # IPv6 public IP
   systemd.network = {
     enable = true;
@@ -41,4 +41,16 @@
     maxJobs = 10;
     speedFactor = 40;
   };
+
+  services.headscale = {
+    enable = true;
+    settings.derp.server = {
+      enabled = true;
+      region_id = 990;
+      region_name = config.networking.hostName;
+      stun_listen_addr = "0.0.0.0:3478";
+    };
+  };
+
+  networking.firewall.allowedUDPPorts = [3478];
 }
