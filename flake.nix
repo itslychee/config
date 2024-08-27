@@ -81,7 +81,7 @@
         hearth = ["client"];
         wiretop = ["client" "thin-client"];
         kaycloud = ["server" "vps" "hetzner" "s3"];
-        school-desktop = [
+        rainforest-desktop = [
           "client"
           "server"
           "school"

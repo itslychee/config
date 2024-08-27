@@ -21,7 +21,7 @@
 in {
   options.hey.remote = {
     use = mkOption {
-      default = true;
+      default = false;
       description = "Use remote builder infrastructure";
     };
     builder = {
