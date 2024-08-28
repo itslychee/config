@@ -19,7 +19,20 @@ with lib.gvariant; {
     inherit
       (pkgs)
       gnome-tour
+      ;
+    inherit
+      (pkgs.gnome)
+      geary
+      gnome-disk-utility
       gnome-maps
+      gnome-weather
+      gnome-calculator
+      gnome-calendar
+      gnome-contacts
+      gnome-notes
+      gnome-system-monitor
+      epiphany
+      yelp
       ;
   };
 
