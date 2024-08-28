@@ -860,6 +860,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_10": {
+      "locked": {
+        "lastModified": 1724479785,
+        "narHash": "sha256-pP3Azj5d6M5nmG68Fu4JqZmdGt4S4vqI5f8te+E/FTw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d0e1602ddde669d5beb01aec49d71a51937ed7be",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1696019113,
@@ -958,6 +974,22 @@
     },
     "nixpkgs_8": {
       "locked": {
+        "lastModified": 1724479785,
+        "narHash": "sha256-pP3Azj5d6M5nmG68Fu4JqZmdGt4S4vqI5f8te+E/FTw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d0e1602ddde669d5beb01aec49d71a51937ed7be",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_9": {
+      "locked": {
         "lastModified": 1720687749,
         "narHash": "sha256-nqJ+iK/zyqCJ/YShqCpZ2cJKE1UtjZIEUWLUFZqvxcA=",
         "owner": "NixOS",
@@ -972,19 +1004,21 @@
         "type": "github"
       }
     },
-    "nixpkgs_9": {
+    "nvim": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_8"
+      },
       "locked": {
-        "lastModified": 1724479785,
-        "narHash": "sha256-pP3Azj5d6M5nmG68Fu4JqZmdGt4S4vqI5f8te+E/FTw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "d0e1602ddde669d5beb01aec49d71a51937ed7be",
+        "lastModified": 1724867420,
+        "narHash": "sha256-AEt+N+1nt/WrMG8VEMR6kryPNL138yqyKB+9FOgyBOQ=",
+        "owner": "itslychee",
+        "repo": "nvim",
+        "rev": "8a3855e76040bdcd8db1d9c7fdc39be061e714cd",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
+        "owner": "itslychee",
+        "repo": "nvim",
         "type": "github"
       }
     },
@@ -1066,6 +1100,7 @@
         "liburing": "liburing",
         "mpdrp": "mpdrp",
         "nixpkgs": "nixpkgs_7",
+        "nvim": "nvim",
         "soteria": "soteria",
         "spice": "spice",
         "templates": "templates",
@@ -1093,7 +1128,7 @@
       "inputs": {
         "crane": "crane_4",
         "flake-utils": "flake-utils_6",
-        "nixpkgs": "nixpkgs_8"
+        "nixpkgs": "nixpkgs_9"
       },
       "locked": {
         "lastModified": 1721524897,
@@ -1112,7 +1147,7 @@
     "spice": {
       "inputs": {
         "flake-compat": "flake-compat_8",
-        "nixpkgs": "nixpkgs_9"
+        "nixpkgs": "nixpkgs_10"
       },
       "locked": {
         "lastModified": 1724818600,

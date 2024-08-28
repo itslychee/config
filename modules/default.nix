@@ -23,6 +23,7 @@ in {
       inherit
         (pkgs)
         htop
+        colmena
         ripgrep
         dnsutils
         jq

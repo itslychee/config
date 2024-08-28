@@ -8,8 +8,8 @@
   cfg = config.hey.programs.neovim;
   inherit (lib) mkOption mkIf mkMerge mkEnableOption;
   inherit (lib.types) bool package listOf;
-  inherit (inputs.self.packages.${pkgs.system}) nvim;
   inherit (inputs.unstable.legacyPackages.${pkgs.system}.vimPlugins) nvim-treesitter;
+  nvim = inputs.nvim.packages.${pkgs.system};
 in {
   options = {
     hey.programs.neovim = {
@@ -19,28 +19,20 @@ in {
         description = "Enable my editor system-wide";
       };
 
-      grammars = mkOption {
-        type = package;
-        default = nvim-treesitter.withPlugins (p: [p.nix p.bash]);
-      };
-
-      noLSPs = mkEnableOption "Do not include LSPs with Neovim";
-
       extraLSPs = mkOption {
         type = listOf package;
         default = [];
       };
     };
   };
-  config = mkMerge [
+  config = mkIf cfg.enable (mkMerge [
     (mkIf (!config.hey.caps.graphical) {
-      hey.programs.neovim.noLSPs = true;
+      environment.systemPackages = lib.singleton nvim.minimal;
     })
     (mkIf config.hey.caps.graphical {
-      hey.programs.neovim.grammars = nvim-treesitter.withAllGrammars;
+      environment.systemPackages = lib.singleton (nvim.full.override (old: {
+        extraBinaries = (old.extraBinaries or []) ++ cfg.extraLSPs;
+      }));
     })
-    (mkIf cfg.enable {
-      environment.systemPackages = [(nvim.override {inherit (cfg) grammars noLSPs extraLSPs;})];
-    })
-  ];
+  ]);
 }
