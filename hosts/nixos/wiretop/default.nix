@@ -18,17 +18,6 @@
     };
   };
 
-  hardware.cpu.intel.updateMicrocode = true;
-  hardware.bluetooth.enable = true;
-
-  services.fwupd.enable = true;
-  services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-  environment.systemPackages = [pkgs.remmina];
   programs.gnupg.agent.enable = true;
 
   # hey cutie, don't touch!
