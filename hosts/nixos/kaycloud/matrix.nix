@@ -28,8 +28,6 @@ in {
       allow_public_room_directory_over_federation = true;
       ip_lookup_strategy = 4; # We like IPv6
       database_backend = "rocksdb";
-      allow_registration = true;
-      registration_token = "wires in my wireless device";
       allow_guests_auto_join_rooms = true;
       auto_join_rooms = [
         "!KOUIT9ZooerEDE9Lj4:wires.cafe"

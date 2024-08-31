@@ -5,6 +5,7 @@
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     colmena.url = "github:zhaofengli/colmena";
     spice.url = "github:Gerg-L/spicetify-nix";
+    nvim.url = "github:itslychee/nvim";
     liburing = {
       url = "github:axboe/liburing?ref=master";
       flake = false;
@@ -93,7 +94,7 @@
         rainforest-node-4 = ["server" "school" "s3"];
       });
 
-    packages = each (pkgs: rec {
+    packages = each (pkgs: {
       iso =
         (nixosSystem {
           modules = [
@@ -113,14 +114,6 @@
         .system
         .build
         .isoImage;
-      nvim = inputs.unstable.legacyPackages.${pkgs.system}.callPackage ./pkgs/nvim.nix {};
-      default = nvim;
-    });
-
-    devShells = each (pkgs: {
-      default = pkgs.mkShell {
-        packages = [pkgs.colmena];
-      };
     });
   };
 }
