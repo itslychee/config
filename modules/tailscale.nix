@@ -15,6 +15,7 @@ in {
       openFirewall = true;
     };
 
+    services.openssh.enable = true;
     services.openssh.openFirewall = false;
     networking.firewall.interfaces.${interfaceName} = {
       allowedTCPPorts = [22];
