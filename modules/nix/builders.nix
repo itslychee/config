@@ -16,7 +16,7 @@
     ;
   inherit (lib.types) number;
   cfg = config.hey.remote;
-  builders = filterAttrs (name: value: value.config.hey.remote.builder.enable) nodes;
+  builders = filterAttrs (_name: value: value.config.hey.remote.builder.enable) nodes;
   mkNumericOption = opts: (mkOption {type = number;} // opts);
 in {
   options.hey.remote = {
@@ -36,7 +36,7 @@ in {
     (mkIf cfg.builder.enable {
       hey.users.builder = {
         enable = true;
-        sshKeys = flatten (mapAttrsToList (name: value: value.config.hey.hostKeys) nodes);
+        sshKeys = flatten (mapAttrsToList (_name: value: value.config.hey.hostKeys) nodes);
       };
       nix.settings.trusted-users = ["builder"];
       # Inspired by https://github.com/Gerg-L/nixos/blob/d9b34c246450bf359fb00ff3fee7a7b86b936135/hosts/gerg-desktop/services/nix-serve.nix#L26

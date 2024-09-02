@@ -1,12 +1,4 @@
 {pkgs, ...}: {
-  environment.defaultPackages = [pkgs.git];
-
-  programs.direnv = {
-    enable = true;
-    silent = true;
-    nix-direnv.enable = true;
-  };
-
   programs.zsh = {
     enable = true;
     enableLsColors = false;

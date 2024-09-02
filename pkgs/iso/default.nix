@@ -26,7 +26,7 @@ in {
   services.kmscon.autologinUser = "lychee";
   services.fail2ban.enable = false;
 
-  hey.caps.headless = true;
+  programs.starship.enable = mkForce false;
 
   # for nixos-anywhere
   environment.systemPackages = [pkgs.rsync];

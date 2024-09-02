@@ -10,8 +10,6 @@
   inherit (lib.fileset) toList fileFilter;
   cfg = filterAttrs (_k: v: v.enable) config.hey.users;
 in {
-  imports = [inputs.home-manager.nixosModules.default];
-
   options.hey.users = mkOption {
     description = "Hey user management";
     type = attrsOf (submodule (_: {
@@ -36,52 +34,16 @@ in {
           description = "Path to hashed password";
           default = null;
         };
-
         sshKeys = mkOption {
           type = listOf str;
           description = "SSH Keys for OpenSSH";
           default = [];
-        };
-
-        state = mkOption {
-          type = nullOr str;
-          default = null;
-          description = "Home Manager state version";
-        };
-
-        wms.sway = {
-          enable = mkEnableOption "Sway";
-          outputs = mkOption {
-            type = attrsOf (attrsOf str);
-            default = {};
-          };
         };
       };
     }));
   };
 
   config = {
-    home-manager = {
-      backupFileExtension = "backup.${inputs.self.rev or "dirty"}";
-      extraSpecialArgs = {
-        inherit inputs;
-      };
-      useGlobalPkgs = true;
-      useUserPackages = true;
-      users =
-        mapAttrs (
-          name: value: {
-            imports = toList (fileFilter (file: file.hasExt "nix") ../users/${name});
-
-            home.stateVersion = value.state;
-            wayland.windowManager.sway = {
-              inherit (value.wms.sway) enable;
-              config.output = value.wms.sway.outputs;
-            };
-          }
-        )
-        (filterAttrs (_: value: value.state != null) cfg);
-    };
     users.users =
       mapAttrs (_name: value: {
         inherit (value) packages;

@@ -1,15 +1,8 @@
 {
   pkgs,
   config,
-  lib,
   ...
-}: let
-  inherit
-    (lib)
-    flatten
-    optionals
-    ;
-in {
+}: {
   # should be obvious why this is global
   hey.users.lychee = {
     enable = true;
@@ -28,22 +21,5 @@ in {
       "wireshark"
     ];
     sshKeys = config.hey.keys.lychee.ssh;
-    packages = flatten [
-      (optionals config.hey.caps.graphical (builtins.attrValues {
-        inherit
-          (pkgs)
-          anki
-          qbittorrent
-          firefox
-          gimp
-          vesktop
-          ;
-      }))
-    ];
-  };
-
-  programs.wireshark = {
-    package = pkgs.wireshark;
-    enable = config.hey.caps.graphical;
   };
 }

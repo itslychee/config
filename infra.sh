@@ -10,7 +10,7 @@ LIGHTRED="\e[91m"
 
 execute_command() {
     set +e
-    ssh -o ConnectTimeout=5 "$1" -C "$2"
+    ssh -o ConnectTimeout=5 root@"$1" -C "$2"
     set -e
 }
 
