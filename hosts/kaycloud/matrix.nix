@@ -36,7 +36,6 @@ in {
       auto_join_rooms = [
         "!KOUIT9ZooerEDE9Lj4:wires.cafe"
       ];
-      allow_legacy_media = false;
     };
   };
 
