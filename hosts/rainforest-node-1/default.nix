@@ -8,7 +8,7 @@
       inherit (config.hey.users.lychee) sshKeys enable;
     };
 
-    hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICAKg9ZgbTR5ftw+nrm+Ch7Xl4LBs4z9M+e45/K0pG4u";
+    hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGSuccGN1fYQQqKWK5Eg+Ldj7H1a6LDIJsXxI3646Jgg";
   };
 
   hey.remote.builder = {
@@ -17,5 +17,5 @@
     speedFactor = 100;
   };
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 }
