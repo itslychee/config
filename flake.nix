@@ -60,33 +60,5 @@
           deployment.buildOnTarget = true;
         };
       };
-
-      perSystem = {
-        self',
-        inputs',
-        pkgs,
-        lib,
-        ...
-      }: {
-        packages.iso =
-          (lib.nixosSystem {
-            modules = [
-              {
-                nixpkgs.hostPlatform = pkgs.stdenv.system;
-              }
-              ./pkgs/iso
-              inputs'.colmena.nixosModules.deploymentOptions
-            ];
-            specialArgs = {
-              inherit inputs;
-              # hack to make the modules behave with the out-of-hive module instance
-              nodes = (inputs'.colmena.lib.makeHive self'.colmena).introspect ({nodes, ...}: nodes);
-            };
-          })
-          .config
-          .system
-          .build
-          .isoImage;
-      };
     };
 }
