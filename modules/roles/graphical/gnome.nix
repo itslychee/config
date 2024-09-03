@@ -28,6 +28,7 @@ in
           geary
           gnome-disk-utility
           gnome-maps
+          gnome-music
           gnome-weather
           gnome-calculator
           gnome-calendar
