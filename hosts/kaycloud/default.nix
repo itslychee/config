@@ -34,15 +34,5 @@
     speedFactor = 40;
   };
 
-  services.headscale = {
-    enable = true;
-    settings.derp.server = {
-      enabled = true;
-      region_id = 990;
-      region_name = config.networking.hostName;
-      stun_listen_addr = "0.0.0.0:3478";
-    };
-  };
-
   networking.firewall.allowedUDPPorts = [3478];
 }
