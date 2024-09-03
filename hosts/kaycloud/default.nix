@@ -8,10 +8,6 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAnZoLOT6p4Pkad9YGTiVQvYTWuT6nG1UN2TeMacMNoG"
     ];
   };
-  services.consul = {
-    enable = true;
-    extraConfig.server = true;
-  };
   networking.networkmanager.enable = lib.mkForce false;
 
   networking.firewall.interfaces.${config.services.tailscale.interfaceName} = {
@@ -20,7 +16,6 @@
   };
 
   networking.firewall.allowedTCPPorts = [80 443];
-  services.tailscale.ip = "100.94.118.87";
   # IPv6 public IP
   systemd.network = {
     enable = true;

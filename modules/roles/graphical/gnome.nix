@@ -9,6 +9,10 @@
 in
   mkIf config.services.xserver.desktopManager.gnome.enable {
     services.xserver.displayManager.gdm.autoSuspend = false;
+    services.gnome = lib.mkForce {
+      gnome-keyring.enable = false;
+      tracker.enable = false;
+    };
     environment = {
       systemPackages = attrValues {
         inherit (pkgs.gnomeExtensions) dash-to-panel appindicator;

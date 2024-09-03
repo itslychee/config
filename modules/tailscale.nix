@@ -5,9 +5,6 @@
 }: let
   inherit (config.services.tailscale) interfaceName;
 in {
-  options.services.tailscale.ip = lib.mkOption {
-    type = lib.types.str;
-  };
   config = {
     services.tailscale = {
       enable = true;

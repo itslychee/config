@@ -12,8 +12,6 @@
     };
   };
 
-  programs.gnupg.agent.enable = true;
-
   # hey cutie, don't touch!
   system.stateVersion = "24.05";
 }

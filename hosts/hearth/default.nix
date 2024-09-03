@@ -32,7 +32,6 @@
   };
 
   programs.steam.enable = true;
-  programs.gnupg.agent.enable = true;
   services.fstrim.enable = true;
   # do not touch ever! #
 

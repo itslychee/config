@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = lib.fileset.toList (lib.fileset.difference ./. ./default.nix);
+
   deployment.tags = ["graphical"];
   hey.roles.graphical = true;
 
@@ -17,4 +23,6 @@
     silent = true;
     nix-direnv.enable = true;
   };
+
+  environment.systemPackages = [pkgs.vesktop pkgs.firefox];
 }

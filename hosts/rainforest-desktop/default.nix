@@ -19,8 +19,6 @@
     displayManager.gdm.enable = true;
   };
 
-  programs.gnupg.agent.enable = true;
-  services.tailscale.ip = "100.123.212.62";
   hey.remote.builder = {
     enable = true;
     maxJobs = 5;
@@ -30,5 +28,4 @@
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
   system.stateVersion = "24.05";
-  services.consul.enable = true;
 }

@@ -10,12 +10,7 @@
 
     hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICAKg9ZgbTR5ftw+nrm+Ch7Xl4LBs4z9M+e45/K0pG4u";
   };
-  services.tailscale.ip = "100.96.217.97";
 
-  services.consul = {
-    enable = true;
-    extraConfig.server = true;
-  };
   hey.remote.builder = {
     enable = true;
     maxJobs = 20;
