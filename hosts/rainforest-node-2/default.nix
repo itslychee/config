@@ -10,3 +10,4 @@
     maxJobs = 20;
     speedFactor = 95;
   };
+}
