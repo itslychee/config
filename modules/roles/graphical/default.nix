@@ -24,5 +24,5 @@
     nix-direnv.enable = true;
   };
 
-  environment.systemPackages = [pkgs.vesktop pkgs.firefox];
+  environment.systemPackages = [pkgs.firefox pkgs.colmena];
 }

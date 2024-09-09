@@ -3,6 +3,7 @@
   inputs,
   ...
 }: {
+  imports = [inputs.nixos-cosmic.nixosModules.default];
   boot = {
     kernelParams = ["irqpoll"];
     loader.systemd-boot.enable = true;
@@ -17,7 +18,8 @@
   };
 
   environment.systemPackages = builtins.attrValues {
-    inherit (pkgs) nix-tree nixpkgs-review;
+    inherit (pkgs) nix-tree nixpkgs-review winetricks vesktop;
+    inherit (pkgs.wineWowPackages) stable;
   };
 
   hardware = {
@@ -33,10 +35,10 @@
 
   programs.steam.enable = true;
   services.fstrim.enable = true;
-  # do not touch ever! #
 
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
+  networking.firewall.trustedInterfaces = ["virbr0"];
   # hey.remote.use = true;
 
   system.stateVersion = "24.05";

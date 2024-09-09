@@ -68,12 +68,12 @@ in {
     in ''
       reverse_proxy /_matrix* http://${conduit.address}:${toString conduit.port}
     '';
-    "cinny.wires.cafe".extraConfig = ''
-      encode zstd gzip
-      file_server * {
-        root ${cinny}
-      }
-    '';
+    # "cinny.wires.cafe".extraConfig = ''
+    #   encode zstd gzip
+    #   file_server * {
+    #     # root ${cinny}
+    #   }
+    # '';
     "element.wires.cafe".extraConfig = ''
       encode zstd gzip
       file_server * {

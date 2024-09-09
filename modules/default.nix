@@ -13,6 +13,7 @@ in {
 
   documentation.nixos.enable = mkForce false;
   programs.command-not-found.enable = false;
+  boot.tmp.cleanOnBoot = true;
 
   environment.pathsToLink = ["/share"];
 }

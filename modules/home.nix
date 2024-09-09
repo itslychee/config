@@ -1,12 +1,31 @@
 {
   pkgs,
-  inputs,
   lib,
   config,
   ...
 }: let
-  inherit (lib) mkOption mkEnableOption mapAttrs filterAttrs;
-  inherit (lib.types) submodule attrsOf listOf package str nullOr bool;
+  inherit
+    (lib)
+    mkMerge
+    mkOption
+    mkEnableOption
+    mapAttrs
+    filterAttrs
+    flatten
+    mapAttrsToList
+    ;
+  inherit
+    (lib.types)
+    submodule
+    attrsOf
+    listOf
+    package
+    str
+    nullOr
+    bool
+    lines
+    path
+    ;
   inherit (lib.fileset) toList fileFilter;
   cfg = filterAttrs (_k: v: v.enable) config.hey.users;
 in {
@@ -25,13 +44,9 @@ in {
           default = [];
           description = "user groups";
         };
-        usePasswdFile = mkOption {
-          type = bool;
-          default = true;
-        };
-        passwordFile = mkOption {
+        hashedPassword = mkOption {
           type = nullOr str;
-          description = "Path to hashed password";
+          description = "hashed password";
           default = null;
         };
         sshKeys = mkOption {
@@ -39,20 +54,62 @@ in {
           description = "SSH Keys for OpenSSH";
           default = [];
         };
+        files = mkOption {
+          description = "systemd.tmpfiles file management";
+          default = {};
+          type = attrsOf (submodule ({config, ...}: {
+            options = {
+              text = mkOption {
+                type = nullOr lines;
+                default = null;
+              };
+              source = mkOption {
+                type = nullOr path;
+                default = null;
+              };
+            };
+          }));
+        };
       };
     }));
   };
 
-  config = {
-    users.users =
-      mapAttrs (_name: value: {
-        inherit (value) packages;
-        isNormalUser = true;
-        hashedPasswordFile = value.passwordFile;
-        extraGroups = value.groups;
-        shell = pkgs.zsh;
-        openssh.authorizedKeys.keys = value.sshKeys;
-      })
-      cfg;
-  };
+  config = mkMerge [
+    {
+      users.users =
+        mapAttrs (_name: value: {
+          inherit (value) packages hashedPassword;
+          isNormalUser = true;
+          extraGroups = value.groups;
+          shell = pkgs.zsh;
+          openssh.authorizedKeys.keys = value.sshKeys;
+        })
+        cfg;
+    }
+    {
+      # Ensure option validity with files
+      assertions = flatten (mapAttrsToList (username: value:
+        mapAttrsToList (
+          path: opts: {
+            message = "${username}: ${path} has conflicting source & text definitions, please use only one";
+            assertion = (opts.text != null && opts.source == null) || (opts.text == null && opts.source != null);
+          }
+        )
+        value.files)
+      cfg);
+
+      # Add the files
+      systemd.user.tmpfiles.users =
+        builtins.mapAttrs (name: options: {
+          rules = mapAttrsToList (path: value: let
+            source =
+              if value.source != null
+              then value.source
+              else pkgs.writeText path value.text;
+          in "L+ %h/${path} - - - - ${source}")
+          options.files;
+        })
+        cfg;
+    }
+  ];
 }

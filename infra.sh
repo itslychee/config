@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash -p jq bash
 set -e
 
 nodes=$(nix eval --apply 'with builtins; l: (filter (x: !elem x [ "defaults" "meta" "network" ])) (builtins.attrNames l)' --no-warn-dirty  --json .#colmena  | jq -r ".[]")

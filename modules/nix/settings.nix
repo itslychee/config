@@ -5,14 +5,14 @@
   inputs,
   ...
 }: let
-  inherit (lib) mapAttrs' mapAttrsToList;
+  inherit (lib) mapAttrs' mapAttrsToList filterAttrs;
   inputFarm = pkgs.linkFarm "input-farm" (mapAttrsToList (name: path: {
       inherit
         name
         path
         ;
     })
-    inputs);
+    (filterAttrs (name: value: name != "self") inputs));
 in {
   # Unfree stuff <3
   environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
@@ -36,10 +36,12 @@ in {
       flake-registry = "";
       substituters = [
         "https://lychee.cachix.org"
+        "https://cosmic.cachix.org"
       ];
-      trusted-substituters = ["lychee.cachix.org-1:hyDZbHeziUb/pgU79Gy7wd6aGka8WQByZjP2DAalICw="];
+      trusted-substituters = ["lychee.cachix.org-1:hyDZbHeziUb/pgU79Gy7wd6aGka8WQByZjP2DAalICw=" "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
       trusted-public-keys = [
         "lychee.cachix.org-1:hyDZbHeziUb/pgU79Gy7wd6aGka8WQByZjP2DAalICw="
+        "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
       ];
       trusted-users = [
         "@wheel"

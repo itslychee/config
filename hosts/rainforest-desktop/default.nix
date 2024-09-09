@@ -10,7 +10,7 @@
     nssmdns4 = true;
     openFirewall = true;
   };
-  environment.systemPackages = [pkgs.remmina pkgs.libreoffice];
+  environment.systemPackages = [pkgs.remmina pkgs.gnome-network-displays];
 
   hey.hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGmZ4ydKauxo7XWxs7KBscNs+467oyFtC9jIevfiZOzv";
   services.xserver = {
@@ -25,7 +25,13 @@
     speedFactor = 35;
   };
 
+  programs.wireshark.enable = true;
+  programs.wireshark.package = pkgs.wireshark-qt;
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
   system.stateVersion = "24.05";
+  networking.firewall = {
+    allowedTCPPorts = [7236 7250];
+    allowedUDPPorts = [7236 7250];
+  };
 }

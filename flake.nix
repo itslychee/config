@@ -5,6 +5,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
     conduwuit.url = "github:girlbossceo/conduwuit?ref=v0.4.6";
+
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     flake-parts,
@@ -12,7 +17,7 @@
     ...
   } @ inputs: let
     inherit (nixpkgs.lib) flatten mkOption;
-    inherit (nixpkgs.lib.types) lazyAttrsOf raw;
+    inherit (nixpkgs.lib.types) lazyAttrsOf raw attrsOf;
     inherit
       (nixpkgs.lib.fileset)
       toList
@@ -42,6 +47,7 @@
         meta = {
           nixpkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
           specialArgs = {inherit inputs;};
+          nodeNixpkgs.hellfire = inputs.nixpkgs.legacyPackages.aarch64-linux;
         };
         defaults = {
           name,

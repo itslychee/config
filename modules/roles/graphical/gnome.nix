@@ -8,7 +8,10 @@
   inherit (lib) mkIf;
 in
   mkIf config.services.xserver.desktopManager.gnome.enable {
-    services.xserver.displayManager.gdm.autoSuspend = false;
+    services.xserver = {
+      displayManager.gdm.autoSuspend = false;
+      excludePackages = [pkgs.xterm];
+    };
     services.gnome = lib.mkForce {
       gnome-keyring.enable = false;
       tracker.enable = false;
@@ -16,12 +19,16 @@ in
     environment = {
       systemPackages = attrValues {
         inherit (pkgs.gnomeExtensions) dash-to-panel appindicator;
+        inherit (pkgs) papirus-icon-theme ant-theme;
       };
+
       gnome.excludePackages = attrValues {
         inherit
           (pkgs)
           gnome-tour
           snapshot
+          xterm
+          gnome-text-editor
           ;
         inherit
           (pkgs.gnome)
@@ -40,7 +47,6 @@ in
           ;
       };
     };
-
     programs.dconf.profiles.user.databases = with lib.gvariant; [
       {
         settings = {
@@ -51,6 +57,7 @@ in
             last-window-size = mkTuple [(mkInt32 1452) (mkInt32 890)];
             use-system-font = false;
           };
+
           "org/gnome/Totem" = {
             active-plugins = ["skipto" "recent" "screenshot" "rotation" "movie-properties" "apple-trailers" "screensaver" "autoload-subtitles" "open-directory" "mpris" "variable-rate" "vimeo" "save-file"];
             subtitle-encoding = "UTF-8";
@@ -83,7 +90,6 @@ in
             name = "suse-yast.directory";
             translate = true;
           };
-          "org/gnome/settings-daemon/plugins/power".sleep-inactive-ac-timeout = mkInt32 0;
 
           "org/gnome/desktop/background" = {
             color-shading-type = "solid";
@@ -100,14 +106,25 @@ in
           };
 
           "org/gnome/desktop/interface" = {
-            color-scheme = "default";
-            gtk-enable-primary-paste = false;
-            icon-theme = "Adwaita";
             clock-format = "12h";
+            color-scheme = "prefer-dark";
+            gtk-enable-primary-paste = false;
+            # Themes!
+            icon-theme = "Papirus-Dark";
+            gtk-theme = "Ant";
           };
 
           "org/gnome/desktop/notifications" = {
-            application-children = ["firefox" "spotify" "org-gnome-console" "gnome-power-panel" "org-rncbc-qpwgraph" "steam" "org-gnome-characters"];
+            application-children = [
+              "firefox"
+              "spotify"
+              "org-gnome-console"
+              "gnome-power-panel"
+              "org-rncbc-qpwgraph"
+              "steam"
+              "org-gnome-characters"
+              "vesktop"
+            ];
           };
 
           "org/gnome/desktop/notifications/application/firefox" = {
@@ -136,6 +153,10 @@ in
 
           "org/gnome/desktop/notifications/application/steam" = {
             application-id = "steam.desktop";
+          };
+
+          "org/gnome/desktop/notifications/application/vesktop" = {
+            application-id = "vesktop.desktop";
           };
 
           "org/gnome/desktop/peripherals/mouse" = {
@@ -229,32 +250,90 @@ in
             maximized = false;
           };
 
+          "org/gnome/settings-daemon/plugins/power" = {
+            sleep-inactive-ac-timeout = mkInt32 0;
+          };
+
+          "org/gnome/shell" = {
+            enabled-extensions = [
+              "dash-to-panel@jderose9.github.com"
+              "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+              "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+              "appindicatorsupport@rgcjonas.gmail.com"
+            ];
+            favorite-apps = ["org.gnome.Nautilus.desktop" "firefox.desktop"];
+            welcome-dialog-last-shown-version = "46.2";
+          };
+
+          # "org/gnome/shell/extensions/dash-to-panel" = {
+          #   animate-appicon-hover = true;
+          #   animate-appicon-hover-animation-extent = [
+          #     (mkDictionaryEntry "RIPPLE" (mkInt32 2))
+          #     (mkDictionaryEntry "PLANK" (mkInt32 4))
+          #     (mkDictionaryEntry "SIMPLE" (mkInt32 1))
+          #   ];
+          #   animate-appicon-hover-animation-rotation = [
+          #     (mkDictionaryEntry "SIMPLE" (mkInt32 0))
+          #     (mkDictionaryEntry "RIPPLE" (mkInt32 5))
+          #     (mkDictionaryEntry "PLANK" (mkInt32 0))
+          #   ];
+          #   animate-appicon-hover-animation-type = "RIPPLE";
+          #   appicon-margin = mkInt32 2;
+          #   appicon-padding = mkInt32 4;
+          #   appicon-style = "NORMAL";
+          #   available-monitors = [(mkInt32 0)];
+          #   dot-position = "BOTTOM";
+          #   hotkeys-overlay-combo = "TEMPORARILY";
+          #   isolate-workspaces = false;
+          #   leftbox-padding = mkInt32 (-1);
+          #   panel-anchors = ''
+          #     {"0":"MIDDLE"}
+          #   '';
+          #   panel-lengths = ''
+          #     {"0":100}
+          #   '';
+          #   panel-positions = ''
+          #     {"0":"BOTTOM"}\n
+          #   '';
+          #   panel-sizes = ''
+          #     {"0":32}
+          #   '';
+          #   primary-monitor = mkInt32 0;
+          #   show-apps-icon-file = "";
+          #   status-icon-padding = mkInt32 (-1);
+          #   stockgs-keep-dash = false;
+          #   trans-bg-color = "#673131";
+          #   trans-panel-opacity = mkDouble "0.5";
+          #   trans-use-custom-bg = false;
+          #   trans-use-custom-opacity = true;
+          #   trans-use-dynamic-opacity = true;
+          #   tray-padding = mkInt32 (-1);
+          #   window-preview-title-position = "TOP";
+          # };
           "org/gnome/shell/extensions/dash-to-panel" = {
             animate-appicon-hover = true;
             animate-appicon-hover-animation-extent = [
-              (mkDictionaryEntry "RIPPLE" (mkInt32 2))
+              (mkDictionaryEntry "RIPPLE" (mkInt32 4))
               (mkDictionaryEntry "PLANK" (mkInt32 4))
               (mkDictionaryEntry "SIMPLE" (mkInt32 1))
             ];
-            animate-appicon-hover-animation-rotation = [
-              (mkDictionaryEntry "SIMPLE" (mkInt32 0))
-              (mkDictionaryEntry "RIPPLE" (mkInt32 5))
-              (mkDictionaryEntry "PLANK" (mkInt32 0))
-            ];
-            animate-appicon-hover-animation-type = "RIPPLE";
-            appicon-margin = mkInt32 2;
-            appicon-padding = mkInt32 4;
+            appicon-margin = mkInt32 1;
+            appicon-padding = mkInt32 2;
             appicon-style = "NORMAL";
             available-monitors = [(mkInt32 0)];
-            dot-position = "BOTTOM";
+            desktop-line-custom-color = "rgb(255,154,210)";
+            desktop-line-use-custom-color = true;
+            dot-position = "TOP";
+            dot-style-focused = "METRO";
+            dot-style-unfocused = "SQUARES";
             hotkeys-overlay-combo = "TEMPORARILY";
-            isolate-workspaces = false;
+            intellihide = false;
             leftbox-padding = mkInt32 (-1);
             panel-anchors = ''
               {"0":"MIDDLE"}
             '';
             panel-element-positions = ''
-              {"0":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedTL"},{"element":"rightBox","visible":true,"position":"stackedTL"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"activitiesButton","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}]}
+              {"0":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"centerMonitor"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}
             '';
             panel-lengths = ''
               {"0":100}
@@ -266,11 +345,9 @@ in
               {"0":32}
             '';
             primary-monitor = mkInt32 0;
-            show-apps-icon-file = "";
+            show-showdesktop-hover = true;
             status-icon-padding = mkInt32 (-1);
-            trans-bg-color = "#673131";
-            trans-panel-opacity = mkDouble "0.5";
-            trans-use-custom-bg = false;
+            trans-panel-opacity = mkDouble "0.1";
             trans-use-custom-opacity = true;
             trans-use-dynamic-opacity = true;
             tray-padding = mkInt32 (-1);

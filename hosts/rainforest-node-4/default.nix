@@ -12,5 +12,11 @@
     speedFactor = 85;
   };
 
+  services.consul.extraConfig.server = true;
+
   system.stateVersion = "24.05";
+  virtualisation.libvirtd = {
+    enable = true;
+    allowedBridges = ["eno2"];
+  };
 }

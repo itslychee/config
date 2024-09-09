@@ -17,5 +17,9 @@
     speedFactor = 100;
   };
 
+  services.consul.extraConfig = {
+    server = true;
+    bootstrap_expect = 1;
+  };
   system.stateVersion = "24.05";
 }

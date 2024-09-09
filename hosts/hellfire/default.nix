@@ -51,17 +51,9 @@
       enable = true;
       matchConfig.Name = "end0";
       networkConfig = {
-        Address = "10.0.1.1/24";
+        IPMasquerade = "both";
+        Bridge = config.services.tailscale.interfaceName;
       };
-    };
-  };
-
-  services.dnsmasq = {
-    enable = true;
-    resolveLocalQueries = false;
-    settings = {
-      interface = "end0";
-      server = ["1.1.1.1" "1.0.0.1"];
     };
   };
 
