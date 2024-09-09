@@ -19,7 +19,6 @@ in {
     "net.core.default_qdisc" = "fq";
     "net.ipv4.tcp_congestion_control" = "bbr";
   };
-  fonts.fontconfig.enable = mkDefault false;
   systemd = {
     enableEmergencyMode = false;
     watchdog = {
