@@ -19,9 +19,11 @@ in {
         advertise = config.services.tailscale.interfaceName;
       };
       extraConfig = {
-        # I am lazy af https://github.com/viperML/dotfiles/blob/a13a949f4739384cadebe9b49262348a1e4badb4/modules/nixos/consul.nix
-        client_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }} {{ GetAllInterfaces | include "flags" "loopback" | join "address" " " }}'';
         retry_join = builtins.attrNames (lib.filterAttrs (name: value: value.config.services.consul.enable && name != config.networking.hostName) nodes);
+        # https://github.com/viperML/dotfiles/blob/f6b62b75556b111815524675958e383cd5ef534c/modules/nixos/consul.nix#L20C9-L20C147
+        advertise_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }}'';
+        client_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }} {{ GetAllInterfaces | include "flags" "loopback" | join "address" " " }}'';
+        bind_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }} {{ GetAllInterfaces | include "flags" "loopback" | join "address" " " }}'';
       };
     };
 
@@ -49,6 +51,7 @@ in {
         replication_factor = 2;
         compression_level = 0;
         rpc_bind_addr = "[::]:3901";
+        rpc_public_addr = "AAA";
         consul_discovery = {
           service_name = "garage-s3";
           consul_http_addr = "http://127.0.0.1:8500";
@@ -59,6 +62,32 @@ in {
           root_domain = ".s3.wires.cafe";
         };
       };
+    };
+
+    systemd.services = {
+      # Make changing this easier
+      garage-fix = {
+        before = ["garage.service"];
+        after = ["tailscaled.service"];
+        requires = ["garage.service" "tailscaled.service"];
+        partOf = ["garage.service"];
+        restartTriggers = [config.environment.etc."garage.toml".source];
+        script = ''
+          rm -f /run/garage.toml
+          cp /etc/garage.toml /run/garage.toml
+          export IP=$(${lib.getExe pkgs.tailscale} ip -6)
+          sed -E -i "s/^rpc_bind_addr =.*/rpc_bind_addr = \"[$IP]:3901\"/" /run/garage.toml
+          sed -E -i "s/^rpc_public_addr =.*/rpc_public_addr = \"[$IP]:3901\"/" /run/garage.toml
+        '';
+      };
+      garage = {
+        serviceConfig.ExecStart = lib.mkForce "${config.services.garage.package}/bin/garage -c/run/garage.toml server";
+      };
+    };
+
+    assertions = lib.singleton {
+      assertion = config.services.tailscale.enable;
+      message = "tailscale required";
     };
 
     networking.firewall.interfaces.${config.services.tailscale.interfaceName} = {

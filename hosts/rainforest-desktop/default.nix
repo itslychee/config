@@ -4,13 +4,19 @@
     binfmt.emulatedSystems = ["aarch64-linux"];
   };
 
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [pkgs.hplipWithPlugin];
+  };
   services.avahi = {
     enable = true;
     nssmdns4 = true;
     openFirewall = true;
   };
-  environment.systemPackages = [pkgs.remmina pkgs.gnome-network-displays];
+  environment.systemPackages = [
+    pkgs.remmina
+    pkgs.gnome-network-displays
+  ];
 
   hey.hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGmZ4ydKauxo7XWxs7KBscNs+467oyFtC9jIevfiZOzv";
   services.xserver = {
