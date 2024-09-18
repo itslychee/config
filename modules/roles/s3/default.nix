@@ -50,8 +50,8 @@ in {
       settings = {
         replication_factor = 2;
         compression_level = 0;
-        rpc_bind_addr = "[::]:3901";
-        rpc_public_addr = "AAA";
+        rpc_public_addr = "REPLACE_ME_MEOW";
+        rpc_bind_addr = "REPLACE_ME_MEOW";
         consul_discovery = {
           service_name = "garage-s3";
           consul_http_addr = "http://127.0.0.1:8500";
