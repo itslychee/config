@@ -24,5 +24,10 @@
     nix-direnv.enable = true;
   };
 
-  environment.systemPackages = [pkgs.firefox pkgs.colmena];
+  environment.systemPackages = [
+    pkgs.firefox
+    pkgs.colmena
+    pkgs.wl-clipboard
+    pkgs.swappy
+  ];
 }
