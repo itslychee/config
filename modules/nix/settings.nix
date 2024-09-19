@@ -39,12 +39,11 @@ in {
         "https://cache.wires.cafe/lychee-config"
       ];
       trusted-substituters = [
-        "lychee.cachix.org"
+        "https://lychee.cachix.org"
         "https://cache.wires.cafe/lychee-config"
       ];
       trusted-public-keys = [
         "lychee.cachix.org-1:hyDZbHeziUb/pgU79Gy7wd6aGka8WQByZjP2DAalICw="
-        "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
         "lychee-config:GY2kZ9k4bdq5TprB9IQprrDHoF5VZyKufG9ozZykEu0="
       ];
       trusted-users = [
