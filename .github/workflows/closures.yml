@@ -48,7 +48,7 @@ jobs:
              trusted-substituters = https://cache.wires.cafe/lychee-config https://cache.nixos.org
              substituters = https://cache.wires.cafe/lychee-config  https://cache.nixos.org
 
-      # - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Attic Setup
         run: |
           nix profile install nixpkgs#attic-client
