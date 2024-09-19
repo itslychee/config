@@ -1,21 +1,24 @@
 {
   config,
   lib,
+  inputs,
   ...
 }: {
-  hey = {
-    hostKeys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAnZoLOT6p4Pkad9YGTiVQvYTWuT6nG1UN2TeMacMNoG"
-    ];
-  };
-  networking.networkmanager.enable = lib.mkForce false;
+  imports = [inputs.attic.nixosModules.atticd];
+  hey.hostKeys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAnZoLOT6p4Pkad9YGTiVQvYTWuT6nG1UN2TeMacMNoG"
+  ];
 
-  networking.firewall.interfaces.${config.services.tailscale.interfaceName} = {
-    allowedTCPPorts = [22000 8384];
-    allowedUDPPorts = [21027 22000];
+  networking = {
+    networkmanager.enable = lib.mkForce false;
+    firewall = {
+      allowedTCPPorts = [80 443];
+      interfaces.${config.services.tailscale.interfaceName} = {
+        allowedTCPPorts = [22000 8384];
+        allowedUDPPorts = [21027 22000];
+      };
+    };
   };
-
-  networking.firewall.allowedTCPPorts = [80 443];
   # IPv6 public IP
   systemd.network = {
     enable = true;

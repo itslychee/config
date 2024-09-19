@@ -44,14 +44,17 @@ jobs:
         with:
           extra_nix_config: |
              extra-platforms = aarch64-linux i686-linux
-             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
-             trusted-substituters = https://cache.nixos.org
-             substituters = https://cache.garnix.io https://cache.nixos.org
-      - uses: cachix/cachix-action@v15
+             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= lychee-config:GY2kZ9k4bdq5TprB9IQprrDHoF5VZyKufG9ozZykEu0=
+             trusted-substituters = https://cache.nixos.org https://cache.wires.cafe/lychee-config
+             substituters = https://cache.garnix.io https://cache.nixos.org https://cache.wires.cafe/lychee-config
+      - uses: Svenum/attic-builder@v1
         name: Setup cachix
         with:
-          name: lychee
-          authToken: ${{ secrets.CACHIX_KEY }}
+          build_systems: true
+          build_packages: true
+          attic_url: https://cache.wires.cafe/
+          attic_cache: lychee-config
+          attic_token: ${{ secrets.ATTIC_TOKEN }}
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: actions/checkout@v4
       - name: Build ${{ matrix.node }}

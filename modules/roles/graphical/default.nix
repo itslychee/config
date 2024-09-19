@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   ...
@@ -29,5 +30,6 @@
     pkgs.colmena
     pkgs.wl-clipboard
     pkgs.swappy
+    inputs.attic.packages.${pkgs.system}.attic
   ];
 }
