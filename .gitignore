@@ -8,7 +8,6 @@ result
 *.iso
 *.img
 
-
 # direnv
 .direnv/
 .gcroots/
