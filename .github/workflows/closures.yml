@@ -54,6 +54,6 @@ jobs:
         run: |
           nix profile install github:zhaofengli/attic
           attic login wires https://cache.wires.cafe ${{ secrets.ATTIC_TOKEN }}
-          attic push lychee-config $(nix path-info attic#attic)
+          attic push lychee-config $(nix path-info nixpkgs#gay)
           nix run nixpkgs#colmena -- build --keep-result --no-build-on-target -v --on ${{ matrix.node }}
           attic push lychee-config .gcroots/*
