@@ -52,6 +52,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build ${{ matrix.node }}
         run: |
-          nix run nixpkgs#attic -- login wires https://cache.wires.cafe ${{ secrets.ATTIC_TOKEN }}
+          nix profile install github:zhaofengli/attic
+          attic -- login wires https://cache.wires.cafe ${{ secrets.ATTIC_TOKEN }}
           nix run nixpkgs#colmena -- build --no-build-on-target -v --on ${{ matrix.node }}
-          nix run nixpkgs#attic -- push lychee-config .gcroots/*
+          attic -- push lychee-config .gcroots/*
