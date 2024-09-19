@@ -44,7 +44,7 @@ in {
       ];
       trusted-public-keys = [
         "lychee.cachix.org-1:hyDZbHeziUb/pgU79Gy7wd6aGka8WQByZjP2DAalICw="
-        "lychee-config:GY2kZ9k4bdq5TprB9IQprrDHoF5VZyKufG9ozZykEu0="
+        "lychee-config:sFDIaZ98OL1yH6m3YWg4WMkwZESW1QzpAXzLOautme0="
       ];
       trusted-users = [
         "@wheel"
