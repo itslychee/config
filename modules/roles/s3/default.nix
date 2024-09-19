@@ -12,6 +12,9 @@ in {
     deployment.tags = ["s3"];
     hey.roles.s3 = true;
 
+    # Thank you!
+    #
+    # https://github.com/viperML/dotfiles/blob/f6b62b75556b111815524675958e383cd5ef534c/modules/nixos/consul.nix#L20C9-L20C147
     services.consul = {
       enable = true;
       interface = {
@@ -19,8 +22,7 @@ in {
         advertise = config.services.tailscale.interfaceName;
       };
       extraConfig = {
-        retry_join = builtins.attrNames (lib.filterAttrs (name: value: value.config.services.consul.enable && name != config.networking.hostName) nodes);
-        # https://github.com/viperML/dotfiles/blob/f6b62b75556b111815524675958e383cd5ef534c/modules/nixos/consul.nix#L20C9-L20C147
+        retry_join = builtins.attrNames (lib.filterAttrs (name: value: value.config.services.consul.enable) nodes);
         advertise_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }}'';
         client_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }} {{ GetAllInterfaces | include "flags" "loopback" | join "address" " " }}'';
         bind_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }} {{ GetAllInterfaces | include "flags" "loopback" | join "address" " " }}'';

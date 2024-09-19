@@ -5,11 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
     conduwuit.url = "github:girlbossceo/conduwuit?ref=v0.4.6";
-
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nextcloud-caddy.url = "github:onny/nixos-nextcloud-testumgebung/56a5379b83ea9c03d4d16daf27ac91e1ba6b020f";
   };
   outputs = {
     flake-parts,

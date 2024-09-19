@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
-  imports = [inputs.nixos-cosmic.nixosModules.default];
+{pkgs, ...}: {
   boot = {
     kernelParams = ["irqpoll"];
     loader.systemd-boot.enable = true;

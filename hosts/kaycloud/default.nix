@@ -34,10 +34,7 @@
     speedFactor = 40;
   };
 
-  services.consul.extraConfig = {
-    server = true;
-    bootstrap_expect = 1;
-  };
+  services.consul.extraConfig.server = true;
 
   networking.firewall.allowedUDPPorts = [3478];
 }
