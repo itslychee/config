@@ -51,7 +51,7 @@ jobs:
       # - uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Attic Setup
         run: |
-          nix profile install github:zhaofengli/attic
+          nix profile install nixpkgs#attic-client
           attic login wires https://cache.wires.cafe ${{ secrets.ATTIC_TOKEN }}
 
       - uses: actions/checkout@v4
