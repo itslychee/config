@@ -30,6 +30,8 @@
     pkgs.colmena
     pkgs.wl-clipboard
     pkgs.swappy
+    pkgs.mpv
+    pkgs.spotify
     inputs.attic.packages.${pkgs.system}.attic
   ];
 }
