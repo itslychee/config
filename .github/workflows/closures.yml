@@ -49,15 +49,16 @@ jobs:
              substituters = https://cache.wires.cafe/lychee-config  https://cache.nixos.org
 
       - uses: DeterminateSystems/magic-nix-cache-action@main
-      - name: Attic Setup
-        run: |
-          nix profile install nixpkgs#attic-client
-          attic login wires https://cache.wires.cafe ${{ secrets.ATTIC_TOKEN }}
+
 
       - uses: actions/checkout@v4
       - name: Build ${{ matrix.node }}
         run: |
           nix run nixpkgs#colmena -- build --keep-result --no-build-on-target -v --on ${{ matrix.node }}
+      - name: Attic Setup
+        run: |
+          nix profile install nixpkgs#attic-client
+          attic login wires https://cache.wires.cafe ${{ secrets.ATTIC_TOKEN }}
       - name: Push closure to Attic
         run: |
           attic push lychee-config .gcroots/*
