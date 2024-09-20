@@ -63,6 +63,7 @@ in {
           s3_region = "garage";
           root_domain = ".s3.wires.cafe";
         };
+        admin.api_bind_addr = "[::]:3902";
       };
     };
 
@@ -71,8 +72,7 @@ in {
       garage-fix = {
         before = ["garage.service"];
         after = ["tailscaled.service"];
-        requires = ["garage.service" "tailscaled.service"];
-        partOf = ["garage.service"];
+        wantedBy = ["multi-user.target" "garage.service"];
         restartTriggers = [config.environment.etc."garage.toml".source];
         script = ''
           rm -f /run/garage.toml
@@ -83,7 +83,7 @@ in {
         '';
       };
       garage = {
-        serviceConfig.ExecStart = lib.mkForce "${config.services.garage.package}/bin/garage -c/run/garage.toml server";
+        serviceConfig.ExecStart = lib.mkForce "${config.services.garage.package}/bin/garage -c /run/garage.toml server";
       };
     };
 

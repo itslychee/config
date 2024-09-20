@@ -46,16 +46,16 @@ in {
         static_configs = hostname: cfg: {
           targets = singleton "${hostname}:${toString cfg.services.prometheus.exporters.node.port}";
         };
+      }
+      ++
+      # Garage exporter
+      generateStaticConfigs {
+        pred = _n: v: v.config.services.garage.enable && v.config.services.garage ? settings && v.config.services.garage.settings ? admin;
+        job_name = "garage";
+        static_configs = hostname: cfg: {
+          targets = singleton "${hostname}:3902";
+        };
       };
-    # ++
-    # Garage exporter
-    # generateStaticConfigs {
-    #   pred = _n: v: v.config.services.garage.enable && v.config.services.garage ? settings && v.config.services.garage.settings ? admin;
-    #   job_name = "Garage S3";
-    #   static_configs = _hostname: cfg: {
-    #     targets = singleton (toString cfg.services.garage.settings.admin.api_bind_addr);
-    #   };
-    # };
   };
 
   services.caddy.virtualHosts = let
