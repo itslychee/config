@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   fonts = {
     enableDefaultPackages = true;
     packages = builtins.attrValues {
@@ -25,7 +22,7 @@
     };
     fontconfig.defaultFonts = {
       monospace = ["Terminus" "JetBrains Nerd Font Mono" "Source Code Pro"];
-      emoji = ["Noto Color Emoji" "Font Awesome 6 Free"];
+      emoji = ["Noto Color Emoji" "Material Design Icons" "Font Awesome 6 Free"];
       serif = ["DejaVu Serif"];
       sansSerif = ["DejaVu Sans"];
     };
