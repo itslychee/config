@@ -32,6 +32,7 @@
     pkgs.swappy
     pkgs.mpv
     pkgs.spotify
+    pkgs.celeste64
     inputs.attic.packages.${pkgs.system}.attic
   ];
 }
