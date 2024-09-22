@@ -1,8 +1,11 @@
 {
   config,
   lib,
+  inputs,
   ...
-}: {
+}:
+{
+  imports = [ inputs.attic.nixosModules.atticd ];
   deployment.keys.attic-key = {
     destDir = "/var/lib/secrets/attic";
     keyCommand = [
@@ -45,7 +48,7 @@
       name = "atticd";
       ensureDBOwnership = true;
     };
-    ensureDatabases = ["atticd"];
+    ensureDatabases = [ "atticd" ];
   };
 
   services.caddy.virtualHosts."cache.wires.cafe".extraConfig = ''

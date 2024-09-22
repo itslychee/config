@@ -1,23 +1,17 @@
 {
   config,
   lib,
-  inputs,
   ...
-}: {
-  imports = [inputs.attic.nixosModules.atticd];
-  hey.hostKeys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAnZoLOT6p4Pkad9YGTiVQvYTWuT6nG1UN2TeMacMNoG"
-  ];
+}:
+{
+  hey.hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAnZoLOT6p4Pkad9YGTiVQvYTWuT6nG1UN2TeMacMNoG";
 
   networking = {
     networkmanager.enable = lib.mkForce false;
-    firewall = {
-      allowedTCPPorts = [80 443];
-      interfaces.${config.services.tailscale.interfaceName} = {
-        allowedTCPPorts = [22000 8384];
-        allowedUDPPorts = [21027 22000];
-      };
-    };
+    firewall.allowedTCPPorts = [
+      80
+      443
+    ];
   };
   # IPv6 public IP
   systemd.network = {
@@ -39,5 +33,5 @@
 
   services.consul.extraConfig.server = true;
 
-  networking.firewall.allowedUDPPorts = [3478];
+  networking.firewall.allowedUDPPorts = [ 3478 ];
 }
