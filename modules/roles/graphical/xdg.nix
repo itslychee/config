@@ -1,4 +1,5 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   dirs = {
     XDG_DESKTOP_DIR = "$HOME/desktop";
     XDG_DOCUMENTS_DIR = "$HOME/documents";
@@ -9,7 +10,8 @@
     XDG_TEMPLATES_DIR = "$HOME/media/templates";
     XDG_VIDEOS_DIR = "$HOME/media/videos";
   };
-in {
+in
+{
   environment.etc."xdg/user-dirs.default".text = ''
     XDG_DESKTOP_DIR = "desktop";
     XDG_DOCUMENTS_DIR = "doc";

@@ -1,4 +1,5 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   flake.colmena = {
     hellfire = {
       imports = [

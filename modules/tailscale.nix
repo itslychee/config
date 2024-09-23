@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (config.services.tailscale) interfaceName;
-in {
+in
+{
   config = {
     services.tailscale = {
       enable = true;
@@ -14,7 +16,7 @@ in {
 
     services.openssh.enable = true;
     networking.firewall.interfaces.${interfaceName} = {
-      allowedTCPPorts = [22];
+      allowedTCPPorts = [ 22 ];
     };
   };
 }

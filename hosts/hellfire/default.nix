@@ -3,7 +3,8 @@
   modulesPath,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
   ];
@@ -12,12 +13,16 @@
     buildOnTarget = lib.mkForce false;
   };
 
-  fileSystems."/".options = ["noatime"];
+  fileSystems."/".options = [ "noatime" ];
 
   boot = {
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    initrd.availableKernelModules = ["xhci_pci" "usbhid" "usb_storage"];
-    blacklistedKernelModules = ["bluetooth"];
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "usbhid"
+      "usb_storage"
+    ];
+    blacklistedKernelModules = [ "bluetooth" ];
     loader = {
       grub.enable = false;
       generic-extlinux-compatible.enable = true;
@@ -58,7 +63,7 @@
   };
 
   networking.firewall.interfaces.end0 = {
-    allowedUDPPorts = [67];
+    allowedUDPPorts = [ 67 ];
   };
 
   # do not touch #

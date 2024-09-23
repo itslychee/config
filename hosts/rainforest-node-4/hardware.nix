@@ -6,13 +6,14 @@
   lib,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   boot = {
-    kernelParams = ["intel_iommu=on"];
+    kernelParams = [ "intel_iommu=on" ];
     initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
@@ -22,7 +23,7 @@
       "sd_mod"
       "sr_mod"
     ];
-    kernelModules = ["kvm-intel"];
+    kernelModules = [ "kvm-intel" ];
   };
 
   fileSystems = {
@@ -34,7 +35,10 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/C389-7E81";
       fsType = "vfat";
-      options = ["fmask=0022" "dmask=0022"];
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
     };
   };
 

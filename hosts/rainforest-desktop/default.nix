@@ -1,12 +1,13 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   boot = {
     loader.systemd-boot.enable = true;
-    binfmt.emulatedSystems = ["aarch64-linux"];
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 
   services.printing = {
     enable = true;
-    drivers = [pkgs.hplipWithPlugin];
+    drivers = [ pkgs.hplipWithPlugin ];
   };
   services.avahi = {
     enable = true;
@@ -37,7 +38,13 @@
   virtualisation.libvirtd.enable = true;
   system.stateVersion = "24.05";
   networking.firewall = {
-    allowedTCPPorts = [7236 7250];
-    allowedUDPPorts = [7236 7250];
+    allowedTCPPorts = [
+      7236
+      7250
+    ];
+    allowedUDPPorts = [
+      7236
+      7250
+    ];
   };
 }

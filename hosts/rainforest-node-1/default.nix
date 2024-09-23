@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   networking.hostName = lib.mkForce "rainforest-node-2";
   boot.loader.systemd-boot.enable = true;
   hey.hostKeys = [

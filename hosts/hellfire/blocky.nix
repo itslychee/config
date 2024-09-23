@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   services.blocky = {
     enable = false;
     settings = {
@@ -24,13 +25,13 @@
       blocking.blackLists.ads = [
         "${pkgs.stevenblack-blocklist}/hosts"
       ];
-      blocking.clientGroupsBlock.default = ["ads"];
+      blocking.clientGroupsBlock.default = [ "ads" ];
     };
   };
 
   networking.firewall = lib.mkIf config.services.blocky.enable {
     # DNS port
-    allowedTCPPorts = [53];
-    allowedUDPPorts = [53];
+    allowedTCPPorts = [ 53 ];
+    allowedUDPPorts = [ 53 ];
   };
 }

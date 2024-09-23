@@ -3,10 +3,11 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   imports = lib.fileset.toList (lib.fileset.difference ./. ./default.nix);
 
-  deployment.tags = ["graphical"];
+  deployment.tags = [ "graphical" ];
   hey.roles.graphical = true;
 
   programs.gnupg.agent = {

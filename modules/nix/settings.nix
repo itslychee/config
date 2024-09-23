@@ -4,29 +4,30 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) mapAttrs' mapAttrsToList filterAttrs;
-  inputFarm = pkgs.linkFarm "input-farm" (mapAttrsToList (name: path: {
+  inputFarm = pkgs.linkFarm "input-farm" (
+    mapAttrsToList (name: path: {
       inherit
         name
         path
         ;
-    })
-    (filterAttrs (name: value: name != "self") inputs));
-in {
+    }) (filterAttrs (name: value: name != "self") inputs)
+  );
+in
+{
   # Unfree stuff <3
   environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
   nixpkgs.config.allowUnfree = true;
 
   nix = {
     package = pkgs.lix;
-    nixPath = [inputFarm.outPath];
-    registry =
-      mapAttrs' (name: val: {
-        inherit name;
-        value.flake = val;
-      })
-      inputs;
+    nixPath = [ inputFarm.outPath ];
+    registry = mapAttrs' (name: val: {
+      inherit name;
+      value.flake = val;
+    }) inputs;
     channel.enable = false;
     settings = {
       nix-path = config.nix.nixPath;

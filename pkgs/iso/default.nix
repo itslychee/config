@@ -3,10 +3,12 @@
   modulesPath,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkForce flatten;
   inherit (lib.fileset) toList;
-in {
+in
+{
   imports = flatten [
     (toList ../../modules)
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
@@ -29,5 +31,5 @@ in {
   programs.starship.enable = mkForce false;
 
   # for nixos-anywhere
-  environment.systemPackages = [pkgs.rsync];
+  environment.systemPackages = [ pkgs.rsync ];
 }

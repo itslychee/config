@@ -4,12 +4,14 @@
   config,
   nodes,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf types mkOption;
-in {
+in
+{
   imports = lib.fileset.toList (lib.fileset.difference ./. ./default.nix);
   config = {
-    deployment.tags = ["s3"];
+    deployment.tags = [ "s3" ];
     hey.roles.s3 = true;
 
     # Thank you!
@@ -22,7 +24,9 @@ in {
         advertise = config.services.tailscale.interfaceName;
       };
       extraConfig = {
-        retry_join = builtins.attrNames (lib.filterAttrs (name: value: value.config.services.consul.enable) nodes);
+        retry_join = builtins.attrNames (
+          lib.filterAttrs (name: value: value.config.services.consul.enable) nodes
+        );
         advertise_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }}'';
         client_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }} {{ GetAllInterfaces | include "flags" "loopback" | join "address" " " }}'';
         bind_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }} {{ GetAllInterfaces | include "flags" "loopback" | join "address" " " }}'';
@@ -70,10 +74,13 @@ in {
     systemd.services = {
       # Make changing this easier
       garage-fix = {
-        before = ["garage.service"];
-        after = ["tailscaled.service"];
-        wantedBy = ["multi-user.target" "garage.service"];
-        restartTriggers = [config.environment.etc."garage.toml".source];
+        before = [ "garage.service" ];
+        after = [ "tailscaled.service" ];
+        wantedBy = [
+          "multi-user.target"
+          "garage.service"
+        ];
+        restartTriggers = [ config.environment.etc."garage.toml".source ];
         script = ''
           rm -f /run/garage.toml
           cp /etc/garage.toml /run/garage.toml
@@ -103,7 +110,7 @@ in {
         8500
         8600
       ];
-      allowedUDPPorts = [8301];
+      allowedUDPPorts = [ 8301 ];
     };
   };
 }

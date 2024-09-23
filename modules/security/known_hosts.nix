@@ -3,16 +3,15 @@
   pkgs,
   nodes,
   ...
-}: let
+}:
+let
   knownHosts = pkgs.writeText "known_host_file";
   inherit (lib.types) listOf str either;
-in {
+in
+{
   options.hey.hostKeys = lib.mkOption {
     type = either str (listOf str);
-    apply = f:
-      if builtins.typeOf f == "string"
-      then [f]
-      else f;
+    apply = f: if builtins.typeOf f == "string" then [ f ] else f;
     description = "SSH public keys for host";
   };
   config.programs.ssh.knownHostsFiles =
@@ -46,10 +45,6 @@ in {
       '')
     ]
     ++ lib.mapAttrsToList (
-      hostname: node:
-        knownHosts (map
-          (key: "${hostname} ${key}")
-          node.config.hey.hostKeys)
-    )
-    nodes;
+      hostname: node: knownHosts (map (key: "${hostname} ${key}") node.config.hey.hostKeys)
+    ) nodes;
 }

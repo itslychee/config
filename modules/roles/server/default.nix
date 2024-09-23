@@ -1,10 +1,12 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   inherit (lib) mkDefault fileset;
-in {
+in
+{
   imports = fileset.toList (fileset.difference ./. ./default.nix);
-  deployment.tags = ["server"];
+  deployment.tags = [ "server" ];
   hey.roles.server = true;
-  boot.blacklistedKernelModules = ["uvcvideo"];
+  boot.blacklistedKernelModules = [ "uvcvideo" ];
 
   environment.sessionVariables.BROWSER = "echo ";
 

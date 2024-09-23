@@ -2,10 +2,11 @@
   config,
   lib,
   ...
-}: {
-  boot.kernelParams = ["intel_iommu=on"];
+}:
+{
+  boot.kernelParams = [ "intel_iommu=on" ];
   boot.loader.systemd-boot.enable = true;
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   networking.hostName = lib.mkForce "rainforest-node-1";
 
   hey = {

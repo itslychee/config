@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) mkDefault;
-in {
+in
+{
   services.fail2ban = {
     enable = true;
     maxretry = 5;

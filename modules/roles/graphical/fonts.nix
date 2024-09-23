@@ -1,9 +1,9 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   fonts = {
     enableDefaultPackages = true;
     packages = builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         terminus_font
         noto-fonts-cjk
         source-code-pro
@@ -21,10 +21,18 @@
       };
     };
     fontconfig.defaultFonts = {
-      monospace = ["Terminus" "JetBrains Nerd Font Mono" "Source Code Pro"];
-      emoji = ["Noto Color Emoji" "Material Design Icons" "Font Awesome 6 Free"];
-      serif = ["DejaVu Serif"];
-      sansSerif = ["DejaVu Sans"];
+      monospace = [
+        "Terminus"
+        "JetBrains Nerd Font Mono"
+        "Source Code Pro"
+      ];
+      emoji = [
+        "Noto Color Emoji"
+        "Material Design Icons"
+        "Font Awesome 6 Free"
+      ];
+      serif = [ "DejaVu Serif" ];
+      sansSerif = [ "DejaVu Sans" ];
     };
   };
 }

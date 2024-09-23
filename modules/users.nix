@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   # should be obvious why this is global
   hey.users.lychee = {
     enable = true;

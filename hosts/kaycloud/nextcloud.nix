@@ -2,7 +2,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     "${inputs.nextcloud-caddy}/nextcloud-extras.nix"
   ];

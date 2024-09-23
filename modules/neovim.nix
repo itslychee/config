@@ -4,13 +4,15 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.hey.programs.neovim;
   inherit (lib) mkOption mkIf mkMerge;
   inherit (lib.types) bool package listOf;
   inherit (config.hey.roles) graphical;
   nvim = inputs.nvim.packages.${pkgs.system};
-in {
+in
+{
   options = {
     hey.programs.neovim = {
       enable = mkOption {
@@ -21,17 +23,17 @@ in {
 
       extraLSPs = mkOption {
         type = listOf package;
-        default = [];
+        default = [ ];
       };
     };
   };
 
   config = mkMerge [
     (mkIf graphical {
-      environment.systemPackages = [nvim.full];
+      environment.systemPackages = [ nvim.full ];
     })
     (mkIf (!graphical) {
-      environment.systemPackages = [nvim.minimal];
+      environment.systemPackages = [ nvim.minimal ];
     })
   ];
 }
