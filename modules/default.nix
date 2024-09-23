@@ -2,9 +2,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkForce mkDefault;
-in {
+in
+{
   # Global options
   time.timeZone = mkDefault "US/Central";
 
@@ -14,6 +16,10 @@ in {
   documentation.nixos.enable = mkForce false;
   programs.command-not-found.enable = false;
   boot.tmp.cleanOnBoot = true;
+  environment.systemPackages = [
+    pkgs.nmap
+    pkgs.traceroute
+  ];
 
-  environment.pathsToLink = ["/share"];
+  environment.pathsToLink = [ "/share" ];
 }
