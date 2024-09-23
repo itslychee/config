@@ -1014,11 +1014,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1726965095,
-        "narHash": "sha256-cqTpFGGfSUu/ibuYjgnfBZ/ijhnSUcTGMjBhNVdHjEA=",
+        "lastModified": 1726974072,
+        "narHash": "sha256-WlBduNyurs+D7NNJp1XU5Zn3IPLY5kIUaJgifeA7e9o=",
         "owner": "itslychee",
         "repo": "nvim",
-        "rev": "cafde32f5222c82eda6de18705b81c8573400ee1",
+        "rev": "8f01a2c10ef00486a52f31a6ab5ef9a7ce540b8f",
         "type": "github"
       },
       "original": {
