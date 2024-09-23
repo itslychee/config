@@ -18,6 +18,7 @@ in
   boot.tmp.cleanOnBoot = true;
   environment.systemPackages = [
     pkgs.nmap
+    pkgs.htop
     pkgs.traceroute
   ];
 
