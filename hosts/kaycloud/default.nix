@@ -33,5 +33,4 @@
 
   services.consul.extraConfig.server = true;
 
-  networking.firewall.allowedUDPPorts = [ 3478 ];
 }
