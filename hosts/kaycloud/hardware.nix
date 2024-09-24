@@ -18,7 +18,9 @@
     fsType = "ext4";
   };
 
-  swapDevices = lib.singleton { device = "/dev/disk/by-uuid/8c24ced4-3a3e-412a-aed5-9211cfadb275"; };
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/b8f05de7-a669-457d-8274-355e98c33c8f"; }
+  ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
