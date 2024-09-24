@@ -16,7 +16,9 @@ let
     ;
   inherit (lib.types) number;
   cfg = config.hey.remote;
-  builders = filterAttrs (_name: value: value.config.hey.remote.builder.enable) nodes;
+  builders = filterAttrs (
+    _name: value: value.config.hey.remote.builder.enable && _name != config.networking.hostName
+  ) nodes;
   mkNumericOption = opts: (mkOption { type = number; } // opts);
 in
 {
