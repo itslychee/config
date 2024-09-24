@@ -14,10 +14,15 @@
       flake-parts,
       nixpkgs,
       ...
-    }@inputs:
+    }@inputs':
     let
       inherit (nixpkgs.lib) flatten mkOption;
-      inherit (nixpkgs.lib.types) lazyAttrsOf raw attrsOf;
+      inherit (nixpkgs.lib.types)
+        lazyAttrsOf
+        raw
+        attrsOf
+        package
+        ;
       inherit (nixpkgs.lib.fileset)
         toList
         difference
@@ -26,7 +31,7 @@
         fileFilter
         ;
     in
-    flake-parts.lib.mkFlake { inherit inputs; } {
+    flake-parts.lib.mkFlake { inputs = inputs'; } {
       systems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -41,38 +46,46 @@
               type = lazyAttrsOf raw;
               default = { };
             };
+            hydra = mkOption {
+              type = attrsOf package;
+            };
           };
         }
       ];
 
-      flake.colmena = {
-        meta = {
-          nixpkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-          specialArgs = {
-            inherit inputs;
+      flake =
+        { lib, self', ... }:
+        {
+          colmena = {
+            meta = {
+              nixpkgs = inputs'.nixpkgs.legacyPackages.x86_64-linux;
+              specialArgs = {
+                inputs = inputs';
+              };
+              nodeNixpkgs.hellfire = inputs'.nixpkgs.legacyPackages.aarch64-linux;
+            };
+            defaults =
+              {
+                name,
+                config,
+                ...
+              }:
+              {
+                imports = toList (
+                  intersection (unions [
+                    (difference ./hosts/${name} ./hosts/${name}/manifest.nix)
+                    (difference ./modules ./modules/roles)
+                    # role definitions
+                    ./modules/roles/roles.nix
+                  ]) (fileFilter (p: p.hasExt "nix") ./.)
+                );
+                networking.hostName = name;
+                users.users.root.openssh.authorizedKeys.keys = config.hey.keys.lychee.deployment;
+                deployment.allowLocalDeployment = true;
+                deployment.buildOnTarget = true;
+              };
           };
-          nodeNixpkgs.hellfire = inputs.nixpkgs.legacyPackages.aarch64-linux;
+          hydra = (inputs'.colmena.lib.makeHive inputs'.self.colmena).toplevel;
         };
-        defaults =
-          {
-            name,
-            config,
-            ...
-          }:
-          {
-            imports = toList (
-              intersection (unions [
-                (difference ./hosts/${name} ./hosts/${name}/manifest.nix)
-                (difference ./modules ./modules/roles)
-                # role definitions
-                ./modules/roles/roles.nix
-              ]) (fileFilter (p: p.hasExt "nix") ./.)
-            );
-            networking.hostName = name;
-            users.users.root.openssh.authorizedKeys.keys = config.hey.keys.lychee.deployment;
-            deployment.allowLocalDeployment = true;
-            deployment.buildOnTarget = true;
-          };
-      };
     };
 }
