@@ -9,7 +9,7 @@
 
   hey.remote.builder = {
     enable = true;
-    maxJobs = 20;
-    speedFactor = 95;
+    maxJobs = 40;
+    speedFactor = 105;
   };
 }
