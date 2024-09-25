@@ -585,22 +585,6 @@
         "type": "github"
       }
     },
-    "keycloak-realms": {
-      "locked": {
-        "lastModified": 1721562747,
-        "narHash": "sha256-uHNWpe/j5Q7Ak9+SNQkCPy7t9ayQUDAt+2tZ7OFYv6Q=",
-        "owner": "rorosen",
-        "repo": "nixpkgs",
-        "rev": "79862894befe49e2837e3f5eefe11433eef6611a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rorosen",
-        "ref": "keycloak-realm-import",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "liburing": {
       "flake": false,
       "locked": {
@@ -619,11 +603,7 @@
       }
     },
     "nextcloud-caddy": {
-      "inputs": {
-        "keycloak-realms": "keycloak-realms",
-        "nixos-shell": "nixos-shell",
-        "nixpkgs": "nixpkgs_8"
-      },
+      "flake": false,
       "locked": {
         "lastModified": 1726579702,
         "narHash": "sha256-ITfGW1ILVLZpun8p/RlVg8cV/uvfn4G4+dWjOVvPrSM=",
@@ -740,24 +720,6 @@
         "type": "github"
       }
     },
-    "nixos-shell": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_7"
-      },
-      "locked": {
-        "lastModified": 1723616342,
-        "narHash": "sha256-plRKXQqww7easx0wgGKAkOJH1TW/PeeB20dq9XUN8J4=",
-        "owner": "Mic92",
-        "repo": "nixos-shell",
-        "rev": "93e314cdd16d4c3e3baf25b54734461c45a5d1ad",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Mic92",
-        "repo": "nixos-shell",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1726042813,
@@ -866,22 +828,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_10": {
-      "locked": {
-        "lastModified": 1726755586,
-        "narHash": "sha256-PmUr/2GQGvFTIJ6/Tvsins7Q43KTMvMFhvG6oaYK+Wk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "c04d5652cfa9742b1d519688f65d1bbccea9eb7e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1696019113,
@@ -964,42 +910,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1628465643,
-        "narHash": "sha256-QSNw9bDq9uGUniQQtakRuw4m21Jxugm23SXLVgEV4DM=",
+        "lastModified": 1726969270,
+        "narHash": "sha256-8fnFlXBgM/uSvBlLWjZ0Z0sOdRBesyNdH0+esxqizGc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6ef4f522d63f22b40004319778761040d3197390",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "nixos-unstable",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs_8": {
-      "locked": {
-        "lastModified": 1726574745,
-        "narHash": "sha256-RZGivKjrMpG43zrDi3mX45s2VEUiHeErKir/UJVunmA=",
-        "owner": "onny",
-        "repo": "nixpkgs",
-        "rev": "1c57aee03339c5b1357eb35f4500cdad5e333b6d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "onny",
-        "ref": "nextcloud-update10",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_9": {
-      "locked": {
-        "lastModified": 1726838390,
-        "narHash": "sha256-NmcVhGElxDbmEWzgXsyAjlRhUus/nEqPC5So7BOJLUM=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "944b2aea7f0a2d7c79f72468106bc5510cbf5101",
+        "rev": "23cbb250f3bf4f516a2d0bf03c51a30900848075",
         "type": "github"
       },
       "original": {
@@ -1009,9 +924,25 @@
         "type": "github"
       }
     },
+    "nixpkgs_8": {
+      "locked": {
+        "lastModified": 1726755586,
+        "narHash": "sha256-PmUr/2GQGvFTIJ6/Tvsins7Q43KTMvMFhvG6oaYK+Wk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c04d5652cfa9742b1d519688f65d1bbccea9eb7e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nvim": {
       "inputs": {
-        "nixpkgs": "nixpkgs_10"
+        "nixpkgs": "nixpkgs_8"
       },
       "locked": {
         "lastModified": 1726974072,
@@ -1078,7 +1009,7 @@
         "conduwuit": "conduwuit",
         "flake-parts": "flake-parts_2",
         "nextcloud-caddy": "nextcloud-caddy",
-        "nixpkgs": "nixpkgs_9",
+        "nixpkgs": "nixpkgs_7",
         "nvim": "nvim"
       }
     },
