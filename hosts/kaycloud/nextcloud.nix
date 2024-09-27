@@ -12,7 +12,6 @@
     webserver = "caddy";
     https = true;
     hostName = "cloudy.wires.cafe";
-    notify_push.enable = true;
     database.createLocally = true;
     caching.redis = true;
     maxUploadSize = "2G";
