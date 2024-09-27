@@ -18,7 +18,6 @@
       nix-tree
       nixpkgs-review
       winetricks
-      vesktop
       ;
     inherit (pkgs.wineWowPackages) stable;
   };
