@@ -20,6 +20,7 @@ in
     pkgs.nmap
     pkgs.htop
     pkgs.traceroute
+    pkgs.tmux
   ];
 
   environment.pathsToLink = [ "/share" ];
