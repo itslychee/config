@@ -13,6 +13,12 @@ in
   config = {
     deployment.tags = [ "s3" ];
     hey.roles.s3 = true;
+    services.resolved.extraConfig = ''
+      [Resolve]
+      DNS=127.0.0.1:8600
+      DNSSEC=false
+      Domains=~consul
+    '';
 
     # Thank you!
     #
@@ -33,13 +39,6 @@ in
       };
     };
 
-    services.resolved.extraConfig = ''
-      [Resolve]
-      DNS=127.0.0.1:8600
-      DNSSEC=false
-      Domains=~consul
-    '';
-
     deployment.keys.garage-secrets = mkIf config.services.garage.enable {
       destDir = "/var/lib/secrets/garage";
       keyCommand = [
@@ -51,13 +50,13 @@ in
 
     services.garage = {
       enable = true;
-      package = pkgs.garage_1_0_0;
+      package = pkgs.garage_1_x;
       environmentFile = config.deployment.keys.garage-secrets.path;
       settings = {
         replication_factor = 2;
         compression_level = 0;
-        rpc_public_addr = "REPLACE_ME_MEOW";
-        rpc_bind_addr = "REPLACE_ME_MEOW";
+        rpc_public_addr_subnet = "fd7a:115c:a1e0::/48";
+        rpc_bind_addr = "[::]:3901";
         consul_discovery = {
           service_name = "garage-s3";
           consul_http_addr = "http://127.0.0.1:8500";
@@ -68,29 +67,6 @@ in
           root_domain = ".s3.wires.cafe";
         };
         admin.api_bind_addr = "[::]:3902";
-      };
-    };
-
-    systemd.services = {
-      # Make changing this easier
-      garage-fix = {
-        before = [ "garage.service" ];
-        after = [ "tailscaled.service" ];
-        wantedBy = [
-          "multi-user.target"
-          "garage.service"
-        ];
-        restartTriggers = [ config.environment.etc."garage.toml".source ];
-        script = ''
-          rm -f /run/garage.toml
-          cp /etc/garage.toml /run/garage.toml
-          export IP=$(${lib.getExe pkgs.tailscale} ip -6)
-          sed -E -i "s/^rpc_bind_addr =.*/rpc_bind_addr = \"[$IP]:3901\"/" /run/garage.toml
-          sed -E -i "s/^rpc_public_addr =.*/rpc_public_addr = \"[$IP]:3901\"/" /run/garage.toml
-        '';
-      };
-      garage = {
-        serviceConfig.ExecStart = lib.mkForce "${config.services.garage.package}/bin/garage -c /run/garage.toml server";
       };
     };
 
