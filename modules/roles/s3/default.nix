@@ -34,7 +34,6 @@ in
           lib.filterAttrs (name: value: value.config.services.consul.enable) nodes
         );
         advertise_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }}'';
-        client_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }} {{ GetAllInterfaces | include "flags" "loopback" | join "address" " " }}'';
         bind_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }} {{ GetAllInterfaces | include "flags" "loopback" | join "address" " " }}'';
       };
     };
