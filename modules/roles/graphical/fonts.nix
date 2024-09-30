@@ -27,9 +27,9 @@
         "Source Code Pro"
       ];
       emoji = [
+        "Font Awesome 6 Free"
         "Noto Color Emoji"
         "Material Design Icons"
-        "Font Awesome 6 Free"
       ];
       serif = [ "DejaVu Serif" ];
       sansSerif = [ "DejaVu Sans" ];
