@@ -1,5 +1,5 @@
 {
-  flake.colmena.wiretop = {
-    imports = [ ../../modules/roles/graphical ];
-  };
+  # flake.colmena.wiretop = {
+  #   imports = [ ../../modules/roles/graphical ];
+  # };
 }
