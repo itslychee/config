@@ -13,6 +13,7 @@
     https = true;
     hostName = "cloudy.wires.cafe";
     database.createLocally = true;
+    configureRedis = true;
     caching.redis = true;
     maxUploadSize = "2G";
     config = {
