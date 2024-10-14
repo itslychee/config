@@ -4,8 +4,31 @@
   lib,
   ...
 }:
+let
+  inherit (inputs) spicetify-nix;
+  spkgs = spicetify-nix.legacyPackages.${pkgs.system};
+in
 {
-  imports = lib.fileset.toList (lib.fileset.difference ./. ./default.nix);
+  imports = lib.fileset.toList (lib.fileset.difference ./. ./default.nix) ++ [
+    spicetify-nix.nixosModules.default
+  ];
+
+  programs.spicetify = {
+    enable = true;
+    theme = spkgs.themes.bloom;
+    colorScheme = "Coffee";
+    enabledExtensions = builtins.attrValues {
+      inherit (spkgs.extensions)
+        adblock
+        playlistIcons
+        fullAlbumDate
+        hidePodcasts
+        trashbin
+        shuffle
+        autoSkipVideo
+        ;
+    };
+  };
 
   deployment.tags = [ "graphical" ];
   hey.roles.graphical = true;
@@ -32,7 +55,6 @@
     pkgs.wl-clipboard
     pkgs.swappy
     pkgs.mpv
-    pkgs.spotify
     pkgs.celeste64
     inputs.attic.packages.${pkgs.system}.attic
   ];

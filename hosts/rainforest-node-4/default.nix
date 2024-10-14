@@ -12,6 +12,7 @@
     student = {
       hashedPassword = "$y$j9T$GRJbDIeTqrp14NuXjI0zh0$xHJV7ze3MpIsNKUXW8S0g6zmc1Ki3VTXnNh7bgMJNU5";
       sshKeys = config.hey.keys.lychee.ssh;
+      groups = [ "minicom" ];
     };
   };
   hey.remote.builder = {

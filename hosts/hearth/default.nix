@@ -9,7 +9,10 @@
   hey = {
     hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOaAxiB8BtVJC+3WM/ydH+8CRaINbE+7X3aO1l/0cJhV";
     users.lychee = {
-      groups = [ "docker" ];
+      groups = [
+        "docker"
+        "adbusers"
+      ];
     };
   };
 
@@ -18,9 +21,13 @@
       nix-tree
       nixpkgs-review
       winetricks
+      vesktop
+      android-studio
       ;
     inherit (pkgs.wineWowPackages) stable;
+    inherit (pkgs.jetbrains) idea-community;
   };
+  programs.adb.enable = true;
 
   hardware = {
     bluetooth.enable = true;

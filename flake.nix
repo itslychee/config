@@ -6,6 +6,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     conduwuit.url = "github:girlbossceo/conduwuit?ref=v0.4.6";
     nextcloud-caddy.url = "github:onny/nixos-nextcloud-testumgebung/56a5379b83ea9c03d4d16daf27ac91e1ba6b020f";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nextcloud-caddy.flake = false;
     attic.url = "github:zhaofengli/attic";
   };
