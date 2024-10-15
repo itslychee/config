@@ -34,7 +34,6 @@
   };
 
   programs.wireshark.enable = true;
-  programs.wireshark.package = pkgs.wireshark-qt;
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
   system.stateVersion = "24.05";

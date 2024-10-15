@@ -16,6 +16,8 @@
     };
   };
 
+  programs.wireshark.enable = true;
+
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
       nix-tree

@@ -9,6 +9,10 @@ let
   spkgs = spicetify-nix.legacyPackages.${pkgs.system};
 in
 {
+
+  deployment.tags = [ "graphical" ];
+  hey.roles.graphical = true;
+
   imports = lib.fileset.toList (lib.fileset.difference ./. ./default.nix) ++ [
     spicetify-nix.nixosModules.default
   ];
@@ -29,10 +33,7 @@ in
         ;
     };
   };
-
-  deployment.tags = [ "graphical" ];
-  hey.roles.graphical = true;
-
+  programs.wireshark.package = pkgs.wireshark-qt;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
