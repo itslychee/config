@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 {
   boot.loader.systemd-boot.enable = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -10,9 +15,11 @@
   hey.users = {
     lychee.enable = lib.mkForce false;
     student = {
-      hashedPassword = "$y$j9T$GRJbDIeTqrp14NuXjI0zh0$xHJV7ze3MpIsNKUXW8S0g6zmc1Ki3VTXnNh7bgMJNU5";
+      enable = true;
+      hashedPassword = "$y$j9T$i10ra0xsluldxL6/3Zq6e/$m28LXms.7W.XzBVjmXt5XPc/Kj8FrlH3wsu42Lzm1a2";
       sshKeys = config.hey.keys.lychee.ssh;
-      groups = [ "minicom" ];
+      groups = [ "dialout" ];
+      packages = [ pkgs.minicom ];
     };
   };
   hey.remote.builder = {

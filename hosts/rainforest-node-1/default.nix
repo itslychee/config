@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 {
   networking.hostName = lib.mkForce "rainforest-node-2";
   boot.loader.systemd-boot.enable = true;
@@ -11,5 +11,18 @@
     enable = true;
     maxJobs = 40;
     speedFactor = 105;
+  };
+
+  services.gns3-server = {
+    enable = true;
+    settings =
+      {
+      };
+    vpcs.enable = true;
+    dynamips.enable = true;
+    ubridge.enable = true;
+  };
+  networking.firewall.interfaces.${config.services.tailscale.interfaceName} = {
+    allowedTCPPorts = [ 3080 ];
   };
 }

@@ -16,8 +16,10 @@
   };
   environment.systemPackages = [
     pkgs.remmina
+    pkgs.gns3-gui
     pkgs.gnome-network-displays
     pkgs.vesktop
+    pkgs.minicom
   ];
 
   hey.hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGmZ4ydKauxo7XWxs7KBscNs+467oyFtC9jIevfiZOzv";
