@@ -32,6 +32,14 @@
     speedFactor = 85;
   };
 
+  networking.bridges.br0 = {
+    interfaces = [
+      "enp9s0"
+      "enp12s0"
+    ];
+    rstp = true;
+  };
+
   services.consul.extraConfig.server = true;
 
   system.stateVersion = "24.05";
