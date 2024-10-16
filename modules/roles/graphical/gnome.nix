@@ -21,6 +21,7 @@ mkIf config.services.xserver.desktopManager.gnome.enable {
     systemPackages = attrValues {
       inherit (pkgs.gnomeExtensions) dash-to-panel appindicator;
       inherit (pkgs) papirus-icon-theme ant-theme;
+      inherit (pkgs.gnome) adwaita-icon-theme;
     };
 
     gnome.excludePackages = attrValues {
