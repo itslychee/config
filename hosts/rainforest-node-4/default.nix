@@ -18,10 +18,14 @@
       enable = true;
       hashedPassword = "$y$j9T$i10ra0xsluldxL6/3Zq6e/$m28LXms.7W.XzBVjmXt5XPc/Kj8FrlH3wsu42Lzm1a2";
       sshKeys = config.hey.keys.lychee.ssh;
-      groups = [ "dialout" ];
+      groups = [
+        "dialout"
+        "wireshark"
+      ];
       packages = [ pkgs.minicom ];
     };
   };
+  programs.wireshark.enable = true;
   hey.remote.builder = {
     enable = true;
     maxJobs = 20;
