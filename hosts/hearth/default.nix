@@ -3,7 +3,9 @@
   boot = {
     kernelParams = [ "irqpoll" ];
     loader.systemd-boot.enable = true;
-    binfmt.emulatedSystems = [ "aarch64-linux" ];
+    binfmt.emulatedSystems = [
+      "aarch64-linux"
+    ];
   };
 
   hey = {
@@ -24,12 +26,16 @@
       nixpkgs-review
       winetricks
       vesktop
-      android-studio
+      # android-studio
+      heroic
+      act
+      gamemode
       ;
     inherit (pkgs.wineWowPackages) stable;
-    inherit (pkgs.jetbrains) idea-community;
+    # inherit (pkgs.jetbrains) idea-community;
   };
   programs.adb.enable = true;
+  virtualisation.docker.enable = true;
 
   hardware = {
     bluetooth.enable = true;
