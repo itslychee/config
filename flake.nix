@@ -63,7 +63,6 @@
               specialArgs = {
                 inputs = inputs';
               };
-              nodeNixpkgs.hellfire = inputs'.nixpkgs.legacyPackages.aarch64-linux;
             };
             defaults =
               {
