@@ -14,15 +14,15 @@
     nssmdns4 = true;
     openFirewall = true;
   };
+
   environment.systemPackages = [
     pkgs.remmina
-    pkgs.gns3-gui
-    pkgs.gnome-network-displays
     pkgs.vesktop
     pkgs.minicom
   ];
 
   hey.hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGmZ4ydKauxo7XWxs7KBscNs+467oyFtC9jIevfiZOzv";
+  hey.graphical.games = true;
   services.xserver = {
     enable = true;
     desktopManager.gnome.enable = true;
@@ -39,14 +39,4 @@
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
   system.stateVersion = "24.05";
-  networking.firewall = {
-    allowedTCPPorts = [
-      7236
-      7250
-    ];
-    allowedUDPPorts = [
-      7236
-      7250
-    ];
-  };
 }
