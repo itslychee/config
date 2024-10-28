@@ -27,8 +27,19 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault false;
-  networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
+  networking.useDHCP = false;
+
+  systemd.network = {
+    enable = true;
+    networks.ipv6 = {
+      matchConfig.Name = "enp1s0";
+      networkConfig = {
+        Address = "2a01:4ff:f0:cb64::1/64";
+        DHCP = "ipv4";
+        Gateway = "fe80::1";
+      };
+    };
+  };
 
   boot.loader.grub.device = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_48720426";
   system.stateVersion = "24.05";
