@@ -27,6 +27,7 @@ in
 
   services.kmscon.autologinUser = "lychee";
   services.fail2ban.enable = false;
+  services.openssh.openFirewall = true;
 
   programs.starship.enable = mkForce false;
 
