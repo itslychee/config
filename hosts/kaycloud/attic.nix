@@ -17,7 +17,7 @@
 
   services.atticd = {
     enable = true;
-    credentialsFile = config.deployment.keys.attic-key.path;
+    environmentFile = config.deployment.keys.attic-key.path;
     settings = {
       allowed-hosts = [
         config.networking.hostName
