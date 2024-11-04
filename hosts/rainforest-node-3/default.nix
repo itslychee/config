@@ -5,6 +5,7 @@
   hey = {
     hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKsjWwOI8IiTedsAWbPbTGk3ksEC3owyJqJPZM7/6Tjl";
   };
+  hey.mine.use = true;
 
   hey.remote.builder = {
     enable = true;

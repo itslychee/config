@@ -26,6 +26,8 @@
     port = 7777;
   };
 
+  hey.mine.serve = true;
+
   services.consul.extraConfig.server = true;
 
 }
