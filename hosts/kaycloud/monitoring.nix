@@ -25,7 +25,7 @@ in
   services.grafana = {
     enable = true;
     settings = {
-      server.domain = "grafana.wires.cafe";
+      server.root_url = "https://grafana.wires.cafe";
     };
     provision = {
       enable = true;
