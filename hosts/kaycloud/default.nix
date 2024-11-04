@@ -20,11 +20,6 @@
     maxJobs = 10;
     speedFactor = 40;
   };
-  services.terraria = {
-    enable = true;
-    openFirewall = true;
-    port = 7777;
-  };
 
   hey.mine.serve = true;
 
