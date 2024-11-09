@@ -1,5 +1,6 @@
-{ pkgs, ... }:
 {
+  programs.autojump.enable = true;
+
   programs.zsh = {
     enable = true;
     enableLsColors = false;
