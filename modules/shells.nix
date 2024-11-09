@@ -12,6 +12,7 @@
       deploy = "colmena apply";
     };
     shellInit = ''
+      setopt autocd
       zsh-newuser-install() { :; }
 
       bindkey "^[[1;5C" forward-word
