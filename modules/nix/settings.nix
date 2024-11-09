@@ -36,15 +36,12 @@ in
       accept-flake-config = false;
       flake-registry = "";
       substituters = [
-        "https://lychee.cachix.org"
         "https://cache.wires.cafe/lychee-config"
       ];
       trusted-substituters = [
-        "https://lychee.cachix.org"
         "https://cache.wires.cafe/lychee-config"
       ];
       trusted-public-keys = [
-        "lychee.cachix.org-1:hyDZbHeziUb/pgU79Gy7wd6aGka8WQByZjP2DAalICw="
         "lychee-config:sFDIaZ98OL1yH6m3YWg4WMkwZESW1QzpAXzLOautme0="
       ];
       trusted-users = [
