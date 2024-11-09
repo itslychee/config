@@ -21,7 +21,6 @@
     maxJobs = 20;
     speedFactor = 100;
   };
-  hey.mine.use = true;
 
   services.consul.extraConfig = {
     server = true;

@@ -21,8 +21,6 @@
     speedFactor = 40;
   };
 
-  hey.mine.serve = true;
-
   services.consul.extraConfig.server = true;
 
 }

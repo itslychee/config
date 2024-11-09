@@ -39,6 +39,7 @@ in
     };
   };
 
+  # Prometheus metrics server
   services.prometheus = {
     enable = true;
     scrapeConfigs =
