@@ -14,11 +14,6 @@
       443
     ];
   };
-  hey.remote.builder = {
-    enable = true;
-    maxJobs = 10;
-    speedFactor = 40;
-  };
 
   services.consul.extraConfig.server = true;
 
