@@ -22,7 +22,6 @@ in
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    package = pkgs.lix;
     nixPath = [ inputFarm.outPath ];
     registry = mapAttrs' (name: val: {
       inherit name;
@@ -57,7 +56,6 @@ in
         "flakes"
         "nix-command"
         "no-url-literals"
-        "repl-flake"
         "cgroups"
         "auto-allocate-uids"
       ];
