@@ -15,13 +15,12 @@ mkIf config.services.xserver.desktopManager.gnome.enable {
   };
   services.gnome = lib.mkForce {
     gnome-keyring.enable = false;
-    tracker.enable = false;
+    tinysparql.enable = false;
   };
   environment = {
     systemPackages = attrValues {
       inherit (pkgs.gnomeExtensions) dash-to-panel appindicator;
-      inherit (pkgs) papirus-icon-theme ant-theme;
-      inherit (pkgs.gnome) adwaita-icon-theme;
+      inherit (pkgs) papirus-icon-theme ant-theme adwaita-icon-theme;
     };
 
     gnome.excludePackages = attrValues {
@@ -30,8 +29,6 @@ mkIf config.services.xserver.desktopManager.gnome.enable {
         snapshot
         xterm
         gnome-text-editor
-        ;
-      inherit (pkgs.gnome)
         geary
         gnome-disk-utility
         gnome-maps

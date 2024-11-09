@@ -57,6 +57,6 @@ in
     pkgs.swappy
     pkgs.mpv
     pkgs.celeste64
-    inputs.attic.packages.${pkgs.system}.attic
+    pkgs.attic-client
   ];
 }

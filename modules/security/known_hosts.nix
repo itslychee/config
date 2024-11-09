@@ -5,7 +5,7 @@
   ...
 }:
 let
-  knownHosts = pkgs.writeText "known_host_file";
+  knownHosts = keys: pkgs.writeText "known_host_file" (toString keys);
   inherit (lib.types) listOf str either;
 in
 {

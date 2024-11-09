@@ -5,7 +5,7 @@
     packages = builtins.attrValues {
       inherit (pkgs)
         terminus_font
-        noto-fonts-cjk
+        noto-fonts-cjk-sans
         source-code-pro
         noto-fonts-emoji
         material-design-icons

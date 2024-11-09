@@ -1,11 +1,9 @@
 {
   config,
   lib,
-  inputs,
   ...
 }:
 {
-  imports = [ inputs.attic.nixosModules.atticd ];
   deployment.keys.attic-key = {
     destDir = "/var/lib/secrets/attic";
     keyCommand = [
@@ -26,6 +24,7 @@
       listen = "[::1]:30400";
       api-endpoint = "https://cache.wires.cafe/";
       database.url = "postgresql:///atticd?host=/run/postgresql";
+      require-proof-of-possession = false;
 
       storage = {
         type = "s3";

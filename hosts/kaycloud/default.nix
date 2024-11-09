@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   ...
@@ -13,8 +14,6 @@
       443
     ];
   };
-  # IPv6 public IP
-
   hey.remote.builder = {
     enable = true;
     maxJobs = 10;
