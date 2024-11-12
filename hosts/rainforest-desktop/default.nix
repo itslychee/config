@@ -17,6 +17,7 @@
 
   environment.systemPackages = [
     pkgs.remmina
+    pkgs.vesktop
     pkgs.minicom
   ];
 
