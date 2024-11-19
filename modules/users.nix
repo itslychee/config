@@ -35,6 +35,10 @@
             name = "itslychee"
             signingKey = "45324E7F52DA3BA3"
       '';
+      ".config/git/ignore".text = ''
+        .direnv
+      '';
+
     };
   };
 }
