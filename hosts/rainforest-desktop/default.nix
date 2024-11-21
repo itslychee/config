@@ -16,7 +16,6 @@
   };
 
   environment.systemPackages = [
-    pkgs.vesktop
     pkgs.minicom
   ];
 

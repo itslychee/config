@@ -26,7 +26,6 @@
       nix-tree
       nixpkgs-review
       winetricks
-      vesktop
       # android-studio
       act
       ;
