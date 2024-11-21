@@ -58,5 +58,6 @@ in
     pkgs.mpv
     pkgs.celeste64
     pkgs.attic-client
+    pkgs.remmina
   ];
 }
