@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  pkgs,
   ...
 }:
 {
@@ -9,6 +10,7 @@
   ];
   services.nextcloud = {
     enable = true;
+    package = pkgs.nextcloud30;
     webserver = "caddy";
     https = true;
     hostName = "cloudy.wires.cafe";
