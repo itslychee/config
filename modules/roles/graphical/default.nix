@@ -37,7 +37,6 @@ in
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
   };
   hardware = {
     enableRedistributableFirmware = true;
@@ -50,14 +49,14 @@ in
     nix-direnv.enable = true;
   };
 
-  environment.systemPackages = [
-    pkgs.firefox
-    pkgs.colmena
-    pkgs.wl-clipboard
-    pkgs.swappy
-    pkgs.mpv
-    pkgs.celeste64
-    pkgs.attic-client
-    pkgs.remmina
+  environment.systemPackages = with pkgs; [
+    firefox
+    colmena
+    wl-clipboard
+    swappy
+    mpv
+    celeste64
+    attic-client
+    remmina
   ];
 }
