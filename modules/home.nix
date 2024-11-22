@@ -21,11 +21,9 @@ let
     package
     str
     nullOr
-    bool
     lines
     path
     ;
-  inherit (lib.fileset) toList fileFilter;
   cfg = filterAttrs (_k: v: v.enable) config.hey.users;
 in
 {
@@ -60,7 +58,7 @@ in
             default = { };
             type = attrsOf (
               submodule (
-                { config, ... }:
+                { ... }:
                 {
                   options = {
                     text = mkOption {
@@ -105,7 +103,7 @@ in
       );
 
       # Add the files
-      systemd.user.tmpfiles.users = builtins.mapAttrs (name: options: {
+      systemd.user.tmpfiles.users = builtins.mapAttrs (_name: options: {
         rules = mapAttrsToList (
           path: value:
           let

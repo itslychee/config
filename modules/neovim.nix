@@ -6,7 +6,6 @@
   ...
 }:
 let
-  cfg = config.hey.programs.neovim;
   inherit (lib) mkOption mkIf mkMerge;
   inherit (lib.types) bool package listOf;
   inherit (config.hey.roles) graphical;

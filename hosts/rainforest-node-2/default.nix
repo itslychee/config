@@ -1,7 +1,5 @@
 {
   config,
-  pkgs,
-  lib,
   ...
 }:
 {
@@ -37,5 +35,4 @@
   services.consul.extraConfig = {
     server = true;
   };
-  system.stateVersion = "24.05";
 }

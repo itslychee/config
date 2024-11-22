@@ -47,7 +47,6 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-
   };
 
   services.fstrim.enable = true;
@@ -56,5 +55,4 @@
   virtualisation.libvirtd.enable = true;
   # hey.remote.use = true;
 
-  system.stateVersion = "24.05";
 }

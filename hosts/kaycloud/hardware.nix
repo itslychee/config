@@ -42,5 +42,4 @@
   };
 
   boot.loader.grub.device = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_48720426";
-  system.stateVersion = "24.05";
 }

@@ -13,7 +13,7 @@ let
         name
         path
         ;
-    }) (filterAttrs (name: value: name != "self") inputs)
+    }) (filterAttrs (name: _value: name != "self") inputs)
   );
 in
 {

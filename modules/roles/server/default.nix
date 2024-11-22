@@ -1,6 +1,6 @@
 { lib, ... }:
 let
-  inherit (lib) mkDefault fileset;
+  inherit (lib) fileset;
 in
 {
   imports = fileset.toList (fileset.difference ./. ./default.nix);

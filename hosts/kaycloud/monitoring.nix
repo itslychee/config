@@ -59,7 +59,7 @@ in
           && v.config.services.garage ? settings
           && v.config.services.garage.settings ? admin;
         job_name = "garage";
-        static_configs = hostname: cfg: {
+        static_configs = hostname: _cfg: {
           targets = singleton "${hostname}:3902";
         };
       };

@@ -59,7 +59,6 @@ in
           brand = "wires café";
         };
       };
-      cinny = pkgs.cinny;
     in
     {
       "wires.cafe".extraConfig = ''

@@ -12,5 +12,4 @@
     speedFactor = 55;
   };
 
-  system.stateVersion = "24.05";
 }

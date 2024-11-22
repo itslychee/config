@@ -5,7 +5,6 @@
   ...
 }:
 let
-  modulesPath = "${inputs.nixpkgs}/nixos/modules";
   isoConfig = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {
       inherit inputs;

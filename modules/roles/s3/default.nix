@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (lib) mkIf types mkOption;
+  inherit (lib) mkIf;
 in
 {
   imports = lib.fileset.toList (lib.fileset.difference ./. ./default.nix);
@@ -31,7 +31,7 @@ in
       };
       extraConfig = {
         retry_join = builtins.attrNames (
-          lib.filterAttrs (name: value: value.config.services.consul.enable) nodes
+          lib.filterAttrs (_name: value: value.config.services.consul.enable) nodes
         );
         advertise_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }}'';
         bind_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }} {{ GetAllInterfaces | include "flags" "loopback" | join "address" " " }}'';

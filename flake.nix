@@ -12,14 +12,6 @@
     { nixpkgs, ... }@inputs:
     let
       inherit (nixpkgs) lib;
-      inherit (lib.fileset)
-        fileFilter
-        unions
-        intersection
-        difference
-        toList
-        ;
-
       eachSystem =
         fun:
         nixpkgs.lib.genAttrs [
@@ -28,69 +20,16 @@
         ] (system: fun nixpkgs.legacyPackages.${system});
     in
     {
-      colmena = {
-        meta = {
-          nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
-          specialArgs = {
-            inherit inputs;
-          };
-        };
-        defaults =
-          { name, config, ... }:
-          {
-            imports = toList (
-              intersection (unions [
-                ./hosts/${name}
-                (difference ./modules ./modules/roles)
-                # role definitions
-                ./modules/roles/roles.nix
-              ]) (fileFilter (p: p.hasExt "nix") ./.)
-            );
-            networking.hostName = name;
-            users.users.root.openssh.authorizedKeys.keys = config.hey.keys.lychee.deployment;
-            deployment.allowLocalDeployment = true;
-            deployment.buildOnTarget = true;
-          };
-
-        hearth.imports = [
-          ./modules/roles/graphical
-        ];
-        kaycloud.imports = [
-          ./modules/roles/server
-          ./modules/roles/s3
-        ];
-        rainforest-desktop.imports = [
-          ./modules/roles/graphical
-          ./modules/roles/server
-        ];
-        rainforest-node-1.imports = [
-          ./modules/roles/server
-          ./modules/roles/s3
-        ];
-        rainforest-node-2.imports = [
-          ./modules/roles/server
-          ./modules/roles/s3
-        ];
-        rainforest-node-3.imports = [
-          ./modules/roles/server
-          ./modules/roles/s3
-        ];
-        rainforest-node-4.imports = [
-          ./modules/roles/server
-          ./modules/roles/graphical
-          ./modules/roles/s3
-        ];
-      };
-
+      colmena = import ./hive.nix inputs;
       # adopt a pkgs/by-name approach but less intrusive 
       legacyPackages = eachSystem (
         pkgs:
         builtins.mapAttrs (
-          name: value:
+          name: _value:
           pkgs.callPackage ./pkgs/${name} {
             inherit inputs;
           }
-        ) (lib.filterAttrs (n: v: v == "directory") (builtins.readDir ./pkgs))
+        ) (lib.filterAttrs (_n: v: v == "directory") (builtins.readDir ./pkgs))
       );
 
     };
