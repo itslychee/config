@@ -53,9 +53,6 @@
             };
           }
         ];
-        meta = {
-          description = "my nixos configuration";
-        };
       };
 
       inherit self;
