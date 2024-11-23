@@ -6,10 +6,17 @@
     conduwuit.url = "github:girlbossceo/conduwuit?ref=v0.4.6";
     nextcloud-caddy.url = "github:onny/nixos-nextcloud-testumgebung/56a5379b83ea9c03d4d16daf27ac91e1ba6b020f";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    typhon.url = "github:itslychee/typhon?ref=itslychee/random-fixes-and-additions";
     nextcloud-caddy.flake = false;
   };
   outputs =
-    { nixpkgs, ... }@inputs:
+    {
+      self,
+      nixpkgs,
+      typhon,
+      colmena,
+      ...
+    }@inputs:
     let
       inherit (nixpkgs) lib;
       eachSystem =
@@ -31,6 +38,19 @@
           }
         ) (lib.filterAttrs (_n: v: v == "directory") (builtins.readDir ./pkgs))
       );
+
+      typhonProject = typhon.lib.github.mkProject {
+        owner = "itslychee";
+        repo = "config";
+        secrets = ./secrets.age;
+        typhonUrl = "https://ci.wires.cafe";
+        meta = {
+          description = "my nixos configuration";
+        };
+      };
+
+      inherit self;
+      typhonJobs.x86_64-linux = (colmena.lib.makeHive self.colmena).toplevel;
 
     };
 }
