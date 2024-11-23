@@ -70,4 +70,8 @@ in
     ./modules/roles/s3
     { system.stateVersion = "24.05"; }
   ];
+  wiretop.imports = [
+    ./modules/roles/graphical
+    { system.stateVersion = "24.05"; }
+  ];
 }
