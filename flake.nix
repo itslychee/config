@@ -44,6 +44,15 @@
         repo = "config";
         secrets = ./secrets.age;
         typhonUrl = "https://ci.wires.cafe";
+        deploy = [
+          {
+            name = "Push to Attic";
+            value = typhon.lib.attic.mkPush {
+              endpoint = "https://cache.wires.cafe";
+              cache = "lychee-config";
+            };
+          }
+        ];
         meta = {
           description = "my nixos configuration";
         };
