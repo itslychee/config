@@ -55,7 +55,6 @@
         ];
       };
 
-      inherit self;
       typhonJobs.x86_64-linux = (colmena.lib.makeHive self.colmena).toplevel;
 
     };
