@@ -25,7 +25,7 @@
 
   services.typhon = {
     enable = true;
-    hashedPassword = "$argon2id$v=19$m=16,t=2,p=1$Zndmd2Zmd2Z3$hgv5ewz0KyULWjCKoYll8w";
+    hashedPassword = "$argon2id$v=19$m=4096,t=3,p=1$VXA1N2x0cTF5Q2xGN0dQcg$gZZoSTbMV+nt/3niyEvMtXgScrvZv3GxX2F8WTifcdc";
     environmentFile = "${pkgs.writeText "env" ''
       LEPTOS_SITE_ADDR=0.0.0.0:9050
     ''}";
