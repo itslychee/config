@@ -36,6 +36,7 @@
     speedFactor = 35;
   };
 
+  networking.networkmanager.enable = true;
   programs.wireshark.enable = true;
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
