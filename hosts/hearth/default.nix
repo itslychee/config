@@ -24,6 +24,7 @@
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
       nix-tree
+      vesktop
       nixpkgs-review
       winetricks
       # android-studio
