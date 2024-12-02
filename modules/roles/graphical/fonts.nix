@@ -13,12 +13,7 @@
         liberation_ttf
         font-awesome
         ;
-      nerdfonts = pkgs.nerdfonts.override {
-        fonts = [
-          "NerdFontsSymbolsOnly"
-          "JetBrainsMono"
-        ];
-      };
+      inherit (pkgs.nerd-fonts) symbols-only jetbrains-mono;
     };
     fontconfig.defaultFonts = {
       monospace = [
