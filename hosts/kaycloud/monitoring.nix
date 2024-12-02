@@ -31,12 +31,61 @@ in
       enable = true;
       datasources.settings.datasources = [
         {
-          name = "Prometheus (Personal)";
+          name = "Prometheus";
           url = "http://[::1]:${toString config.services.prometheus.port}";
           type = "prometheus";
         }
+        {
+          name = "Loki";
+          url = "http://[::1]:${toString config.services.loki.configuration.server.http_listen_port}";
+          type = "loki";
+        }
       ];
     };
+  };
+
+  # Loki logging server
+  services.loki = {
+    enable = true;
+
+    configuration = {
+      auth_enabled = false;
+      server.http_listen_port = 20500;
+      common = {
+        ring = {
+          instance_addr = "127.0.0.1";
+          kvstore = {
+            store = "inmemory";
+          };
+        };
+        replication_factor = 1;
+        path_prefix = "/tmp/loki";
+      };
+
+      schema_config = {
+        configs = lib.singleton {
+          from = "2024-12-01";
+          store = "tsdb";
+          object_store = "filesystem";
+          schema = "v13";
+          index = {
+            prefix = "index_";
+            period = "24h";
+          };
+        };
+      };
+      storage_config = {
+        tsdb_shipper = {
+          active_index_directory = "/tmp/loki/index";
+          cache_location = "/tmp/loki/index_cache";
+        };
+        filesystem.directory = "/tmp/loki/chunks";
+
+      };
+    };
+    extraFlags = [
+      "-config.expand-env=true"
+    ];
   };
 
   # Prometheus metrics server
