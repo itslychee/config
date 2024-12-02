@@ -41,9 +41,9 @@
 
   networking.networkmanager.enable = true;
 
-  services.xserver = {
+  services.desktopManager.plasma6 = {
     enable = true;
-    desktopManager.plasma5.enable = true;
+    enableQt5Integration = true;
   };
   services.displayManager.sddm = {
     enable = true;
