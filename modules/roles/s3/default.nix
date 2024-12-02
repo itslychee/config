@@ -13,30 +13,6 @@ in
   config = {
     deployment.tags = [ "s3" ];
     hey.roles.s3 = true;
-    services.resolved.extraConfig = ''
-      [Resolve]
-      DNS=127.0.0.1:8600
-      DNSSEC=false
-      Domains=~consul
-    '';
-
-    # Thank you!
-    #
-    # https://github.com/viperML/dotfiles/blob/f6b62b75556b111815524675958e383cd5ef534c/modules/nixos/consul.nix#L20C9-L20C147
-    services.consul = {
-      enable = true;
-      interface = {
-        bind = config.services.tailscale.interfaceName;
-        advertise = config.services.tailscale.interfaceName;
-      };
-      extraConfig = {
-        retry_join = builtins.attrNames (
-          lib.filterAttrs (_name: value: value.config.services.consul.enable) nodes
-        );
-        advertise_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }}'';
-        bind_addr = ''{{ GetInterfaceIP "${config.services.tailscale.interfaceName}" }} {{ GetAllInterfaces | include "flags" "loopback" | join "address" " " }}'';
-      };
-    };
 
     deployment.keys.garage-secrets = mkIf config.services.garage.enable {
       destDir = "/var/lib/secrets/garage";
@@ -56,10 +32,6 @@ in
         compression_level = 0;
         rpc_public_addr_subnet = "fd7a:115c:a1e0::/48";
         rpc_bind_addr = "[::]:3901";
-        consul_discovery = {
-          service_name = "garage-s3";
-          consul_http_addr = "http://127.0.0.1:8500";
-        };
         s3_api = {
           api_bind_addr = "[::]:3900";
           s3_region = "garage";

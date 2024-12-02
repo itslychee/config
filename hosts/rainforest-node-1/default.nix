@@ -19,15 +19,5 @@
   networking.firewall.interfaces.${config.services.tailscale.interfaceName} = {
     allowedTCPPorts = [ 9050 ];
   };
-  imports = [
-    inputs.typhon.nixosModules.default
-  ];
 
-  services.typhon = {
-    enable = true;
-    hashedPassword = "$argon2id$v=19$m=4096,t=3,p=1$VXA1N2x0cTF5Q2xGN0dQcg$gZZoSTbMV+nt/3niyEvMtXgScrvZv3GxX2F8WTifcdc";
-    environmentFile = "${pkgs.writeText "env" ''
-      LEPTOS_SITE_ADDR=0.0.0.0:9050
-    ''}";
-  };
 }
