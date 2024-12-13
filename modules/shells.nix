@@ -47,7 +47,6 @@
         [\[$directory$git_branch$git_state$git_commit$git_status\]](bold green)
         [❤️ $username$hostname](bold #ff9ad2)$character
       '';
-      right_format = "$rust$golang$python$nix_shell";
       character = {
         success_symbol = "➜";
         error_symbol = "➜";
