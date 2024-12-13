@@ -22,6 +22,9 @@
       bindkey '^H' backward-kill-word
     '';
   };
+  environment.sessionVariables = {
+    ZLE_RPROMPT_INDENT = 0;
+  };
 
   programs.starship = {
     enable = true;
