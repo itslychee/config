@@ -33,13 +33,4 @@
   };
 
   services.consul.extraConfig.server = true;
-
-  services.xserver = {
-    enable = true;
-    desktopManager.plasma5.enable = true;
-  };
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
 }
