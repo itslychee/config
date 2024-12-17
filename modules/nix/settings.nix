@@ -28,7 +28,6 @@ in
       value.flake = val;
     }) inputs;
     channel.enable = false;
-    package = pkgs.lix;
     settings = {
       nix-path = config.nix.nixPath;
       keep-outputs = true;
