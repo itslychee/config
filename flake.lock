@@ -857,11 +857,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1734444302,
-        "narHash": "sha256-kRIDfqbMnaTuQVt4fL/UEEyzws0QQbrFtFHJdMHbGZg=",
+        "lastModified": 1734445551,
+        "narHash": "sha256-4ePvh7Ciq3L9yvVrKftKZIahVI29gon5MWxMi6xgxfE=",
         "owner": "itslychee",
         "repo": "nvim",
-        "rev": "41c63836ea848cd1f513bd55b1fe8df7f0b84e53",
+        "rev": "fa2faa318e3705b70ae6ca05e9d47d5d28153568",
         "type": "github"
       },
       "original": {
