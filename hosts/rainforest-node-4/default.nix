@@ -34,10 +34,6 @@
 
   services.consul.extraConfig.server = true;
 
-  virtualisation.libvirtd = {
-    enable = true;
-    allowedBridges = [ "eno2" ];
-  };
   services.xserver = {
     enable = true;
     desktopManager.plasma5.enable = true;
