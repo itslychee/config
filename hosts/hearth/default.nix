@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 {
   boot = {
     kernelParams = [ "irqpoll" ];
@@ -30,19 +35,21 @@
       # android-studio
       act
       ;
-    vesktop = (pkgs.vesktop.override {
-      withMiddleClickScroll = true;
-      withSystemVencord = true;
-    });
+    vesktop = (
+      pkgs.vesktop.override {
+        withMiddleClickScroll = true;
+        withSystemVencord = true;
+      }
+    );
   };
   programs.adb.enable = true;
   virtualisation.docker.enable = true;
   services.printing.enable = true;
   services.avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-    };
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   hardware = {
     bluetooth.enable = true;
@@ -63,7 +70,8 @@
   # - Stuttering app performance
   # - Elite Dangerous doesn't want to run
   # - Bad audio
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages =
+    inputs.nixpkgs-24-05.legacyPackages.${config.nixpkgs.hostPlatform.system}.linuxPackages_latest;
 
   services.fstrim.enable = true;
 
