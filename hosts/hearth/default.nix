@@ -6,8 +6,8 @@
 }:
 {
   boot = {
-    kernelParams = [ "irqpoll" ];
     loader.systemd-boot.enable = true;
+    kernelParams = [ "irqpoll" ];
     binfmt.emulatedSystems = [
       "aarch64-linux"
     ];
@@ -70,8 +70,8 @@
   # - Stuttering app performance
   # - Elite Dangerous doesn't want to run
   # - Bad audio
-  boot.kernelPackages =
-    inputs.nixpkgs-24-05.legacyPackages.${config.nixpkgs.hostPlatform.system}.linuxPackages_latest;
+  # boot.kernelPackages =
+  #   inputs.nixpkgs-24-11.legacyPackages.${config.nixpkgs.hostPlatform.system}.linuxPackages_latest;
 
   services.fstrim.enable = true;
 

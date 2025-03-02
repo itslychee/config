@@ -34,10 +34,19 @@
     ];
   };
 
+  fileSystems."/srv/games" = {
+    device = "/dev/disk/by-uuid/d9c81539-ecb8-4a2d-861e-e8deaba1ac17";
+    fsType = "ext4";
+  };
+
   swapDevices = [
     { device = "/dev/disk/by-uuid/466163f0-8477-4f8a-b6b2-63a91c937db4"; }
   ];
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = true;
+  hardware.amdgpu.amdvlk = {
+    enable = true;
+    support32Bit.enable = true;
+  };
 }
