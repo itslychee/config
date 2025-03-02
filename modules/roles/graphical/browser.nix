@@ -6,6 +6,7 @@
     preferences = {
       "webgl.disabled" = false;
       "privacy.clearOnShutdown.history" = false;
+      "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
       "middlemouse.paste" = false;
     };
     policies.ExtensionSettings = {
