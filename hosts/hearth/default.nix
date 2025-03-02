@@ -35,10 +35,10 @@
       # android-studio
       act
       ;
-    vesktop = (
-      pkgs.vesktop.override {
-        withMiddleClickScroll = true;
-        withSystemVencord = true;
+    discord = (
+      pkgs.discord.override {
+        withVencord = true;
+        withOpenASAR = true;
       }
     );
   };
