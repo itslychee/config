@@ -22,6 +22,7 @@
     allowedPlayers = [
       "itslychee"
       "ItzMichaili"
+      "vaskel"
     ];
     autosave-interval = 20;
     nonBlockingSaving = true;
