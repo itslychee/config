@@ -45,22 +45,18 @@ in
   ];
   rainforest-node-1.imports = [
     ./modules/roles/server
-    # ./modules/roles/s3
     { system.stateVersion = "24.05"; }
   ];
   rainforest-node-2.imports = [
     ./modules/roles/server
-    # ./modules/roles/s3
     { system.stateVersion = "24.05"; }
   ];
   rainforest-node-3.imports = [
     ./modules/roles/server
-    # ./modules/roles/s3
     { system.stateVersion = "24.05"; }
   ];
   rainforest-node-4.imports = [
     ./modules/roles/server
-    # ./modules/roles/s3
     { system.stateVersion = "24.05"; }
   ];
   kaycloud.imports = [
