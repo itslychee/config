@@ -15,5 +15,4 @@
     speedFactor = 85;
   };
 
-  services.consul.extraConfig.server = true;
 }

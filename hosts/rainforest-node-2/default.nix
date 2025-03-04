@@ -21,7 +21,4 @@
     speedFactor = 100;
   };
 
-  services.consul.extraConfig = {
-    server = true;
-  };
 }
