@@ -22,6 +22,22 @@
         "type": "github"
       }
     },
+    "factorio": {
+      "locked": {
+        "lastModified": 1741699971,
+        "narHash": "sha256-GRRVbwXrKRE8AuJQJ18dy8ZmNxEQveD6Y/lhl72FIRs=",
+        "owner": "itslychee",
+        "repo": "nixpkgs",
+        "rev": "ed678abb75d41c6fbdd96e2d8d9fc5aa406147a3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "itslychee",
+        "ref": "factorio/2.0.39",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -192,6 +208,7 @@
     "root": {
       "inputs": {
         "colmena": "colmena",
+        "factorio": "factorio",
         "nextcloud-caddy": "nextcloud-caddy",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-24-11": "nixpkgs-24-11",

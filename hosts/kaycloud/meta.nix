@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   time.timeZone = "Europe/Berlin";
   boot.loader.systemd-boot.enable = true;
@@ -16,8 +21,9 @@
 
   services.factorio = {
     enable = true;
+    package = inputs.factorio.legacyPackages.${pkgs.system}.factorio-headless;
     openFirewall = true;
-    saveName = "kayili-server";
+    saveName = "new-leaf";
     description = "kayili productions co ltd inc";
     allowedPlayers = [
       "itslychee"
