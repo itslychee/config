@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
+{ config, inputs, ... }:
 {
   time.timeZone = "Europe/Berlin";
   boot.loader.systemd-boot.enable = true;
