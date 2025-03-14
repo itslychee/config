@@ -10,6 +10,8 @@ in
   # Global options
   time.timeZone = mkDefault "US/Central";
 
+  i18n.defaultLocale = "en_US.UTF-8";
+
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.timeout = mkDefault 1;
 

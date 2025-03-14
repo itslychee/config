@@ -6,16 +6,30 @@
 }:
 {
   boot = {
+    initrd.systemd.enable = true;
     loader.systemd-boot.enable = true;
-    kernelParams = [ "irqpoll" ];
     binfmt.emulatedSystems = [
       "aarch64-linux"
     ];
+
   };
+
+  # boot = {
+  #   # Driver issue (possibly linux-firmware issue)
+  #   # https://bbs.archlinux.org/viewtopic.php?id=302000
+  #   # https://gitlab.freedesktop.org/drm/amd/-/issues/3863
+  #   #
+  #   kernelParams = [
+  #     "apic=verbose"
+  #     "pcie_port_pm=off"
+  #   ];
+  #   blacklistedKernelModules = [ "rtw88_pci" ];
+  #   kernel.sysctl."processor.max_cstate" = 1;
+  # };
 
   hey = {
     graphical.games = true;
-    hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOaAxiB8BtVJC+3WM/ydH+8CRaINbE+7X3aO1l/0cJhV";
+    hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILweHVDtBHYZg7ju64cHW7iEcEtaoGwYhYS1Fw1F6LsL";
     users.lychee = {
       groups = [
         "docker"
@@ -24,15 +38,13 @@
     };
   };
 
+  services.fwupd.enable = true;
   programs.wireshark.enable = true;
 
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
       nix-tree
       nixpkgs-review
-      winetricks
-      libreoffice
-      # android-studio
       act
       ;
     discord = (
@@ -66,6 +78,13 @@
     enable = true;
     wayland.enable = true;
   };
+
+  # services.xserver = {
+  #   enable = true;
+  #   displayManager.gdm.enable = true;
+  #   desktopManager.gnome.enable = true;
+  # };
+
   # NOTE: Leave this, this seems to fix the issues with the current set kernel such as but not limited to:
   # - Stuttering app performance
   # - Elite Dangerous doesn't want to run

@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  inputs,
   config,
   ...
 }:
@@ -12,7 +13,14 @@
       gamemode
       wineWowPackages.stable
     ];
-    programs.steam.enable = true;
+    programs.steam = {
+      enable = true;
+      package = inputs.unstable.legacyPackages.${config.nixpkgs.hostPlatform.system}.steam;
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
+      extraPackages = [ pkgs.gamescope ];
+      protontricks.enable = true;
+      gamescopeSession.enable = true;
+    };
   };
 
 }

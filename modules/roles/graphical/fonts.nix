@@ -13,7 +13,7 @@
         liberation_ttf
         font-awesome
         ;
-      inherit (pkgs.nerd-fonts) symbols-only jetbrains-mono;
+      # inherit (pkgs.nerd-fonts) symbols-only jetbrains-mono;
     };
     fontconfig.defaultFonts = {
       monospace = [

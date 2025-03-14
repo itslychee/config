@@ -81,6 +81,7 @@ in
 
   config = mkMerge [
     {
+      users.mutableUsers = false;
       users.users = mapAttrs (_name: value: {
         inherit (value) packages hashedPassword;
         isNormalUser = true;

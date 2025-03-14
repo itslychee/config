@@ -7,7 +7,7 @@
   # should be obvious why this is global
   hey.users.lychee = {
     enable = true;
-    hashedPassword = "$y$j9T$i6s3FePGTaI/qFEI.DGnO/$Z80iTqKXQCu3AF8qsOkThNFN/eHisyfXirpjSZ4N.N6";
+    hashedPassword = "$y$j9T$kDsIrEIkHOucclmZa6hRK/$O6av0rpCl9lMFHe.u8W96cvFZon08OM8Usq935rGuLB";
     groups = [
       "wheel"
       "audio"

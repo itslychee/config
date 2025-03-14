@@ -4,49 +4,55 @@
 {
   config,
   lib,
+  pkgs,
+  modulesPath,
   ...
 }:
+
 {
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
     "nvme"
-    "usbhid"
+    "ums_realtek"
     "usb_storage"
+    "usbhid"
     "sd_mod"
-    "sr_mod"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [
+    "kvm-amd"
+    "amdgpu"
+  ];
   boot.extraModulePackages = [ ];
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/581436a2-87e9-438a-b277-875b9b9569d8";
+      fsType = "ext4";
+    };
+    "/srv/games" = {
+      device = "/dev/disk/by-uuid/d9c81539-ecb8-4a2d-861e-e8deaba1ac17";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/CA63-05C8";
+      fsType = "vfat";
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
+    };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/0fd723a4-ddd2-4223-98c2-52aafe239a6d";
-    fsType = "ext4";
   };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/3DAE-3070";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
-    ];
-  };
-
-  fileSystems."/srv/games" = {
-    device = "/dev/disk/by-uuid/d9c81539-ecb8-4a2d-861e-e8deaba1ac17";
-    fsType = "ext4";
-  };
+  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/3cadc1f0-172f-42d7-953b-3c044f09edcd";
 
   swapDevices = [
-    { device = "/dev/disk/by-uuid/466163f0-8477-4f8a-b6b2-63a91c937db4"; }
+    { device = "/dev/disk/by-uuid/89bbd5da-c0cc-4914-80fa-7c9098cbf414"; }
   ];
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = true;
-  hardware.amdgpu.amdvlk = {
-    enable = true;
-    support32Bit.enable = true;
-  };
+  hardware.enableAllFirmware = true;
 }

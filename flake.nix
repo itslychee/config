@@ -3,8 +3,8 @@
     nvim.url = "github:itslychee/nvim";
     factorio.url = "github:itslychee/nixpkgs?ref=factorio/2.0.39";
     colmena.url = "github:zhaofengli/colmena";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-24-11.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nextcloud-caddy.url = "github:onny/nixos-nextcloud-testumgebung/56a5379b83ea9c03d4d16daf27ac91e1ba6b020f";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nextcloud-caddy.flake = false;
