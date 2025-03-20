@@ -1,7 +1,6 @@
 {
   inputs = {
     nvim.url = "github:itslychee/nvim";
-    factorio.url = "github:itslychee/nixpkgs?ref=factorio/2.0.39";
     colmena.url = "github:zhaofengli/colmena";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
