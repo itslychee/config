@@ -4,6 +4,7 @@
     loader.systemd-boot.enable = true;
     binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
+  virtualisation.docker.enable = true;
 
   services.printing = {
     enable = true;
