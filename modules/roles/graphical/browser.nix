@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 {
   programs.firefox = {
-    package = pkgs.librewolf;
+    package = pkgs.firefox;
     enable = lib.mkDefault true;
     preferences = {
       "webgl.disabled" = false;
