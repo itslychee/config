@@ -15,6 +15,7 @@
     shellInit = ''
       setopt autocd
       zsh-newuser-install() { :; }
+      zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate _prefix
 
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
