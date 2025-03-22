@@ -53,23 +53,6 @@
         "type": "github"
       }
     },
-    "nextcloud-caddy": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1726579702,
-        "narHash": "sha256-ITfGW1ILVLZpun8p/RlVg8cV/uvfn4G4+dWjOVvPrSM=",
-        "owner": "onny",
-        "repo": "nixos-nextcloud-testumgebung",
-        "rev": "56a5379b83ea9c03d4d16daf27ac91e1ba6b020f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "onny",
-        "repo": "nixos-nextcloud-testumgebung",
-        "rev": "56a5379b83ea9c03d4d16daf27ac91e1ba6b020f",
-        "type": "github"
-      }
-    },
     "nix-github-actions": {
       "inputs": {
         "nixpkgs": [
@@ -160,11 +143,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1742610791,
-        "narHash": "sha256-PiQO6POvM5rA9KfQLhDADEcy+cq0UB1GTcgck6b7tLs=",
+        "lastModified": 1742614973,
+        "narHash": "sha256-71wbDP++EYQMD19RR5oGUuz3wD7Fjq+mLJ01+NlypsQ=",
         "owner": "itslychee",
         "repo": "nvim",
-        "rev": "b83b9cbf3c355f056f8f5f786774e3839c39b903",
+        "rev": "84a13bde94a7f103892edd358b2b73867cf0e401",
         "type": "github"
       },
       "original": {
@@ -176,7 +159,6 @@
     "root": {
       "inputs": {
         "colmena": "colmena",
-        "nextcloud-caddy": "nextcloud-caddy",
         "nixpkgs": "nixpkgs_2",
         "nvim": "nvim",
         "spicetify-nix": "spicetify-nix",
