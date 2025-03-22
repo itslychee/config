@@ -48,7 +48,6 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    librewolf
     colmena
     wl-clipboard
     swappy
