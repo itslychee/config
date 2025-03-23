@@ -19,7 +19,7 @@
 
   services.factorio = {
     enable = true;
-    package = inputs.unstable.legacyPackages.${config.nixpkgs.hostPlatform.system}.factorio-headless;
+    package = inputs.factorio.legacyPackages.${config.nixpkgs.hostPlatform.system}.factorio-headless;
     openFirewall = true;
     saveName = "new-leaf";
     description = "wires server stuff";
