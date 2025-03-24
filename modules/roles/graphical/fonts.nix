@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   fonts = {
     enableDefaultPackages = true;
@@ -13,7 +13,7 @@
         liberation_ttf
         font-awesome
         ;
-      # inherit (pkgs.nerd-fonts) symbols-only jetbrains-mono;
+      inherit (inputs.unstable.legacyPackages.${pkgs.system}.nerd-fonts) symbols-only jetbrains-mono;
     };
     fontconfig.defaultFonts = {
       monospace = [
