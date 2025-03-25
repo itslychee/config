@@ -8,10 +8,6 @@
     syntaxHighlighting.enable = true;
     enableBashCompletion = true;
     autosuggestions.enable = true;
-    shellAliases = {
-      try = "colmena apply-local --sudo -v";
-      deploy = "colmena apply";
-    };
     shellInit = ''
       setopt autocd
       zsh-newuser-install() { :; }
