@@ -50,9 +50,7 @@ in
   environment.systemPackages = with pkgs; [
     colmena
     wl-clipboard
-    swappy
     mpv
-    celeste64
     remmina
   ];
 }
