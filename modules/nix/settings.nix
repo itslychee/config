@@ -42,8 +42,14 @@ in
       use-xdg-base-directories = true;
       auto-optimise-store = true;
       auto-allocate-uids = true;
-      substituters = [ "https://nix-community.cachix.org" ];
-      trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+      substituters = [
+        "https://nix-community.cachix.org"
+        "https://wires.cachix.org"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "wires.cachix.org-1:7XQoG91Bh+Aj01mAJi77Ui5AYyM1uEyV0h1wOomqjpk="
+      ];
       max-jobs = "auto";
       experimental-features = [
         "flakes"
