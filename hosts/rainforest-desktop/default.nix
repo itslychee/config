@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  hey.github.enable = false;
   boot = {
     loader.systemd-boot.enable = true;
     binfmt.emulatedSystems = [ "aarch64-linux" ];

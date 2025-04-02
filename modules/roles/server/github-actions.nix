@@ -26,6 +26,8 @@
           "${config.networking.hostName}_3"
           "${config.networking.hostName}_4"
           "${config.networking.hostName}_5"
+          "${config.networking.hostName}_6"
+          "${config.networking.hostName}_7"
         ]
         (_: {
           enable = true;

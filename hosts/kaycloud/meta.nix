@@ -38,6 +38,8 @@
     extraSettingsFile = "/run/credentials/factorio.service/secrets.json";
   };
 
+  hey.github.enable = false;
+
   hey.users.michaili = {
     groups = [ "wheel" ];
     hashedPassword = "$y$j9T$bbST2Hh4s48HybtRlvSDp1$D76h1n6sS1s0o00ZmQjBo5wjffXUFv/Mn3/2Yks5DQC";
