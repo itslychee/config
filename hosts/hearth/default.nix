@@ -46,6 +46,9 @@
       nix-tree
       nixpkgs-review
       act
+      gns3-gui
+      inetutils
+      xterm
       ;
     discord = (
       pkgs.discord.override {
