@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   ...
 }:
 {
@@ -22,14 +23,6 @@
       9050
       3080
     ];
-  };
-
-  services.gns3-server = {
-    enable = true;
-    ubridge.enable = true;
-    dynamips.enable = true;
-    vpcs.enable = true;
-
   };
 
   networking.firewall.allowedUDPPorts = [
