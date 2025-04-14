@@ -9,7 +9,6 @@
   environment.systemPackages = [
     pkgs.minicom
     pkgs.libreoffice
-    pkgs.gns3-gui
     (pkgs.vesktop.override {
       withMiddleClickScroll = true;
       withSystemVencord = true;
