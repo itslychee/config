@@ -55,10 +55,6 @@ in
     ./modules/roles/server
     { system.stateVersion = "24.05"; }
   ];
-  rainforest-node-4.imports = [
-    ./modules/roles/server
-    { system.stateVersion = "24.05"; }
-  ];
   kaycloud.imports = [
     ./modules/roles/server
     { system.stateVersion = "25.05"; }
