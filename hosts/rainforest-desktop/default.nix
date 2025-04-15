@@ -15,8 +15,6 @@
     })
   ];
   hey = {
-    github.enable = false;
-
     hostKeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGmZ4ydKauxo7XWxs7KBscNs+467oyFtC9jIevfiZOzv";
     graphical.games = true;
 

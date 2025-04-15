@@ -40,7 +40,6 @@ in
   ];
   rainforest-desktop.imports = [
     ./modules/roles/graphical
-    ./modules/roles/server
     { system.stateVersion = "24.05"; }
   ];
   rainforest-node-1.imports = [
