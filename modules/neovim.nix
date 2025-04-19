@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib) mkOption mkIf mkMerge;
-  inherit (lib.types) bool package listOf;
+  inherit (lib.types) bool;
   inherit (config.hey.roles) graphical;
   nvim = inputs.nvim.packages.${pkgs.system};
 in
@@ -20,10 +20,6 @@ in
         description = "Enable my editor system-wide";
       };
 
-      extraLSPs = mkOption {
-        type = listOf package;
-        default = [ ];
-      };
     };
   };
 
