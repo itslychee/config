@@ -45,6 +45,7 @@ let
       top = 0,
       bottom = 0,
     }
+    config.warn_about_missing_glyphs = false
 
     return config
 
