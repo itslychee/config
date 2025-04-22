@@ -32,6 +32,8 @@ let
     config.font = wezterm.font_with_fallback {
         "Terminus",
         "JetbrainsMono Nerd Font",
+        "Font Awesome 6 Free",
+        "Font Awesome 6 Brands",
         "Noto Color Emoji",
         "Material Design Icons",
     }
