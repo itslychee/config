@@ -1,7 +1,7 @@
 {
   inputs = {
     nvim.url = "github:itslychee/nvim";
-    colmena.url = "github:zhaofengli/colmena";
+    wire.url = "github:wires-org/wire";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     factorio.url = "github:MichailiK/nixpkgs/389365";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";

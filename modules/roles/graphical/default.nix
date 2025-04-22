@@ -48,7 +48,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    colmena
+    inputs.wire.packages.${pkgs.system}.default
     wl-clipboard
     mpv
     remmina
