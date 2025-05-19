@@ -2,7 +2,7 @@
   inputs = {
     nvim.url = "github:itslychee/nvim";
     wire.url = "github:wires-org/wire";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     factorio.url = "github:MichailiK/nixpkgs/389365";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nextcloud-caddy.url = "github:onny/nixos-nextcloud-testumgebung/56a5379b83ea9c03d4d16daf27ac91e1ba6b020f";
