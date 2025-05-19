@@ -18,25 +18,15 @@ let
     local wezterm = require("wezterm")
     local config = wezterm.config_builder()
 
-    package.path = package.path .. ";${pluginsBundled}/?/plugin/init.lua"
-
-    local bar = require "bar"
-
-    bar.apply_to_config(config, {
-        position = "top",
-        modules = {
-            pane = { enabled = false, },
-            workspace = { enabled = false, },
-        },
-    })
     config.font = wezterm.font_with_fallback {
         "Terminus",
         "JetbrainsMono Nerd Font",
         "Font Awesome 6 Free",
         "Font Awesome 6 Brands",
         "Noto Color Emoji",
-        "Material Design Icons",
+        "Material Design Icons"
     }
+
     -- config.color_scheme = "Darkside (Gogh)"
     config.color_scheme = "OneHalfDark"
     config.window_padding = {
