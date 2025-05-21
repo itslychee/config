@@ -5,9 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     factorio.url = "github:MichailiK/nixpkgs/389365";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nextcloud-caddy.url = "github:onny/nixos-nextcloud-testumgebung/56a5379b83ea9c03d4d16daf27ac91e1ba6b020f";
-    # nextcloud-caddy.flake = false;
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
   outputs =
     {
