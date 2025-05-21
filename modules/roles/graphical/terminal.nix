@@ -37,6 +37,11 @@ let
     }
     config.warn_about_missing_glyphs = false
 
+    wezterm.on("gui-startup", function()
+      local tab, pane, window = wezterm.mux.spawn_window{}
+      window:gui_window():maximize()
+    end)
+
     return config
 
   '';
