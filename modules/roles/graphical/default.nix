@@ -1,12 +1,14 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }:
 {
 
   deployment.tags = [ "graphical" ];
   hey.roles.graphical = true;
+  imports = lib.fileset.toList (lib.fileset.difference ./. ./default.nix);
 
   programs.wireshark.package = pkgs.wireshark-qt;
   programs.gnupg.agent = {
