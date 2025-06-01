@@ -11,7 +11,6 @@
     binfmt.emulatedSystems = [
       "aarch64-linux"
     ];
-
   };
 
   # boot = {
@@ -45,14 +44,16 @@
     inherit (pkgs)
       nix-tree
       nixpkgs-review
+      blender
+      freecad
       act
+      kicad
+      naps2
       ;
-    discord = (
-      pkgs.discord.override {
-        withVencord = true;
-        withOpenASAR = true;
-      }
-    );
+    discord = pkgs.discord.override {
+      withVencord = true;
+      withOpenASAR = true;
+    };
   };
   programs.adb.enable = true;
   virtualisation.docker.enable = true;
