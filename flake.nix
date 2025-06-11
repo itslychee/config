@@ -9,7 +9,6 @@
   outputs =
     {
       nixpkgs,
-      colmena,
       ...
     }@inputs:
     let
