@@ -27,7 +27,6 @@
     allowedPlayers = [
       "itslychee"
       "ItzMichaili"
-      "vaskel"
     ];
     admins = [
       "itslychee"
