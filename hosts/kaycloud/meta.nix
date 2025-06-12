@@ -21,12 +21,13 @@
     enable = true;
     package = inputs.unstable.legacyPackages.${config.nixpkgs.hostPlatform.system}.factorio-headless;
     openFirewall = true;
-    saveName = "new-leaf";
+    saveName = "Islander Factorio";
     description = "wires server stuff";
     game-name = "wires cafe";
     allowedPlayers = [
       "itslychee"
       "ItzMichaili"
+      # "vaskel"
     ];
     admins = [
       "itslychee"
