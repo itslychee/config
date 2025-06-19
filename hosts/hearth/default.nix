@@ -50,10 +50,6 @@
       kicad
       naps2
       ;
-    discord = pkgs.discord.override {
-      withVencord = true;
-      withOpenASAR = true;
-    };
   };
   programs.adb.enable = true;
   virtualisation.docker.enable = true;

@@ -11,14 +11,6 @@
     enable = true;
   };
   environment.systemPackages = [
-    # (pkgs.vesktop.override {
-    #   withMiddleClickScroll = true;
-    #   withSystemVencord = true;
-    # })
-    (pkgs.discord.override {
-      withVencord = true;
-      withOpenASAR = true;
-    })
     pkgs.teams-for-linux
   ];
 

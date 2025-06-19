@@ -31,5 +31,9 @@
     wl-clipboard
     mpv
     remmina
+    (pkgs.vesktop.override {
+      withMiddleClickScroll = true;
+      withSystemVencord = true;
+    })
   ];
 }
