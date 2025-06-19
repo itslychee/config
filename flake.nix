@@ -1,7 +1,7 @@
 {
   inputs = {
     nvim.url = "github:itslychee/nvim";
-    wire.url = "github:wires-org/wire";
+    colmena.url = "github:zhaofengli/colmena";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     factorio.url = "github:MichailiK/nixpkgs/389365";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -9,6 +9,7 @@
   outputs =
     {
       nixpkgs,
+      colmena,
       ...
     }@inputs:
     let
@@ -21,7 +22,7 @@
         ] (system: fun nixpkgs.legacyPackages.${system});
     in
     {
-      colmena = import ./hive.nix inputs;
+      colmenaHive = colmena.lib.makeHive (import ./hive.nix inputs);
       # adopt a pkgs/by-name approach but less intrusive
       legacyPackages = eachSystem (
         pkgs:
