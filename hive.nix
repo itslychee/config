@@ -12,7 +12,11 @@ let
 in
 {
   meta = {
-    nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
+    nixpkgs = import nixpkgs {
+      system = "x86_64-linux";
+      config.allowUnfree = true;
+
+    };
     specialArgs = {
       inherit inputs;
     };
