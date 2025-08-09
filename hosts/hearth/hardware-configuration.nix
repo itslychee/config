@@ -25,6 +25,8 @@
   boot.kernelModules = [
     "kvm-amd"
     "amdgpu"
+    "btintel"
+    "btusb"
   ];
   boot.extraModulePackages = [ ];
   fileSystems = {
@@ -54,5 +56,9 @@
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = true;
+  boot.kernelParams = [
+    "btintel.enable_psr=0" # this fixed my problem with needing to reload btusb mod (AX200 intel wifi)
+    # "btusb.enable_autosuspend=0"
+  ];
   hardware.enableAllFirmware = true;
 }
