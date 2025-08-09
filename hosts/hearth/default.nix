@@ -49,14 +49,21 @@
       act
       kicad
       naps2
+      gimp
+      libreoffice
+
       ;
   };
   programs.adb.enable = true;
   virtualisation.docker.enable = true;
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    startWhenNeeded = false;
+  };
   services.avahi = {
     enable = true;
     nssmdns4 = true;
+    nssmdns6 = true;
     openFirewall = true;
   };
 
