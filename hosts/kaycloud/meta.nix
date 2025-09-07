@@ -21,9 +21,9 @@
     enable = true;
     package = inputs.unstable.legacyPackages.${config.nixpkgs.hostPlatform.system}.factorio-headless;
     openFirewall = true;
-    saveName = "Islander Factorio";
-    description = "wires server stuff";
-    game-name = "wires cafe";
+    saveName = "new-leaf";
+    description = "wires server";
+    game-name = "wires!";
     allowedPlayers = [
       "itslychee"
       "ItzMichaili"
@@ -36,6 +36,12 @@
     autosave-interval = 10;
     nonBlockingSaving = true;
     extraSettingsFile = "/run/credentials/factorio.service/secrets.json";
+  };
+  services.terraria = {
+    enable = true;
+    openFirewall = true;
+    secure = true;
+    password = "meowmrrp";
   };
 
   hey.users.michaili = {
