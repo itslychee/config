@@ -42,11 +42,6 @@ in
     ./modules/roles/graphical
     { system.stateVersion = "24.05"; }
   ];
-  kaycloud.imports = [
-    ./modules/roles/server
-    { system.stateVersion = "25.05"; }
-
-  ];
   wiretop.imports = [
     ./modules/roles/graphical
     { system.stateVersion = "24.11"; }
