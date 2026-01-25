@@ -3,7 +3,6 @@
     nvim.url = "github:itslychee/nvim";
     colmena.url = "github:zhaofengli/colmena";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    factorio.url = "github:MichailiK/nixpkgs/389365";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
   outputs =

@@ -22,22 +22,6 @@
         "type": "github"
       }
     },
-    "factorio": {
-      "locked": {
-        "lastModified": 1742676322,
-        "narHash": "sha256-WylXxbXnbXbYAw9B9iqJU8O4rU2T7QQHhI+8YUNdJzY=",
-        "owner": "MichailiK",
-        "repo": "nixpkgs",
-        "rev": "978df83a57f4f08262abb8b5d49203d31c57dddc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MichailiK",
-        "ref": "389365",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -294,11 +278,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1763334038,
-        "narHash": "sha256-LBVOyaH6NFzQ3X/c6vfMZ9k4SV2ofhpxeL9YnhHNJQQ=",
+        "lastModified": 1767313136,
+        "narHash": "sha256-16KkgfdYqjaeRGBaYsNrhPRRENs0qzkQVUooNHtoy2w=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4c8cdd5b1a630e8f72c9dd9bf582b1afb3127d2c",
+        "rev": "ac62194c3917d5f474c1a844b6fd6da2db95077d",
         "type": "github"
       },
       "original": {
@@ -362,7 +346,6 @@
     "root": {
       "inputs": {
         "colmena": "colmena",
-        "factorio": "factorio",
         "nixpkgs": "nixpkgs_2",
         "nvim": "nvim",
         "unstable": "unstable"
@@ -408,11 +391,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1763421233,
-        "narHash": "sha256-Stk9ZYRkGrnnpyJ4eqt9eQtdFWRRIvMxpNRf4sIegnw=",
+        "lastModified": 1769018530,
+        "narHash": "sha256-MJ27Cy2NtBEV5tsK+YraYr2g851f3Fl1LpNHDzDX15c=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "89c2b2330e733d6cdb5eae7b899326930c2c0648",
+        "rev": "88d3861acdd3d2f0e361767018218e51810df8a1",
         "type": "github"
       },
       "original": {
