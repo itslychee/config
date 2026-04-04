@@ -31,9 +31,9 @@
         [tag]
             gpgSign = true
         [user]
-            email = "itslychee@protonmail.com"
+            email = "itslychee@proton.me"
             name = "itslychee"
-            signingKey = "45324E7F52DA3BA3"
+            signingKey = "8684A1194DF12A0F"
       '';
       ".config/git/ignore".text = ''
         .direnv
