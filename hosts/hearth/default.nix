@@ -51,7 +51,7 @@
       naps2
       gimp
       libreoffice
-      discord
+      # vesktop
 
       ;
   };
@@ -83,19 +83,6 @@
     enable = true;
     wayland.enable = true;
   };
-
-  # services.xserver = {
-  #   enable = true;
-  #   displayManager.gdm.enable = true;
-  #   desktopManager.gnome.enable = true;
-  # };
-
-  # NOTE: Leave this, this seems to fix the issues with the current set kernel such as but not limited to:
-  # - Stuttering app performance
-  # - Elite Dangerous doesn't want to run
-  # - Bad audio
-  # boot.kernelPackages =
-  #   inputs.nixpkgs-24-11.legacyPackages.${config.nixpkgs.hostPlatform.system}.linuxPackages_latest;
 
   services.fstrim.enable = true;
 
