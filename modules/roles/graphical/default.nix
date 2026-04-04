@@ -25,15 +25,12 @@
     silent = true;
     nix-direnv.enable = true;
   };
+  services.pcscd.enable = true;
 
   environment.systemPackages = with pkgs; [
     inputs.colmena.packages.${pkgs.system}.colmena
     wl-clipboard
     mpv
     remmina
-    (pkgs.vesktop.override {
-      withMiddleClickScroll = true;
-      withSystemVencord = true;
-    })
   ];
 }
