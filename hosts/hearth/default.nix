@@ -51,6 +51,7 @@
       naps2
       gimp
       libreoffice
+      minicom
       # vesktop
 
       ;
