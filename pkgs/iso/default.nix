@@ -8,13 +8,7 @@ let
   isoConfig = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {
       inherit inputs;
-      inherit
-        (
-          ((import "${inputs.wire}/runtime/evaluate.nix") {
-            path = inputs.self;
-            hive = inputs.self.colmena;
-          })
-        )
+      inherit (inputs.self.colmenaHive)
         nodes
         ;
     };
