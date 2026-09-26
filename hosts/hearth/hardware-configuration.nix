@@ -60,5 +60,9 @@
     "btintel.enable_psr=0" # this fixed my problem with needing to reload btusb mod (AX200 intel wifi)
     # "btusb.enable_autosuspend=0"
   ];
+  boot.extraModprobeConfig = ''
+    options kvm_amd nested=1
+  '';
+
   hardware.enableAllFirmware = true;
 }

@@ -10,7 +10,7 @@
   hey.roles.graphical = true;
   imports = lib.fileset.toList (lib.fileset.difference ./. ./default.nix);
 
-  programs.wireshark.package = pkgs.wireshark-qt;
+  programs.wireshark.package = pkgs.wireshark;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;

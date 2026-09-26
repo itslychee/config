@@ -7,7 +7,7 @@
         terminus_font
         noto-fonts-cjk-sans
         source-code-pro
-        noto-fonts-emoji
+        noto-fonts-color-emoji
         material-design-icons
         dejavu_fonts
         liberation_ttf

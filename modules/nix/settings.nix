@@ -56,11 +56,11 @@ in
       experimental-features = [
         "flakes"
         "nix-command"
-        "no-url-literals"
         "cgroups"
         "auto-allocate-uids"
       ];
       use-cgroups = true;
+      lint-url-literals = "fatal";
     };
   };
 

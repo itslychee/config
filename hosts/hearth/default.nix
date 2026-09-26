@@ -37,12 +37,24 @@
     };
   };
 
+  virtualisation.libvirtd.qemu.swtpm.enable = true;
+  services.gns3-server = {
+    enable = true;
+    dynamips.enable = true;
+    vpcs.enable = true;
+    ubridge.enable = true;
+
+  };
+
   services.fwupd.enable = true;
   programs.wireshark.enable = true;
 
   environment.systemPackages = builtins.attrValues {
+    inherit (pkgs.kdePackages) konsole;
     inherit (pkgs)
       nix-tree
+      inetutils
+      android-tools
       nixpkgs-review
       blender
       freecad
@@ -52,11 +64,11 @@
       gimp
       libreoffice
       minicom
+      gns3-gui
       # vesktop
 
       ;
   };
-  programs.adb.enable = true;
   virtualisation.docker.enable = true;
   services.printing = {
     enable = true;

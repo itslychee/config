@@ -10,7 +10,12 @@
     in
     {
       # thank u raf
-      inherit extraConfig;
+      settings.Manager = {
+        DefaultDeviceTimeoutSec = "10s";
+        DefaultTimeoutAbortSec = "10s";
+        DefaultTimeoutStopSec = "10s";
+        DefaultTimeoutStartSec = "10s";
+      };
       user.extraConfig = extraConfig;
     };
 }

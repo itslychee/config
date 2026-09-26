@@ -2,7 +2,7 @@
   inputs = {
     nvim.url = "github:itslychee/nvim";
     colmena.url = "github:zhaofengli/colmena";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
   outputs =

@@ -20,9 +20,9 @@ in
       runtimeTime = "20s";
       rebootTime = "30s";
     };
-    sleep.extraConfig = ''
-      AllowSuspend=no
-      AllowHibernation=no
-    '';
+    sleep.settings.Sleep = {
+      AllowSuspend = false;
+      AllowHibernation = false;
+    };
   };
 }

@@ -50,4 +50,9 @@ in
     ./modules/roles/server
     { system.stateVersion = "24.11"; }
   ];
+
+  resurgam.imports = [
+    ./modules/roles/server
+    { system.stateVersion = "26.05"; }
+  ];
 }
