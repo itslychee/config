@@ -13,7 +13,7 @@
           }
           {
             devices = [ "nodev" ];
-            path = "/boot/ESP0";
+            path = "/boot/ESP1";
           }
         ];
       };
@@ -36,7 +36,12 @@
 
   # eno1np0
 
-  virtualisation = {
-    libvirtd.enable = true;
+  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.qemu.swtpm.enable = true;
+  services.gns3-server = {
+    enable = true;
+    dynamips.enable = true;
+    vpcs.enable = true;
+    ubridge.enable = true;
   };
 }
