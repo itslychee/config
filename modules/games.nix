@@ -15,7 +15,7 @@
     programs.steam = {
       enable = true;
       # FIXME: system has been renamed ... stdenv.hostPlatform.system
-      package = inputs.unstable.legacyPackages.${config.nixpkgs.hostPlatform.system}.steam;
+      # package = inputs.unstable.legacyPackages.${config.nixpkgs.hostPlatform.system}.steam;
       extraCompatPackages = [ pkgs.proton-ge-bin ];
       extraPackages = [ pkgs.gamescope ];
       protontricks.enable = true;
