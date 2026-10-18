@@ -53,6 +53,9 @@
     inherit (pkgs.kdePackages) konsole;
     inherit (pkgs)
       nix-tree
+      virt-viewer
+      virt-manager
+      tigervnc
       inetutils
       android-tools
       nixpkgs-review

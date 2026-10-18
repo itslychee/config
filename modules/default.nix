@@ -23,6 +23,7 @@ in
     pkgs.htop
     pkgs.traceroute
     pkgs.tmux
+    pkgs.wget
   ];
 
   environment.pathsToLink = [ "/share" ];
