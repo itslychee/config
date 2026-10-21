@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  config,
   ...
 }:
 {
@@ -38,13 +37,6 @@
   };
 
   virtualisation.libvirtd.qemu.swtpm.enable = true;
-  services.gns3-server = {
-    enable = true;
-    dynamips.enable = true;
-    vpcs.enable = true;
-    ubridge.enable = true;
-
-  };
 
   services.fwupd.enable = true;
   programs.wireshark.enable = true;
@@ -67,10 +59,9 @@
       gimp
       libreoffice
       minicom
-      gns3-gui
-      # vesktop
-
+      vesktop
       ;
+    inherit (inputs.unstable.legacyPackages.x86_64-linux) gns3-gui;
   };
   virtualisation.docker.enable = true;
   services.printing = {
@@ -83,6 +74,25 @@
     nssmdns6 = true;
     openFirewall = true;
   };
+  services.gns3-server =
+    let
+      inherit (inputs.unstable.legacyPackages.x86_64-linux)
+        gns3-server
+        dynamips
+        vpcs
+        ubridge
+        ;
+    in
+    {
+      enable = true;
+      package = gns3-server;
+      dynamips.enable = true;
+      dynamips.package = dynamips;
+      vpcs.enable = true;
+      vpcs.package = vpcs;
+      ubridge.enable = true;
+      ubridge.package = ubridge;
+    };
 
   hardware = {
     bluetooth.enable = true;
