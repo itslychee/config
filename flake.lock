@@ -167,21 +167,6 @@
         "type": "github"
       }
     },
-    "master": {
-      "locked": {
-        "lastModified": 1792530697,
-        "narHash": "sha256-0cTMnoLzWWPpTU8o9p2vyYjWrjDmK2VQz8egTn3Ei9A=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "098b87a691becc469a9e997cab5cc8e3cb68b4e0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "neovim-src": {
       "flake": false,
       "locked": {
@@ -329,7 +314,6 @@
     "root": {
       "inputs": {
         "colmena": "colmena",
-        "master": "master",
         "nixpkgs": "nixpkgs_2",
         "nvim": "nvim",
         "unstable": "unstable"
