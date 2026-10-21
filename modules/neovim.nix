@@ -9,7 +9,7 @@ let
   inherit (lib) mkOption mkIf mkMerge;
   inherit (lib.types) bool;
   inherit (config.hey.roles) graphical;
-  nvim = inputs.nvim.packages.${pkgs.system};
+  nvim = inputs.nvim.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   options = {
