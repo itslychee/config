@@ -42,14 +42,6 @@ in
     ./modules/roles/graphical
     { system.stateVersion = "24.05"; }
   ];
-  wiretop.imports = [
-    ./modules/roles/graphical
-    { system.stateVersion = "24.11"; }
-  ];
-  pathway.imports = [
-    ./modules/roles/server
-    { system.stateVersion = "24.11"; }
-  ];
 
   resurgam.imports = [
     ./modules/roles/server
